@@ -166,7 +166,7 @@ Profile: ${JSON.stringify({
 ${quote ? `Live quote: price=${quote.close ?? quote.price}, change=${quote.change_p ?? quote.changePercentage}%, marketCap=${quote.marketCapitalization}` : ''}
 
 ${income ? `Income statements (3 years, most recent first):
-${JSON.stringify(income.slice(0, 3).map((y: Record<string, unknown>) => ({
+${JSON.stringify((income as Record<string, unknown>[]).slice(0, 3).map((y) => ({
   year: y.fiscalYear ?? y.calendarYear,
   revenue: y.revenue,
   netIncome: y.netIncome,
