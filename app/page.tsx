@@ -1,10 +1,14 @@
 'use client'
 import dynamic from 'next/dynamic'
 import TabNav from '@/components/TabNav'
-import { OBS_IMAGES, gdpPPP, countryElasticities, argSectors, mexicoSectors, ethiopiaSectors } from '@/data/emergingMarkets'
+import { gdpPPP, countryElasticities } from '@/data/emergingMarkets'
 
 const EngelInflectionChart = dynamic(() => import('@/components/EngelInflectionChart'), { ssr: false })
 const MeliQuote            = dynamic(() => import('@/components/MeliQuote'),            { ssr: false })
+const ArgEngelChart        = dynamic(() => import('@/components/ArgEngelChart'),        { ssr: false })
+const ArgMarketsChart      = dynamic(() => import('@/components/ArgMarketsChart'),      { ssr: false })
+const EthiopiaMarketsChart = dynamic(() => import('@/components/EthiopiaMarketsChart'), { ssr: false })
+const MexicoMarketsChart   = dynamic(() => import('@/components/MexicoMarketsChart'),   { ssr: false })
 
 const TH: React.CSSProperties = { textAlign: 'left', padding: '6px 16px 8px 0', fontSize: 11, fontWeight: 600, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em' }
 const TD: React.CSSProperties = { padding: '7px 16px 7px 0', borderBottom: '1px solid #eaeef2', verticalAlign: 'top', fontSize: 13 }
@@ -51,18 +55,7 @@ export default function EmergingMarkets() {
           Based on the original Observable notebook analysis. Food share falls from 35% → 22%; housing rises from 9% → 29%. Technology and entertainment accelerate sharply after the $15,000 inflection point. Yellow reference lines mark current income positions of Indonesia/India ($13k) and Egypt/Argentina ($18-20k). [OBS — notebook analysis; INF — interactive recreation from original data]
         </p>
 
-        {/* Original Observable static image as reference */}
-        <div style={{ marginTop: 20 }}>
-          <p style={{ fontSize: 11, fontWeight: 600, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>
-            Original notebook chart (Nov 2024)
-          </p>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={OBS_IMAGES.engelGlobal}
-            alt="Engel Curves Global Income — original Observable chart"
-            style={{ width: '100%', borderRadius: 8, border: '1px solid #eaeef2' }}
-          />
-        </div>
+        {/* Interactive chart replaces the original static image */}
 
         <div style={{ marginTop: 24, padding: '14px 16px', background: '#fff8c5', border: '1px solid #f0c060', borderRadius: 6 }}>
           <p style={{ margin: '0 0 4px', fontSize: 12, fontWeight: 600, color: '#9a6700' }}>Key investment implication</p>
@@ -102,15 +95,10 @@ export default function EmergingMarkets() {
 
       {/* ── 3. Emerging Market Consumption Evolution ───────────── */}
       <Sec title="Emerging Market: Consumption Evolution" sub="Income elasticities by country and sector — original analysis with 2026 company updates">
-        {/* Original Argentina curve image */}
-        <div style={{ marginBottom: 20 }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={OBS_IMAGES.argCurve}
-            alt="Engel Curve Argentina — original Observable chart"
-            style={{ width: '100%', borderRadius: 8, border: '1px solid #eaeef2' }}
-          />
-          <p className="obs-caption">Argentina Engel curve — original Observable analysis (Nov 2024)</p>
+        {/* Interactive Argentina Engel curve — replaces static image */}
+        <div style={{ marginBottom: 24 }}>
+          <p style={{ fontSize: 11, fontWeight: 600, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Monthly spending by sector vs. income — Argentina</p>
+          <ArgEngelChart />
         </div>
 
         <p className="obs-body obs-prose" style={{ color: '#57606a' }}>
@@ -160,15 +148,10 @@ export default function EmergingMarkets() {
 
       {/* ── 5. Argentina ───────────────────────────────────────── */}
       <Sec title="Argentina — Growth Trajectories" sub="Sectors updated Oct 2026. Milei reforms (Dec 2023 onward) substantially changed the investment landscape.">
-        {/* Original chart */}
-        <div style={{ marginBottom: 20 }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={OBS_IMAGES.argMarket}
-            alt="Argentina market opportunities — original Observable chart"
-            style={{ width: '100%', borderRadius: 8, border: '1px solid #eaeef2' }}
-          />
-          <p className="obs-caption">Original analysis (Nov 2024) — updated figures in table below</p>
+        {/* Interactive Argentina markets chart — replaces static image */}
+        <div style={{ marginBottom: 24 }}>
+          <p style={{ fontSize: 11, fontWeight: 600, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Top growth industries 2014–2030 (USD billions)</p>
+          <ArgMarketsChart />
         </div>
 
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13, marginTop: 16 }}>
@@ -212,13 +195,8 @@ export default function EmergingMarkets() {
       <Sec title="Ethiopia — Frontier Market Evolution" sub="Updated Oct 2026. GERD fully operational; Safaricom M-Pesa launched 2022.">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
           <div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={OBS_IMAGES.ethiopia}
-              alt="Ethiopia market — original Observable chart"
-              style={{ width: '100%', borderRadius: 8, border: '1px solid #eaeef2' }}
-            />
-            <p className="obs-caption">Original analysis (Nov 2024)</p>
+            <p style={{ fontSize: 11, fontWeight: 600, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Growth industries 2014–2030 (USD billions)</p>
+            <EthiopiaMarketsChart />
           </div>
           <div>
             <p className="obs-body" style={{ color: '#57606a' }}>
@@ -249,13 +227,8 @@ export default function EmergingMarkets() {
       <Sec title="Mexico — Nearshoring &amp; Digital Transformation" sub="Substantially updated — Mexico overtook China as #1 US import source in 2026.">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
           <div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={OBS_IMAGES.mexico}
-              alt="Mexico growth — original Observable chart"
-              style={{ width: '100%', borderRadius: 8, border: '1px solid #eaeef2' }}
-            />
-            <p className="obs-caption">Original projections (Nov 2024)</p>
+            <p style={{ fontSize: 11, fontWeight: 600, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Growth industries 2014–2030 (USD billions)</p>
+            <MexicoMarketsChart />
           </div>
           <div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 16 }}>
