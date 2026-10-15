@@ -174,7 +174,7 @@ export default function ResearchResult({ result }: { result: Record<string, any>
                       <div style={{ height: 5, width: `${score}%`, background: score >= 75 ? '#1a7f37' : score >= 50 ? '#9a6700' : '#cf222e', borderRadius: 3 }} />
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                      <p style={{ margin: 0, fontSize: 11, color: '#6e7681', flex: 1, lineHeight: 1.4 }}>{d.detail ?? ''}</p>
+                      <p style={{ margin: 0, fontSize: 11, color: '#6e7681', flex: 1, lineHeight: 1.4 }}>{String(d.detail ?? '')}</p>
                       <span style={{ fontFamily: 'monospace', fontWeight: 700, fontSize: 16, marginLeft: 8 }}>{score}</span>
                     </div>
                   </div>
