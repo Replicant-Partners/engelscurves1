@@ -2,6 +2,7 @@
 import dynamic from 'next/dynamic'
 import TabNav from '@/components/TabNav'
 import { gdpPPP, countryElasticities, argSectors, mexicoSectors, ethiopiaSectors } from '@/data/emergingMarkets'
+import { COMPANY_REPORTS } from '@/data/companyReports'
 
 const EngelInflectionChart = dynamic(() => import('@/components/EngelInflectionChart'), { ssr: false })
 const MeliQuote            = dynamic(() => import('@/components/MeliQuote'),            { ssr: false })
@@ -9,6 +10,7 @@ const ArgEngelChart        = dynamic(() => import('@/components/ArgEngelChart'),
 const ArgMarketsChart      = dynamic(() => import('@/components/ArgMarketsChart'),      { ssr: false })
 const EthiopiaMarketsChart = dynamic(() => import('@/components/EthiopiaMarketsChart'), { ssr: false })
 const MexicoMarketsChart   = dynamic(() => import('@/components/MexicoMarketsChart'),   { ssr: false })
+const DeepResearchCard     = dynamic(() => import('@/components/DeepResearchCard'),     { ssr: false })
 
 const TH: React.CSSProperties = { textAlign: 'left', padding: '6px 16px 8px 0', fontSize: 11, fontWeight: 600, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em' }
 const TD: React.CSSProperties = { padding: '7px 16px 7px 0', borderBottom: '1px solid #eaeef2', verticalAlign: 'top', fontSize: 13 }
@@ -139,11 +141,13 @@ export default function EmergingMarkets() {
       </Sec>
 
       {/* ── 4. MercadoLibre ────────────────────────────────────── */}
-      <Sec title="MercadoLibre — Latin America's E-commerce & Fintech Leader" sub="NASDAQ: MELI · Live quote + FMP financials [OBS]">
+      <Sec title="MercadoLibre — Latin America's E-commerce & Fintech Leader" sub="NASDAQ: MELI · Live quote + company-research-deep analysis · 2026-10-15">
         <MeliQuote />
-        <p className="obs-body obs-prose" style={{ color: '#57606a' }}>
+        <p className="obs-body obs-prose" style={{ color: '#57606a', marginBottom: 24 }}>
           MercadoLibre dominates e-commerce across Latin America and has expanded into fintech (MercadoPago), logistics (MELI Envíos) and credit (Mercado Crédito). Revenue grew from $15.1B (2023) → $20.8B (2024) → $28.9B (2025), a 3-year CAGR of ~38%. The company benefits directly from the Engel curve shift: as Brazil, Argentina and Mexico move through the $10k-$20k income range, both e-commerce (ε ≈ 1.2) and financial services (ε ≈ 1.1-1.3) spending shares rise faster than income.
         </p>
+        {/* Deep research report — generated via company-research-deep pipeline */}
+        {COMPANY_REPORTS['MELI'] && <DeepResearchCard report={COMPANY_REPORTS['MELI']} />}
       </Sec>
 
       {/* ── 5. Argentina ───────────────────────────────────────── */}
