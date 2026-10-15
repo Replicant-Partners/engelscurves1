@@ -277,7 +277,7 @@ Key metrics: ${JSON.stringify((evidence.keyMetrics as unknown[])?.[0], null, 1).
   const score = Math.round((0.25 * op + 0.30 * ig + 0.25 * cs + 0.20 * cp) * 10) / 10
   const verdict = score >= 75 ? 'GORILLA' : score >= 50 ? 'SMALL_ANIMAL' : 'PEDESTRIAN'
 
-  const result = { ...dims, score, verdict }
+  const result: Record<string, unknown> = { ...dims, score, verdict }
   send({ stage: 'gorilla', status: 'done', msg: `Score: ${score}/100 → ${verdict} (OP:${op} IG:${ig} CS:${cs} CP:${cp})` })
   return result
 }
