@@ -273,7 +273,7 @@ export async function POST(req: Request) {
 
     // ── Step 5: Compute GORILLA score deterministically ────────────────────
     if (analysis.gorilla && typeof analysis.gorilla === 'object') {
-      const g = analysis.gorilla as Record<string, number>
+      const g = analysis.gorilla as Record<string, unknown>
       const op = Number(g.obviousProblem ?? 50)
       const ig = Number(g.invisibleGorilla ?? 50)
       const cs = Number(g.combinatorialSolution ?? 50)
