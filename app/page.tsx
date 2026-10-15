@@ -7,6 +7,8 @@ const ChinaSpendingChart = dynamic(() => import('@/components/ChinaSpendingChart
 const IndustryChains     = dynamic(() => import('@/components/IndustryChains'),     { ssr: false })
 const ScenarioTree       = dynamic(() => import('@/components/ScenarioTree'),       { ssr: false })
 const DataGapsTable      = dynamic(() => import('@/components/DataGapsTable'),      { ssr: false })
+const LiveQuotes         = dynamic(() => import('@/components/LiveQuotes'),         { ssr: false })
+const LiveRevenueChart   = dynamic(() => import('@/components/LiveRevenueChart'),   { ssr: false })
 
 // ── Observable-style layout constants ──────────────────────────
 const PAGE: React.CSSProperties   = { width: '100%', padding: '48px 48px 120px', fontFamily: 'system-ui, -apple-system, sans-serif', color: '#1b1f23', boxSizing: 'border-box' }
@@ -181,7 +183,15 @@ export default function Home() {
 
       <hr style={DIVIDER} />
 
-      {/* ── 6. Industry Chains ───────────────────────────── */}
+      {/* ── Live Quotes ───────────────────────────────────────── */}
+      <section style={{ marginBottom: 48 }}>
+        <LiveQuotes />
+        <LiveRevenueChart />
+      </section>
+
+      <hr style={DIVIDER} />
+
+      {/* ── 6. Industry Chains ───────────────────────────────── */}
       <section style={SECTION}>
         <h2 style={H2}>6 — Ranked Industry–Economy Chains</h2>
         <p style={BYLINE}>Four chains with strongest plausible tailwind — traced to listed companies with falsifiers</p>
