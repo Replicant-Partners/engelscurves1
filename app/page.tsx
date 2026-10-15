@@ -1,7 +1,7 @@
 'use client'
 import dynamic from 'next/dynamic'
 import TabNav from '@/components/TabNav'
-import { gdpPPP, countryElasticities } from '@/data/emergingMarkets'
+import { gdpPPP, countryElasticities, argSectors, mexicoSectors, ethiopiaSectors } from '@/data/emergingMarkets'
 
 const EngelInflectionChart = dynamic(() => import('@/components/EngelInflectionChart'), { ssr: false })
 const MeliQuote            = dynamic(() => import('@/components/MeliQuote'),            { ssr: false })
