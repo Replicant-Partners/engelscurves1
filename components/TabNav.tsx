@@ -3,8 +3,9 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
 const TABS = [
-  { href: '/',        label: 'Emerging Markets',   sub: 'Updated from Observable notebook' },
-  { href: '/global',  label: 'Global Analysis',    sub: 'Academic cross-economy pass' },
+  { href: '/',          label: 'Emerging Markets',  sub: 'Observable notebook updated' },
+  { href: '/global',    label: 'Global Analysis',   sub: 'Academic cross-economy pass' },
+  { href: '/research',  label: 'Deep Research',     sub: 'Analyze any company · AI pipeline' },
 ]
 
 export default function TabNav() {
