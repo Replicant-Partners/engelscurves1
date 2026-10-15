@@ -223,11 +223,11 @@ export default function ResearchResult({ result }: { result: Record<string, any>
                     <div key={label} style={{ border: `1px solid ${color}40`, borderRadius: 8, padding: '14px 16px', background: `${color}06` }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
                         <span style={{ fontWeight: 700, color, fontSize: 14 }}>{label}</span>
-                        <span style={{ fontSize: 11, fontFamily: 'monospace', background: `${color}18`, color, padding: '2px 6px', borderRadius: 4 }}>p={sc.probability}</span>
+                        <span style={{ fontSize: 11, fontFamily: 'monospace', background: `${color}18`, color, padding: '2px 6px', borderRadius: 4 }}>p={String(sc.probability ?? '')}</span>
                       </div>
-                      {sc.revenue5Y && <p style={{ margin: '0 0 4px', fontFamily: 'monospace', fontWeight: 700, fontSize: 13, color: '#1b1f23' }}>Rev: {sc.revenue5Y} · Margin: {sc.margin5Y}</p>}
+                      {!!sc.revenue5Y && <p style={{ margin: '0 0 4px', fontFamily: 'monospace', fontWeight: 700, fontSize: 13, color: '#1b1f23' }}>Rev: {String(sc.revenue5Y)} · Margin: {String(sc.margin5Y ?? '')}</p>}
                       <p style={{ margin: '0 0 6px', fontSize: 12, color: '#57606a', lineHeight: 1.5 }}>{sc.description as string}</p>
-                      {sc.assumption && <p style={{ margin: 0, fontSize: 11, color: '#6e7681', fontStyle: 'italic' }}>Key: {sc.assumption as string}</p>}
+                      {!!sc.assumption && <p style={{ margin: 0, fontSize: 11, color: '#6e7681', fontStyle: 'italic' }}>Key: {sc.assumption as string}</p>}
                     </div>
                   ) : null
                 })}
@@ -355,8 +355,8 @@ export default function ResearchResult({ result }: { result: Record<string, any>
                   {(lv.strategicGoals as Record<string, unknown>[]).map((g, i) => (
                     <div key={i} style={{ padding: '10px 12px', border: '1px solid #eaeef2', borderRadius: 6 }}>
                       <p style={{ margin: '0 0 4px', fontSize: 13, fontWeight: 500, color: '#1b1f23' }}>{g.goal as string}</p>
-                      {g.horizon_years && <p style={{ margin: '0 0 4px', fontSize: 11, color: '#6e7681' }}>Horizon: {g.horizon_years as string} years</p>}
-                      {g.evidence && <p style={{ margin: 0, fontSize: 11, color: '#57606a', fontStyle: 'italic' }}>"{g.evidence as string}"</p>}
+                      {!!g.horizon_years && <p style={{ margin: '0 0 4px', fontSize: 11, color: '#6e7681' }}>Horizon: {g.horizon_years as string} years</p>}
+                      {!!g.evidence && <p style={{ margin: 0, fontSize: 11, color: '#57606a', fontStyle: 'italic' }}>"{g.evidence as string}"</p>}
                     </div>
                   ))}
                 </div>
@@ -371,7 +371,7 @@ export default function ResearchResult({ result }: { result: Record<string, any>
                     <span style={{ fontSize: 14, flexShrink: 0, marginTop: 1 }}>{c.delivered ? '✅' : '❌'}</span>
                     <div>
                       <p style={{ margin: 0, fontSize: 12, fontWeight: 500 }}>{c.event as string}</p>
-                      {c.evidence && <p style={{ margin: '2px 0 0', fontSize: 11, color: '#6e7681', fontStyle: 'italic' }}>"{c.evidence as string}"</p>}
+                      {!!c.evidence && <p style={{ margin: '2px 0 0', fontSize: 11, color: '#6e7681', fontStyle: 'italic' }}>"{c.evidence as string}"</p>}
                     </div>
                   </div>
                 ))}
