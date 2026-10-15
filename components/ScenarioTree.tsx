@@ -1,80 +1,48 @@
 'use client'
-
 import { scenarioBranches } from '@/data/research'
 
 export default function ScenarioTree() {
   return (
     <div>
       {/* Root */}
-      <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-4 mb-2 text-center max-w-sm mx-auto">
-        <p className="text-xs font-semibold text-zinc-300 mb-1">China 2024 — Starting Condition</p>
-        <p className="text-xs text-zinc-500">PPP $23,841 · Household consumption 39% GDP</p>
-        <p className="text-xs text-zinc-500">Property crisis ongoing · Household deposits rising</p>
-      </div>
-
-      {/* Connector */}
-      <div className="flex justify-center">
-        <div className="w-px h-6 bg-zinc-700" />
-      </div>
-
-      {/* Branch label */}
-      <div className="text-center mb-2">
-        <span className="text-xs text-zinc-600 bg-zinc-900 px-3 py-1 rounded-full border border-zinc-800">
+      <div style={{ textAlign: 'center', marginBottom: 8 }}>
+        <div style={{ display: 'inline-block', border: '1px solid #e8e8e8', borderRadius: 8, padding: '12px 24px', background: '#f9f9f9' }}>
+          <p style={{ margin: 0, fontWeight: 600, fontSize: 13 }}>China 2024 — Starting Condition</p>
+          <p style={{ margin: '4px 0 0', fontSize: 11, color: '#666' }}>PPP $23,841 · Household consumption 39% GDP · Property crisis ongoing</p>
+        </div>
+        <div style={{ width: 1, height: 24, background: '#e8e8e8', margin: '0 auto' }} />
+        <p style={{ display: 'inline-block', fontSize: 11, color: '#999', background: '#fff', padding: '2px 12px', border: '1px solid #e8e8e8', borderRadius: 12 }}>
           Property crisis resolution path 2025-2026
-        </span>
+        </p>
       </div>
 
       {/* Branches */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-        {scenarioBranches.map((branch) => (
-          <div
-            key={branch.id}
-            className="rounded-xl border p-4"
-            style={{ borderColor: branch.color + '40', background: branch.color + '08' }}
-          >
-            {/* Probability badge */}
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm font-bold" style={{ color: branch.color }}>
-                {branch.label}
-              </span>
-              <span
-                className="text-xs font-mono px-2 py-0.5 rounded-full"
-                style={{ background: branch.color + '20', color: branch.color }}
-              >
-                {branch.probabilityLabel}
-              </span>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, marginTop: 16 }}>
+        {scenarioBranches.map((b) => (
+          <div key={b.id} style={{ border: `1px solid ${b.color}30`, borderRadius: 8, padding: 16, background: `${b.color}06` }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
+              <span style={{ fontWeight: 600, fontSize: 13, color: b.color }}>{b.label}</span>
+              <span style={{ fontSize: 10, fontFamily: 'monospace', background: `${b.color}18`, color: b.color, padding: '2px 6px', borderRadius: 10 }}>{b.probabilityLabel}</span>
             </div>
-
-            {/* Description */}
-            <p className="text-xs text-zinc-400 mb-3 leading-relaxed">{branch.description}</p>
-
-            {/* Implication */}
-            <div className="bg-zinc-950/60 rounded-lg p-2.5 mb-3">
-              <p className="text-xs font-medium text-zinc-300 mb-1">Industry implication</p>
-              <p className="text-xs text-zinc-400 leading-relaxed">{branch.implication}</p>
+            <p style={{ fontSize: 11, color: '#555', lineHeight: 1.5, marginBottom: 10 }}>{b.description}</p>
+            <div style={{ background: '#f9f9f9', borderRadius: 4, padding: 8, marginBottom: 8 }}>
+              <p style={{ fontSize: 11, fontWeight: 600, color: '#333', margin: '0 0 3px' }}>Industry implication</p>
+              <p style={{ fontSize: 11, color: '#555', margin: 0, lineHeight: 1.5 }}>{b.implication}</p>
             </div>
-
-            {/* Early warning */}
-            <div>
-              <p className="text-xs font-medium text-zinc-500 mb-1">Early warning indicators</p>
-              <p className="text-xs text-zinc-500 leading-relaxed">{branch.earlyWarning}</p>
-            </div>
+            <p style={{ fontSize: 10, color: '#999', margin: 0, lineHeight: 1.5 }}><strong style={{ color: '#aaa' }}>Watch:</strong> {b.earlyWarning}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-4 p-3 rounded-lg bg-amber-950/20 border border-amber-800/20">
-        <p className="text-xs text-amber-400 font-medium mb-1">Scenario falsifier</p>
-        <p className="text-xs text-zinc-400">
-          If China household consumption / GDP does not rise from 39% toward 45% over 2024-2028, the Engel-curve tailwind
-          for luxury and high-elasticity categories does not materialise — regardless of headline income growth.
+      <div style={{ marginTop: 16, padding: 12, background: '#fff8dc', borderRadius: 6, border: '1px solid #f5e27a' }}>
+        <p style={{ fontSize: 11, fontWeight: 600, color: '#b45309', margin: '0 0 4px' }}>Scenario falsifier</p>
+        <p style={{ fontSize: 11, color: '#666', margin: 0, lineHeight: 1.5 }}>
+          If China household consumption / GDP does not rise from 39% toward 45% over 2024–2028, the Engel-curve tailwind
+          for luxury and high-elasticity categories does not materialise regardless of headline income growth.
           Observable: NBS quarterly household expenditure/income ratio.
         </p>
       </div>
-
-      <p className="text-xs text-zinc-600 mt-2 text-right">
-        All probabilities: analyst judgment [JDG] — for illustrative scenario structure only. Not a forecast.
-      </p>
+      <p style={{ fontSize: 10, color: '#bbb', textAlign: 'right', marginTop: 6 }}>All probabilities [JDG] — illustrative structure only. Not a forecast.</p>
     </div>
   )
 }
