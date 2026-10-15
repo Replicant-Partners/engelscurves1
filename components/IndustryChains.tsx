@@ -23,7 +23,7 @@ const tailwindBadge = (t: string): React.CSSProperties => {
 
 export default function IndustryChains() {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
       {industryChains.map((c) => (
         <div key={c.rank} style={{ border: '1px solid #e8e8e8', borderRadius: 8, padding: 20, background: '#fff' }}>
           {/* Header */}

@@ -9,7 +9,7 @@ const ScenarioTree       = dynamic(() => import('@/components/ScenarioTree'),   
 const DataGapsTable      = dynamic(() => import('@/components/DataGapsTable'),      { ssr: false })
 
 // ── Observable-style layout constants ──────────────────────────
-const PAGE: React.CSSProperties   = { maxWidth: 900, margin: '0 auto', padding: '48px 24px 120px', fontFamily: 'system-ui, -apple-system, sans-serif', color: '#1b1f23' }
+const PAGE: React.CSSProperties   = { width: '100%', padding: '48px 48px 120px', fontFamily: 'system-ui, -apple-system, sans-serif', color: '#1b1f23', boxSizing: 'border-box' }
 const H1: React.CSSProperties     = { fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em', margin: '0 0 8px', lineHeight: 1.2 }
 const H2: React.CSSProperties     = { fontSize: 18, fontWeight: 700, margin: '0 0 4px', color: '#1b1f23' }
 const BYLINE: React.CSSProperties = { fontSize: 12, color: '#999', marginBottom: 32, marginTop: 0 }
@@ -42,7 +42,7 @@ export default function Home() {
         </div>
         <h1 style={H1}>Engel-Curve Shifts, Industry Growth & Equity Prices</h1>
         <p style={BYLINE}>Research run 60c9821f · 15 Oct 2026 · Evidence-led · Not investment advice</p>
-        <p style={{ ...PROSE, maxWidth: 680 }}>
+        <p style={PROSE}>
           As household income rises, spending shares shift from necessities toward luxuries — Engel&apos;s Law, formalised in 1857.
           This notebook traces that mechanism across five economies, ranks four industry chains by tailwind strength, and asks
           whether current equity prices already reflect the structural shift.

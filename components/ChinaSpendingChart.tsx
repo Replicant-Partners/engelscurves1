@@ -4,7 +4,7 @@ import { chinaSpending2023 } from '@/data/research'
 
 export default function ChinaSpendingChart() {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 32 }}>
       <div>
         <p style={{ fontSize: 11, fontWeight: 600, color: '#555', textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: 8 }}>Budget Share (%)</p>
         <ResponsiveContainer width="100%" height={240}>
@@ -38,7 +38,7 @@ export default function ChinaSpendingChart() {
       </div>
 
       {/* Elasticity table */}
-      <div style={{ gridColumn: '1 / -1' }}>
+      <div>
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
           <thead>
             <tr style={{ borderBottom: '1px solid #e8e8e8' }}>
