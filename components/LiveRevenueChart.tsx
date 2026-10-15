@@ -1,13 +1,20 @@
 'use client'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Cell } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts'
 import { companyRevenue } from '@/data/liveData'
 
-const COLORS: Record<string, string> = { 'MC.PA': '#1f77b4', 'FRE.XETRA': '#2ca02c' }
+const COLORS: Record<string, string> = { LVMH: '#4e79a7', 'Fresenius SE': '#59a14f' }
+
+const axisStyle = { fontSize: 12, fill: '#6e7681', fontFamily: 'inherit' }
+const tooltipStyle = {
+  fontSize: 13, fontFamily: 'inherit',
+  border: '1px solid #d0d7de', borderRadius: 6,
+  boxShadow: '0 4px 12px rgba(0,0,0,.08)', background: '#fff',
+}
 
 export default function LiveRevenueChart() {
   const data = [2022, 2023, 2024, 2025].map((year) => {
     const row: Record<string, string | number> = { year }
-    for (const [ticker, co] of Object.entries(companyRevenue)) {
+    for (const co of Object.values(companyRevenue)) {
       const idx = co.years.indexOf(year)
       if (idx >= 0) row[co.name] = co.revenue[idx]
     }
@@ -15,65 +22,65 @@ export default function LiveRevenueChart() {
   })
 
   return (
-    <div>
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 24 }}>
-        {/* Revenue bar chart */}
-        <div>
-          <p style={{ fontSize: 11, fontWeight: 600, color: '#555', textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: 8 }}>Annual Revenue (€M)</p>
-          <ResponsiveContainer width="100%" height={200}>
-            <BarChart data={data} margin={{ left: 0, right: 16 }} barGap={4} barSize={18}>
-              <CartesianGrid strokeDasharray="2 4" stroke="#e8e8e8" vertical={false} />
-              <XAxis dataKey="year" tick={{ fontSize: 11, fill: '#666' }} axisLine={false} tickLine={false} />
-              <YAxis tick={{ fontSize: 11, fill: '#666' }} axisLine={false} tickLine={false} tickFormatter={(v: number) => `€${(v / 1000).toFixed(0)}bn`} width={44} />
-              <Tooltip contentStyle={{ fontSize: 11, border: '1px solid #e8e8e8', borderRadius: 4 }} formatter={(v: number) => [`€${v.toLocaleString()}M`, '']} />
-              <Legend iconSize={10} wrapperStyle={{ fontSize: 11 }} />
-              {Object.entries(companyRevenue).map(([ticker, co]) => (
-                <Bar key={ticker} dataKey={co.name} fill={COLORS[ticker]} radius={[2, 2, 0, 0]} />
-              ))}
-            </BarChart>
-          </ResponsiveContainer>
-          <p style={{ fontSize: 10, color: '#aaa', marginTop: 4 }}>Source: EODHD via kask — income_statement, 15 Oct 2026 [OBS]</p>
-        </div>
-
-        {/* YoY growth table */}
-        <div>
-          <p style={{ fontSize: 11, fontWeight: 600, color: '#555', textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: 8 }}>YoY Revenue Growth</p>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
-            <thead>
-              <tr style={{ borderBottom: '1px solid #e8e8e8' }}>
-                <th style={{ textAlign: 'left', padding: '4px 8px 4px 0', fontSize: 11, color: '#555' }}>Year</th>
-                {Object.values(companyRevenue).map((co) => (
-                  <th key={co.name} style={{ textAlign: 'right', padding: '4px 0', fontSize: 11, color: '#555' }}>{co.name}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {[2023, 2024, 2025].map((year) => (
-                <tr key={year} style={{ borderBottom: '1px solid #f5f5f5' }}>
-                  <td style={{ padding: '5px 8px 5px 0', fontFamily: 'monospace' }}>{year}</td>
-                  {Object.values(companyRevenue).map((co) => {
-                    const idx = co.years.indexOf(year)
-                    const yoy = idx >= 0 ? co.yoy[idx] : null
-                    return (
-                      <td key={co.name} style={{ textAlign: 'right', padding: '5px 0', fontFamily: 'monospace', color: yoy === null ? '#ccc' : yoy >= 0 ? '#16a34a' : '#dc2626', fontWeight: 600 }}>
-                        {yoy === null ? '—' : `${yoy > 0 ? '+' : ''}${yoy}%`}
-                      </td>
-                    )
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-
-          {/* Key metrics */}
-          <div style={{ marginTop: 16 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: 40 }}>
+      <div>
+        <p style={{ margin: '0 0 10px', fontSize: 11, fontWeight: 600, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em' }}>
+          Annual Revenue (€M) — EODHD income statements
+        </p>
+        <ResponsiveContainer width="100%" height={200}>
+          <BarChart data={data} barGap={6} barSize={22} margin={{ left: 0, right: 12 }}>
+            <CartesianGrid stroke="#eaeef2" vertical={false} />
+            <XAxis dataKey="year" tick={axisStyle} axisLine={{ stroke: '#d0d7de' }} tickLine={false} tickMargin={8} />
+            <YAxis tick={axisStyle} axisLine={false} tickLine={false} width={52} tickMargin={4} tickFormatter={(v: number) => `€${(v / 1000).toFixed(0)}B`} />
+            <Tooltip contentStyle={tooltipStyle} formatter={(v: number, name: string) => [`€${v.toLocaleString()}M`, name]} />
+            <Legend iconType="square" iconSize={10} wrapperStyle={{ fontSize: 12, fontFamily: 'inherit', color: '#6e7681', paddingTop: 12 }} />
             {Object.values(companyRevenue).map((co) => (
-              <div key={co.name} style={{ marginBottom: 8, padding: '8px 10px', background: '#f9f9f9', borderRadius: 4, fontSize: 11 }}>
-                <strong style={{ color: '#333' }}>{co.name}</strong>
-                <span style={{ color: '#666', marginLeft: 8 }}>P/E {co.peRatioTTM}x · Mkt cap €{co.marketCapBn}bn</span>
-              </div>
+              <Bar key={co.name} dataKey={co.name} fill={COLORS[co.name]} radius={[3, 3, 0, 0]} />
             ))}
-          </div>
+          </BarChart>
+        </ResponsiveContainer>
+        <p style={{ fontSize: 12, color: '#6e7681', marginTop: 8 }}>
+          Source: EODHD via kask — income_statement · 15 Oct 2026 [OBS]
+        </p>
+      </div>
+
+      <div>
+        <p style={{ margin: '0 0 10px', fontSize: 11, fontWeight: 600, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em' }}>
+          YoY Revenue Growth & Multiples
+        </p>
+        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+          <thead>
+            <tr style={{ borderBottom: '1px solid #d0d7de' }}>
+              <th style={{ textAlign: 'left', padding: '5px 12px 7px 0', fontSize: 11, fontWeight: 600, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em' }}>Year</th>
+              {Object.values(companyRevenue).map((co) => (
+                <th key={co.name} style={{ textAlign: 'right', padding: '5px 0 7px', fontSize: 11, fontWeight: 600, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em' }}>{co.name}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {[2023, 2024, 2025].map((year) => (
+              <tr key={year} style={{ borderBottom: '1px solid #eaeef2' }}>
+                <td style={{ padding: '6px 12px 6px 0', fontFamily: 'monospace', fontSize: 13 }}>{year}</td>
+                {Object.values(companyRevenue).map((co) => {
+                  const idx = co.years.indexOf(year)
+                  const yoy = idx >= 0 ? co.yoy[idx] : null
+                  return (
+                    <td key={co.name} style={{ textAlign: 'right', padding: '6px 0', fontFamily: 'monospace', fontSize: 13, fontWeight: 600, color: yoy === null ? '#afb8c1' : yoy >= 0 ? '#1a7f37' : '#cf222e' }}>
+                      {yoy === null ? '—' : `${yoy > 0 ? '+' : ''}${yoy}%`}
+                    </td>
+                  )
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
+          {Object.values(companyRevenue).map((co) => (
+            <div key={co.name} style={{ background: '#f6f8fa', border: '1px solid #eaeef2', borderRadius: 6, padding: '8px 12px', fontSize: 12 }}>
+              <strong style={{ color: '#1b1f23' }}>{co.name}</strong>
+              <span style={{ color: '#6e7681', marginLeft: 8 }}>P/E {co.peRatioTTM}× · Mkt cap €{co.marketCapBn}B</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

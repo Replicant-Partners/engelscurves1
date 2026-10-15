@@ -1,74 +1,75 @@
 'use client'
 import { industryChains } from '@/data/research'
 
-const flagStyle = (f: string): React.CSSProperties => {
-  const map: Record<string, React.CSSProperties> = {
-    'OBS':     { background: '#e6f4ea', color: '#137333', border: '1px solid #ceead6' },
-    'INF':     { background: '#fef7e0', color: '#b45309', border: '1px solid #fde68a' },
-    'OBS+INF': { background: '#e8f0fe', color: '#1d4ed8', border: '1px solid #c7d7fd' },
-    'OBS+GAP': { background: '#fff3e0', color: '#9a3412', border: '1px solid #fed7aa' },
-    'GAP':     { background: '#f3f3f3', color: '#555',    border: '1px solid #e8e8e8' },
+const BADGE = (f: string) => {
+  const m: Record<string, React.CSSProperties> = {
+    'OBS':     { background: '#e6f4ea', color: '#1a7f37', borderColor: '#a8d5b5' },
+    'INF':     { background: '#fff8c5', color: '#9a6700', borderColor: '#f0c060' },
+    'OBS+INF': { background: '#ddf4ff', color: '#0969da', borderColor: '#b6e3ff' },
+    'OBS+GAP': { background: '#fff1e0', color: '#9a3412', borderColor: '#fecba1' },
+    'GAP':     { background: '#f6f8fa', color: '#57606a', borderColor: '#d0d7de' },
   }
-  return { ...map[f] ?? map['GAP'], fontSize: 10, padding: '1px 6px', borderRadius: 3, fontFamily: 'monospace' }
+  return { ...(m[f] ?? m['GAP']), fontSize: 10, padding: '1px 7px', borderRadius: 20, border: '1px solid', fontFamily: 'monospace' } as React.CSSProperties
 }
 
-const tailwindBadge = (t: string): React.CSSProperties => {
-  const map: Record<string, React.CSSProperties> = {
-    'TAILWIND':    { background: '#e6f4ea', color: '#137333' },
-    'STRUCTURAL':  { background: '#e8f0fe', color: '#1d4ed8' },
-    'AGING-DRIVEN':{ background: '#fef7e0', color: '#b45309' },
+const TAIL = (t: string): React.CSSProperties => {
+  const m: Record<string, React.CSSProperties> = {
+    TAILWIND:    { background: '#e6f4ea', color: '#1a7f37', borderColor: '#a8d5b5' },
+    STRUCTURAL:  { background: '#ddf4ff', color: '#0969da', borderColor: '#b6e3ff' },
+    'AGING-DRIVEN': { background: '#fff8c5', color: '#9a6700', borderColor: '#f0c060' },
   }
-  return { ...(map[t] ?? {}), fontSize: 11, padding: '2px 8px', borderRadius: 12, fontWeight: 600 }
+  const s = m[t] ?? m['STRUCTURAL']
+  return { ...s, fontSize: 11, padding: '2px 9px', borderRadius: 20, border: '1px solid', fontWeight: 600 }
 }
 
 export default function IndustryChains() {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
       {industryChains.map((c) => (
-        <div key={c.rank} style={{ border: '1px solid #e8e8e8', borderRadius: 8, padding: 20, background: '#fff' }}>
-          {/* Header */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
-            <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-              <span style={{ fontSize: 24, fontWeight: 700, color: '#ccc', lineHeight: 1 }}>#{c.rank}</span>
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}>
-                  <span style={{ width: 10, height: 10, borderRadius: '50%', background: c.economyColor, display: 'inline-block', flexShrink: 0 }} />
-                  <span style={{ fontWeight: 600, fontSize: 14 }}>{c.economy}</span>
-                  <span style={tailwindBadge(c.tailwind)}>{c.tailwind}</span>
-                </div>
-                <p style={{ fontSize: 11, color: '#666', margin: 0 }}>{c.industry}</p>
-              </div>
+        <div key={c.rank} style={{ border: '1px solid #d0d7de', borderRadius: 8, padding: '18px 20px', background: '#fff', display: 'flex', flexDirection: 'column', gap: 12 }}>
+
+          {/* Rank + Economy + Tailwind */}
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
+              <span style={{ fontSize: 28, fontWeight: 700, color: '#eaeef2', lineHeight: 1 }}>#{c.rank}</span>
+              <span style={BADGE(c.dataFlag)}>{c.dataFlag}</span>
             </div>
-            <span style={flagStyle(c.dataFlag)}>{c.dataFlag}</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 3 }}>
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: c.economyColor, flexShrink: 0 }} />
+              <span style={{ fontWeight: 600, fontSize: 14, color: '#1b1f23' }}>{c.economy}</span>
+              <span style={TAIL(c.tailwind)}>{c.tailwind}</span>
+            </div>
+            <p style={{ margin: 0, fontSize: 12, color: '#6e7681' }}>{c.industry}</p>
           </div>
 
           {/* Mechanism */}
-          <div style={{ background: '#f9f9f9', borderRadius: 4, padding: 10, marginBottom: 10, fontSize: 12, color: '#444', lineHeight: 1.5 }}>
+          <div style={{ background: '#f6f8fa', border: '1px solid #eaeef2', borderRadius: 6, padding: '10px 12px', fontSize: 12, color: '#57606a', lineHeight: 1.55, flexGrow: 1 }}>
             {c.mechanism}
           </div>
 
           {/* Elasticity */}
-          <p style={{ fontSize: 11, color: '#666', marginBottom: 8 }}>
-            <strong style={{ color: '#555' }}>ε_Y:</strong> {c.elasticityNote}
+          <p style={{ margin: 0, fontSize: 12, color: '#6e7681' }}>
+            <strong style={{ color: '#57606a' }}>ε_Y: </strong>{c.elasticityNote}
           </p>
 
           {/* Companies */}
-          <div style={{ marginBottom: 10 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             {c.companies.map((co) => (
-              <div key={co.ticker} style={{ display: 'flex', gap: 8, marginBottom: 4 }}>
-                <span style={flagStyle(co.evidenceFlag)}>{co.evidenceFlag}</span>
-                <div style={{ fontSize: 11 }}>
-                  <strong>{co.name}</strong> <span style={{ color: '#999' }}>({co.ticker})</span>
-                  <p style={{ margin: '2px 0 0', color: '#666' }}>{co.data}</p>
+              <div key={co.ticker} style={{ display: 'flex', gap: 7, alignItems: 'flex-start' }}>
+                <span style={BADGE(co.evidenceFlag)}>{co.evidenceFlag}</span>
+                <div style={{ fontSize: 12 }}>
+                  <strong style={{ color: '#1b1f23' }}>{co.name}</strong>
+                  <span style={{ color: '#6e7681', marginLeft: 4, fontFamily: 'monospace', fontSize: 11 }}>({co.ticker})</span>
+                  <p style={{ margin: '2px 0 0', color: '#57606a' }}>{co.data}</p>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Falsifier */}
-          <div style={{ borderTop: '1px solid #f0f0f0', paddingTop: 10 }}>
-            <p style={{ fontSize: 11, color: '#d62728', marginBottom: 4, fontWeight: 600 }}>⚠ Falsifier</p>
-            <p style={{ fontSize: 11, color: '#666', lineHeight: 1.5, margin: 0 }}>{c.falsifier}</p>
+          <div style={{ borderTop: '1px solid #eaeef2', paddingTop: 10 }}>
+            <p style={{ margin: '0 0 3px', fontSize: 11, color: '#cf222e', fontWeight: 600 }}>⚠ Falsifier</p>
+            <p style={{ margin: 0, fontSize: 11, color: '#57606a', lineHeight: 1.5 }}>{c.falsifier}</p>
           </div>
         </div>
       ))}
