@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { saveAnalysis } from '@/lib/library'
 
 type Tab = 'overview' | 'gorilla' | 'scenarios' | 'thesis' | 'listen'
 
@@ -12,6 +13,13 @@ const VERDICT_STYLE: Record<string, React.CSSProperties> = {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function ResearchResult({ result }: { result: Record<string, any> }) {
   const [tab, setTab] = useState<Tab>('overview')
+  const [saved, setSaved] = useState(false)
+
+  function handleSave() {
+    saveAnalysis(a)
+    setSaved(true)
+    setTimeout(() => setSaved(false), 2500)
+  }
   const a = result.analysis ?? result  // handle both wrapped and flat
   const g = a.gorilla ?? {}
   const t = a.thesis ?? {}
@@ -57,6 +65,19 @@ export default function ResearchResult({ result }: { result: Record<string, any>
               {a.price && <span> · {a.currency} {Number(a.price).toFixed(2)}</span>}
             </p>
           </div>
+          <button
+            onClick={handleSave}
+            style={{
+              padding: '7px 14px', fontSize: 12, fontWeight: 600, fontFamily: 'inherit',
+              border: '1px solid', borderRadius: 6, cursor: 'pointer',
+              background: saved ? '#e6f4ea' : '#fff',
+              color: saved ? '#1a7f37' : '#0969da',
+              borderColor: saved ? '#a8d5b5' : '#0969da',
+              transition: 'all .2s', whiteSpace: 'nowrap',
+            }}
+          >
+            {saved ? '✓ Saved' : '📚 Save to Library'}
+          </button>
           {a.valuation && (
             <div style={{ textAlign: 'right', fontSize: 12, color: '#6e7681' }}>
               {a.valuation.peRatio && <p style={{ margin: 0 }}>P/E {Number(a.valuation.peRatio).toFixed(1)}×</p>}
