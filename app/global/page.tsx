@@ -2,14 +2,17 @@
 import dynamic from 'next/dynamic'
 import TabNav from '@/components/TabNav'
 
-const IncomeGrowthChart  = dynamic(() => import('@/components/IncomeGrowthChart'),  { ssr: false })
-const EngelCurveChart    = dynamic(() => import('@/components/EngelCurveChart'),    { ssr: false })
-const ChinaSpendingChart = dynamic(() => import('@/components/ChinaSpendingChart'), { ssr: false })
-const IndustryChains     = dynamic(() => import('@/components/IndustryChains'),     { ssr: false })
-const ScenarioTree       = dynamic(() => import('@/components/ScenarioTree'),       { ssr: false })
-const DataGapsTable      = dynamic(() => import('@/components/DataGapsTable'),      { ssr: false })
-const LiveQuotes         = dynamic(() => import('@/components/LiveQuotes'),         { ssr: false })
-const LiveRevenueChart   = dynamic(() => import('@/components/LiveRevenueChart'),   { ssr: false })
+const IncomeGrowthChart      = dynamic(() => import('@/components/IncomeGrowthChart'),      { ssr: false })
+const EngelCurveChart        = dynamic(() => import('@/components/EngelCurveChart'),        { ssr: false })
+const ChinaSpendingChart     = dynamic(() => import('@/components/ChinaSpendingChart'),     { ssr: false })
+const IndustryChains         = dynamic(() => import('@/components/IndustryChains'),         { ssr: false })
+const ScenarioTree           = dynamic(() => import('@/components/ScenarioTree'),           { ssr: false })
+const DataGapsTable          = dynamic(() => import('@/components/DataGapsTable'),          { ssr: false })
+const LiveQuotes             = dynamic(() => import('@/components/LiveQuotes'),             { ssr: false })
+const LiveRevenueChart       = dynamic(() => import('@/components/LiveRevenueChart'),       { ssr: false })
+const BudgetSankeyChart      = dynamic(() => import('@/components/BudgetSankeyChart'),      { ssr: false })
+const WardleyEvolutionChart  = dynamic(() => import('@/components/WardleyEvolutionChart'),  { ssr: false })
+const MacroProbabilities     = dynamic(() => import('@/components/MacroProbabilities'),     { ssr: false })
 
 const BADGES = [
   { label: 'OBS', bg: '#e6f4ea', color: '#1a7f37', border: '#a8d5b5' },
@@ -154,7 +157,22 @@ export default function GlobalAnalysis() {
         <ScenarioTree />
       </Sec>
 
-      <Sec n="8" title="Data Gaps" sub="Declared, not substituted">
+      {/* ── P5: Sankey ───────────────────────────────────────── */}
+      <Sec n="8" title="Household Budget Shift — Sankey" sub="How the family budget redistributes as income rises from $10k → $20k PPP · Priority 5: sankey-flow skill [OBS]">
+        <BudgetSankeyChart />
+      </Sec>
+
+      {/* ── P4: Wardley ──────────────────────────────────────── */}
+      <Sec n="9" title="Wardley Evolution by Income Level" sub="How spending categories evolve (Genesis → Commodity) as household income rises · Priority 4: wardley-mapper framework [INF]">
+        <WardleyEvolutionChart />
+      </Sec>
+
+      {/* ── P6: CMP / Macro probabilities ─────────────────────────── */}
+      <Sec n="10" title="Calibrated Macro Probabilities" sub="Superforecasting pipeline (Tetlock 2015) on key Engel curve inflection questions · Priority 6: scenario_calibrate [OBS]">
+        <MacroProbabilities />
+      </Sec>
+
+      <Sec n="11" title="Data Gaps" sub="Declared, not substituted">
         <DataGapsTable />
       </Sec>
 
