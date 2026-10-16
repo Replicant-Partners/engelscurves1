@@ -15,6 +15,28 @@ async function fmp<T = unknown>(path: string): Promise<T | null> {
   } catch { return null }
 }
 
+// Try recent quarters in order until we find a transcript
+// Mirrors company_transcript quarters_back logic in the MCP skill
+async function fetchLatestTranscript(ticker: string): Promise<unknown[] | null> {
+  const now = new Date()
+  const candidates: Array<{ year: number; quarter: number }> = []
+  let y = now.getFullYear()
+  let q = Math.ceil((now.getMonth() + 1) / 3)  // current calendar quarter
+  for (let i = 0; i < 6; i++) {  // try last 6 quarters
+    candidates.push({ year: y, quarter: q })
+    q--
+    if (q < 1) { q = 4; y-- }
+  }
+  for (const { year, quarter } of candidates) {
+    const result = await fmp<unknown[]>(`/earning-call-transcript/${ticker}?year=${year}&quarter=${quarter}`)
+    if (Array.isArray(result) && result.length > 0) return result
+  }
+  // Fallback: try the general transcript list endpoint
+  const list = await fmp<unknown[]>(`/earning-call-transcript/${ticker}`)
+  if (Array.isArray(list) && list.length > 0) return [list[0]]
+  return null
+}
+
 async function fmpSearch(query: string) {
   if (!FMP_KEY) return null
   try {
@@ -88,7 +110,7 @@ async function collectEvidence(query: string, send: SendFn) {
     fmp<unknown[]>(`/balance-sheet-statement/${ticker}?limit=2`),
     fmp<unknown[]>(`/cash-flow-statement/${ticker}?limit=2`),
     fmp<unknown[]>(`/key-metrics/${ticker}?limit=3`),
-    fmp<unknown[]>(`/earning-call-transcript/${ticker}?year=2026&quarter=2`),
+    fetchLatestTranscript(ticker),
     EODHD_KEY ? eodhd(`${ticker}.US`) : Promise.resolve(null),
   ])
 
