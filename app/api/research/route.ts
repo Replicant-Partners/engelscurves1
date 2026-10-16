@@ -63,6 +63,11 @@ function parseJSON(raw: string): Record<string, unknown> {
   } catch { return { raw } }
 }
 
+// ─── Safe JSON stringify (JSON.stringify(undefined) returns undefined, not '') ─
+function sj(v: unknown, limit = 99999): string {
+  return (JSON.stringify(v ?? {}) ?? '{}').slice(0, limit)
+}
+
 // ─── SSE helper ───────────────────────────────────────────────────────────────
 type SendFn = (event: Record<string, unknown>) => void
 
@@ -264,7 +269,7 @@ ${JSON.stringify({ rotatedCompetitivePosition: rotated.rotatedCompetitivePositio
 Company board:
 ${JSON.stringify({ businessFranchise: companyBoard.businessFranchise, invisibleLayer: companyBoard.invisibleLayer, valueGorillaElevatorPitch: companyBoard.valueGorillaElevatorPitch }, null, 1).slice(0, 1500)}
 
-Key metrics: ${JSON.stringify((evidence.keyMetrics as unknown[])?.[0], null, 1).slice(0, 800)}`
+Key metrics: ${sj((evidence.keyMetrics as unknown[])?.[0], 800)}`
 
   const raw = await llm(system, user, 2500)
   const dims = parseJSON(raw)
@@ -384,7 +389,7 @@ Company board summary:
 ${JSON.stringify({ businessFranchise: companyBoard.businessFranchise, managementSkill: companyBoard.managementSkill, financialProfile: companyBoard.financialProfile, invisibleLayer: companyBoard.invisibleLayer }, null, 1).slice(0, 2000)}
 
 IMAGINE: ${imagine.digitalStage} stage · ${imagine.growthDriver} driven
-Base scenario: ${JSON.stringify((imagine.scenarios as Record<string,unknown>)?.base).slice(0, 200)}
+Base scenario: ${sj((imagine.scenarios as Record<string,unknown>)?.base, 200)}
 
 Key valuation multiples: P/E ${km?.priceToEarningsRatio}, P/B ${km?.priceToBookRatio}, P/S ${km?.priceToSalesRatio}, EV/EBITDA ${km?.evToEBITDA}
 Revenue growth: ${km?.revenueGrowth}, ROE: ${km?.returnOnEquity}, ROIC: ${km?.returnOnInvestedCapital}`
@@ -426,7 +431,7 @@ Return JSON:
 
 Report sections produced: ${Object.keys(all).join(', ')}
 
-Thesis: ${JSON.stringify(all.thesis).slice(0, 500)}
+Thesis: ${sj(all.thesis, 500)}
 GORILLA: score ${(all.gorilla as Record<string,unknown>)?.score}, verdict ${(all.gorilla as Record<string,unknown>)?.verdict}
 Falsifiable predictions count: ${((all.imagine as Record<string,unknown>)?.falsifiablePredictions as unknown[])?.length ?? 0}`
 
