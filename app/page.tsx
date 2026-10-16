@@ -46,7 +46,7 @@ export default function EmergingMarkets() {
           Originally published Nov 21, 2024 · Updated Oct 2026 with World Bank, FMP &amp; EODHD live data
         </p>
         <p className="obs-body obs-prose" style={{ color: '#57606a' }}>
-          Engel curves reveal how household spending patterns evolve as income increases, providing critical insights for investment opportunities in emerging markets. The analysis across income levels from $10,000 to $30,000 per capita shows food expenditure declining significantly from 35% to 22% of household budgets, while housing demonstrates the strongest upward trajectory, increasing from 9% to 29%. This fundamental shift from essential to discretionary spending marks key investment inflection points in emerging markets.
+          Engel curves reveal how household spending patterns evolve as income increases, providing critical insights for investment opportunities in emerging markets. The analysis across income levels from $10,000 to $30,000 per capita PPP shows food expenditure declining from 35% to 22% of household budgets [OBS — PERI WP247, 207 countries], while housing demonstrates the strongest upward trajectory, rising from 20% to 29%. Financial services (+4pp), healthcare (+4pp), and education (+3pp) also gain significant budget share. This structural shift from essential to discretionary spending marks key investment inflection points in emerging markets — India ($9,416 PPP), Indonesia ($14,471), Brazil ($19,652), Mexico ($21,970), China ($23,841) and Argentina ($26,772) are all in or approaching this transition zone [OBS — World Bank 2024].
         </p>
       </header>
 
@@ -54,7 +54,7 @@ export default function EmergingMarkets() {
       <Sec title="Engel Curves — Global Income Patterns" sub="Spending share (%) by category as GDP per capita rises from $10k → $30k. Interactive chart built from original Observable analysis.">
         <EngelInflectionChart />
         <p className="obs-caption" style={{ marginTop: 12 }}>
-          Based on the original Observable notebook analysis. Food share falls from 35% → 22%; housing rises from 9% → 29%. Technology and entertainment accelerate sharply after the $15,000 inflection point. Yellow reference lines mark current income positions of Indonesia/India ($13k) and Egypt/Argentina ($18-20k). [OBS — notebook analysis; INF — interactive recreation from original data]
+          Budget share shifts from PERI WP247 reference curve (207 countries) [OBS]. Food falls 35% → 22%; housing rises 20% → 29% (verified via lisp_eval, both budgets sum to 100%). Yellow reference lines mark current income positions: India ($9,416 PPP, entering the zone), Indonesia ($14,471, in the $13k inflection zone), Mexico/Brazil ($20-22k, mid-upper transition), China/Argentina ($24-27k, upper zone). Technology and e-commerce accelerate after $15k [INF — inferred from Wardley evolution analysis].
         </p>
 
         {/* Interactive chart replaces the original static image */}
@@ -62,7 +62,7 @@ export default function EmergingMarkets() {
         <div style={{ marginTop: 24, padding: '14px 16px', background: '#fff8c5', border: '1px solid #f0c060', borderRadius: 6 }}>
           <p style={{ margin: '0 0 4px', fontSize: 12, fontWeight: 600, color: '#9a6700' }}>Key investment implication</p>
           <p style={{ margin: 0, fontSize: 13, color: '#1b1f23', lineHeight: 1.55 }}>
-            Technology and entertainment sectors exhibit classic luxury good characteristics (ε &gt; 1), accelerating rapidly after the $15,000 income level. Healthcare and education show steady increases. These patterns suggest optimal market entry points: <strong>real estate and housing plays</strong> as markets approach $20,000 per capita; <strong>technology and digital platforms</strong> around $15,000; <strong>premium consumer services</strong> throughout the transition.
+            As household income crosses key thresholds, spending category shares shift predictably. The Sankey analysis (section 8 in Global Analysis) shows Housing gaining +9pp, Financial Services +4pp, Healthcare +4pp, and Education +3pp of budget share between $10k and $20k PPP [OBS]. Investment implications [JDG]: <strong>financial services and e-commerce</strong> are in the highest-growth Custom→Product phase for India ($9k) and Indonesia ($14k); <strong>housing finance and consumer credit</strong> for Brazil ($20k) and Mexico ($22k); <strong>premium retail and insurance</strong> for China ($24k) and Argentina ($27k).
           </p>
         </div>
       </Sec>
@@ -72,7 +72,7 @@ export default function EmergingMarkets() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginBottom: 24 }}>
           {Object.entries(gdpPPP).map(([country, d]) => {
             const color = COUNTRY_COLORS[country] ?? '#999'
-            const zone = d.ppp2024 < 5000 ? 'Pre-inflection' : d.ppp2024 < 14000 ? 'Early stage (~$13k zone)' : d.ppp2024 < 20000 ? 'Mid-stage (~$15-18k zone)' : 'Upper-mid ($20k+ zone)'
+            const zone = d.ppp2024 < 5000 ? 'Pre-inflection (<$5k)' : d.ppp2024 < 11000 ? 'Entering $10k zone' : d.ppp2024 < 16000 ? '$13k inflection zone' : d.ppp2024 < 22000 ? 'Mid-stage $18-22k' : 'Upper-mid $22k+'
             return (
               <div key={country} style={{ border: '1px solid #d0d7de', borderRadius: 8, padding: '16px 18px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
@@ -91,7 +91,7 @@ export default function EmergingMarkets() {
           })}
         </div>
         <p className="obs-caption">
-          Source: World Bank NY.GDP.PCAP.PP.KD, retrieved 15 Oct 2026. PPP values are not directly comparable to the original notebook&apos;s nominal USD figures — nominal GDP per capita is approximately 35-60% of PPP values depending on the economy.
+          Source: World Bank NY.GDP.PCAP.PP.KD, retrieved 15 Oct 2026 [OBS]. PPP values (constant 2021 international $) are higher than nominal USD per capita: India nominal ~$2,600 vs PPP $9,416 (28%); Mexico nominal ~$11,500 vs PPP $21,970 (52%); Argentina nominal ~$13,000 vs PPP $26,772 (49%). The original Observable notebook used nominal USD figures, which are 25–55% of PPP values shown here.
         </p>
       </Sec>
 
@@ -104,7 +104,7 @@ export default function EmergingMarkets() {
         </div>
 
         <p className="obs-body obs-prose" style={{ color: '#57606a' }}>
-          The cross-market analysis of monthly consumer spending reveals distinct patterns across emerging markets, with key inflection points varying by country and sector. Brazil shows the highest elasticity in education (1.2) and financial services (1.1), while India demonstrates strong e-commerce elasticity (1.2) with an earlier inflection point ($13,000). Argentina&apos;s unique economic environment drives high elasticity in real estate (1.4) and financial services (1.3) as value preservation strategies. Indonesia shows fintech and e-commerce elasticities of 1.1 and 0.9 respectively.
+          The cross-market analysis reveals distinct spending patterns across emerging markets [OBS — original Observable notebook, Nov 2024]. Brazil’s households show the highest elasticities in education (1.2) and financial services (1.1). India, currently at $9,416 PPP, is approaching the $13,000 inflection point where e-commerce spending (ε=1.2) accelerates — making it the market with the most near-term structural runway. Argentina’s high inflation environment historically drove households toward real estate (ε=1.4) and financial services (ε=1.3) as value-preservation strategies; Milei’s Dec 2023 reforms are reshaping this dynamic. Indonesia ($14,471 PPP) is currently crossing the $13,000 zone where fintech (ε=1.1) and e-commerce (ε=0.9) spending shares begin rising materially.
         </p>
 
         {/* Elasticity table */}
@@ -144,7 +144,7 @@ export default function EmergingMarkets() {
       <Sec title="MercadoLibre — Latin America's E-commerce & Fintech Leader" sub="NASDAQ: MELI · Live quote + company-research-deep analysis · 2026-10-15">
         <MeliQuote />
         <p className="obs-body obs-prose" style={{ color: '#57606a', marginBottom: 24 }}>
-          MercadoLibre dominates e-commerce across Latin America and has expanded into fintech (MercadoPago), logistics (MELI Envíos) and credit (Mercado Crédito). Revenue grew from $15.1B (2023) → $20.8B (2024) → $28.9B (2025), a 3-year CAGR of ~38%. The company benefits directly from the Engel curve shift: as Brazil, Argentina and Mexico move through the $10k-$20k income range, both e-commerce (ε ≈ 1.2) and financial services (ε ≈ 1.1-1.3) spending shares rise faster than income.
+          MercadoLibre dominates e-commerce across Latin America and has expanded into fintech (Mercado Pago), logistics (Mercado Envíos) and credit (Mercado Crédito). Revenue: $15.1B (FY2023) → $20.8B (FY2024) → $28.9B (FY2025), 2-year CAGR of 38.3% [OBS — FMP audited statements]. Q2 2026 quarterly revenue surpassed $10B for the first time (+50% YoY) [OBS — FMP transcript]. The Engel curve connection is direct: Brazil ($19.7k PPP) is in the upper-mid transition zone where financial services spending share accelerates; Mexico ($22k PPP) is entering this zone; Argentina ($26.8k PPP) is in the upper zone where premium goods and insurance gain budget share. All three economies show rising e-commerce (ε≈1.2) and financial services (ε≈1.1–1.3) spending shares. MELI’s credit portfolio reached $16.4B (+75% YoY) with NPLs near all-time lows [OBS — Q2 2026 earnings transcript].
         </p>
         {/* Deep research report — generated via company-research-deep pipeline */}
         {COMPANY_REPORTS['MELI'] && <DeepResearchCard report={COMPANY_REPORTS['MELI']} />}
@@ -182,9 +182,9 @@ export default function EmergingMarkets() {
 
         <div style={{ marginTop: 16, display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
           {[
-            { label: 'GDP per capita PPP (2024)', value: '$26,772', note: 'World Bank [OBS]. Down from $27,825 (2022) — Milei shock therapy.', color: '#4e79a7' },
-            { label: 'GDP per capita PPP (2020)', value: '$23,877', note: 'Pre-Milei base.', color: '#6e7681' },
-            { label: 'Lithium CAGR', value: '15%', note: 'Fastest-growing sector. Milei removed state monopoly Jan 2024.', color: '#1a7f37' },
+            { label: 'GDP per capita PPP (2024)', value: '$26,772', note: 'World Bank NY.GDP.PCAP.PP.KD [OBS]. Down -4% from 2022 peak of $27,825 due to Milei’s Dec 2023 devaluation shock.', color: '#4e79a7' },
+            { label: 'GDP per capita PPP (2022 peak)', value: '$27,825', note: 'Pre-shock peak. Nominal terms: ~$13k (vs PPP $27.8k — 49% ratio) [OBS].', color: '#6e7681' },
+            { label: 'Lithium CAGR (projected)', value: '15%', note: 'Fastest-growing sector [INF]. Milei removed state monopoly Jan 2024. World’s 2nd largest reserves.', color: '#1a7f37' },
           ].map(c => (
             <div key={c.label} style={{ border: '1px solid #d0d7de', borderRadius: 6, padding: '12px 14px' }}>
               <p style={{ margin: '0 0 4px', fontSize: 11, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em' }}>{c.label}</p>
@@ -204,7 +204,7 @@ export default function EmergingMarkets() {
           </div>
           <div>
             <p className="obs-body" style={{ color: '#57606a' }}>
-              Ethiopia&apos;s GDP per capita PPP reached $2,892 in 2024 (up from $2,517 in 2020, +14.9%). The country sits firmly pre-inflection on the Engel curve — but its 63% youth population and rapid urbanization create the structural conditions for the shift.
+              Ethiopia’s GDP per capita PPP reached $2,892 in 2024 (up from $2,517 in 2020, +14.9% over 4 years, ~3.5% CAGR) [OBS — World Bank]. At $2,892, Ethiopia is firmly pre-inflection — well below the $10k zone where discretionary spending shares begin rising. The Engel curve tailwind is not yet active, but three structural conditions are building: (1) 63% of population under 25 [OBS — original notebook]; (2) Grand Ethiopian Renaissance Dam (GERD) fully operational 2023, providing Africa’s largest hydropower capacity (5.15 GW); (3) Safaricom Ethiopia launched M-Pesa 2022, with 8M+ users by 2024. Mobile money and manufacturing are the pre-conditions for the eventual Engel shift, not signs of it having started.
             </p>
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, marginTop: 12 }}>
               <thead>
@@ -274,7 +274,7 @@ export default function EmergingMarkets() {
         <div style={{ marginTop: 16, background: '#ddf4ff', border: '1px solid #b6e3ff', borderRadius: 6, padding: '12px 16px' }}>
           <p style={{ margin: '0 0 4px', fontSize: 12, fontWeight: 600, color: '#0969da' }}>Nearshoring 2.0 update [OBS]</p>
           <p style={{ margin: 0, fontSize: 13, color: '#1b1f23', lineHeight: 1.55 }}>
-            Mexico has overtaken China as the top source of US goods imports (17% vs 7.2% share, early 2026). The trend is evolving toward higher-value sectors — semiconductors, medical devices, AI infrastructure. The 2026 USMCA review is the key near-term event shaping future flows. Plan Mexico targets raising investment to 25-28% of GDP.
+            Mexico overtook China as the #1 source of US goods imports in early 2026 (17% vs 7.2% share) [OBS — US Census Bureau via Economics Observatory]. FDI hit a record $41B in 2025 (+11% YoY), though 68% was reinvested earnings — not new investment — a nuance the headline obscures [OBS — Economics Observatory]. GDP growth was only 0.8% in 2025 despite the trade boom, reflecting infrastructure gaps and domestic investment weakness. The Engel curve angle: Mexico at $21,970 PPP is in the mid-stage zone where consumer credit, e-commerce, and fintech spending shares are rising — MercadoLibre’s Mexico segment grew fastest in FY2025. The 2026 USMCA review is the key near-term event. Plan Mexico targets raising investment/GDP from 22% to 25–28%.
           </p>
         </div>
       </Sec>
@@ -305,8 +305,9 @@ export default function EmergingMarkets() {
 
       <footer style={{ borderTop: '1px solid #d0d7de', paddingTop: 24, marginTop: 16, fontSize: 12, color: '#6e7681' }}>
         <p><strong>Original notebook:</strong> Mario Orellana (@merchantadventure) · observablehq.com · Nov 21, 2024</p>
-        <p><strong>Updated data sources:</strong> World Bank NY.GDP.PCAP.PP.KD (Oct 2026) · FMP income_statement MELI (Oct 2026) · EODHD real-time quote MELI · Economics Observatory (Mexico nearshoring) · LSEG (Mexico) · Dallas Fed (nearshoring analysis)</p>
-        <p>All claims labeled [OBS] = primary source · [INF] = inference · [JDG] = judgment</p>
+        <p><strong>Updated data [OBS]:</strong> World Bank NY.GDP.PCAP.PP.KD (Oct 2026) · FMP income_statement + transcripts MELI (Oct 2026) · EODHD real-time quotes · PERI WP247 “Engel’s Law Around the World 150 Years Later” (207 countries) · Economics Observatory, LSEG, Dallas Fed (Mexico nearshoring) · NBS China 2023 household expenditure · India MoSPI HCES 2023-24 · Safaricom Ethiopia (M-Pesa users)</p>
+        <p><strong>Analysis tools:</strong> kask sankey-flow skill (Sankey, P5) · kask wardley-mapper framework (Wardley evolution, P4) · kask scenario_calibrate (macro probabilities, P6) · company-research-deep pipeline (MELI, HDB reports)</p>
+        <p><strong>Provenance:</strong> [OBS] = primary/sourced · [INF] = model inference from data · [JDG] = analyst judgment · [GAP] = evidence unavailable</p>
       </footer>
     </div>
   )
