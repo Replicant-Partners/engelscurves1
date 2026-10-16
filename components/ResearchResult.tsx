@@ -5,9 +5,9 @@ import { saveAnalysis } from '@/lib/library'
 type Tab = 'overview' | 'gorilla' | 'scenarios' | 'thesis' | 'listen'
 
 const VERDICT_STYLE: Record<string, React.CSSProperties> = {
-  GORILLA:      { background: '#e6f4ea', color: '#1a7f37', border: '1px solid #a8d5b5' },
-  SMALL_ANIMAL: { background: '#fff8c5', color: '#9a6700', border: '1px solid #f0c060' },
-  PEDESTRIAN:   { background: '#f6f8fa', color: '#57606a', border: '1px solid #d0d7de' },
+  GORILLA:      { color: '#1a7f37', border: '1px solid #1a7f37' },
+  SMALL_ANIMAL: { color: '#9a6700', border: '1px solid #9a6700' },
+  PEDESTRIAN:   { color: '#57606a', border: '1px solid #d0d7de' },
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -47,13 +47,13 @@ export default function ResearchResult({ result }: { result: Record<string, any>
                 {a.ticker ?? result.ticker}
               </span>
               {g.verdict && (
-                <span style={{ ...VERDICT_STYLE[verdict], fontSize: 11, padding: '2px 8px', borderRadius: 20, fontWeight: 600 }}>
-                  🦍 {verdict} {g.score}/100
+                <span style={{ ...VERDICT_STYLE[verdict], fontSize: 11, padding: '1px 7px', borderRadius: 3, fontFamily: 'monospace', background: 'none' }}>
+                  {verdict} {g.score}/100
                 </span>
               )}
               {a.imagine?.digitalStage && (
-                <span style={{ fontSize: 11, background: '#ddf4ff', color: '#0969da', border: '1px solid #b6e3ff', padding: '2px 7px', borderRadius: 4 }}>
-                  {a.imagine.digitalStage} stage
+                <span style={{ fontSize: 11, color: '#6e7681', border: '1px solid #d0d7de', padding: '1px 6px', borderRadius: 3, fontFamily: 'monospace' }}>
+                  {a.imagine.digitalStage}
                 </span>
               )}
             </div>
@@ -68,15 +68,13 @@ export default function ResearchResult({ result }: { result: Record<string, any>
           <button
             onClick={handleSave}
             style={{
-              padding: '7px 14px', fontSize: 12, fontWeight: 600, fontFamily: 'inherit',
-              border: '1px solid', borderRadius: 6, cursor: 'pointer',
-              background: saved ? '#e6f4ea' : '#fff',
-              color: saved ? '#1a7f37' : '#0969da',
-              borderColor: saved ? '#a8d5b5' : '#0969da',
-              transition: 'all .2s', whiteSpace: 'nowrap',
+              padding: '6px 14px', fontSize: 12, fontFamily: 'inherit',
+              border: '1px solid #d0d7de', borderRadius: 4, cursor: 'pointer',
+              background: '#fff', color: saved ? '#1a7f37' : '#57606a',
+              transition: 'color .2s', whiteSpace: 'nowrap',
             }}
           >
-            {saved ? '✓ Saved' : '📚 Save to Library'}
+            {saved ? 'Saved' : 'Save to Library'}
           </button>
           {a.valuation && (
             <div style={{ textAlign: 'right', fontSize: 12, color: '#6e7681' }}>
@@ -110,12 +108,12 @@ export default function ResearchResult({ result }: { result: Record<string, any>
           <div>
             {/* Engel Curve */}
             {(ec.mechanism || ec.economies?.length) && (
-              <div style={{ background: '#f6f8fa', border: '1px solid #eaeef2', borderRadius: 6, padding: '12px 14px', marginBottom: 14 }}>
+              <div style={{ borderLeft: '3px solid #d0d7de', paddingLeft: 14, marginBottom: 16 }}>
                 <p style={{ margin: '0 0 6px', fontSize: 11, fontWeight: 600, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em' }}>Engel Curve Connection</p>
                 <p style={{ margin: '0 0 8px', fontSize: 13, color: '#1b1f23', lineHeight: 1.6 }}>{ec.mechanism}</p>
-                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                  {(ec.economies ?? []).map((e: string) => <span key={e} style={{ fontSize: 11, background: '#ddf4ff', color: '#0969da', border: '1px solid #b6e3ff', padding: '2px 7px', borderRadius: 4 }}>{e}</span>)}
-                  {(ec.categories ?? []).map((c: {name: string; elasticity: number}) => <span key={c.name} style={{ fontSize: 11, background: '#e6f4ea', color: '#1a7f37', border: '1px solid #a8d5b5', padding: '2px 7px', borderRadius: 4 }}>{c.name} ε={c.elasticity}</span>)}
+                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                  {(ec.economies ?? []).map((e: string) => <span key={e} style={{ fontSize: 11, color: '#6e7681', fontFamily: 'monospace' }}>{e}</span>)}
+                  {(ec.categories ?? []).map((c: {name: string; elasticity: number}) => <span key={c.name} style={{ fontSize: 11, color: '#6e7681', fontFamily: 'monospace' }}>{c.name} ε={c.elasticity}</span>)}
                 </div>
               </div>
             )}
@@ -136,9 +134,9 @@ export default function ResearchResult({ result }: { result: Record<string, any>
 
             {/* Financial Profile */}
             {a.financialProfile && (
-              <div style={{ background: '#f6f8fa', border: '1px solid #eaeef2', borderRadius: 6, padding: '12px 14px', marginBottom: 14 }}>
+              <div style={{ marginBottom: 14 }}>
                 <p style={{ margin: '0 0 6px', fontSize: 11, fontWeight: 600, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em' }}>Financial Signposts</p>
-                <p style={{ margin: 0, fontSize: 13, color: '#1b1f23', lineHeight: 1.65 }}>{a.financialProfile}</p>
+                <p style={{ margin: 0, fontSize: 13, color: '#57606a', lineHeight: 1.65 }}>{a.financialProfile}</p>
               </div>
             )}
 
@@ -155,11 +153,9 @@ export default function ResearchResult({ result }: { result: Record<string, any>
                   <p style={{ fontSize: 11, fontWeight: 600, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 6 }}>Falstaffian Insight</p>
                   <p style={{ fontSize: 13, color: '#57606a', lineHeight: 1.6, margin: 0 }}>{a.falstaffian.insight}</p>
                   {a.falstaffian.shapesApplied && (
-                    <div style={{ marginTop: 6, display: 'flex', gap: 4, flexWrap: 'wrap' }}>
-                      {(a.falstaffian.shapesApplied as string[]).map((s: string) => (
-                        <span key={s} style={{ fontSize: 10, background: '#f6f8fa', border: '1px solid #d0d7de', padding: '1px 6px', borderRadius: 10, color: '#6e7681' }}>{s}</span>
-                      ))}
-                    </div>
+                    <p style={{ marginTop: 6, fontSize: 10, color: '#afb8c1', fontFamily: 'monospace' }}>
+                      {(a.falstaffian.shapesApplied as string[]).join(' · ')}
+                    </p>
                   )}
                 </div>
               )}
@@ -203,9 +199,9 @@ export default function ResearchResult({ result }: { result: Record<string, any>
               })}
             </div>
 
-            <div style={{ ...VERDICT_STYLE[verdict], borderRadius: 6, padding: '10px 14px', marginBottom: 12 }}>
-              <span style={{ fontWeight: 700, fontSize: 14 }}>Score: {g.score}/100 → {verdict}</span>
-              <span style={{ fontSize: 11, marginLeft: 12, opacity: 0.8 }}>
+            <div style={{ borderTop: '1px solid #d0d7de', paddingTop: 12, marginBottom: 12 }}>
+              <span style={{ fontWeight: 700, fontSize: 14, color: VERDICT_STYLE[verdict].color }}>Score: {g.score}/100 → {verdict}</span>
+              <span style={{ fontSize: 11, marginLeft: 12, color: '#6e7681' }}>
                 (0.25×{g.obviousProblem}) + (0.30×{g.invisibleGorilla}) + (0.25×{g.combinatorialSolution}) + (0.20×{g.chokePoint}) — fixed weights (CRD-2)
               </span>
             </div>
@@ -227,9 +223,9 @@ export default function ResearchResult({ result }: { result: Record<string, any>
         {/* ── IMAGINE ──────────────────────────────────────────────────── */}
         {tab === 'scenarios' && (
           <div>
-            <div style={{ display: 'flex', gap: 10, marginBottom: 16 }}>
-              {im.digitalStage && <span style={{ fontSize: 12, background: '#ddf4ff', color: '#0969da', border: '1px solid #b6e3ff', padding: '3px 10px', borderRadius: 4 }}>Stage: {im.digitalStage}</span>}
-              {im.growthDriver && <span style={{ fontSize: 12, background: '#e6f4ea', color: '#1a7f37', border: '1px solid #a8d5b5', padding: '3px 10px', borderRadius: 4 }}>Driver: {im.growthDriver}</span>}
+            <div style={{ display: 'flex', gap: 12, marginBottom: 16 }}>
+              {im.digitalStage && <span style={{ fontSize: 12, color: '#6e7681', fontFamily: 'monospace' }}>Stage: {im.digitalStage}</span>}
+              {im.growthDriver && <span style={{ fontSize: 12, color: '#6e7681', fontFamily: 'monospace' }}>Driver: {im.growthDriver}</span>}
             </div>
 
             {im.scenarios && (
@@ -241,10 +237,10 @@ export default function ResearchResult({ result }: { result: Record<string, any>
                 ].map(({ label, s, color }) => {
                   const sc = s as Record<string, unknown>
                   return sc ? (
-                    <div key={label} style={{ border: `1px solid ${color}40`, borderRadius: 8, padding: '14px 16px', background: `${color}06` }}>
+                    <div key={label} style={{ borderTop: `2px solid ${color}`, paddingTop: 12, paddingBottom: 4 }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                        <span style={{ fontWeight: 700, color, fontSize: 14 }}>{label}</span>
-                        <span style={{ fontSize: 11, fontFamily: 'monospace', background: `${color}18`, color, padding: '2px 6px', borderRadius: 4 }}>p={String(sc.probability ?? '')}</span>
+                        <span style={{ fontWeight: 700, color, fontSize: 13 }}>{label}</span>
+                        <span style={{ fontSize: 11, fontFamily: 'monospace', color }}>p={String(sc.probability ?? '')}</span>
                       </div>
                       {!!sc.revenue5Y && <p style={{ margin: '0 0 4px', fontFamily: 'monospace', fontWeight: 700, fontSize: 13, color: '#1b1f23' }}>Rev: {String(sc.revenue5Y)} · Margin: {String(sc.margin5Y ?? '')}</p>}
                       <p style={{ margin: '0 0 6px', fontSize: 12, color: '#57606a', lineHeight: 1.5 }}>{sc.description as string}</p>
@@ -284,13 +280,13 @@ export default function ResearchResult({ result }: { result: Record<string, any>
             {(im.notOnPage || im.notInPrice) && (
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
                 {im.notOnPage && (
-                  <div style={{ padding: '10px 12px', background: '#f6f8fa', borderRadius: 6, border: '1px solid #eaeef2' }}>
+                  <div style={{ borderLeft: '2px solid #d0d7de', paddingLeft: 12 }}>
                     <p style={{ margin: '0 0 4px', fontSize: 11, fontWeight: 600, color: '#6e7681' }}>Not on the page</p>
                     <p style={{ margin: 0, fontSize: 12, color: '#57606a', lineHeight: 1.5 }}>{im.notOnPage as string}</p>
                   </div>
                 )}
                 {im.notInPrice && (
-                  <div style={{ padding: '10px 12px', background: '#f6f8fa', borderRadius: 6, border: '1px solid #eaeef2' }}>
+                  <div style={{ borderLeft: '2px solid #d0d7de', paddingLeft: 12 }}>
                     <p style={{ margin: '0 0 4px', fontSize: 11, fontWeight: 600, color: '#6e7681' }}>Not in the price</p>
                     <p style={{ margin: 0, fontSize: 12, color: '#57606a', lineHeight: 1.5 }}>{im.notInPrice as string}</p>
                   </div>
@@ -303,14 +299,12 @@ export default function ResearchResult({ result }: { result: Record<string, any>
         {/* ── THESIS ───────────────────────────────────────────────────── */}
         {tab === 'thesis' && (
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-              <span style={{ fontSize: 13, fontWeight: 700, color: t.supported ? '#1a7f37' : '#cf222e' }}>
-                {t.supported ? '✓ Evidence supports a thesis' : '✗ Evidence does not support a thesis'}
-              </span>
-            </div>
+            <p style={{ fontSize: 13, fontWeight: 600, color: '#1b1f23', marginBottom: 14 }}>
+              {t.supported ? 'Evidence supports a thesis.' : 'Evidence does not support a thesis.'}
+            </p>
 
             {t.thesisStatement && (
-              <p style={{ fontSize: 13, color: '#57606a', lineHeight: 1.65, marginBottom: 18, padding: '12px 14px', background: '#f6f8fa', borderRadius: 6, border: '1px solid #eaeef2' }}>
+              <p style={{ fontSize: 13, color: '#57606a', lineHeight: 1.65, marginBottom: 20, borderLeft: '3px solid #d0d7de', paddingLeft: 14 }}>
                 {t.thesisStatement}
               </p>
             )}
@@ -320,22 +314,22 @@ export default function ResearchResult({ result }: { result: Record<string, any>
               { pillar: '2 — Management Quality', text: t.management },
               { pillar: '3 — Valuation',          text: t.valuation },
             ].map(p => p.text && (
-              <div key={p.pillar} style={{ marginBottom: 12, padding: '12px 14px', background: '#f6f8fa', borderRadius: 6, border: '1px solid #eaeef2' }}>
-                <p style={{ margin: '0 0 5px', fontWeight: 600, fontSize: 13 }}>{p.pillar}</p>
+              <div key={p.pillar} style={{ marginBottom: 16, borderBottom: '1px solid #eaeef2', paddingBottom: 16 }}>
+                <p style={{ margin: '0 0 5px', fontWeight: 600, fontSize: 13, color: '#1b1f23' }}>{p.pillar}</p>
                 <p style={{ margin: 0, fontSize: 13, color: '#57606a', lineHeight: 1.65 }}>{p.text}</p>
               </div>
             ))}
 
             {t.priceConclusion && (
-              <div style={{ background: '#ddf4ff', border: '1px solid #b6e3ff', borderRadius: 6, padding: '12px 14px', marginBottom: 14 }}>
-                <p style={{ margin: '0 0 3px', fontWeight: 600, fontSize: 12, color: '#0969da' }}>Price conclusion</p>
+              <div style={{ borderLeft: '3px solid #d0d7de', paddingLeft: 14, marginBottom: 16 }}>
+                <p style={{ margin: '0 0 3px', fontWeight: 600, fontSize: 12, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em' }}>Price conclusion</p>
                 <p style={{ margin: 0, fontSize: 13, color: '#1b1f23' }}>{t.priceConclusion}</p>
               </div>
             )}
 
             {t.falsifiers?.length > 0 && (
-              <div style={{ background: '#fff8c5', border: '1px solid #f0c060', borderRadius: 6, padding: '12px 14px', marginBottom: 12 }}>
-                <p style={{ margin: '0 0 6px', fontWeight: 600, fontSize: 12, color: '#9a6700' }}>Key falsifiers</p>
+              <div style={{ marginBottom: 14 }}>
+                <p style={{ margin: '0 0 6px', fontWeight: 600, fontSize: 12, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em' }}>Key falsifiers</p>
                 <ul style={{ margin: 0, paddingLeft: 18 }}>
                   {(t.falsifiers as string[]).map((f: string, i: number) => (
                     <li key={i} style={{ fontSize: 12, color: '#57606a', marginBottom: 4, lineHeight: 1.5 }}>{f}</li>
@@ -345,9 +339,9 @@ export default function ResearchResult({ result }: { result: Record<string, any>
             )}
 
             {a.evidenceReview && (
-              <div style={{ marginTop: 12, padding: '10px 14px', background: '#f6f8fa', borderRadius: 6, border: '1px solid #eaeef2' }}>
+              <div style={{ marginTop: 12, borderTop: '1px solid #eaeef2', paddingTop: 12 }}>
                 <p style={{ margin: '0 0 4px', fontSize: 11, fontWeight: 600, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em' }}>Evidence Review</p>
-                <p style={{ margin: 0, fontSize: 12, color: '#57606a' }}>{(a.evidenceReview as Record<string, unknown>)?.reviewNote as string}</p>
+                <p style={{ margin: 0, fontSize: 12, color: '#6e7681' }}>{(a.evidenceReview as Record<string, unknown>)?.reviewNote as string}</p>
               </div>
             )}
 
@@ -363,7 +357,7 @@ export default function ResearchResult({ result }: { result: Record<string, any>
             {!lv.strategicGoals && <p style={{ fontSize: 13, color: '#6e7681' }}>No transcript data available for this company.</p>}
 
             {lv.horizonSummary && (
-              <div style={{ marginBottom: 16, padding: '12px 14px', background: '#f6f8fa', borderRadius: 6, border: '1px solid #eaeef2' }}>
+              <div style={{ marginBottom: 16, borderLeft: '3px solid #d0d7de', paddingLeft: 14 }}>
                 <p style={{ margin: '0 0 4px', fontSize: 11, fontWeight: 600, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em' }}>Strategic horizon (12-36 months)</p>
                 <p style={{ margin: 0, fontSize: 13, color: '#1b1f23', lineHeight: 1.65 }}>{lv.horizonSummary}</p>
               </div>

@@ -15,14 +15,14 @@ interface Stage {
 }
 
 const INITIAL_STAGES: Stage[] = [
-  { id: 'evidence',    label: 'collect-evidence',  icon: '📊', msg: '', status: 'idle' },
-  { id: 'listen',      label: 'LISTEN',             icon: '👂', msg: '', status: 'idle' },
-  { id: 'company',     label: 'COMPANY (8-part)',   icon: '🏢', msg: '', status: 'idle' },
-  { id: 'falstaffian', label: 'FALSTAFFIAN',        icon: '🔄', msg: '', status: 'idle' },
-  { id: 'gorilla',     label: 'GORILLA scoring',    icon: '🦍', msg: '', status: 'idle' },
-  { id: 'imagine',     label: 'IMAGINE scenarios',  icon: '🔭', msg: '', status: 'idle' },
-  { id: 'thesis',      label: 'THESIS (3 pillars)', icon: '📋', msg: '', status: 'idle' },
-  { id: 'review',      label: 'evidence-review',    icon: '✅', msg: '', status: 'idle' },
+  { id: 'evidence',    label: 'collect-evidence',  icon: '01', msg: '', status: 'idle' },
+  { id: 'listen',      label: 'LISTEN',             icon: '02', msg: '', status: 'idle' },
+  { id: 'company',     label: 'COMPANY (8-part)',   icon: '03', msg: '', status: 'idle' },
+  { id: 'falstaffian', label: 'FALSTAFFIAN',        icon: '04', msg: '', status: 'idle' },
+  { id: 'gorilla',     label: 'GORILLA scoring',    icon: '05', msg: '', status: 'idle' },
+  { id: 'imagine',     label: 'IMAGINE scenarios',  icon: '06', msg: '', status: 'idle' },
+  { id: 'thesis',      label: 'THESIS (3 pillars)', icon: '07', msg: '', status: 'idle' },
+  { id: 'review',      label: 'evidence-review',    icon: '08', msg: '', status: 'idle' },
 ]
 
 const EXAMPLES = ['Nu Holdings (NU)', 'Grab Holdings (GRAB)', 'Sea Limited (SE)', 'Kaspi.kz (KSPI)', 'Rappi', 'Nubank Brazil']
@@ -145,36 +145,36 @@ export default function ResearchSearch() {
 
       {/* Live pipeline progress */}
       {status === 'loading' && (
-        <div style={{ border: '1px solid #eaeef2', borderRadius: 8, padding: '16px 20px', marginBottom: 20, background: '#f6f8fa' }}>
-          <p style={{ margin: '0 0 12px', fontSize: 12, fontWeight: 600, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em' }}>
-            company-research-deep pipeline · {elapsed}s
+        <div style={{ borderLeft: '3px solid #d0d7de', paddingLeft: 16, marginBottom: 20 }}>
+          <p style={{ margin: '0 0 12px', fontSize: 11, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em' }}>
+            company-research-deep · {elapsed}s elapsed
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6 }}>
             {stages.map(s => (
-              <div key={s.id} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
-                <span style={{ color: statusColor(s.status), fontWeight: 700, fontSize: 13, flexShrink: 0, marginTop: 1 }}>
+              <div key={s.id} style={{ display: 'flex', gap: 10, alignItems: 'baseline' }}>
+                <span style={{ fontFamily: 'monospace', fontSize: 10, color: statusColor(s.status), flexShrink: 0, width: 12 }}>
                   {statusIcon(s.status)}
                 </span>
                 <div>
-                  <span style={{ fontSize: 12, fontWeight: 600, color: s.status === 'running' ? '#0969da' : s.status === 'done' ? '#1b1f23' : '#afb8c1' }}>
-                    {s.icon} {s.label}
+                  <span style={{ fontSize: 12, color: s.status === 'running' ? '#0969da' : s.status === 'done' ? '#1b1f23' : '#afb8c1' }}>
+                    {s.label}
                   </span>
                   {s.msg && (
-                    <p style={{ margin: '1px 0 0', fontSize: 11, color: '#6e7681' }}>{s.msg}</p>
+                    <p style={{ margin: '1px 0 0', fontSize: 10, color: '#6e7681' }}>{s.msg}</p>
                   )}
                 </div>
               </div>
             ))}
           </div>
-          <p style={{ margin: '12px 0 0', fontSize: 11, color: '#6e7681' }}>
-            7 sequential LLM calls · OpenRouter/Claude Sonnet · FMP + EODHD
+          <p style={{ margin: '10px 0 0', fontSize: 11, color: '#afb8c1' }}>
+            7 stages · OpenRouter/Claude Sonnet · FMP + EODHD
           </p>
         </div>
       )}
 
       {/* Error */}
       {status === 'error' && (
-        <div style={{ padding: '14px 16px', background: '#ffebe9', border: '1px solid #ffc1c0', borderRadius: 6, marginBottom: 16 }}>
+        <div style={{ borderLeft: '3px solid #cf222e', paddingLeft: 14, marginBottom: 16 }}>
           <p style={{ margin: '0 0 4px', fontWeight: 600, color: '#cf222e', fontSize: 13 }}>Analysis failed</p>
           <p style={{ margin: 0, fontSize: 12, color: '#57606a' }}>{error}</p>
           <button onClick={() => setStatus('idle')} style={{ marginTop: 10, padding: '6px 12px', background: '#fff', border: '1px solid #d0d7de', borderRadius: 6, fontSize: 12, cursor: 'pointer', fontFamily: 'inherit' }}>
@@ -187,12 +187,8 @@ export default function ResearchSearch() {
       {status === 'done' && result && (
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              {stages.map(s => (
-                <span key={s.id} style={{ fontSize: 10, color: '#1a7f37', background: '#e6f4ea', border: '1px solid #a8d5b5', padding: '1px 6px', borderRadius: 10 }}>
-                  ✓ {s.label}
-                </span>
-              ))}
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+              <span style={{ fontSize: 11, color: '#6e7681', fontFamily: 'monospace' }}>8 stages completed</span>
             </div>
             <button onClick={() => { setStatus('idle'); setResult(null); setQuery('') }}
               style={{ padding: '5px 12px', background: '#f6f8fa', border: '1px solid #d0d7de', borderRadius: 6, fontSize: 12, cursor: 'pointer', fontFamily: 'inherit', color: '#57606a' }}>

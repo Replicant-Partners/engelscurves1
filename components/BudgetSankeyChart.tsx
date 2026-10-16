@@ -156,7 +156,7 @@ export default function BudgetSankeyChart() {
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(9, 1fr)', gap: 6 }}>
           {DELTA.map(r => (
-            <div key={r.cat} style={{ textAlign: 'center', padding: '8px 4px', borderRadius: 6, background: r.delta > 0 ? '#e6f4ea' : r.delta < 0 ? '#ffebe9' : '#f6f8fa', border: `1px solid ${r.delta > 0 ? '#a8d5b5' : r.delta < 0 ? '#ffc1c0' : '#eaeef2'}` }}>
+            <div key={r.cat} style={{ textAlign: 'center', padding: '8px 4px', borderBottom: `2px solid ${r.delta > 0 ? '#1a7f37' : r.delta < 0 ? '#cf222e' : '#d0d7de'}` }}>
               <p style={{ margin: '0 0 3px', fontSize: 10, color: '#6e7681', fontWeight: 500 }}>{r.cat}</p>
               <p style={{ margin: 0, fontFamily: 'monospace', fontWeight: 700, fontSize: 13, color: r.delta > 0 ? '#1a7f37' : r.delta < 0 ? '#cf222e' : '#57606a' }}>
                 {r.delta > 0 ? '+' : ''}{r.delta}pp
@@ -168,7 +168,7 @@ export default function BudgetSankeyChart() {
       </div>
 
       {/* Implication */}
-      <div style={{ marginTop: 14, padding: '10px 14px', background: '#f6f8fa', borderRadius: 6, border: '1px solid #eaeef2', fontSize: 12, color: '#57606a', lineHeight: 1.6 }}>
+      <div style={{ marginTop: 16, borderLeft: '3px solid #d0d7de', paddingLeft: 14, fontSize: 12, color: '#57606a', lineHeight: 1.6 }}>
         <strong style={{ color: '#1b1f23' }}>Investment implication [JDG]:</strong> As 600M+ households in India/China/Mexico move from $10k → $20k PPP income, Housing (+9pp), Financial Services (+4pp), Healthcare (+4pp) and Education (+3pp) each take a larger share of a growing budget. Food loses 13pp of share — not in absolute spending, but as a proportion. Companies in the gaining categories with income elasticity &gt;1 grow faster than income itself.
       </div>
 

@@ -6,7 +6,7 @@ const TABS = [
   { href: '/',          label: 'Emerging Markets',  sub: 'Observable notebook updated' },
   { href: '/global',    label: 'Global Analysis',   sub: 'Academic cross-economy pass' },
   { href: '/research',  label: 'Deep Research',     sub: 'Analyze any company · AI pipeline' },
-  { href: '/library',   label: '📚 Library',          sub: 'Your saved analyses' },
+  { href: '/library',   label: 'Library',            sub: 'Your saved analyses' },
 ]
 
 export default function TabNav() {

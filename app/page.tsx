@@ -59,9 +59,9 @@ export default function EmergingMarkets() {
 
         {/* Interactive chart replaces the original static image */}
 
-        <div style={{ marginTop: 24, padding: '14px 16px', background: '#fff8c5', border: '1px solid #f0c060', borderRadius: 6 }}>
-          <p style={{ margin: '0 0 4px', fontSize: 12, fontWeight: 600, color: '#9a6700' }}>Key investment implication</p>
-          <p style={{ margin: 0, fontSize: 13, color: '#1b1f23', lineHeight: 1.55 }}>
+        <div style={{ marginTop: 20, borderLeft: '3px solid #d0d7de', paddingLeft: 14 }}>
+          <p style={{ margin: '0 0 4px', fontSize: 11, fontWeight: 600, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em' }}>Investment implication</p>
+          <p style={{ margin: 0, fontSize: 13, color: '#57606a', lineHeight: 1.6 }}>
             As household income crosses key thresholds, spending category shares shift predictably. The Sankey analysis (section 8 in Global Analysis) shows Housing gaining +9pp, Financial Services +4pp, Healthcare +4pp, and Education +3pp of budget share between $10k and $20k PPP [OBS]. Investment implications [JDG]: <strong>financial services and e-commerce</strong> are in the highest-growth Custom→Product phase for India ($9k) and Indonesia ($14k); <strong>housing finance and consumer credit</strong> for Brazil ($20k) and Mexico ($22k); <strong>premium retail and insurance</strong> for China ($24k) and Argentina ($27k).
           </p>
         </div>
@@ -74,18 +74,15 @@ export default function EmergingMarkets() {
             const color = COUNTRY_COLORS[country] ?? '#999'
             const zone = d.ppp2024 < 5000 ? 'Pre-inflection (<$5k)' : d.ppp2024 < 11000 ? 'Entering $10k zone' : d.ppp2024 < 16000 ? '$13k inflection zone' : d.ppp2024 < 22000 ? 'Mid-stage $18-22k' : 'Upper-mid $22k+'
             return (
-              <div key={country} style={{ border: '1px solid #d0d7de', borderRadius: 8, padding: '16px 18px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                  <span style={{ width: 10, height: 10, borderRadius: '50%', background: color, flexShrink: 0 }} />
+              <div key={country} style={{ borderTop: `3px solid ${color}`, paddingTop: 14 }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 4 }}>
                   <span style={{ fontWeight: 700, fontSize: 15, color: '#1b1f23' }}>{country}</span>
+                  <span style={{ fontSize: 10, fontFamily: 'monospace', color: '#6e7681' }}>{zone}</span>
                 </div>
-                <p style={{ margin: '0 0 4px', fontFamily: 'monospace', fontSize: 22, fontWeight: 700, color, lineHeight: 1 }}>
+                <p style={{ margin: '0 0 2px', fontFamily: 'monospace', fontSize: 22, fontWeight: 700, color, lineHeight: 1 }}>
                   ${d.ppp2024.toLocaleString()}
                 </p>
-                <p style={{ margin: '0 0 8px', fontSize: 11, color: '#6e7681' }}>PPP per capita (2024)</p>
-                <span style={{ fontSize: 11, padding: '3px 8px', borderRadius: 4, background: color + '18', color, border: `1px solid ${color}40` }}>
-                  {zone}
-                </span>
+                <p style={{ margin: 0, fontSize: 11, color: '#afb8c1' }}>PPP per capita (2024)</p>
               </div>
             )
           })}
@@ -271,8 +268,8 @@ export default function EmergingMarkets() {
             </table>
           </div>
         </div>
-        <div style={{ marginTop: 16, background: '#ddf4ff', border: '1px solid #b6e3ff', borderRadius: 6, padding: '12px 16px' }}>
-          <p style={{ margin: '0 0 4px', fontSize: 12, fontWeight: 600, color: '#0969da' }}>Nearshoring 2.0 update [OBS]</p>
+        <div style={{ marginTop: 16, borderLeft: '3px solid #d0d7de', paddingLeft: 14 }}>
+          <p style={{ margin: '0 0 4px', fontSize: 11, fontWeight: 600, color: '#6e7681', textTransform: 'uppercase', letterSpacing: '.06em' }}>Nearshoring 2.0 update [OBS]</p>
           <p style={{ margin: 0, fontSize: 13, color: '#1b1f23', lineHeight: 1.55 }}>
             Mexico overtook China as the #1 source of US goods imports in early 2026 (17% vs 7.2% share) [OBS — US Census Bureau via Economics Observatory]. FDI hit a record $41B in 2025 (+11% YoY), though 68% was reinvested earnings — not new investment — a nuance the headline obscures [OBS — Economics Observatory]. GDP growth was only 0.8% in 2025 despite the trade boom, reflecting infrastructure gaps and domestic investment weakness. The Engel curve angle: Mexico at $21,970 PPP is in the mid-stage zone where consumer credit, e-commerce, and fintech spending shares are rising — MercadoLibre’s Mexico segment grew fastest in FY2025. The 2026 USMCA review is the key near-term event. Plan Mexico targets raising investment/GDP from 22% to 25–28%.
           </p>

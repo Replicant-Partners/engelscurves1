@@ -110,28 +110,29 @@ body {
   line-height: 1.45;
 }
 
-/* ── Observable cell block ──────────────────────────────────────── */
+/* ── Callout block — left border, no background color ───────────────────── */
 .obs-cell {
-  background: var(--obs-cell-bg);
-  border: 1px solid var(--obs-border-light);
-  border-radius: 6px;
-  padding: .625rem .875rem;
+  border-left: 3px solid var(--obs-border);
+  padding: .5rem 0 .5rem 1rem;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   font-size: .8125rem;
   color: var(--obs-fg-muted);
   margin: .75rem 0 1.25rem;
-  line-height: 1.5;
+  line-height: 1.55;
+  background: none;
 }
 
-/* ── Observable badge (OBS / INF / JDG / GAP) ──────────────────── */
+/* ── Provenance label (OBS / INF / JDG / GAP) ───────────────────────────── */
 .obs-badge {
   display: inline-block;
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: .6875rem;
-  padding: 2px 7px;
-  border-radius: 2em;
-  border: 1px solid;
-  margin-right: 6px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid var(--obs-border);
+  color: var(--obs-fg-muted);
+  background: none;
+  margin-right: 5px;
   line-height: 1.6;
   white-space: nowrap;
 }

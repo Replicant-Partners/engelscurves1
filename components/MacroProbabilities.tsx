@@ -58,10 +58,10 @@ const FORECASTS: Forecast[] = [
   },
 ]
 
-const TIER_STYLE = {
-  proximate: { bg: '#e6f4ea', color: '#1a7f37', border: '#a8d5b5', label: 'Proximate (>67%)' },
-  probable:  { bg: '#fff8c5', color: '#9a6700', border: '#f0c060', label: 'Probable (33–67%)' },
-  possible:  { bg: '#f6f8fa', color: '#57606a', border: '#d0d7de', label: 'Possible (<33%)' },
+const TIER_LABEL: Record<string, string> = {
+  proximate: 'Proximate (>67%)',
+  probable:  'Probable (33-67%)',
+  possible:  'Possible (<33%)',
 }
 
 function ProbBar({ p }: { p: number }) {
@@ -87,18 +87,15 @@ export default function MacroProbabilities() {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
         {FORECASTS.map((f, i) => {
-          const ts = TIER_STYLE[f.tier]
           return (
-            <div key={i} style={{ border: '1px solid #d0d7de', borderRadius: 10, overflow: 'hidden' }}>
+            <div key={i} style={{ border: '1px solid #d0d7de', borderRadius: 8, overflow: 'hidden' }}>
               {/* Header */}
               <div style={{ padding: '16px 20px', borderBottom: '1px solid #eaeef2' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16, marginBottom: 12 }}>
-                  <div style={{ flex: 1 }}>
-                    <span style={{ ...ts, fontSize: 10, padding: '2px 8px', borderRadius: 20, border: `1px solid ${ts.border}`, fontWeight: 600, display: 'inline-block', marginBottom: 6 }}>
-                      {ts.label}
-                    </span>
-                    <p style={{ margin: 0, fontSize: 15, fontWeight: 600, color: '#1b1f23', lineHeight: 1.4 }}>{f.question}</p>
-                  </div>
+                <div style={{ marginBottom: 10 }}>
+                  <span style={{ fontSize: 10, fontFamily: 'monospace', color: '#6e7681', marginBottom: 4, display: 'block' }}>
+                    {TIER_LABEL[f.tier]}
+                  </span>
+                  <p style={{ margin: 0, fontSize: 15, fontWeight: 600, color: '#1b1f23', lineHeight: 1.4 }}>{f.question}</p>
                 </div>
                 <ProbBar p={f.probability} />
               </div>
@@ -133,10 +130,10 @@ export default function MacroProbabilities() {
         })}
       </div>
 
-      <div style={{ marginTop: 16, padding: '10px 14px', background: '#fff8c5', border: '1px solid #f0c060', borderRadius: 6, fontSize: 11, color: '#9a6700' }}>
-        <strong>Calibration note:</strong> These are Fermi-decomposed estimates, not market-implied probabilities.
-        No prediction markets were found for China/India/Mexico GDP-level questions on Kalshi or Polymarket.
-        Calibration will improve as more forecasts are resolved and scored via Brier scoring.
+      <div style={{ marginTop: 16, borderLeft: '3px solid #d0d7de', paddingLeft: 14, fontSize: 12, color: '#6e7681' }}>
+        <strong style={{ color: '#1b1f23' }}>Calibration note:</strong> Fermi-decomposed estimates, not market-implied probabilities.
+        No prediction markets found for these GDP-level questions on Kalshi or Polymarket.
+        Calibration improves as forecasts are resolved and Brier-scored.
         Methodology: Tetlock &amp; Gardner, <em>Superforecasting</em> (2015), Ch. 4-6.
       </div>
     </div>
