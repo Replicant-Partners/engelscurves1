@@ -57,4 +57,28 @@ As hourly wages rise above the subsistence baseline, the willingness to pay for 
 ### Capital Allocation Implication
 **STRATEGIC ENTRY.** Companies operating at the exact point of inflection experience the highest Customer Lifetime Value (CLV) cohort generation. GoTo's unit economics are primed for structural margin expansion as average order values (AOV) naturally drift upward with the macroeconomic tide, requiring zero additional customer acquisition cost (CAC).`
   }
+,
+  {
+    id: "kaspi-kz-advanced-inflection",
+    title: "Kaspi.kz (KSPI): Monetizing Kazakhstan's Advanced Inflection",
+    date: "2026-10-21",
+    author: "Z-K Quantitative Strategy",
+    summary: "Investment Memo: With Kazakhstan deeply past the inflection threshold at $35,973 PPP, Kaspi's SuperApp captures mature discretionary spending, verified by an audited 41.7% net margin.",
+    content: `### Executive Summary
+Kazakhstan ($35,973 PPP) represents a structurally mature emerging market. Operating well past the $15k Engel Curve inflection point, the population has largely completed the transition into discretionary spending and formalized digital banking. Kaspi.kz dominates this advanced demographic via its SuperApp ecosystem, driving immense cash generation on zero marginal cost infrastructure.
+
+### Macro Catalyst: The Advanced Discretionary Phase
+Unlike economies just crossing the threshold (e.g., Indonesia), Kazakhstan's $35.9k PPP indicates a consumer base deeply entrenched in discretionary consumption. The highest marginal utility expenditure is no longer the *formalization* of commerce, but the *consolidation* of convenience. Kaspi's integration of Payments, Marketplace, and Fintech creates a closed-loop system that captures the entirety of this mature discretionary capital.
+
+### Mathematical Verification [VCP-Math-Auditor]
+Arithmetic audit of FY 2024 financials confirms profound operating leverage:
+*   **Revenue:** ₸2,532 billion ($4.82B USD)
+*   **Net Income:** ₸1,057 billion ($2.01B USD)
+*   **Net Margin Verification:** ₸1,057B / ₸2,532B = **41.74%**.
+
+This 41.7% net margin [OBS] demonstrates the pricing power and frictionless scalability of an ecosystem operating in a post-inflection economy, where structural consumer surplus translates directly into platform profitability.
+
+### Capital Allocation Implication
+**OVERWEIGHT.** Kaspi.kz offers a rare combination of emerging market growth infrastructure with developed market unit economics. Its ability to extract 41.7% net margins from a $35.9k PPP demographic validates the core thesis: post-inflection discretionary capital flows disproportionately to the dominant digital orchestrator.`
+  }
 ];
