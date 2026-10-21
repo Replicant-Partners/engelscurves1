@@ -1,5 +1,28 @@
 export const libraryReports = [
   {
+    id: "nu-latam-inflection",
+    title: "Nu Holdings (NU): Unlocking Unit Economics at the Inflection Point",
+    date: "2026-10-21",
+    author: "Z-K Quantitative Strategy",
+    summary: "Investment Memo: NU leverages Latin America's post-inflection status to drive an 18.7x spread between ARPAC and Cost to Serve, capturing the newly formalized middle class.",
+    content: `### Executive Summary
+Nu Holdings (131 million customers) has achieved unprecedented scale precisely as its core markets—Brazil ($20,024 PPP) and Mexico ($21,911 PPP)—mature past the Engel Curve inflection. This demographic tailwind accelerates digital banking adoption, allowing NU to report Q4 revenues of $4.9 billion (+45% YoY) and $895 million in net income. 
+
+### Macro Catalyst: The Cost of Formalization
+As consumers cross the $15,000 PPP threshold, the formalization of their economic life becomes the highest marginal utility expenditure. Legacy banks in Latin America carry high branch-network costs, making this emerging middle class unprofitable to serve. NU's structural advantage is its digital-only delivery mechanism, precisely intercepting the demographic transitioning out of subsistence spending.
+
+### Mathematical Verification [VCP-Math-Auditor]
+Arithmetic audit of Q4 unit economics confirms non-linear operating leverage:
+*   **Net Margin:** Verified at **18.26%** ($895M Net Income / $4.9B Revenue).
+*   **Operating Leverage (ARPAC to Cost):** Average Revenue Per Active Customer (ARPAC) stands at $15.00 against a Cost to Serve of $0.80. 
+*   **Calculated Ratio:** $15.00 / $0.80 = **18.75x**.
+
+This 18.75x ratio means that as the post-inflection consumer adopts high-margin credit and investment products, NU captures nearly all incremental revenue as profit, entirely bypassing traditional Customer Acquisition Costs (CAC).
+
+### Capital Allocation Implication
+**OVERWEIGHT.** Nu Holdings is the purest infrastructure play on Latin America's Engel Curve crossing. Its hyper-scalable cost structure ($0.80/user) uniquely positions it to monetize populations that are only now freeing capital from basic caloric and essential housing needs.`
+  },
+  {
     id: "meli-latam-post-inflection",
     title: "MercadoLibre (MELI): Capitalizing on LatAm's Post-Inflection Surplus",
     date: "2025-10-21",
@@ -16,8 +39,7 @@ Empirical models demonstrate that as per capita income crosses from $10k to $20k
 ### Capital Allocation Implication
 **OVERWEIGHT.** MELI operates exactly where this newly liberated capital flows.
 1.  **MercadoPago (Fintech):** Absorbs the demand for credit and yield as the unbanked middle class formalizes.
-2.  **MercadoLibre (Commerce):** Captures the shift from local, essential retail to diverse, aspirational consumption.
-`
+2.  **MercadoLibre (Commerce):** Captures the shift from local, essential retail to diverse, aspirational consumption.`
   },
   {
     id: "goto-sea-inflection",
