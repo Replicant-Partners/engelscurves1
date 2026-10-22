@@ -52,7 +52,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="border border-[#d0d7de] p-5">
                 <div className="text-xs text-[#6e7681] uppercase tracking-wider font-semibold mb-1">ASEAN Ecosystem (SE)</div>
-                <div className="text-3xl font-semibold text-[#1b1f23]">0.84 <span className="text-sm font-normal text-[#6e7681]">MCDA</span></div>
+                <div className="text-3xl font-semibold text-[#1b1f23]">0.84 <span className="text-sm font-normal text-[#6e7681]">MCDA (FY2024 inputs, re-run pending)</span></div>
                 <div className="text-sm text-[#1b1f23] mt-2 leading-snug space-y-1">
                   <p><span className="font-mono text-xs text-[#6e7681]">[OBS]</span> IDN/VNM entering the $15k inflection.</p>
                   <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> Multi-vertical ecosystem captures maximum marginal income share.</p>
@@ -60,10 +60,10 @@ export default function Home() {
               </div>
               <div className="border border-[#d0d7de] p-5">
                 <div className="text-xs text-[#6e7681] uppercase tracking-wider font-semibold mb-1">LATAM Efficiency (NU)</div>
-                <div className="text-3xl font-semibold text-[#1b1f23]">0.78 <span className="text-sm font-normal text-[#6e7681]">MCDA</span></div>
+                <div className="text-3xl font-semibold text-[#1b1f23]">0.78 <span className="text-sm font-normal text-[#6e7681]">MCDA (FY2024 inputs, re-run pending)</span></div>
                 <div className="text-sm text-[#1b1f23] mt-2 leading-snug space-y-1">
                   <p><span className="font-mono text-xs text-[#6e7681]">[OBS]</span> Post-inflection markets (BRA, MEX, COL).</p>
-                  <p><span className="font-mono text-xs text-[#6e7681]">[OBS]</span> Verified CAC (~$60) yields ~3.5x LTV/CAC at $20/mo ARPAC.</p>
+                  <p><span className="font-mono text-xs text-[#6e7681]">[OBS]</span> Q2 2026: ARPAC $17.1 vs $1.0 cost to serve per active customer (17.1x).</p>
                 </div>
               </div>
               <div className="border border-[#d0d7de] p-5">
@@ -103,18 +103,15 @@ export default function Home() {
                 <div>
                   <h3 className="text-sm font-semibold uppercase tracking-wider mb-2">MCDA Allocation Result</h3>
                   <p className="text-sm text-[#1b1f23] leading-relaxed">
-                    <span className="font-mono text-xs text-[#6e7681]">[OBS]</span> Multi-Criteria Decision Analysis confirms Sea Limited (0.84) outperforms Nu Holdings (0.78) across combined growth, margin, and macroeconomic factors.
-                  </p>
+                    <span className="font-mono text-xs text-[#6e7681]">[OBS]</span> The MCDA scored Sea Limited 0.84 vs Nu Holdings 0.78 on FY2024 inputs. Several of those inputs were superseded by Q2 2026 filings; a re-run is pending.</p>
                 </div>
                 <div>
                   <p className="text-sm text-[#1b1f23] leading-relaxed">
-                    <span className="font-mono text-xs text-[#6e7681]">[INF]</span> Sea Limited's exposure to markets crossing the inflection point (IDN, VNM) yields high-variance torque (±5pp EBITDA margin per ±$0.06/order shift) at peak elasticity.
-                  </p>
+                    <span className="font-mono text-xs text-[#6e7681]">[INF]</span> Shopee is adding buyers near the threshold (new active buyers +35% YoY in Q2 2026) but converts only 0.67% of GMV into adjusted EBITDA; Monee (20.5%) and Garena (57.6%) carry group margins.</p>
                 </div>
                 <div>
                   <p className="text-sm text-[#1b1f23] leading-relaxed">
-                    <span className="font-mono text-xs text-[#6e7681]">[JDG]</span> Overweight ASEAN consumer tech (SE) for inflection optionality. Hold LATAM financials (NU) for certain, high-magnitude operating leverage (proven &lt;$2/mo cost-to-serve).
-                  </p>
+                    <span className="font-mono text-xs text-[#6e7681]">[JDG]</span> Allocation call (Overweight SE, Hold NU) is suspended until the MCDA is re-run on verified Q2 2026 data.</p>
                 </div>
               </div>
               <div className="md:w-2/3 overflow-x-auto border border-[#d0d7de]">

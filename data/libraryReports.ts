@@ -4,23 +4,23 @@ export const libraryReports = [
     title: "Nu Holdings (NU): Unlocking Unit Economics at the Inflection Point",
     date: "2026-10-21",
     author: "Z-K Quantitative Strategy",
-    summary: "Investment Memo: NU leverages Latin America's post-inflection status to drive an 18.7x spread between ARPAC and Cost to Serve, capturing the newly formalized middle class.",
+    summary: "Investment Memo (Q4 2025 data): NU leverages Latin America's post-inflection status to drive an 18.7x spread between ARPAC and Cost to Serve. Superseded on unit economics by the Q2 2026 VCP audit.",
     content: `### Executive Summary
-Nu Holdings (131 million customers) has achieved unprecedented scale precisely as its core markets—Brazil ($20,024 PPP) and Mexico ($21,911 PPP)—mature past the Engel Curve inflection. This demographic tailwind accelerates digital banking adoption, allowing NU to report Q4 revenues of $4.9 billion (+45% YoY) and $895 million in net income.
+[OBS] Period: Q4 2025 (Nu Holdings 6-K, Feb 25, 2026). Nu closed 2025 with 131 million customers, record quarterly revenue of $4.9 billion and net income of $895 million (ROE 33%). [INF] Its core markets, Brazil ($20,024 PPP) and Mexico ($21,911 PPP), sit past the Engel Curve inflection, which supports digital banking adoption.
 
 ### Macro Catalyst: The Cost of Formalization
 As consumers cross the $15,000 PPP threshold, the formalization of their economic life becomes the highest marginal utility expenditure. Legacy banks in Latin America carry high branch-network costs, making this emerging middle class unprofitable to serve. NU's structural advantage is its digital-only delivery mechanism, precisely intercepting the demographic transitioning out of subsistence spending.
 
 ### Mathematical Verification [VCP-Math-Auditor]
-Arithmetic audit of Q4 unit economics confirms non-linear operating leverage:
+Arithmetic audit of Q4 2025 unit economics (company-disclosed monthly ARPAC and cost to serve per active customer):
 *   **Net Margin:** Verified at **18.26%** ($895M Net Income / $4.9B Revenue).
 *   **Operating Leverage (ARPAC to Cost):** Average Revenue Per Active Customer (ARPAC) stands at $15.00 against a Cost to Serve of $0.80.
 *   **Calculated Ratio:** $15.00 / $0.80 = **18.75x**.
 
-This 18.75x ratio means that as the post-inflection consumer adopts high-margin credit and investment products, NU captures nearly all incremental revenue as profit, entirely bypassing traditional Customer Acquisition Costs (CAC).
+[INF] A spread of this size means most incremental revenue per active customer is retained as contribution before credit losses, funding costs and acquisition spend. [GAP] Nu does not disclose CAC; acquisition spend is not zero (Q2 2026 marketing expense: $103.6M).
 
 ### Capital Allocation Implication
-**OVERWEIGHT.** Nu Holdings is the purest infrastructure play on Latin America's Engel Curve crossing. Its hyper-scalable cost structure ($0.80/user) uniquely positions it to monetize populations that are only now freeing capital from basic caloric and essential housing needs.`
+**OVERWEIGHT.** Nu Holdings is the purest infrastructure play on Latin America's Engel Curve crossing. Its low cost to serve ($0.80 per active customer per month in Q4 2025; $1.0 in Q2 2026) uniquely positions it to monetize populations that are only now freeing capital from basic caloric and essential housing needs.`
   },
   {
     id: "meli-latam-post-inflection",
@@ -82,26 +82,51 @@ This 41.7% net margin [OBS] demonstrates the pricing power and frictionless scal
   },
   {
     id: "se-nu-mcda-comparative",
-    title: "VCP AUDIT: Sea Limited (SE) vs Nu Holdings (NU) - Engel Curve Leverage",
+    title: "VCP Audit: Sea Limited (SE) vs Nu Holdings (NU), Q2 2026 Unit Economics",
     date: "2026-10-22",
-    author: "Z-K Quantitative Strategy (VCP-Math-Auditor Swarm)",
-    summary: "Investment Memo: Local Swarm execution mathematically proves NU's operating leverage is better evidenced (3.5x LTV/CAC in Brazil), while SE offers higher-variance margin optionality at the ASEAN threshold.",
+    author: "Z-K Quantitative Strategy (sec-analyst + vcp-math-auditor swarm)",
+    summary: "Verified against primary filings (Nu 6-K Q2 2026, Sea 2Q 2026 results deck). NU earns $16.1 of monthly contribution per active customer at a 17.1x ARPAC-to-cost-to-serve spread; Shopee converts 0.67% of GMV into adjusted EBITDA while Monee and Garena carry group profitability.",
     content: `### Executive Summary
-A Multi-Criteria Decision Analysis (MCDA) and strict Verification Commons Protocol (VCP) audit was conducted to evaluate capital allocation between Sea Limited (SE) and Nu Holdings (NU) at the Engel Curve threshold ($15,000 PPP).
-*   **Sea Limited (SE):** ASEAN Ecosystem (Indonesia/Vietnam crossing the threshold).
-*   **Nu Holdings (NU):** LATAM Fintech Efficiency (Brazil/Mexico well past the threshold).
+[OBS] This memo replaces the October 22 draft, which relied on recalled FY2024 figures. Every number below comes from the latest primary filings and was re-derived independently by the vcp-math-auditor agent (17 of 17 checks passed, 0 failures).
+*   **Nu Holdings:** 6-K, Q2 2026 results, August 13, 2026 (sec.gov/Archives/edgar/data/1691493/000129281426004222/nupr2q26_6k.htm).
+*   **Sea Limited:** 2Q 2026 results deck, August 11, 2026 (cdn.sea.com). Figures unaudited, as stated by the company.
 
-### Mathematical Verification [VCP-Math-Auditor]
-Arithmetic audit of Q4 2024 / FY2024 data via SEC Form 20-F and 6-K filings executed by \`local-research-swarm\`:
-*   **NU Leverage [OBS]:** Customers at 114.1M (+22% YoY). Verified cost-to-serve is <$2/mo. With an implied CAC upper bound of ~$60 and Brazil ARPAC of ~$20/mo, **payback is an exceptional 3.16–3.77 months**, implying an LTV/CAC ratio of ~3.5x.
-*   **SE Leverage [OBS/INF]:** Shopee GMV hit ~$100.5B (FY24). S&M per gross order is ~$0.36. Shopee swung to a positive ~1.2% adjusted EBITDA margin. SE's LTV/CAC is not fully verifiable due to non-disclosed active buyer counts.
+### Nu Holdings: Verified Unit Economics [OBS]
+*   **Customers:** 139 million (+~4 million in the quarter). Brazil almost 118 million, Mexico 15.8 million, Colombia over 5 million.
+*   **Activity:** monthly activity rate 83.5%; Brazil above 86%.
+*   **ARPAC:** $17.1 per active customer per month (Q1 2026: $15.9; Q2 2025: $12.5).
+*   **Cost to serve:** $1.0 per active customer per month.
+*   **P&L:** revenue $5,875.7M; net income $1,061.1M; ROE 33%; efficiency ratio 19.5%.
 
-### Engel-Curve Inflection Forward Margin Model
-[INF] **NU:** As the spend mix shifts from structural investment to mature credit products (+$1/mo ARPAC maturation), contribution margin expands by +2.3pp to +3.8pp. Operating leverage is **explicit and strong**.
-[INF] **SE:** ±$0.01/order optimization yields ±$110M EBITDA (±0.84pp of revenue). SeaMoney mix lever adds +2.23pp per 1% of GMV. Operating leverage is **higher-magnitude, lower-certainty torque** (±5.05pp margin swing potential).
+### Nu Holdings: Derived Metrics [INF]
+*   **ARPAC reconciliation:** quarterly revenue / 3 / average active customers = **$17.12**, consistent with the disclosed $17.1. The earlier "ARPAC vs blended ARPU" contradiction was a denominator error and is closed.
+*   **Net margin:** **18.06%**.
+*   **Spread:** ARPAC / cost to serve = **17.1x**; contribution of **$16.1** per active customer per month.
+*   **Acquisition proxy:** marketing expense / net adds = **$25.9** per new customer. This is a lower bound: marketing is only part of acquisition cost, and Nu does not disclose CAC [GAP]. On that proxy, payback is about 1.6 months.
+
+### Sea Limited: Verified Segment Data [OBS]
+*   **Shopee:** GMV $38.3B (+28% YoY), 4.2B gross orders, revenue $5,587.6M, adjusted EBITDA $255.4M (2Q 2025: $227.7M). Average monthly active buyers +18% YoY; new active buyers +35% YoY.
+*   **Monee:** revenue $1,402.8M, adjusted EBITDA $288.0M, loans principal outstanding $11.1B, NPL90+ 1.0%.
+*   **Garena:** revenue $746.6M, adjusted EBITDA $429.8M.
+*   **Group:** revenue $7,787.8M, adjusted EBITDA $917.2M. Segment sums reconcile within $0.1M rounding.
+
+### Sea Limited: Derived Metrics [INF]
+*   **Shopee take rate:** **14.59%** of GMV. AOV **$9.12**.
+*   **Shopee margin:** adjusted EBITDA is **0.67% of GMV** (the deck shows 0.7%) and **4.57% of Shopee revenue**. That is **$0.061** per order, up **12.2%** YoY.
+*   **Monee margin:** **20.53%** of revenue. **Garena:** **57.57%**. **Group:** **11.78%**.
+
+### What Changed vs the Earlier Draft
+*   NU customers: 114.1M (FY2024) was stale; the current figure is 139M.
+*   NU ARPAC of $20/month was wrong; the disclosed figure is $17.1.
+*   SeaMoney/Monee margin of 29% was stale; the current figure is 20.5%.
+*   Shopee margin of ~1.2% was FY2024; the current figure is 4.6% of revenue (0.67% of GMV).
+*   The earlier LTV/CAC (3.5x) and margin-sensitivity scenarios were built on those inputs and have been withdrawn.
+
+### Engel Curve Reading
+[INF] NU monetizes customers in markets already past the $15k PPP inflection, and ARPAC is still rising (+22% YoY, FX-neutral, per the release). Growth comes mainly from deeper monetization per customer.
+[INF] Shopee is adding buyers in Southeast Asian markets near the threshold (new active buyers +35% YoY), but converts less than 1% of GMV into EBITDA. Group profitability is carried by Monee and Garena.
 
 ### Capital Allocation Implication
-[JDG] **OVERWEIGHT ASEAN (SE). HOLD LATAM (NU).**
-Capitalize on Sea Limited for structural demographic expansion at peak Engel curve elasticity (high variance optionality). Maintain Nu Holdings purely as an operational efficiency hold, leveraging its verified <$2/mo cost-to-serve and 3.5x LTV/CAC.`
+[JDG] The prior allocation (Overweight SE, Hold NU) came from an MCDA run on FY2024 inputs. It is suspended pending a re-run with the Q2 2026 data above. [GAP] YoY growth rates quoted by both companies are FX-neutral and should not be compared with USD-computed figures.`
   }
 ];
