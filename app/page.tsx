@@ -22,7 +22,7 @@ export default function Home() {
               Engel Curve Inflection Matrix
             </h1>
             <p className="text-[#6e7681] mt-2 text-sm leading-relaxed max-w-2xl">
-              [JDG] Tracks emerging markets against a $15,000 per-capita (PPP) reference level. The share of spending on discretionary goods rises with income, and, in theory, at low expenditure households buy basic goods only<sup className="text-[10px] text-[#6e7681] ml-0.5">[1,2]</sup>. No source in our corpus places this switching point at a dollar value; $15,000 is an analyst reference<sup className="text-[10px] text-[#6e7681] ml-0.5">[3]</sup>.
+              [JDG] Tracks emerging markets against a $15,000 per-capita (PPP) reference level. The share of spending on discretionary goods rises with income, and, in theory, at low expenditure households buy basic goods only<sup className="text-[10px] text-[#6e7681] ml-0.5">[1,2]</sup>. No source in our corpus places it at $15,000 GDP per capita; that level is an analyst reference<sup className="text-[10px] text-[#6e7681] ml-0.5">[3]</sup>. The closest sourced anchors are a middle-class entry point of about $11 per person per day (2011 PPP)<sup className="text-[10px] text-[#6e7681] ml-0.5">[13]</sup> and median food shares that fall from over 50% in low-income to 30–40% in upper-middle-income countries<sup className="text-[10px] text-[#6e7681] ml-0.5">[10]</sup>.
             </p>
           </div>
           <div className="text-right">
@@ -73,7 +73,7 @@ export default function Home() {
                 <div className="text-3xl font-semibold text-[#1b1f23]">IND, PHL</div>
                 <div className="text-sm text-[#1b1f23] mt-2 leading-snug space-y-1">
                   <p><span className="font-mono text-xs text-[#6e7681]">[OBS]</span> &gt;25% distance to the $15k threshold.</p>
-                  <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> At low expenditure, spending is concentrated in basic goods (model prediction)<sup className="text-[10px] text-[#6e7681] ml-0.5">[2]</sup>; where financial systems are shallow, stock-market gains do not reliably reach consumption<sup className="text-[10px] text-[#6e7681] ml-0.5">[6,7]</sup>.</p>
+                  <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> At low expenditure, spending is concentrated in basic goods (model prediction)<sup className="text-[10px] text-[#6e7681] ml-0.5">[2]</sup>; where financial systems are shallow, stock-market gains do not reliably reach consumption<sup className="text-[10px] text-[#6e7681] ml-0.5">[6,7]</sup>. PPP incomes tend to overstate the real income of poorer countries<sup className="text-[10px] text-[#6e7681] ml-0.5">[12]</sup>, so the distance to the reference may be understated.</p>
                   <p><span className="font-mono text-xs text-[#6e7681]">[JDG]</span> Prioritize infrastructure over broad B2C exposure.</p>
                 </div>
               </div>
@@ -152,7 +152,7 @@ export default function Home() {
             <div className="space-y-3 border-t border-[#d0d7de] pt-6">
               <h2 className="text-lg font-semibold">Literature Evidence</h2>
               <p className="text-sm text-[#6e7681] leading-relaxed max-w-3xl">
-                How emerging-market wealth reaches consumption: mainly through housing; a positive stock-market effect appears only once the financial sector deepens<sup className="text-[10px] ml-0.5">[6,7]</sup>. Sales surprises at higher-margin US retailers track market returns more closely than at lower-margin retailers<sup className="text-[10px] ml-0.5">[5]</sup>.
+                How emerging-market wealth reaches consumption: mainly through housing; a positive stock-market effect appears only once the financial sector deepens<sup className="text-[10px] ml-0.5">[6,7]</sup>. Sales surprises at higher-margin US retailers track market returns more closely than at lower-margin retailers<sup className="text-[10px] ml-0.5">[5]</sup>. Even 95th-percentile households in poor countries spend 5 to 15 percentage points more of their budget on food than poor households in rich countries<sup className="text-[10px] ml-0.5">[11]</sup>, leaving 5 to 15 percentage points less of the budget for non-food spending.
               </p>
               <div className="overflow-x-auto border border-[#d0d7de]">
                 <table className="w-full text-left border-collapse text-sm">
@@ -183,7 +183,7 @@ export default function Home() {
                   </tbody>
                 </table>
               </div>
-              <p className="text-xs text-[#6e7681]">Passages retrieved from a local corpus of 8 papers and checked verbatim against the source text. Support levels reviewed by an independent citation-auditor agent.</p>
+              <p className="text-xs text-[#6e7681]">Passages retrieved from a local corpus of 15 papers and checked verbatim against the source text. Support levels reviewed by an independent citation-auditor agent.</p>
             </div>
           </section>
         )}

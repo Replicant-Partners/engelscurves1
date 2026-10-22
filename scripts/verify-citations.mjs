@@ -1,13 +1,14 @@
 // Verifies every quote in data/literatureEvidence.ts appears in its corpus chunk.
-// Usage: node scripts/verify-citations.mjs <chunks.jsonl>
+// Usage: node scripts/verify-citations.mjs <chunks.jsonl> [more.jsonl ...]
 import fs from 'node:fs';
 
-const chunksPath = process.argv[2];
-if (!chunksPath) { console.error('usage: verify-citations.mjs <chunks.jsonl>'); process.exit(64); }
+const chunkPaths = process.argv.slice(2);
+if (!chunkPaths.length) { console.error('usage: verify-citations.mjs <chunks.jsonl> [more.jsonl ...]'); process.exit(64); }
 
+const unescape = (s) => s.replace(/\\u([0-9a-fA-F]{4})/g, (_, h) => String.fromCharCode(parseInt(h, 16)));
 const norm = (s) => s.replace(/(\w)- (\w)/g, '$1$2').replace(/\s+/g, ' ').trim();
 const chunks = new Map(
-  fs.readFileSync(chunksPath, 'utf8').split('\n').filter(Boolean)
+  chunkPaths.flatMap((p) => fs.readFileSync(p, 'utf8').split('\n')).filter(Boolean)
     .map((l) => JSON.parse(l)).map((c) => [c.entity_ref, norm(c.text)])
 );
 
@@ -16,7 +17,7 @@ const items = [...src.matchAll(/id: (\d+),[\s\S]*?quote:\s*(null|'([^']*)'|\n\s*
 
 let fail = 0, checked = 0;
 for (const m of items) {
-  const id = m[1], quote = m[3] ?? m[4] ?? null, ref = m[6] ?? null;
+  const id = m[1], rawQuote = m[3] ?? m[4] ?? null, quote = rawQuote && unescape(rawQuote), ref = m[6] ?? null;
   if (quote === null) { console.log(`#${id} GAP (no quote)`); continue; }
   checked++;
   const text = chunks.get(ref);
