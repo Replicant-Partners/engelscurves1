@@ -91,7 +91,7 @@ export const evidenceItems: EvidenceItem[] = [
     quote: null,
     sourceKey: null,
     chunkRef: null,
-    note: 'No passage in the corpus (15 papers) places the switching point at $15,000 GDP per capita. The closest sourced anchors are a household middle-class entry point of $11 per person per day (item 13) and food-share bands by World Bank income group (item 10). The $15,000 level remains an analyst judgment [JDG].',
+    note: 'No passage in the corpus (15 papers) places a switching point at $15,000 GDP per capita. The dashboard now uses boundaries estimated from 85 household surveys instead: a break near $6.6k and a 35% food share near $17.8k (see Testing the Threshold).',
   },
   {
     id: 4,

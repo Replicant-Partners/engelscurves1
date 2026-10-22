@@ -28,8 +28,9 @@ export function EngelCrossCountryChart() {
           />
           <ReferenceLine x={engelStats.knot} stroke="#6e7681" strokeDasharray="4 4"
             label={{ value: `Estimated break ~$${(engelStats.knot / 1000).toFixed(1)}k`, position: 'top', fontSize: 11, fill: '#6e7681' }} />
-          <ReferenceLine x={15000} stroke="#1b1f23" strokeWidth={1.5}
-            label={{ value: '$15k reference', position: 'insideTopRight', fontSize: 11, fill: '#1b1f23' }} />
+          <ReferenceLine x={engelStats.incomeAt35} stroke="#6e7681" strokeDasharray="4 4"
+            label={{ value: `Food 35% ~$${(engelStats.incomeAt35 / 1000).toFixed(1)}k`, position: 'insideTopRight', fontSize: 11, fill: '#6e7681' }} />
+          <ReferenceLine x={15000} stroke="#d0d7de" label={{ value: 'former $15k', position: 'insideBottomRight', fontSize: 10, fill: '#6e7681' }} />
           <Scatter name="Survey" data={engelPoints} fill="#1b1f23" fillOpacity={0.55} shape="circle" />
           <Scatter name="Linear fit" data={fitSeries} line={{ stroke: '#6e7681', strokeWidth: 1.5 }} shape={() => <g />} legendType="none" />
         </ScatterChart>

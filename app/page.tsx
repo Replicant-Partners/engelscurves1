@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ReferenceArea } from 'recharts';
-import { emergingMarketsData, ENGEL_THRESHOLD } from '../data/emergingMarkets';
+import { emergingMarketsData, PHASE_BOUNDS } from '../data/emergingMarkets';
 import { libraryReports } from '../data/libraryReports';
 import { evidenceItems, literatureSources } from '../data/literatureEvidence';
 import { engelStats } from '../data/engelCrossCountry';
@@ -21,10 +21,10 @@ export default function Home() {
         <header className="border-b border-[#d0d7de] pb-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
           <div>
             <h1 className="text-3xl font-semibold tracking-tight text-[#1b1f23] leading-tight">
-              Engel Curve Inflection Matrix
+              Engel Curve Phase Matrix
             </h1>
             <p className="text-[#6e7681] mt-2 text-sm leading-relaxed max-w-2xl">
-              [JDG] Tracks emerging markets against a $15,000 per-capita (PPP) reference level. The share of spending on discretionary goods rises with income, and, in theory, at low expenditure households buy basic goods only<sup className="text-[10px] text-[#6e7681] ml-0.5">[1,2]</sup>. No source in our corpus places it at $15,000 GDP per capita; that level is an analyst reference<sup className="text-[10px] text-[#6e7681] ml-0.5">[3]</sup>. The closest sourced anchors are a middle-class entry point of about $11 per person per day (2011 PPP)<sup className="text-[10px] text-[#6e7681] ml-0.5">[13]</sup> and median food shares that fall from over 50% in low-income to 30–40% in upper-middle-income countries<sup className="text-[10px] text-[#6e7681] ml-0.5">[10]</sup>.
+              [INF] Markets are placed in three phases estimated from 85 household surveys: pre-inflection below about $6.6k GDP per capita (PPP), a transition zone from $6.6k to $17.8k where the food share of spending falls from about 55% to 35%, and post-inflection above. The share of spending on discretionary goods rises with income<sup className="text-[10px] text-[#6e7681] ml-0.5">[1,2]</sup>; the boundaries are this dashboard’s estimates, not values stated in the literature<sup className="text-[10px] text-[#6e7681] ml-0.5">[3]</sup>. For reference, median food shares fall from over 50% in low-income to 30–40% in upper-middle-income countries<sup className="text-[10px] text-[#6e7681] ml-0.5">[10]</sup>.
             </p>
           </div>
           <div className="text-right">
@@ -57,25 +57,25 @@ export default function Home() {
                 <div className="text-xs text-[#6e7681] uppercase tracking-wider font-semibold mb-1">ASEAN Ecosystem (SE)</div>
                 <div className="text-3xl font-semibold text-[#1b1f23]">0.84 <span className="text-sm font-normal text-[#6e7681]">MCDA (FY2024 inputs, re-run pending)</span></div>
                 <div className="text-sm text-[#1b1f23] mt-2 leading-snug space-y-1">
-                  <p><span className="font-mono text-xs text-[#6e7681]">[OBS]</span> IDN/VNM entering the $15k inflection.</p>
+                  <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> IDN and VNM sit in the upper half of the transition zone (predicted food share about 37%).</p>
                   <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> The discretionary share of spending rises with income<sup className="text-[10px] text-[#6e7681] ml-0.5">[1,2]</sup>.</p>
-                  <p><span className="font-mono text-xs text-[#6e7681]">[JDG]</span> Markets near the reference level are where we expect that rise to be underway; a multi-vertical platform is positioned to capture it.</p>
+                  <p><span className="font-mono text-xs text-[#6e7681]">[JDG]</span> Transition-zone markets are where that rise is underway; a multi-vertical platform is positioned to capture it.</p>
                 </div>
               </div>
               <div className="border border-[#d0d7de] p-5">
                 <div className="text-xs text-[#6e7681] uppercase tracking-wider font-semibold mb-1">LATAM Efficiency (NU)</div>
                 <div className="text-3xl font-semibold text-[#1b1f23]">0.78 <span className="text-sm font-normal text-[#6e7681]">MCDA (FY2024 inputs, re-run pending)</span></div>
                 <div className="text-sm text-[#1b1f23] mt-2 leading-snug space-y-1">
-                  <p><span className="font-mono text-xs text-[#6e7681]">[OBS]</span> Post-inflection markets (BRA, MEX, COL).</p>
+                  <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> BRA, MEX and COL are past the transition (predicted food share 32–34%); BRA and COL sit within the uncertainty band of the upper boundary.</p>
                   <p><span className="font-mono text-xs text-[#6e7681]">[OBS]</span> Q2 2026: ARPAC $17.1 vs $1.0 cost to serve per active customer (17.1x).</p>
                 </div>
               </div>
               <div className="border border-[#d0d7de] p-5">
-                <div className="text-xs text-[#6e7681] uppercase tracking-wider font-semibold mb-1">Pre-Inflection Pipeline</div>
+                <div className="text-xs text-[#6e7681] uppercase tracking-wider font-semibold mb-1">Early Transition</div>
                 <div className="text-3xl font-semibold text-[#1b1f23]">IND, PHL</div>
                 <div className="text-sm text-[#1b1f23] mt-2 leading-snug space-y-1">
-                  <p><span className="font-mono text-xs text-[#6e7681]">[OBS]</span> &gt;25% distance to the $15k threshold.</p>
-                  <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> At low expenditure, spending is concentrated in basic goods (model prediction)<sup className="text-[10px] text-[#6e7681] ml-0.5">[2]</sup>; where financial systems are shallow, stock-market gains do not reliably reach consumption<sup className="text-[10px] text-[#6e7681] ml-0.5">[6,7]</sup>. PPP incomes tend to overstate the real income of poorer countries<sup className="text-[10px] text-[#6e7681] ml-0.5">[12]</sup>, so the distance to the reference may be understated.</p>
+                  <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> Past the ~$6.6k break but early in the transition: predicted food share 42–43%, so budgets remain weighted to basic goods.</p>
+                  <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> Where financial systems are shallow, stock-market gains do not reliably reach consumption<sup className="text-[10px] text-[#6e7681] ml-0.5">[6,7]</sup>. PPP incomes tend to overstate the real income of poorer countries<sup className="text-[10px] text-[#6e7681] ml-0.5">[12]</sup>, so they may sit closer to the break than shown.</p>
                   <p><span className="font-mono text-xs text-[#6e7681]">[JDG]</span> Prioritize infrastructure over broad B2C exposure.</p>
                 </div>
               </div>
@@ -83,23 +83,26 @@ export default function Home() {
 
             {/* Chart */}
             <div className="space-y-3">
-              <h2 className="text-lg font-semibold">Macro Positioning vs. Engel Threshold</h2>
+              <h2 className="text-lg font-semibold">Macro Positioning by Phase</h2>
               <div className="h-[400px] w-full border border-[#d0d7de] p-4">
                 <ResponsiveContainer width="100%" height="100%">
-                  <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+                  <ScatterChart margin={{ top: 24, right: 20, bottom: 20, left: 8 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e1e4e8" vertical={false} />
-                    <XAxis type="number" dataKey="gdpPPP" name="GDP PPP" unit="$" domain={[0, 40000]} stroke="#1b1f23" tick={{fontSize: 12}} tickFormatter={(val) => `$${val/1000}k`} />
-                    <YAxis type="number" dataKey="distToThreshold" name="Distance" unit="%" stroke="#1b1f23" tick={{fontSize: 12}} />
-                    <Tooltip 
-                      cursor={{ strokeDasharray: '3 3' }} 
-                      contentStyle={{ borderRadius: '2px', border: '1px solid #d0d7de', fontSize: '13px', backgroundColor: '#ffffff', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }} 
+                    <XAxis type="number" dataKey="gdpPPP" name="GDP per capita (PPP)" domain={[0, 40000]} stroke="#1b1f23" tick={{fontSize: 12}} tickFormatter={(val) => `$${val/1000}k`} />
+                    <YAxis type="number" dataKey="predictedFoodShare" name="Predicted food share" domain={[0.2, 0.65]} stroke="#1b1f23" tick={{fontSize: 12}} tickFormatter={(v) => `${Math.round(v * 100)}%`} />
+                    <Tooltip
+                      cursor={{ strokeDasharray: '3 3' }}
+                      formatter={(value: number, name: string) => (name === 'Predicted food share' ? `${(value * 100).toFixed(1)}%` : `$${Math.round(value).toLocaleString()}`)}
+                      contentStyle={{ borderRadius: '2px', border: '1px solid #d0d7de', fontSize: '13px', backgroundColor: '#ffffff' }}
                     />
-                    <ReferenceArea x1={14000} x2={16000} fill="#f6f8fa" fillOpacity={1} />
-                    <ReferenceLine x={ENGEL_THRESHOLD} stroke="#1b1f23" strokeWidth={2} label={{ position: 'top', value: 'Inflection Point ($15k)', fill: '#1b1f23', fontSize: 12, fontWeight: 600 }} />
+                    <ReferenceArea x1={PHASE_BOUNDS.transitionStart} x2={PHASE_BOUNDS.transitionEnd} fill="#f6f8fa" fillOpacity={1} label={{ value: 'Transition', position: 'insideTop', fontSize: 12, fill: '#6e7681' }} />
+                    <ReferenceLine x={PHASE_BOUNDS.transitionStart} stroke="#1b1f23" strokeDasharray="4 4" label={{ position: 'top', value: `Break ~$${(PHASE_BOUNDS.transitionStart / 1000).toFixed(1)}k`, fill: '#1b1f23', fontSize: 11 }} />
+                    <ReferenceLine x={PHASE_BOUNDS.transitionEnd} stroke="#1b1f23" strokeDasharray="4 4" label={{ position: 'top', value: `Food 35% ~$${(PHASE_BOUNDS.transitionEnd / 1000).toFixed(1)}k`, fill: '#1b1f23', fontSize: 11 }} />
                     <Scatter name="Markets" data={emergingMarketsData} fill="#1b1f23" shape="circle" />
                   </ScatterChart>
                 </ResponsiveContainer>
               </div>
+              <p className="text-xs text-[#6e7681]">Predicted food share from the cross-country fit (food share = {engelStats.a} {engelStats.b} × ln GDP per capita). Boundaries carry 90% intervals of ${(PHASE_BOUNDS.transitionStartCi[0] / 1000).toFixed(1)}k–${(PHASE_BOUNDS.transitionStartCi[1] / 1000).toFixed(1)}k and ${(PHASE_BOUNDS.transitionEndCi[0] / 1000).toFixed(1)}k–${(PHASE_BOUNDS.transitionEndCi[1] / 1000).toFixed(1)}k.</p>
             </div>
 
             {/* Strategic Implications BLUF */}
@@ -112,7 +115,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-sm text-[#1b1f23] leading-relaxed">
-                    <span className="font-mono text-xs text-[#6e7681]">[INF]</span> Shopee is adding buyers near the threshold (new active buyers +35% YoY in Q2 2026) but converts only 0.67% of GMV into adjusted EBITDA; Monee (20.5%) and Garena (57.6%) carry group margins.</p>
+                    <span className="font-mono text-xs text-[#6e7681]">[INF]</span> Shopee is adding buyers in transition-zone markets (new active buyers +35% YoY in Q2 2026) but converts only 0.67% of GMV into adjusted EBITDA; Monee (20.5%) and Garena (57.6%) carry group margins.</p>
                 </div>
                 <div>
                   <p className="text-sm text-[#1b1f23] leading-relaxed">
@@ -125,7 +128,7 @@ export default function Home() {
                     <tr className="bg-[#f6f8fa] border-b border-[#d0d7de] text-[#1b1f23]">
                       <th className="py-2 px-4 font-semibold">Market</th>
                       <th className="py-2 px-4 font-semibold">GDP PPP</th>
-                      <th className="py-2 px-4 font-semibold">Distance</th>
+                      <th className="py-2 px-4 font-semibold">Predicted food share</th>
                       <th className="py-2 px-4 font-semibold">Strategic Phase</th>
                     </tr>
                   </thead>
@@ -134,15 +137,12 @@ export default function Home() {
                       <tr key={row.id} className="border-b border-[#e1e4e8] last:border-0 hover:bg-[#f6f8fa]">
                         <td className="py-2 px-4 font-medium">{row.id} - {row.country}</td>
                         <td className="py-2 px-4 font-mono">${row.gdpPPP.toLocaleString()}</td>
-                        <td className="py-2 px-4 font-mono">
-                          <span className={Math.abs(row.distToThreshold) < 5 ? "font-bold text-[#1b1f23]" : ""}>
-                            {row.distToThreshold > 0 ? '+' : ''}{row.distToThreshold.toFixed(1)}%
-                          </span>
-                        </td>
+                        <td className="py-2 px-4 font-mono">{(row.predictedFoodShare * 100).toFixed(1)}%</td>
                         <td className="py-2 px-4">
-                          <span className={`inline-block px-2 py-1 text-[10px] uppercase tracking-wider font-semibold rounded-sm ${Math.abs(row.distToThreshold) < 5 ? 'bg-[#1b1f23] text-white' : 'bg-[#e1e4e8] text-[#1b1f23]'}`}>
+                          <span className={`inline-block px-2 py-1 text-[10px] uppercase tracking-wider font-semibold rounded-sm ${row.phase === 'Transition' ? 'bg-[#1b1f23] text-white' : 'bg-[#e1e4e8] text-[#1b1f23]'}`}>
                             {row.phase}
                           </span>
+                          {row.nearBoundary && <span className="ml-2 text-[10px] text-[#6e7681] uppercase tracking-wider">near boundary</span>}
                         </td>
                       </tr>
                     ))}
@@ -175,7 +175,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="text-sm leading-relaxed max-w-3xl space-y-2">
-                <p><span className="font-mono text-xs text-[#6e7681]">[JDG]</span> Read together: the shift away from food spending starts near $6.6k, well below $15k. The $15k reference is better described as the level where food has fallen to roughly a third of the budget, not as the point where the shift begins. On this evidence, India ($10.0k), the Philippines ($10.7k) and South Africa ($13.6k) are past the break, although the table above labels them pre-inflection. Phase labels are under review.</p>
+                <p><span className="font-mono text-xs text-[#6e7681]">[JDG]</span> The dashboard’s phases use these two estimates: the break (~$6.6k) opens the transition zone and the 35% food-share level (~$17.8k) closes it. The earlier $15k reference sits inside the transition, where food is still about 37% of the budget. On this basis India, the Philippines, South Africa, Indonesia and Vietnam are in transition, Egypt is at its upper edge, and Brazil and Colombia are just past it, within the uncertainty band.</p>
                 <p className="text-xs text-[#6e7681]">Caveats: survey means, not GDP-based consumption; years 1991–2010 compared with 2025 income; food definitions differ (India excludes imputed owner rent; Pakistan and the Philippines include tobacco); a cross-section is not a country’s path over time; PPP may overstate poorer countries’ incomes (item 12), which would move the break lower. All 85 values were checked against the source tables, and the fit was reproduced independently in Python (analysis/verify_independent.py).</p>
               </div>
             </div>
