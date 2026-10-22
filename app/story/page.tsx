@@ -1,0 +1,238 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { FoodShareChart } from '../../components/story/FoodShareChart';
+import { PhaseTracks } from '../../components/story/PhaseTracks';
+import { HouseholdBars } from '../../components/story/HouseholdBars';
+import { story } from '../../data/storyData';
+import { evidenceItems, literatureSources } from '../../data/literatureEvidence';
+
+export const metadata: Metadata = {
+  title: 'From Food to Finance | Engel Curves Research',
+  description: 'How rising incomes shift household budgets away from food, where twelve emerging markets stand, and what to watch.',
+};
+
+const usd = (v: number) => `$${(v / 1000).toFixed(1)}k`;
+const pct = (v: number) => `${Math.round(v * 100)}%`;
+const T = Object.fromEntries(story.tracks.map((t) => [t.iso3, t]));
+
+const chapters = [
+  { id: 'law', n: '1', title: 'The law' },
+  { id: 'break', n: '2', title: 'The break' },
+  { id: 'map', n: '3', title: 'The map' },
+  { id: 'money', n: '4', title: 'The freed-up wallet' },
+  { id: 'watch', n: '5', title: 'What we watch' },
+  { id: 'method', n: '6', title: 'Evidence and method' },
+];
+
+function Tag({ t }: { t: 'OBS' | 'INF' | 'JDG' | 'GAP' }) {
+  return <span className="font-mono text-[10px] text-[#6e7681] mr-1.5 align-middle">[{t}]</span>;
+}
+
+function Cite({ ids }: { ids: number[] }) {
+  return <sup className="text-[10px] text-[#6e7681] ml-0.5">[{ids.join(',')}]</sup>;
+}
+
+function Record({ children }: { children: React.ReactNode }) {
+  return <div className="mt-6 border-l-2 border-[#d0d7de] pl-4 text-xs text-[#6e7681] leading-relaxed space-y-1">{children}</div>;
+}
+
+function Chapter({ id, n, title, lede, children }: { id: string; n: string; title: string; lede: string; children: React.ReactNode }) {
+  return (
+    <section id={id} className="scroll-mt-16 py-14 border-t border-[#d0d7de]">
+      <div className="text-xs font-mono text-[#6e7681] tracking-widest mb-2">CHAPTER {n}</div>
+      <h2 className="text-3xl font-semibold tracking-tight mb-3">{title}</h2>
+      <p className="text-lg text-[#1b1f23] leading-relaxed max-w-3xl mb-8">{lede}</p>
+      {children}
+    </section>
+  );
+}
+
+export default function StoryPage() {
+  const watch = [
+    { when: '25 Oct 2026', what: 'Brazil presidential runoff', detail: 'Polymarket: Flávio Bolsonaro 77.8%, Lula 22.5%. Brazil sits just past the transition; the result bears on the real and on dollar-measured incomes.', tag: 'OBS' as const },
+    { when: 'Apr 2027', what: 'IMF World Economic Outlook update', detail: 'Revises the growth paths behind every 2030 probability on the map. A downgrade for Indonesia or Vietnam lowers their exit odds directly.', tag: 'INF' as const },
+    { when: 'By 2027', what: 'Egypt leaves the transition', detail: `${pct(T.EGY.pExit2027)} probability on the IMF path. The first of the six transition markets likely to cross the 35% food-share line.`, tag: 'INF' as const },
+    { when: '2027 data', what: 'Indonesia\u2019s credit reaches 40% of GDP', detail: '16% probability (36.4% in 2024); a near-term marker of financial deepening. In Singh (2021), stock-market gains reached consumption only in the deeper-credit group, which averaged above about 58% of GDP.', tag: 'INF' as const },
+    { when: 'By 2028', what: 'Indonesia leaves the transition', detail: '23% probability. Most of the move is expected later.', tag: 'INF' as const },
+    { when: 'By 2030', what: 'Vietnam and Indonesia leave the transition', detail: `Vietnam ${pct(T.VNM.pExit2030)}, Indonesia ${pct(T.IDN.pExit2030)}. Both fall to about 5% and 2% if 2025 incomes are overstated by 20%.`, tag: 'INF' as const },
+  ];
+
+  return (
+    <main className="min-h-screen bg-white text-[#1b1f23]" style={{ fontFamily: 'Inter, sans-serif' }}>
+      <nav className="sticky top-0 z-10 bg-white/95 backdrop-blur border-b border-[#d0d7de]">
+        <div className="max-w-5xl mx-auto px-6 h-12 flex items-center gap-5 text-xs overflow-x-auto">
+          <span className="font-semibold whitespace-nowrap">From Food to Finance</span>
+          {chapters.map((c) => (
+            <a key={c.id} href={`#${c.id}`} className="text-[#6e7681] hover:text-[#1b1f23] whitespace-nowrap">{c.n}. {c.title}</a>
+          ))}
+          <Link href="/" className="ml-auto text-[#6e7681] hover:text-[#1b1f23] whitespace-nowrap">Dashboard &rarr;</Link>
+        </div>
+      </nav>
+
+      <div className="max-w-5xl mx-auto px-6">
+        {/* Chapter 0 */}
+        <header className="pt-16 pb-14">
+          <div className="text-xs font-mono text-[#6e7681] tracking-widest mb-4">ENGEL CURVES RESEARCH &middot; OCTOBER 2026</div>
+          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight max-w-4xl">
+            As countries get richer, the share of household budgets spent on food falls. The shift starts near {usd(story.bounds.start)} per person, not $15,000.
+          </h1>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+            <div>
+              <div className="text-5xl font-semibold tracking-tight">{usd(story.bounds.start)}</div>
+              <p className="text-sm text-[#6e7681] mt-2 leading-relaxed">GDP per capita (PPP) where the food share of spending starts to fall. 90% interval {usd(story.bounds.startCi[0])}&ndash;{usd(story.bounds.startCi[2])}.</p>
+            </div>
+            <div>
+              <div className="text-5xl font-semibold tracking-tight">6 of 12</div>
+              <p className="text-sm text-[#6e7681] mt-2 leading-relaxed">Emerging markets tracked here are inside the transition today: India, the Philippines, South Africa, Indonesia, Vietnam and Egypt.</p>
+            </div>
+            <div>
+              <div className="text-5xl font-semibold tracking-tight">3</div>
+              <p className="text-sm text-[#6e7681] mt-2 leading-relaxed">Are more likely than not to complete it by 2030 on IMF growth paths: Egypt ({pct(T.EGY.pExit2030)}), Vietnam ({pct(T.VNM.pExit2030)}) and Indonesia ({pct(T.IDN.pExit2030)}).</p>
+            </div>
+          </div>
+          <p className="text-sm text-[#6e7681] mt-10 max-w-3xl leading-relaxed">
+            Built from {story.fit.n} household surveys, World Bank and IMF income data, and 15 papers. Every number links to a source or a script; labels mark what is observed <Tag t="OBS" />, inferred <Tag t="INF" />, judged <Tag t="JDG" /> or missing <Tag t="GAP" />.
+          </p>
+        </header>
+
+        <Chapter id="law" n="1" title="The law" lede="Poorer households spend most of their budget on food. Richer ones spend a small share. Engel described this in the 19th century; household surveys across the world still show it.">
+          <FoodShareChart mode="law" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 text-sm leading-relaxed">
+            <p><Tag t="OBS" />A typical household in Ethiopia (2004) spent 54% of its budget on food; in Switzerland (2003), 9%. Each dot is one national survey.</p>
+            <p><Tag t="OBS" />The pattern holds across income groups: over 50% in low-income countries, 40&ndash;50% in lower-middle and 30&ndash;40% in upper-middle income countries<Cite ids={[10]} />. Between countries, being 50% richer means a food share about 5 points lower<Cite ids={[9]} />.</p>
+          </div>
+          <Record>
+            <p>Food shares: survey means from the appendix tables of Pritchett &amp; Spivack (2013), 1991&ndash;2010. Income: World Bank NY.GDP.PCAP.PP.KD, matched to survey year. All {story.fit.n} values checked against the source tables.</p>
+          </Record>
+        </Chapter>
+
+        <Chapter id="break" n="2" title="The break" lede={`The decline is not smooth from the start. Below about ${usd(story.bounds.start)}, the food share barely moves. Above it, it falls steadily until food is about a third of the budget near ${usd(story.bounds.end)}. That band is the transition.`}>
+          <FoodShareChart mode="break" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6 text-sm leading-relaxed">
+            <p><Tag t="INF" />Below the break the fitted food share stays near 56&ndash;59%, with individual surveys mostly between 50% and 70%. Above it, it falls about {Math.round(Math.abs(story.piecewise.slopeAbove) * Math.LN2 * 100)} percentage points each time income doubles.</p>
+            <p><Tag t="INF" />The earlier $15,000 marker sits inside the transition, where food is still about 37% of spending. It marks the middle of the shift, not its start.</p>
+            <p><Tag t="GAP" />No paper in the corpus states a dollar threshold. Both boundaries are this study&apos;s estimates<Cite ids={[3]} />.</p>
+          </div>
+          <Record>
+            <p>Model: food share on ln(GDP per capita) with one estimated break. Break at {usd(story.bounds.start)} (bootstrap 90% interval {usd(story.bounds.startCi[0])}&ndash;{usd(story.bounds.startCi[2])}); slope {story.piecewise.slopeBelow} below, {story.piecewise.slopeAbove} above. sup-F {story.fit.supF} against an Andrews (1993) 5% critical value of 8.85. The 35% line comes from the linear fit (R&sup2; {story.fit.r2}), 90% interval {usd(story.bounds.endCi[0])}&ndash;{usd(story.bounds.endCi[2])}.</p>
+            <p>The break survives dropping definition-problem surveys, one-survey-per-country and dropping the LSMS table; it weakens to borderline without the ILO surveys. Scripts: analysis/engel_threshold.mjs, engel_robustness.mjs; independent check: verify_independent.py.</p>
+          </Record>
+        </Chapter>
+
+        <Chapter id="map" n="3" title="The map" lede="Where twelve emerging markets stand today and where IMF growth projections take them by 2030. Six are inside the transition; three of them are likely to finish it this decade.">
+          <div className="border border-[#d0d7de] p-4 md:p-6">
+            <PhaseTracks />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6 text-sm leading-relaxed">
+            <p><Tag t="INF" />India ({usd(T.IND.gdp2025)}) and the Philippines ({usd(T.PHL.gdp2025)}) are early in the transition, with food near {pct(T.IND.food2025)} of spending. Neither reaches the 35% line by 2030.</p>
+            <p><Tag t="INF" />Vietnam and Indonesia are in the upper half. On IMF paths they cross by 2030 with {pct(T.VNM.pExit2030)} and {pct(T.IDN.pExit2030)} probability. South Africa stays put: its projected growth is close to zero.</p>
+            <p><Tag t="INF" />Ten of twelve markets sit in their phase with at least 94% probability. The uncertain ones are Egypt and Colombia, near the upper boundary.</p>
+          </div>
+          <Record>
+            <p>Phase probabilities from 2,000 bootstrap re-fits of the survey curve. 2025 levels: World Bank. 2026&ndash;2030 paths: IMF WEO NGDPRPPPPC growth applied to the World Bank level. Probabilities reflect uncertainty in the curve only, not IMF forecast error.</p>
+            <p>Measurement risk: PPP incomes tend to overstate poorer countries&apos; real income<Cite ids={[12]} />. If 2025 incomes were 20% too high, Indonesia&apos;s 2030 exit probability falls from {pct(T.IDN.pExit2030)} to {pct(T.IDN.pExit2030Overstated20)}, Vietnam&apos;s from {pct(T.VNM.pExit2030)} to {pct(T.VNM.pExit2030Overstated20)}. Script: analysis/phase_probabilities.mjs.</p>
+          </Record>
+        </Chapter>
+
+        <Chapter id="money" n="4" title="The freed-up wallet" lede="What the transition means for a household. When income per person doubles from $10,000 to $20,000, spending on everything other than food more than doubles.">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
+            <div className="md:col-span-3">
+              <HouseholdBars />
+              <p className="text-sm leading-relaxed mt-6"><Tag t="INF" />Food falls from {pct(story.household[0].foodShare)} to {pct(story.household[1].foodShare)} of the budget. Non-food spending per person rises from ${story.household[0].nonFood.toLocaleString('en-US')} to ${story.household[1].nonFood.toLocaleString('en-US')}, about +{Math.round((story.household[1].nonFood / story.household[0].nonFood - 1) * 100)}%, while income rises 100%.</p>
+            </div>
+            <div className="md:col-span-2 text-sm leading-relaxed space-y-4">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-[#6e7681]">Where the money goes, according to the literature</h3>
+              <p><span className="font-semibold">Discretionary goods.</span> The share of spending on discretionary goods rises with income<Cite ids={[1, 2]} />.</p>
+              <p><span className="font-semibold">Housing first.</span> In 20 emerging markets, household wealth reaches consumption mainly through housing<Cite ids={[6]} />.</p>
+              <p><span className="font-semibold">Finance later.</span> Stock-market gains reach consumption only once the financial sector deepens past a threshold<Cite ids={[7]} />.</p>
+              <p><span className="font-semibold">Thinner than it looks.</span> Even the richest 5% of households in poor countries spend 5&ndash;15 points more on food than the poor in rich countries<Cite ids={[11]} />.</p>
+              <p><span className="font-semibold">More cyclical.</span> Discretionary demand tracks financial markets more closely than necessities (US retail evidence)<Cite ids={[5]} />.</p>
+            </div>
+          </div>
+          <Record>
+            <p>Household figures use the linear fit at $10,000 and $20,000 GDP per capita (recomputed with lisp_eval). This is a comparison across countries at one point in time, not the path of a single country. Numbered citations refer to the evidence table in chapter 6.</p>
+          </Record>
+        </Chapter>
+
+        <Chapter id="watch" n="5" title="What we watch" lede="The thesis makes dated predictions. These are the signals that will confirm or weaken it, in the order they arrive.">
+          <ol className="relative border-l border-[#d0d7de] ml-2 space-y-8">
+            {watch.map((w) => (
+              <li key={w.what} className="pl-6">
+                <span className="absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full bg-[#1b1f23]" />
+                <div className="text-xs font-mono text-[#6e7681] tracking-wider">{w.when}</div>
+                <div className="text-lg font-semibold mt-0.5">{w.what}</div>
+                <p className="text-sm text-[#1b1f23] leading-relaxed mt-1 max-w-3xl"><Tag t={w.tag} />{w.detail}</p>
+              </li>
+            ))}
+          </ol>
+          <Record>
+            <p>No Polymarket or Kalshi market exists on any of these country events (783 open markets screened on 22 Oct 2026); the Brazil runoff is the only related market. Each event resolves on a public figure and will be Brier-scored when it does.</p>
+          </Record>
+        </Chapter>
+
+        <section id="method" className="scroll-mt-16 py-14 border-t border-[#d0d7de]">
+          <div className="text-xs font-mono text-[#6e7681] tracking-widest mb-2">CHAPTER 6</div>
+          <h2 className="text-3xl font-semibold tracking-tight mb-3">Evidence and method</h2>
+          <p className="text-lg leading-relaxed max-w-3xl mb-8">For readers who want to check the work.</p>
+
+          <details className="border-t border-[#e1e4e8] py-4" open>
+            <summary className="cursor-pointer font-semibold">Evidence table ({evidenceItems.length} claims, each with its source passage)</summary>
+            <div className="mt-4 overflow-x-auto">
+              <table className="w-full text-left border-collapse text-sm">
+                <thead>
+                  <tr className="border-b border-[#d0d7de] text-[#6e7681] text-xs uppercase tracking-wider">
+                    <th className="py-2 pr-3 w-8">#</th><th className="py-2 pr-3">Claim</th><th className="py-2 pr-3 w-24">Support</th><th className="py-2">Source passage</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {evidenceItems.map((item) => {
+                    const s = literatureSources.find((x) => x.key === item.sourceKey);
+                    return (
+                      <tr key={item.id} className="border-b border-[#e1e4e8] align-top">
+                        <td className="py-2 pr-3 font-mono text-xs">{item.id}</td>
+                        <td className="py-2 pr-3">{item.claim}</td>
+                        <td className="py-2 pr-3 font-mono text-[10px] uppercase tracking-wider text-[#6e7681]">{item.support}</td>
+                        <td className="py-2">
+                          {item.quote ? <p className="italic">&ldquo;{item.quote}&rdquo;</p> : <p className="text-[#6e7681]">No supporting passage in the corpus.</p>}
+                          {s && <p className="text-xs text-[#6e7681] mt-1">{s.citation}</p>}
+                          <p className="text-xs text-[#6e7681] mt-1">{item.note}</p>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </details>
+
+          <details className="border-t border-[#e1e4e8] py-4">
+            <summary className="cursor-pointer font-semibold">Data and verification</summary>
+            <ul className="mt-4 text-sm leading-relaxed list-disc pl-5 space-y-1.5 max-w-3xl">
+              <li>Food shares: {story.fit.n} national household surveys, Pritchett &amp; Spivack (2013), appendix tables A.1&ndash;A.6, transcribed to analysis/food_share_surveys.csv and checked row by row against the source text.</li>
+              <li>Income: World Bank GDP per capita, PPP, constant 2021 international $ (NY.GDP.PCAP.PP.KD); projections from IMF WEO (NGDPRPPPPC), latest vintage on DBnomics.</li>
+              <li>Literature: a local corpus of 15 papers; every quote in the evidence table is verified verbatim against its passage (scripts/verify-citations.mjs) and reviewed for support by an independent citation-auditor agent.</li>
+              <li>Estimates reproduced independently in Python (analysis/verify_independent.py). Arithmetic in the text recomputed with lisp_eval.</li>
+            </ul>
+          </details>
+
+          <details className="border-t border-b border-[#e1e4e8] py-4">
+            <summary className="cursor-pointer font-semibold">Limitations</summary>
+            <ul className="mt-4 text-sm leading-relaxed list-disc pl-5 space-y-1.5 max-w-3xl">
+              <li>Surveys date from 1991&ndash;2010 and are compared with 2025 incomes.</li>
+              <li>Food definitions differ: India excludes imputed owner rent; Pakistan and the Philippines include tobacco.</li>
+              <li>A cross-section of countries is not the path of one country over time.</li>
+              <li>Survey consumption and GDP per capita measure different things; the boundaries are in GDP terms.</li>
+              <li>PPP may overstate poorer countries&apos; incomes, which would move the break lower and delay projected exits.</li>
+              <li>Probabilities cover the uncertainty of the curve, not IMF forecast error.</li>
+            </ul>
+          </details>
+        </section>
+
+        <footer className="py-10 text-xs text-[#6e7681] border-t border-[#d0d7de] flex justify-between">
+          <span>Engel Curves Research &middot; Z-K Quantitative Strategy</span>
+          <Link href="/" className="hover:text-[#1b1f23]">Back to the dashboard</Link>
+        </footer>
+      </div>
+    </main>
+  );
+}
