@@ -271,6 +271,12 @@ export default function Home() {
                 <p><span className="font-mono text-xs text-[#6e7681]">[JDG]</span> The company milestone carries more information than the macro: Shopee hitting $1.0B in FY2026 moves the FY2028 margin odds from 17% to 48%, while Indonesia leaving the transition moves them from 34% to 48%. Both links are analyst judgments, so the tree shows the structure of the argument, not a measured effect. The nearest signals to watch are Shopee’s Q3 2026 results (an adjusted EBITDA above about $260M keeps E3 on track) and Nu’s Q3 2026 ARPAC.</p>
                 <p className="text-xs text-[#6e7681]">Forward marginals from scenario_quantify; conditional and reverse probabilities recomputed with lisp_eval. Each event resolves on a public figure and can be Brier-scored when it does.</p>
               </div>
+              <div className="text-sm leading-relaxed max-w-3xl space-y-2 border-t border-[#e1e4e8] pt-4">
+                <h3 className="text-sm font-semibold uppercase tracking-wider">Prediction-market cross-check (22 Oct 2026)</h3>
+                <p><span className="font-mono text-xs text-[#6e7681]">[OBS]</span> Polymarket and Kalshi list no market on any of the six events, on Sea Limited or Nu Holdings, or on Indonesian macro outcomes. 783 open markets were screened; none matched with adequate confidence. The tree’s probabilities therefore have no market benchmark.</p>
+                <p><span className="font-mono text-xs text-[#6e7681]">[OBS]</span> The closest related market is Brazil’s presidential runoff on 25 October 2026 (Polymarket, about $192M traded): Flávio Bolsonaro 77.8%, Lula 22.5%. The first round gave Bolsonaro 47.03% and Lula 45.16% (TSE).</p>
+                <p><span className="font-mono text-xs text-[#6e7681]">[JDG]</span> The runoff bears on the real’s exchange rate, which is one of the sub-questions behind E6 (Nu ARPAC in dollars). It is not wired into the tree because linking it would require an assumption about how each outcome moves the currency, and no source in the corpus supports one. Revisit E6 after 25 October.</p>
+              </div>
             </div>
 
             {/* Literature Evidence */}
