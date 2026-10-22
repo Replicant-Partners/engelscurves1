@@ -1,0 +1,86 @@
+iso3,country,year,food_share,table,source
+ALB,Albania,2002,0.67,A.1,World Bank Comparative Living Statistics (LSMS)
+ALB,Albania,2005,0.59,A.1,World Bank Comparative Living Statistics (LSMS)
+ALB,Albania,1996,0.60,A.1,World Bank Comparative Living Statistics (LSMS)
+BGR,Bulgaria,2001,0.56,A.1,World Bank Comparative Living Statistics (LSMS)
+BGR,Bulgaria,1995,0.62,A.1,World Bank Comparative Living Statistics (LSMS)
+BIH,Bosnia,2001,0.34,A.1,World Bank Comparative Living Statistics (LSMS)
+ECU,Ecuador,1995,0.48,A.1,World Bank Comparative Living Statistics (LSMS)
+ECU,Ecuador,1998,0.49,A.1,World Bank Comparative Living Statistics (LSMS)
+GHA,Ghana,1991,0.61,A.1,World Bank Comparative Living Statistics (LSMS)
+GHA,Ghana,1998,0.60,A.1,World Bank Comparative Living Statistics (LSMS)
+GTM,Guatemala,2000,0.48,A.1,World Bank Comparative Living Statistics (LSMS)
+MWI,Malawi,2004,0.61,A.1,World Bank Comparative Living Statistics (LSMS)
+NPL,Nepal,2003,0.56,A.1,World Bank Comparative Living Statistics (LSMS)
+NPL,Nepal,1996,0.60,A.1,World Bank Comparative Living Statistics (LSMS)
+PAK,Pakistan,1991,0.52,A.1,World Bank Comparative Living Statistics (LSMS)
+PAN,Panama,2003,0.43,A.1,World Bank Comparative Living Statistics (LSMS)
+PAN,Panama,1997,0.47,A.1,World Bank Comparative Living Statistics (LSMS)
+TJK,Tajikistan,2003,0.70,A.1,World Bank Comparative Living Statistics (LSMS)
+VNM,Vietnam,1992,0.62,A.1,World Bank Comparative Living Statistics (LSMS)
+VNM,Vietnam,1997,0.57,A.1,World Bank Comparative Living Statistics (LSMS)
+IDN,Indonesia,2007,0.56,A.2,Indonesia Family Life Survey
+IDN,Indonesia,2000,0.60,A.2,Indonesia Family Life Survey
+IDN,Indonesia,1997,0.57,A.2,Indonesia Family Life Survey
+IDN,Indonesia,1993,0.56,A.2,Indonesia Family Life Survey
+ISR,Israel,2005,0.160,A.3,Luxembourg Income Study
+FRA,France,2005,0.170,A.3,Luxembourg Income Study
+SVN,Slovenia,2004,0.201,A.3,Luxembourg Income Study
+UKR,Ukraine,1995,0.216,A.3,Luxembourg Income Study
+MEX,Mexico,2004,0.223,A.3,Luxembourg Income Study
+ITA,Italy,2000,0.305,A.3,Luxembourg Income Study
+POL,Poland,2004,0.346,A.3,Luxembourg Income Study
+ZAF,South Africa,2008,0.391,A.3,Luxembourg Income Study
+HUN,Hungary,1999,0.393,A.3,Luxembourg Income Study
+PER,Peru,2004,0.415,A.3,Luxembourg Income Study
+GTM,Guatemala,2006,0.436,A.3,Luxembourg Income Study
+EST,Estonia,2000,0.444,A.3,Luxembourg Income Study
+ROU,Romania,1995,0.574,A.3,Luxembourg Income Study
+AUS,Australia,1998,0.13,A.4a,ILO Household Income Expenditure Surveys
+BEL,Belgium,2001,0.14,A.4a,ILO Household Income Expenditure Surveys
+CYP,Cyprus,2003,0.18,A.4a,ILO Household Income Expenditure Surveys
+CZE,Czech Republic,2003,0.18,A.4a,ILO Household Income Expenditure Surveys
+DNK,Denmark,2001,0.08,A.4a,ILO Household Income Expenditure Surveys
+FIN,Finland,2001,0.14,A.4a,ILO Household Income Expenditure Surveys
+FRA,France,2001,0.21,A.4a,ILO Household Income Expenditure Surveys
+HKG,Hong Kong,1999,0.12,A.4a,ILO Household Income Expenditure Surveys
+ISL,Iceland,2001,0.16,A.4a,ILO Household Income Expenditure Surveys
+NLD,Netherlands,2000,0.11,A.4a,ILO Household Income Expenditure Surveys
+NOR,Norway,2002,0.13,A.4a,ILO Household Income Expenditure Surveys
+SGP,Singapore,2002,0.24,A.4a,ILO Household Income Expenditure Surveys
+ESP,Spain,2002,0.19,A.4a,ILO Household Income Expenditure Surveys
+CHE,Switzerland,2003,0.09,A.4a,ILO Household Income Expenditure Surveys
+GBR,United Kingdom,2003,0.12,A.4a,ILO Household Income Expenditure Surveys
+USA,United States,2003,0.12,A.4a,ILO Household Income Expenditure Surveys
+ALB,Albania,2002,0.64,A.4b,ILO Household Income Expenditure Surveys
+ARG,Argentina,1996,0.35,A.4b,ILO Household Income Expenditure Surveys
+ARM,Armenia,2003,0.71,A.4b,ILO Household Income Expenditure Surveys
+AZE,Azerbaijan,2003,0.57,A.4b,ILO Household Income Expenditure Surveys
+BLR,Belarus,2004,0.39,A.4b,ILO Household Income Expenditure Surveys
+BGR,Bulgaria,2004,0.43,A.4b,ILO Household Income Expenditure Surveys
+HRV,Croatia,2003,0.29,A.4b,ILO Household Income Expenditure Surveys
+EST,Estonia,2004,0.32,A.4b,ILO Household Income Expenditure Surveys
+HUN,Hungary,2003,0.27,A.4b,ILO Household Income Expenditure Surveys
+IRN,Iran,2003,0.29,A.4b,ILO Household Income Expenditure Surveys
+KOR,Korea,2004,0.26,A.4b,ILO Household Income Expenditure Surveys
+LVA,Latvia,2003,0.37,A.4b,ILO Household Income Expenditure Surveys
+LTU,Lithuania,2003,0.45,A.4b,ILO Household Income Expenditure Surveys
+MAC,Macau,2002,0.25,A.4b,ILO Household Income Expenditure Surveys
+MDV,Maldives,2002,0.28,A.4b,ILO Household Income Expenditure Surveys
+MUS,Mauritius,2001,0.36,A.4b,ILO Household Income Expenditure Surveys
+MEX,Mexico,2002,0.27,A.4b,ILO Household Income Expenditure Surveys
+MDA,Moldova,2004,0.60,A.4b,ILO Household Income Expenditure Surveys
+PAN,Panama,1997,0.32,A.4b,ILO Household Income Expenditure Surveys
+POL,Poland,2003,0.33,A.4b,ILO Household Income Expenditure Surveys
+ROU,Romania,2003,0.50,A.4b,ILO Household Income Expenditure Surveys
+SRB,Serbia & Montenegro,2002,0.44,A.4b,ILO Household Income Expenditure Surveys
+LKA,Sri Lanka,2002,0.54,A.4b,ILO Household Income Expenditure Surveys
+TUR,Turkey,2003,0.32,A.4b,ILO Household Income Expenditure Surveys
+UGA,Uganda,2003,0.49,A.4b,ILO Household Income Expenditure Surveys
+PSE,West Bank and Gaza,2004,0.30,A.4b,ILO Household Income Expenditure Surveys
+BGD,Bangladesh,2007,0.59,A.6,National statistical office
+BRA,Brazil,2008,0.18,A.6,National statistical office (household-level shares)
+ETH,Ethiopia,2004,0.54,A.6,National statistical office
+PAK,Pakistan,2010,0.53,A.6,National statistical office (food includes tobacco)
+PHL,Philippines,2009,0.53,A.6,National statistical office (food includes tobacco)
+VNM,Vietnam,2010,0.50,A.6,National statistical office

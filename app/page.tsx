@@ -4,6 +4,8 @@ import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Responsive
 import { emergingMarketsData, ENGEL_THRESHOLD } from '../data/emergingMarkets';
 import { libraryReports } from '../data/libraryReports';
 import { evidenceItems, literatureSources } from '../data/literatureEvidence';
+import { engelStats } from '../data/engelCrossCountry';
+import { EngelCrossCountryChart } from '../components/EngelCrossCountryChart';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'overview'|'library'>('overview');
@@ -148,6 +150,36 @@ export default function Home() {
                 </table>
               </div>
             </div>
+            {/* Cross-country test of the threshold */}
+            <div className="space-y-3 border-t border-[#d0d7de] pt-6">
+              <h2 className="text-lg font-semibold">Testing the Threshold: Food Share vs Income Across Countries</h2>
+              <p className="text-sm text-[#6e7681] leading-relaxed max-w-3xl">
+                {engelStats.n} household surveys (1991–2010) from the appendix tables of Pritchett &amp; Spivack (2013), matched to the same World Bank GDP-per-capita series used above.
+              </p>
+              <EngelCrossCountryChart />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div className="border border-[#d0d7de] p-4">
+                  <div className="text-xs text-[#6e7681] uppercase tracking-wider font-semibold mb-1">Where the decline starts</div>
+                  <div className="text-2xl font-semibold">~${(engelStats.knot / 1000).toFixed(1)}k</div>
+                  <p className="mt-1 leading-snug"><span className="font-mono text-xs text-[#6e7681]">[INF]</span> Below it the food share is roughly flat at 50–70%; above it, it falls about {Math.abs(engelStats.slopeAbove * Math.LN2 * 100).toFixed(0)} percentage points each time income doubles. 90% interval ${(engelStats.knotCi[0] / 1000).toFixed(1)}k–${(engelStats.knotCi[1] / 1000).toFixed(1)}k.</p>
+                </div>
+                <div className="border border-[#d0d7de] p-4">
+                  <div className="text-xs text-[#6e7681] uppercase tracking-wider font-semibold mb-1">Food share at $15k</div>
+                  <div className="text-2xl font-semibold">{Math.round(engelStats.shareAt15k * 100)}%</div>
+                  <p className="mt-1 leading-snug"><span className="font-mono text-xs text-[#6e7681]">[INF]</span> Fitted value, 90% interval {Math.round(engelStats.shareAt15kCi[0] * 100)}–{Math.round(engelStats.shareAt15kCi[1] * 100)}%. Food falls below 35% of the budget at about ${(engelStats.incomeAt35 / 1000).toFixed(1)}k (${(engelStats.incomeAt35Ci[0] / 1000).toFixed(1)}k–${(engelStats.incomeAt35Ci[1] / 1000).toFixed(1)}k).</p>
+                </div>
+                <div className="border border-[#d0d7de] p-4">
+                  <div className="text-xs text-[#6e7681] uppercase tracking-wider font-semibold mb-1">How solid is the break</div>
+                  <div className="text-2xl font-semibold">sup-F {engelStats.supF}</div>
+                  <p className="mt-1 leading-snug"><span className="font-mono text-xs text-[#6e7681]">[INF]</span> Above the 5% critical value of {engelStats.supFCrit} (Andrews 1993). The knot stays at $5.7k–$6.6k across subsamples; it weakens to borderline when ILO surveys are dropped.</p>
+                </div>
+              </div>
+              <div className="text-sm leading-relaxed max-w-3xl space-y-2">
+                <p><span className="font-mono text-xs text-[#6e7681]">[JDG]</span> Read together: the shift away from food spending starts near $6.6k, well below $15k. The $15k reference is better described as the level where food has fallen to roughly a third of the budget, not as the point where the shift begins. On this evidence, India ($10.0k), the Philippines ($10.7k) and South Africa ($13.6k) are past the break, although the table above labels them pre-inflection. Phase labels are under review.</p>
+                <p className="text-xs text-[#6e7681]">Caveats: survey means, not GDP-based consumption; years 1991–2010 compared with 2025 income; food definitions differ (India excludes imputed owner rent; Pakistan and the Philippines include tobacco); a cross-section is not a country’s path over time; PPP may overstate poorer countries’ incomes (item 12), which would move the break lower. All 85 values were checked against the source tables, and the fit was reproduced independently in Python (analysis/verify_independent.py).</p>
+              </div>
+            </div>
+
             {/* Literature Evidence */}
             <div className="space-y-3 border-t border-[#d0d7de] pt-6">
               <h2 className="text-lg font-semibold">Literature Evidence</h2>

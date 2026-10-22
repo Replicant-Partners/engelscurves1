@@ -1,0 +1,86 @@
+{
+  "variants": [
+    {
+      "label": "all",
+      "n": 85,
+      "knot": 6566,
+      "n_below_knot": 19,
+      "slope_below": -0.015,
+      "slope_above": -0.193,
+      "supF": 25.8,
+      "linear_share_at_15k": 0.374,
+      "linear_income_at_35pct": 17775
+    },
+    {
+      "label": "excl BRA-2008, PAK-2010, PHL-2009 (definition issues)",
+      "n": 82,
+      "knot": 6585,
+      "n_below_knot": 18,
+      "slope_below": -0.012,
+      "slope_above": -0.194,
+      "supF": 27.4,
+      "linear_share_at_15k": 0.376,
+      "linear_income_at_35pct": 18056
+    },
+    {
+      "label": "one observation per country (latest)",
+      "n": 62,
+      "knot": 6592,
+      "n_below_knot": 12,
+      "slope_below": -0.035,
+      "slope_above": -0.177,
+      "supF": 13.5,
+      "linear_share_at_15k": 0.352,
+      "linear_income_at_35pct": 15188
+    },
+    {
+      "label": "excl LSMS table A.1",
+      "n": 65,
+      "knot": 6569,
+      "n_below_knot": 9,
+      "slope_below": 0.018,
+      "slope_above": -0.185,
+      "supF": 21,
+      "linear_share_at_15k": 0.363,
+      "linear_income_at_35pct": 16467
+    },
+    {
+      "label": "excl ILO tables A.4a/A.4b",
+      "n": 43,
+      "knot": 5702,
+      "n_below_knot": 14,
+      "slope_below": -0.018,
+      "slope_above": -0.175,
+      "supF": 8.6,
+      "linear_share_at_15k": 0.406,
+      "linear_income_at_35pct": 24621
+    }
+  ],
+  "knot_bootstrap_90ci": [
+    5545,
+    7650
+  ],
+  "knot_bootstrap_median": 6585,
+  "points_below_6566": [
+    "ETH2004:0.54@877",
+    "MWI2004:0.61@1208",
+    "UGA2003:0.49@1649",
+    "TJK2003:0.7@1737",
+    "NPL1996:0.6@2106",
+    "NPL2003:0.56@2439",
+    "VNM1992:0.62@2726",
+    "GHA1991:0.61@2860",
+    "GHA1998:0.6@3229",
+    "PAK1991:0.52@3252",
+    "BGD2007:0.59@3609",
+    "VNM1997:0.57@3820",
+    "PAK2010:0.53@4229",
+    "PSE2004:0.3@4503",
+    "ALB1996:0.6@5564",
+    "IDN1993:0.56@5609",
+    "PHL2009:0.53@5965",
+    "IDN2000:0.6@6056",
+    "LKA2002:0.54@6410"
+  ],
+  "note": "supF is the max F over a searched knot; compare with Andrews (1993) sup-F 5% critical value of about 8.85 for one break with 15% trimming, not the fixed-point F(1,n-3) value."
+}
