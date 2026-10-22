@@ -63,7 +63,7 @@ export default function Home() {
                 <div className="text-3xl font-semibold text-[#1b1f23]">0.78 <span className="text-sm font-normal text-[#6e7681]">MCDA</span></div>
                 <div className="text-sm text-[#1b1f23] mt-2 leading-snug space-y-1">
                   <p><span className="font-mono text-xs text-[#6e7681]">[OBS]</span> Post-inflection markets (BRA, MEX, COL).</p>
-                  <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> Industry-low CAC (~$7.0) offsets slower aggregate regional GDP growth.</p>
+                  <p><span className="font-mono text-xs text-[#6e7681]">[OBS]</span> Verified CAC (~$60) yields ~3.5x LTV/CAC at $20/mo ARPAC.</p>
                 </div>
               </div>
               <div className="border border-[#d0d7de] p-5">
@@ -108,12 +108,12 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-sm text-[#1b1f23] leading-relaxed">
-                    <span className="font-mono text-xs text-[#6e7681]">[INF]</span> Sea Limited's exposure to markets crossing the inflection point (IDN, VNM) leverages peak Engel curve elasticity, making it structurally superior for capital allocation.
+                    <span className="font-mono text-xs text-[#6e7681]">[INF]</span> Sea Limited's exposure to markets crossing the inflection point (IDN, VNM) yields high-variance torque (±5pp EBITDA margin per ±$0.06/order shift) at peak elasticity.
                   </p>
                 </div>
                 <div>
                   <p className="text-sm text-[#1b1f23] leading-relaxed">
-                    <span className="font-mono text-xs text-[#6e7681]">[JDG]</span> Overweight ASEAN consumer tech. Hold LATAM financials primarily for margin execution and robust CAC efficiency, not for demographic expansion.
+                    <span className="font-mono text-xs text-[#6e7681]">[JDG]</span> Overweight ASEAN consumer tech (SE) for inflection optionality. Hold LATAM financials (NU) for certain, high-magnitude operating leverage (proven <$2/mo cost-to-serve).
                   </p>
                 </div>
               </div>
