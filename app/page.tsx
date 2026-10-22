@@ -55,7 +55,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="border border-[#d0d7de] p-5">
                 <div className="text-xs text-[#6e7681] uppercase tracking-wider font-semibold mb-1">ASEAN Ecosystem (SE)</div>
-                <div className="text-3xl font-semibold text-[#1b1f23]">0.84 <span className="text-sm font-normal text-[#6e7681]">MCDA (FY2024 inputs, re-run pending)</span></div>
+                <div className="text-3xl font-semibold text-[#1b1f23]">0.638 <span className="text-sm font-normal text-[#6e7681]">MCDA, Q2 2026</span></div>
                 <div className="text-sm text-[#1b1f23] mt-2 leading-snug space-y-1">
                   <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> IDN and VNM sit in the upper half of the transition zone (predicted food share about 37%).</p>
                   <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> The discretionary share of spending rises with income<sup className="text-[10px] text-[#6e7681] ml-0.5">[1,2]</sup>.</p>
@@ -64,7 +64,7 @@ export default function Home() {
               </div>
               <div className="border border-[#d0d7de] p-5">
                 <div className="text-xs text-[#6e7681] uppercase tracking-wider font-semibold mb-1">LATAM Efficiency (NU)</div>
-                <div className="text-3xl font-semibold text-[#1b1f23]">0.78 <span className="text-sm font-normal text-[#6e7681]">MCDA (FY2024 inputs, re-run pending)</span></div>
+                <div className="text-3xl font-semibold text-[#1b1f23]">0.634 <span className="text-sm font-normal text-[#6e7681]">MCDA, Q2 2026</span></div>
                 <div className="text-sm text-[#1b1f23] mt-2 leading-snug space-y-1">
                   <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> BRA, MEX and COL are past the transition (predicted food share 32–34%); BRA and COL sit within the uncertainty band of the upper boundary.</p>
                   <p><span className="font-mono text-xs text-[#6e7681]">[OBS]</span> Q2 2026: ARPAC $17.1 vs $1.0 cost to serve per active customer (17.1x).</p>
@@ -111,7 +111,7 @@ export default function Home() {
                 <div>
                   <h3 className="text-sm font-semibold uppercase tracking-wider mb-2">MCDA Allocation Result</h3>
                   <p className="text-sm text-[#1b1f23] leading-relaxed">
-                    <span className="font-mono text-xs text-[#6e7681]">[OBS]</span> The MCDA scored Sea Limited 0.84 vs Nu Holdings 0.78 on FY2024 inputs. Several of those inputs were superseded by Q2 2026 filings; a re-run is pending.</p>
+                    <span className="font-mono text-xs text-[#6e7681]">[INF]</span> Re-run on verified Q2 2026 data and the new Engel phases: Sea Limited 0.638 vs Nu Holdings 0.634, a statistical tie. A 2% change in any one weight flips the order, and using Nu’s USD growth instead of FX-neutral puts Nu ahead (0.704). Sea’s score relies on compensation: its 8.4% operating margin falls below the danger threshold on the most heavily weighted criterion, offset by Engel headroom and credit quality. The earlier 0.84 vs 0.78 result is withdrawn.</p>
                 </div>
                 <div>
                   <p className="text-sm text-[#1b1f23] leading-relaxed">
@@ -119,7 +119,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-sm text-[#1b1f23] leading-relaxed">
-                    <span className="font-mono text-xs text-[#6e7681]">[JDG]</span> Allocation call (Overweight SE, Hold NU) is suspended until the MCDA is re-run on verified Q2 2026 data.</p>
+                    <span className="font-mono text-xs text-[#6e7681]">[JDG]</span> No allocation preference on this evidence. The choice turns on what the portfolio values: proven profitability (Nu, 27.7% pre-tax margin) or exposure to markets still inside the Engel transition (Sea, predicted food share 37% vs 33%).</p>
                 </div>
               </div>
               <div className="md:w-2/3 overflow-x-auto border border-[#d0d7de]">

@@ -85,7 +85,7 @@ This 41.7% net margin [OBS] demonstrates the pricing power and frictionless scal
     title: "VCP Audit: Sea Limited (SE) vs Nu Holdings (NU), Q2 2026 Unit Economics",
     date: "2026-10-22",
     author: "Z-K Quantitative Strategy (sec-analyst + vcp-math-auditor swarm)",
-    summary: "Verified against primary filings (Nu 6-K Q2 2026, Sea 2Q 2026 results deck). NU earns $16.1 of monthly contribution per active customer at a 17.1x ARPAC-to-cost-to-serve spread; Shopee converts 0.67% of GMV into adjusted EBITDA while Monee and Garena carry group profitability.",
+    summary: "Verified against primary filings (Nu 6-K Q2 2026, Sea 2Q 2026 results deck). MCDA re-run: statistical tie (SE 0.638 vs NU 0.634), no allocation preference. NU earns $16.1 of monthly contribution per active customer at a 17.1x ARPAC-to-cost-to-serve spread; Shopee converts 0.67% of GMV into adjusted EBITDA while Monee and Garena carry group profitability.",
     content: `### Executive Summary
 [OBS] This memo replaces the October 22 draft, which relied on recalled FY2024 figures. Every number below comes from the latest primary filings and was re-derived independently by the vcp-math-auditor agent (17 of 17 checks passed, 0 failures).
 *   **Nu Holdings:** 6-K, Q2 2026 results, August 13, 2026 (sec.gov/Archives/edgar/data/1691493/000129281426004222/nupr2q26_6k.htm).
@@ -127,6 +127,7 @@ This 41.7% net margin [OBS] demonstrates the pricing power and frictionless scal
 [INF] Shopee is adding buyers in Southeast Asian markets inside the transition zone (new active buyers +35% YoY), but converts less than 1% of GMV into EBITDA. Group profitability is carried by Monee and Garena.
 
 ### Capital Allocation Implication
-[JDG] The prior allocation (Overweight SE, Hold NU) came from an MCDA run on FY2024 inputs. It is suspended pending a re-run with the Q2 2026 data above. [GAP] YoY growth rates quoted by both companies are FX-neutral and should not be compared with USD-computed figures.`
+[INF] MCDA re-run (analysis/mcda_q2_2026.json): four criteria weighted 30/25/25/20 (profitability, growth, Engel headroom, credit quality). Sea Limited 0.638 vs Nu Holdings 0.634. The ranking is fragile: a 2% change in a single weight flips it, and Nu leads (0.704) if its USD-reported growth is used instead of FX-neutral. Sea's score depends on compensation, since its 8.4% operating margin is below the 0.30 danger threshold on the most heavily weighted criterion.
+[JDG] No allocation preference on this evidence. The prior call (Overweight SE, Hold NU) came from an MCDA on recalled FY2024 inputs and is withdrawn. [GAP] YoY growth rates quoted by both companies are FX-neutral and should not be compared with USD-computed figures.`
   }
 ];

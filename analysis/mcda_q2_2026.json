@@ -1,0 +1,27 @@
+{
+  "decision": "Capital allocation between Sea Limited (SE) and Nu Holdings (NU) as plays on the emerging-market Engel transition",
+  "date": "2026-10-22",
+  "method": "Weighted sum (Belton & Stewart 2002), direct weights, lisp_eval helpers from the mcda skill",
+  "criteria": [
+    {"name": "Profitability", "type": "benefit", "weight": 0.30, "metric": "NU pre-tax margin (EBT/revenue); SE GAAP operating margin", "score_rule": "10 x margin / 30%"},
+    {"name": "Growth", "type": "benefit", "weight": 0.25, "metric": "YoY revenue growth; NU FX-neutral 39%, SE USD 48.1%", "score_rule": "10 x growth / 60%"},
+    {"name": "Engel headroom", "type": "benefit", "weight": 0.25, "metric": "Average predicted food share of core markets (SE: IDN, VNM, PHL, BRA; NU: BRA, MEX, COL)", "score_rule": "10 x (share - 20%) / 25%"},
+    {"name": "Credit quality", "type": "cost (inverted)", "weight": 0.20, "metric": "NPL 90+ ratio; NU 6.9%, Monee 1.0%", "score_rule": "10 x (1 - NPL / 10%)"}
+  ],
+  "inputs": {
+    "NU": {"ebt": 1630.3, "revenue": 5875.7, "growth_fxn": 0.39, "growth_usd": 0.5576, "npl90": 0.069, "source": "Nu 6-K Q2 2026, sec.gov/Archives/edgar/data/1691493/000129281426004222/nupr2q26_6k.htm"},
+    "SE": {"operating_income": 650.3, "revenue": 7787.8, "growth_usd": 0.481, "npl90": 0.010, "source": "Sea 2Q 2026 results deck, cdn.sea.com, 2026-08-11"}
+  },
+  "normalized_scores": {"NU": [0.9249, 0.65, 0.528, 0.31], "SE": [0.2783, 0.80, 0.697, 0.90]},
+  "composites": {"SE": 0.63774, "NU": 0.63397},
+  "min_flip": 0.02,
+  "robustness": "fragile",
+  "compensation_masking": {"SE": "Profitability 0.28 < 0.30 danger threshold on a 30% weight", "NU": "none"},
+  "variant_usd_growth_for_NU": {"NU": 0.7038, "SE": 0.63774, "note": "Using NU USD-reported growth (55.8%) instead of FX-neutral flips the ranking to NU"},
+  "caveats": [
+    "NU and Monee credit books are not like-for-like (NU: credit cards and unsecured loans; Monee: Shopee-linked consumer and SME credit).",
+    "Pre-tax margin (NU) vs operating margin (SE) are different P&L lines.",
+    "Score scales and weights are analyst judgments; the min_flip result shows the ranking depends on them."
+  ],
+  "supersedes": "MCDA of 2026-10-22 (SE 0.84 vs NU 0.78, robust) built on recalled FY2024 inputs; criteria and weights of that run were not recorded."
+}
