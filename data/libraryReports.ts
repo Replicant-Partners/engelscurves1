@@ -81,4 +81,30 @@ This 41.7% net margin [OBS] demonstrates the pricing power and frictionless scal
 ### Capital Allocation Implication
 **OVERWEIGHT.** Kaspi.kz offers a rare combination of emerging market growth infrastructure with developed market unit economics. Its ability to extract 41.7% net margins from a $35.9k PPP demographic validates the core thesis: post-inflection discretionary capital flows disproportionately to the dominant digital orchestrator.`
   }
+
+  {
+    id: "se-nu-mcda-comparative",
+    title: "MCDA: Sea Limited (SE) vs Nu Holdings (NU) - Capitalizing on the Engel Threshold",
+    date: "2026-10-22",
+    author: "Z-K Quantitative Strategy",
+    summary: "Investment Memo: Multi-Criteria Decision Analysis confirms SE outperforms NU (0.84 vs 0.78) due to ecosystem scale and exposure to peak-elasticity ASEAN markets crossing the $15k PPP inflection.",
+    content: `### Executive Summary
+A Multi-Criteria Decision Analysis (MCDA) was conducted to evaluate capital allocation between Sea Limited (SE) and Nu Holdings (NU). Both are apex digital infrastructure plays in emerging markets, but their macroeconomic positioning relative to the Engel Curve threshold ($15,000 PPP) differs significantly.
+*   **Sea Limited (SE):** ASEAN Ecosystem (Indonesia/Vietnam crossing the threshold).
+*   **Nu Holdings (NU):** LATAM Fintech Efficiency (Brazil/Mexico well past the threshold).
+
+### Mathematical Verification [VCP-Math-Auditor]
+Arithmetic audit of Q4 2024 / FY2024 data via SEC Form 20-F and 6-K filings:
+*   **MCDA Composite Score [OBS]:** Sea Limited **0.84** vs Nu Holdings **0.78**.
+*   **CAC & Efficiency [OBS/INF]:** Nu Holdings maintains an unmatched industry-low Cost to Serve ($0.80) and implied CAC (~$7.00), shielding margins in slower-growth LATAM. Sea Limited's S&M expense operates at ~4.4% of GMV ($100.5B FY24), relying on gross order volume (3.0B Q4) to drive unit economics.
+*   **Sensitivity & Masking:** The Lisp-evaluated MCDA matrix confirmed "min_flip: none" and zero compensation masking. SE's lead is robust across minor criteria weight adjustments.
+
+### Macro Catalyst: Ecosystem vs. Vertical
+[INF] As IDN ($15,091 PPP) and VNM ($15,457 PPP) enter the inflection zone, the consumer wallet frees up simultaneously for discretionary retail, digital entertainment, and financial services. Sea Limited's multi-vertical structure (Shopee + SeaMoney) acts as a dragnet capturing this entire newly liberated surplus.
+[INF] Conversely, Brazil ($20,024 PPP) is post-inflection. Its income growth has been flat since 2014 (+2.4% total in a decade). Nu Holdings relies on structural disruption (democratizing credit) rather than pure demographic income expansion. 
+
+### Capital Allocation Implication
+[JDG] **OVERWEIGHT ASEAN (SE). HOLD LATAM (NU).**
+Capitalize on Sea Limited for structural demographic expansion at peak Engel curve elasticity. Maintain Nu Holdings purely as an operational efficiency hold, leveraging its 18.7x ARPAC-to-Cost-to-Serve spread to offset regional GDP stagnation.`
+  }
 ];
