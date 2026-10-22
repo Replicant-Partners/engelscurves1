@@ -69,7 +69,7 @@ export default function Home() {
                 <div className="text-xs text-[#6e7681] uppercase tracking-wider font-semibold mb-1">Pre-Inflection Runway</div>
                 <div className="text-3xl font-semibold text-[#1b1f23]">IND, PHL</div>
                 <div className="text-sm text-[#6e7681] mt-2 leading-snug">
-                  >25% distance to threshold. Long-term infrastructure and essentials focus.
+                  &gt;25% distance to threshold. Long-term infrastructure and essentials focus.
                 </div>
               </div>
             </div>
