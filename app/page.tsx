@@ -21,8 +21,7 @@ export default function Home() {
               Engel Curve Inflection Matrix
             </h1>
             <p className="text-[#6e7681] mt-2 text-sm leading-relaxed max-w-2xl">
-              Strategic capital allocation dashboard tracking emerging markets across the $15,000 PPP threshold. 
-              This inflection point marks the structural transition from subsistence economies to discretionary consumer markets.
+              [JDG] Strategic capital allocation dashboard tracking emerging markets against the $15,000 PPP threshold. This threshold determines the structural viability of broad-based discretionary tech consumption.
             </p>
           </div>
           <div className="text-right">
@@ -52,24 +51,27 @@ export default function Home() {
             {/* KPI Cards for Executives */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="border border-[#d0d7de] p-5">
-                <div className="text-xs text-[#6e7681] uppercase tracking-wider font-semibold mb-1">Active Inflection</div>
-                <div className="text-3xl font-semibold text-[#1b1f23]">IDN, VNM</div>
-                <div className="text-sm text-[#6e7681] mt-2 leading-snug">
-                  Crossing the $15k threshold. Highest elasticity for new digital & financial services.
+                <div className="text-xs text-[#6e7681] uppercase tracking-wider font-semibold mb-1">ASEAN Ecosystem (SE)</div>
+                <div className="text-3xl font-semibold text-[#1b1f23]">0.84 <span className="text-sm font-normal text-[#6e7681]">MCDA</span></div>
+                <div className="text-sm text-[#1b1f23] mt-2 leading-snug space-y-1">
+                  <p><span className="font-mono text-xs text-[#6e7681]">[OBS]</span> IDN/VNM entering the $15k inflection.</p>
+                  <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> Multi-vertical ecosystem captures maximum marginal income share.</p>
                 </div>
               </div>
               <div className="border border-[#d0d7de] p-5">
-                <div className="text-xs text-[#6e7681] uppercase tracking-wider font-semibold mb-1">Post-Inflection</div>
-                <div className="text-3xl font-semibold text-[#1b1f23]">LATAM</div>
-                <div className="text-sm text-[#6e7681] mt-2 leading-snug">
-                  MEX, BRA, ARG & COL accelerating into mature discretionary consumption structures.
+                <div className="text-xs text-[#6e7681] uppercase tracking-wider font-semibold mb-1">LATAM Efficiency (NU)</div>
+                <div className="text-3xl font-semibold text-[#1b1f23]">0.78 <span className="text-sm font-normal text-[#6e7681]">MCDA</span></div>
+                <div className="text-sm text-[#1b1f23] mt-2 leading-snug space-y-1">
+                  <p><span className="font-mono text-xs text-[#6e7681]">[OBS]</span> Post-inflection markets (BRA, MEX, COL).</p>
+                  <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> Industry-low CAC (~$7.0) offsets slower aggregate regional GDP growth.</p>
                 </div>
               </div>
               <div className="border border-[#d0d7de] p-5">
-                <div className="text-xs text-[#6e7681] uppercase tracking-wider font-semibold mb-1">Pre-Inflection Runway</div>
+                <div className="text-xs text-[#6e7681] uppercase tracking-wider font-semibold mb-1">Pre-Inflection Pipeline</div>
                 <div className="text-3xl font-semibold text-[#1b1f23]">IND, PHL</div>
-                <div className="text-sm text-[#6e7681] mt-2 leading-snug">
-                  &gt;25% distance to threshold. Long-term infrastructure and essentials focus.
+                <div className="text-sm text-[#1b1f23] mt-2 leading-snug space-y-1">
+                  <p><span className="font-mono text-xs text-[#6e7681]">[OBS]</span> &gt;25% distance to the $15k threshold.</p>
+                  <p><span className="font-mono text-xs text-[#6e7681]">[JDG]</span> Avoid broad B2C tech exposure; prioritize infrastructure.</p>
                 </div>
               </div>
             </div>
@@ -97,11 +99,23 @@ export default function Home() {
 
             {/* Strategic Implications BLUF */}
             <div className="flex flex-col md:flex-row gap-6 items-start">
-              <div className="md:w-1/3 border-l-4 border-[#1b1f23] pl-4 py-1">
-                <h3 className="text-sm font-semibold uppercase tracking-wider mb-2">Capital Allocation</h3>
-                <p className="text-sm text-[#6e7681] leading-relaxed">
-                  Weight portfolios toward discretionary consumer equities and financial infrastructure in markets within the ±5% inflection zone.
-                </p>
+              <div className="md:w-1/3 border-l-4 border-[#1b1f23] pl-4 py-1 space-y-4">
+                <div>
+                  <h3 className="text-sm font-semibold uppercase tracking-wider mb-2">MCDA Allocation Result</h3>
+                  <p className="text-sm text-[#1b1f23] leading-relaxed">
+                    <span className="font-mono text-xs text-[#6e7681]">[OBS]</span> Multi-Criteria Decision Analysis confirms Sea Limited (0.84) outperforms Nu Holdings (0.78) across combined growth, margin, and macroeconomic factors.
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-[#1b1f23] leading-relaxed">
+                    <span className="font-mono text-xs text-[#6e7681]">[INF]</span> Sea Limited's exposure to markets crossing the inflection point (IDN, VNM) leverages peak Engel curve elasticity, making it structurally superior for capital allocation.
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-[#1b1f23] leading-relaxed">
+                    <span className="font-mono text-xs text-[#6e7681]">[JDG]</span> Overweight ASEAN consumer tech. Hold LATAM financials primarily for margin execution and robust CAC efficiency, not for demographic expansion.
+                  </p>
+                </div>
               </div>
               <div className="md:w-2/3 overflow-x-auto border border-[#d0d7de]">
                 <table className="w-full text-left border-collapse text-sm">
