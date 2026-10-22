@@ -6,6 +6,8 @@ import { libraryReports } from '../data/libraryReports';
 import { evidenceItems, literatureSources } from '../data/literatureEvidence';
 import { engelStats } from '../data/engelCrossCountry';
 import { EngelCrossCountryChart } from '../components/EngelCrossCountryChart';
+import { phaseProbabilities, phaseBoundsCi } from '../data/phaseProbabilities';
+import { scenarioNodes, scenarioQueries } from '../data/scenarioTree';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'overview'|'library'>('overview');
@@ -177,6 +179,97 @@ export default function Home() {
               <div className="text-sm leading-relaxed max-w-3xl space-y-2">
                 <p><span className="font-mono text-xs text-[#6e7681]">[JDG]</span> The dashboard’s phases use these two estimates: the break (~$6.6k) opens the transition zone and the 35% food-share level (~$17.8k) closes it. The earlier $15k reference sits inside the transition, where food is still about 37% of the budget. On this basis India, the Philippines, South Africa, Indonesia and Vietnam are in transition, Egypt is at its upper edge, and Brazil and Colombia are just past it, within the uncertainty band.</p>
                 <p className="text-xs text-[#6e7681]">Caveats: survey means, not GDP-based consumption; years 1991–2010 compared with 2025 income; food definitions differ (India excludes imputed owner rent; Pakistan and the Philippines include tobacco); a cross-section is not a country’s path over time; PPP may overstate poorer countries’ incomes (item 12), which would move the break lower. All 85 values were checked against the source tables, and the fit was reproduced independently in Python (analysis/verify_independent.py).</p>
+              </div>
+            </div>
+
+            {/* Phase probabilities */}
+            <div className="space-y-3 border-t border-[#d0d7de] pt-6">
+              <h2 className="text-lg font-semibold">Phase Probabilities and Timing</h2>
+              <p className="text-sm text-[#6e7681] leading-relaxed max-w-3xl">
+                The phase boundaries are estimates, so each market’s phase is a probability. Each of 2,000 bootstrap re-fits of the 85-survey Engel curve gives a pair of boundaries (transition start: 90% range ${(phaseBoundsCi.start[0] / 1000).toFixed(1)}k–${(phaseBoundsCi.start[2] / 1000).toFixed(1)}k; end: ${(phaseBoundsCi.end[0] / 1000).toFixed(1)}k–${(phaseBoundsCi.end[2] / 1000).toFixed(1)}k). Timing applies IMF World Economic Outlook growth projections (2026–2030) to the World Bank 2025 level.
+              </p>
+              <div className="overflow-x-auto border border-[#d0d7de]">
+                <table className="w-full text-left border-collapse text-sm">
+                  <thead>
+                    <tr className="bg-[#f6f8fa] border-b border-[#d0d7de]">
+                      <th className="py-2 px-3 font-semibold">Market</th>
+                      <th className="py-2 px-3 font-semibold text-right">GDP pc 2025 → 2030</th>
+                      <th className="py-2 px-3 font-semibold text-right">P(pre)</th>
+                      <th className="py-2 px-3 font-semibold text-right">P(transition)</th>
+                      <th className="py-2 px-3 font-semibold text-right">P(post)</th>
+                      <th className="py-2 px-3 font-semibold text-right">P(past transition by 2027)</th>
+                      <th className="py-2 px-3 font-semibold text-right">P(past transition by 2030)</th>
+                      <th className="py-2 px-3 font-semibold text-right">Same, if income overstated 20%</th>
+                    </tr>
+                  </thead>
+                  <tbody className="font-mono">
+                    {phaseProbabilities.map(r => (
+                      <tr key={r.iso3} className="border-b border-[#e1e4e8] last:border-0">
+                        <td className="py-2 px-3 font-sans font-medium">{r.iso3} - {r.country}</td>
+                        <td className="py-2 px-3 text-right">${(r.gdp2025 / 1000).toFixed(1)}k → ${(r.gdp2030 / 1000).toFixed(1)}k</td>
+                        <td className="py-2 px-3 text-right">{Math.round(r.pPre * 100)}%</td>
+                        <td className="py-2 px-3 text-right">{Math.round(r.pTransition * 100)}%</td>
+                        <td className="py-2 px-3 text-right">{Math.round(r.pPost * 100)}%</td>
+                        <td className="py-2 px-3 text-right">{Math.round(r.pPastBy2027 * 100)}%</td>
+                        <td className="py-2 px-3 text-right font-semibold">{Math.round(r.pPastBy2030 * 100)}%</td>
+                        <td className="py-2 px-3 text-right text-[#6e7681]">{Math.round(r.pPastBy2030Overstated20 * 100)}%</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="text-sm leading-relaxed max-w-3xl space-y-2">
+                <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> Ten of twelve markets are placed in their phase with at least 94% probability. The uncertain cases are Egypt (68% transition, 32% post) and Colombia (24% transition, 76% post). On IMF growth paths, Vietnam (83%) and Indonesia (66%) are more likely than not to leave the transition by 2030; India, the Philippines and South Africa stay in it with near certainty.</p>
+                <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> Timing is sensitive to how income is measured. Almås (2012) finds PPP incomes overstate poorer countries’ real income (item 12) but gives no figure we can transfer to this series; if 2025 incomes were 20% too high, the chance that Indonesia leaves the transition by 2030 falls from 66% to 2%, and Vietnam’s from 83% to 5%.</p>
+                <p className="text-xs text-[#6e7681]">The probabilities reflect uncertainty in the cross-country fit only. They do not include IMF forecast error or the caveats of the threshold analysis. Script: analysis/phase_probabilities.mjs.</p>
+              </div>
+            </div>
+
+            {/* Scenario tree */}
+            <div className="space-y-3 border-t border-[#d0d7de] pt-6">
+              <h2 className="text-lg font-semibold">Scenario Tree: From Engel Transition to Company Outcomes</h2>
+              <p className="text-sm text-[#6e7681] leading-relaxed max-w-3xl">
+                Six dated, checkable events. Two macro events feed two Sea Limited outcomes; Shopee’s FY2026 milestone also feeds its FY2028 margin. Nu’s ARPAC is tracked alongside. Each probability states its basis: data, calibrated (outside view blended with a decomposition), or analyst judgment.
+              </p>
+              <div className="text-xs font-mono text-[#6e7681] border border-[#d0d7de] p-4 leading-relaxed">
+                E1 Indonesia exits transition (2028) ──┐<br/>
+                E3 Shopee FY2026 EBITDA ≥ $1.0B ───┴──▶ E4 Shopee FY2028 margin ≥ 1.0% of GMV<br/>
+                E2 Indonesia credit ≥ 40% of GDP ──────▶ E5 Monee loan book ≥ $20B (2028)<br/>
+                E6 Nu ARPAC ≥ $20 (Q2 2027) ── independent
+              </div>
+              <div className="overflow-x-auto border border-[#d0d7de]">
+                <table className="w-full text-left border-collapse text-sm">
+                  <thead>
+                    <tr className="bg-[#f6f8fa] border-b border-[#d0d7de]">
+                      <th className="py-2 px-3 font-semibold w-10">ID</th>
+                      <th className="py-2 px-3 font-semibold">Event</th>
+                      <th className="py-2 px-3 font-semibold w-20">Resolves</th>
+                      <th className="py-2 px-3 font-semibold w-20 text-right">P</th>
+                      <th className="py-2 px-3 font-semibold w-24">Basis</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {scenarioNodes.map(n => (
+                      <tr key={n.id} className="border-b border-[#e1e4e8] last:border-0 align-top">
+                        <td className="py-2 px-3 font-mono text-xs">{n.id}</td>
+                        <td className="py-2 px-3"><p className="font-medium">{n.label}</p><p className="text-xs text-[#6e7681] mt-0.5">{n.question} {n.basis}</p></td>
+                        <td className="py-2 px-3 text-xs">{n.deadline}</td>
+                        <td className="py-2 px-3 font-mono text-right">{Math.round(n.probability * 100)}%</td>
+                        <td className="py-2 px-3 font-mono text-[10px] uppercase tracking-wider text-[#6e7681]">{n.provenance}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="space-y-1 text-sm max-w-3xl">
+                <h3 className="text-sm font-semibold uppercase tracking-wider">What the tree implies</h3>
+                {scenarioQueries.map(q => (
+                  <p key={q.question}><span className="font-mono text-xs text-[#6e7681]">[INF]</span> {q.question} <span className="font-semibold">{Math.round(q.answer * 100)}%</span> <span className="text-[#6e7681]">(prior {Math.round(q.prior * 100)}%)</span></p>
+                ))}
+              </div>
+              <div className="text-sm leading-relaxed max-w-3xl space-y-2">
+                <p><span className="font-mono text-xs text-[#6e7681]">[JDG]</span> The company milestone carries more information than the macro: Shopee hitting $1.0B in FY2026 moves the FY2028 margin odds from 17% to 48%, while Indonesia leaving the transition moves them from 34% to 48%. Both links are analyst judgments, so the tree shows the structure of the argument, not a measured effect. The nearest signals to watch are Shopee’s Q3 2026 results (an adjusted EBITDA above about $260M keeps E3 on track) and Nu’s Q3 2026 ARPAC.</p>
+                <p className="text-xs text-[#6e7681]">Forward marginals from scenario_quantify; conditional and reverse probabilities recomputed with lisp_eval. Each event resolves on a public figure and can be Brier-scored when it does.</p>
               </div>
             </div>
 
