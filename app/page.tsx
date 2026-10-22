@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ReferenceArea } from 'recharts';
 import { emergingMarketsData, ENGEL_THRESHOLD } from '../data/emergingMarkets';
 import { libraryReports } from '../data/libraryReports';
+import { evidenceItems, literatureSources } from '../data/literatureEvidence';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'overview'|'library'>('overview');
@@ -21,7 +22,7 @@ export default function Home() {
               Engel Curve Inflection Matrix
             </h1>
             <p className="text-[#6e7681] mt-2 text-sm leading-relaxed max-w-2xl">
-              [JDG] Strategic capital allocation dashboard tracking emerging markets against the $15,000 PPP threshold. This threshold determines the structural viability of broad-based discretionary tech consumption.
+              [JDG] Tracks emerging markets against a $15,000 per-capita (PPP) reference level. The share of spending on discretionary goods rises with income, and, in theory, at low expenditure households buy basic goods only<sup className="text-[10px] text-[#6e7681] ml-0.5">[1,2]</sup>. No source in our corpus places this switching point at a dollar value; $15,000 is an analyst reference<sup className="text-[10px] text-[#6e7681] ml-0.5">[3]</sup>.
             </p>
           </div>
           <div className="text-right">
@@ -55,7 +56,8 @@ export default function Home() {
                 <div className="text-3xl font-semibold text-[#1b1f23]">0.84 <span className="text-sm font-normal text-[#6e7681]">MCDA (FY2024 inputs, re-run pending)</span></div>
                 <div className="text-sm text-[#1b1f23] mt-2 leading-snug space-y-1">
                   <p><span className="font-mono text-xs text-[#6e7681]">[OBS]</span> IDN/VNM entering the $15k inflection.</p>
-                  <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> Multi-vertical ecosystem captures maximum marginal income share.</p>
+                  <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> The discretionary share of spending rises with income<sup className="text-[10px] text-[#6e7681] ml-0.5">[1,2]</sup>.</p>
+                  <p><span className="font-mono text-xs text-[#6e7681]">[JDG]</span> Markets near the reference level are where we expect that rise to be underway; a multi-vertical platform is positioned to capture it.</p>
                 </div>
               </div>
               <div className="border border-[#d0d7de] p-5">
@@ -71,7 +73,8 @@ export default function Home() {
                 <div className="text-3xl font-semibold text-[#1b1f23]">IND, PHL</div>
                 <div className="text-sm text-[#1b1f23] mt-2 leading-snug space-y-1">
                   <p><span className="font-mono text-xs text-[#6e7681]">[OBS]</span> &gt;25% distance to the $15k threshold.</p>
-                  <p><span className="font-mono text-xs text-[#6e7681]">[JDG]</span> Avoid broad B2C tech exposure; prioritize infrastructure.</p>
+                  <p><span className="font-mono text-xs text-[#6e7681]">[INF]</span> At low expenditure, spending is concentrated in basic goods (model prediction)<sup className="text-[10px] text-[#6e7681] ml-0.5">[2]</sup>; where financial systems are shallow, stock-market gains do not reliably reach consumption<sup className="text-[10px] text-[#6e7681] ml-0.5">[6,7]</sup>.</p>
+                  <p><span className="font-mono text-xs text-[#6e7681]">[JDG]</span> Prioritize infrastructure over broad B2C exposure.</p>
                 </div>
               </div>
             </div>
@@ -144,6 +147,43 @@ export default function Home() {
                   </tbody>
                 </table>
               </div>
+            </div>
+            {/* Literature Evidence */}
+            <div className="space-y-3 border-t border-[#d0d7de] pt-6">
+              <h2 className="text-lg font-semibold">Literature Evidence</h2>
+              <p className="text-sm text-[#6e7681] leading-relaxed max-w-3xl">
+                How emerging-market wealth reaches consumption: mainly through housing; a positive stock-market effect appears only once the financial sector deepens<sup className="text-[10px] ml-0.5">[6,7]</sup>. Sales surprises at higher-margin US retailers track market returns more closely than at lower-margin retailers<sup className="text-[10px] ml-0.5">[5]</sup>.
+              </p>
+              <div className="overflow-x-auto border border-[#d0d7de]">
+                <table className="w-full text-left border-collapse text-sm">
+                  <thead>
+                    <tr className="bg-[#f6f8fa] border-b border-[#d0d7de]">
+                      <th className="py-2 px-3 font-semibold w-8">#</th>
+                      <th className="py-2 px-3 font-semibold">Claim</th>
+                      <th className="py-2 px-3 font-semibold w-24">Support</th>
+                      <th className="py-2 px-3 font-semibold">Source passage</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {evidenceItems.map(item => {
+                      const source = literatureSources.find(s => s.key === item.sourceKey);
+                      return (
+                        <tr key={item.id} className="border-b border-[#e1e4e8] last:border-0 align-top">
+                          <td className="py-2 px-3 font-mono text-xs">{item.id}</td>
+                          <td className="py-2 px-3">{item.claim}</td>
+                          <td className="py-2 px-3 font-mono text-xs uppercase tracking-wider text-[#6e7681]">{item.support}</td>
+                          <td className="py-2 px-3 text-[#1b1f23]">
+                            {item.quote ? <p className="italic">&ldquo;{item.quote}&rdquo;</p> : <p className="text-[#6e7681]">No supporting passage in the corpus.</p>}
+                            {source && <p className="text-xs text-[#6e7681] mt-1">{source.citation}</p>}
+                            <p className="text-xs text-[#6e7681] mt-1">{item.note}</p>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-xs text-[#6e7681]">Passages retrieved from a local corpus of 8 papers and checked verbatim against the source text. Support levels reviewed by an independent citation-auditor agent.</p>
             </div>
           </section>
         )}
