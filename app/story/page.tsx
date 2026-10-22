@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { FoodShareChart } from '../../components/story/FoodShareChart';
 import { PhaseTracks } from '../../components/story/PhaseTracks';
 import { HouseholdBars } from '../../components/story/HouseholdBars';
+import { RobustnessChart } from '../../components/story/RobustnessChart';
+import { MeasurementRisk } from '../../components/story/MeasurementRisk';
 import { story } from '../../data/storyData';
 import { evidenceItems, literatureSources } from '../../data/literatureEvidence';
 
@@ -113,6 +115,12 @@ export default function StoryPage() {
             <p><Tag t="INF" />The earlier $15,000 marker sits inside the transition, where food is still about 37% of spending. It marks the middle of the shift, not its start.</p>
             <p><Tag t="GAP" />No paper in the corpus states a dollar threshold. Both boundaries are this study&apos;s estimates<Cite ids={[3]} />.</p>
           </div>
+          <div className="mt-12">
+            <h3 className="text-lg font-semibold mb-1">Does the break hold up?</h3>
+            <p className="text-sm text-[#6e7681] leading-relaxed max-w-3xl mb-4">The same model re-estimated on five versions of the data. If the break were an artefact of one group of surveys, it would move or vanish when that group is removed.</p>
+            <div className="border border-[#d0d7de] p-4 md:p-6"><RobustnessChart /></div>
+            <p className="text-sm leading-relaxed mt-4 max-w-3xl"><Tag t="INF" />In four of five versions the break lands at $6.6k (between $6,566 and $6,592) and stays significant. Without the ILO surveys, half of the sample and the largest single source inside the transition band (13 of 32 surveys), it moves to $5.7k and becomes borderline (8.6 against 8.85). The location is stable; its sharpness depends on having enough middle-income data.</p>
+          </div>
           <Record>
             <p>Model: food share on ln(GDP per capita) with one estimated break. Break at {usd(story.bounds.start)} (bootstrap 90% interval {usd(story.bounds.startCi[0])}&ndash;{usd(story.bounds.startCi[2])}); slope {story.piecewise.slopeBelow} below, {story.piecewise.slopeAbove} above. sup-F {story.fit.supF} against an Andrews (1993) 5% critical value of 8.85. The 35% line comes from the linear fit (R&sup2; {story.fit.r2}), 90% interval {usd(story.bounds.endCi[0])}&ndash;{usd(story.bounds.endCi[2])}.</p>
             <p>The break survives dropping definition-problem surveys, one-survey-per-country and dropping the LSMS table; it weakens to borderline without the ILO surveys. Scripts: analysis/engel_threshold.mjs, engel_robustness.mjs; independent check: verify_independent.py.</p>
@@ -128,6 +136,54 @@ export default function StoryPage() {
             <p><Tag t="INF" />Vietnam and Indonesia are in the upper half. On IMF paths they cross by 2030 with {pct(T.VNM.pExit2030)} and {pct(T.IDN.pExit2030)} probability. South Africa stays put: its projected growth is close to zero.</p>
             <p><Tag t="INF" />Ten of twelve markets sit in their phase with at least 94% probability. The uncertain ones are Egypt and Colombia, near the upper boundary.</p>
           </div>
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-5 gap-10">
+            <div className="md:col-span-2">
+              <h3 className="text-lg font-semibold mb-1">The biggest risk: how income is measured</h3>
+              <p className="text-sm leading-relaxed mt-2"><Tag t="INF" />PPP incomes tend to overstate poorer countries&apos; real income<Cite ids={[12]} />. The 2030 exit odds of the three markets closest to the line fall fast if that bias applies here. With a 10% overstatement, Vietnam drops from {pct(T.VNM.pExit2030)} to {pct(T.VNM.pExit2030Overstated10)} and Indonesia from {pct(T.IDN.pExit2030)} to {pct(T.IDN.pExit2030Overstated10)}.</p>
+              <p className="text-sm leading-relaxed mt-3"><Tag t="GAP" />Alm&aring;s (2012) estimates the bias for Penn World Table incomes; no source gives its size for the World Bank series used here. The 10% and 20% cases are stress tests, not estimates.</p>
+            </div>
+            <div className="md:col-span-3 border border-[#d0d7de] p-4 md:p-6">
+              <div className="text-xs font-semibold uppercase tracking-wider text-[#6e7681] mb-4">Probability of leaving the transition by 2030</div>
+              <MeasurementRisk />
+            </div>
+          </div>
+
+          <details className="mt-10 border-t border-b border-[#e1e4e8] py-4">
+            <summary className="cursor-pointer font-semibold text-sm">Full table: phase probabilities for all twelve markets</summary>
+            <div className="mt-4 overflow-x-auto">
+              <table className="w-full text-left border-collapse text-sm">
+                <thead>
+                  <tr className="border-b border-[#d0d7de] text-[#6e7681] text-xs uppercase tracking-wider">
+                    <th className="py-2 pr-3">Market</th>
+                    <th className="py-2 pr-3 text-right">GDP pc 2025 &rarr; 2030</th>
+                    <th className="py-2 pr-3 text-right">Food share 2025 &rarr; 2030</th>
+                    <th className="py-2 pr-3 text-right">P(pre / transition / post) today</th>
+                    <th className="py-2 pr-3 text-right">P(exit by 2027)</th>
+                    <th className="py-2 pr-3 text-right">P(exit by 2030)</th>
+                    <th className="py-2 text-right">Same, income overstated 20%</th>
+                  </tr>
+                </thead>
+                <tbody className="font-mono text-xs">
+                  {story.tracks.map((r) => {
+                    const near = (r.gdp2025 >= story.bounds.startCi[0] && r.gdp2025 <= story.bounds.startCi[2]) || (r.gdp2025 >= story.bounds.endCi[0] && r.gdp2025 <= story.bounds.endCi[2]);
+                    const past = r.gdp2025 >= story.bounds.end;
+                    return (
+                      <tr key={r.iso3} className="border-b border-[#e1e4e8] last:border-0">
+                        <td className="py-2 pr-3 font-sans text-sm">{r.country}{near && <span className="ml-2 text-[10px] text-[#6e7681] uppercase tracking-wider">near boundary</span>}</td>
+                        <td className="py-2 pr-3 text-right">{usd(r.gdp2025)} &rarr; {usd(r.gdp2030)}</td>
+                        <td className="py-2 pr-3 text-right">{(r.food2025 * 100).toFixed(1)}% &rarr; {(r.food2030 * 100).toFixed(1)}%</td>
+                        <td className="py-2 pr-3 text-right">{pct(r.pPre2025)} / {pct(r.pTransition2025)} / {pct(r.pPost2025)}</td>
+                        <td className="py-2 pr-3 text-right">{past ? '—' : pct(r.pExit2027)}</td>
+                        <td className="py-2 pr-3 text-right font-semibold">{past ? '—' : pct(r.pExit2030)}</td>
+                        <td className="py-2 text-right text-[#6e7681]">{past ? '—' : pct(r.pExit2030Overstated20)}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+              <p className="text-xs text-[#6e7681] mt-3">&ldquo;Near boundary&rdquo;: 2025 income inside the 90% interval of a phase boundary. Dashes: already past the transition in 2025 on the point estimate; their probability of being post-inflection today is in the fourth column.</p>
+            </div>
+          </details>
           <Record>
             <p>Phase probabilities from 2,000 bootstrap re-fits of the survey curve. 2025 levels: World Bank. 2026&ndash;2030 paths: IMF WEO NGDPRPPPPC growth applied to the World Bank level. Probabilities reflect uncertainty in the curve only, not IMF forecast error.</p>
             <p>Measurement risk: PPP incomes tend to overstate poorer countries&apos; real income<Cite ids={[12]} />. If 2025 incomes were 20% too high, Indonesia&apos;s 2030 exit probability falls from {pct(T.IDN.pExit2030)} to {pct(T.IDN.pExit2030Overstated20)}, Vietnam&apos;s from {pct(T.VNM.pExit2030)} to {pct(T.VNM.pExit2030Overstated20)}. Script: analysis/phase_probabilities.mjs.</p>

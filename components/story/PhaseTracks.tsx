@@ -1,6 +1,6 @@
 import { story } from '../../data/storyData';
 
-const W = 820, LEFT = 120, RIGHT = 150, ROW = 40, TOP = 46;
+const W = 820, LEFT = 120, RIGHT = 150, ROW = 46, TOP = 50;
 const MIN = 2000, MAX = 50000;
 const x = (g: number) => LEFT + ((Math.log(g) - Math.log(MIN)) / (Math.log(MAX) - Math.log(MIN))) * (W - LEFT - RIGHT);
 const usd = (v: number) => `$${Math.round(v / 1000)}k`;
@@ -37,6 +37,7 @@ export function PhaseTracks() {
             <line x1={LEFT} x2={W - RIGHT} y1={y} y2={y} stroke="#e1e4e8" />
             <line x1={x(r.gdp2025)} x2={x(r.gdp2030) - 4} y1={y} y2={y} stroke={ACCENT} strokeWidth={2} markerEnd="url(#arrow)" />
             <circle cx={x(r.gdp2025)} cy={y} r={5} fill="#1b1f23" />
+            <text x={(x(r.gdp2025) + x(r.gdp2030)) / 2} y={y - 8} textAnchor="middle" fontSize="10" fill="#6e7681">{(r.food2025 * 100).toFixed(1)}% &rarr; {(r.food2030 * 100).toFixed(1)}%</text>
             <text x={W - RIGHT + 14} y={y + 4} fontSize="13" fill={inTransition ? '#1b1f23' : '#6e7681'} fontWeight={inTransition ? 600 : 400}>{prob}</text>
           </g>
         );
@@ -48,7 +49,7 @@ export function PhaseTracks() {
       <text x={LEFT + 14} y={H - 2} fontSize="11" fill="#6e7681">2025 (World Bank)</text>
       <line x1={LEFT + 140} x2={LEFT + 170} y1={H - 6} y2={H - 6} stroke={ACCENT} strokeWidth={2} markerEnd="url(#arrow)" />
       <text x={LEFT + 178} y={H - 2} fontSize="11" fill="#6e7681">2030 (IMF growth path)</text>
-      <text x={LEFT + 340} y={H - 2} fontSize="11" fill="#6e7681">Light bands: 90% interval of each boundary</text>
+      <text x={LEFT + 340} y={H - 2} fontSize="11" fill="#6e7681">Grey: food share 2025 &rarr; 2030. Bands: 90% intervals.</text>
     </svg>
   );
 }

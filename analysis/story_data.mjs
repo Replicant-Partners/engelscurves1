@@ -4,6 +4,7 @@ import fs from 'node:fs';
 const dir = new URL('.', import.meta.url);
 const thr = JSON.parse(fs.readFileSync(new URL('engel_threshold_results.json', dir), 'utf8'));
 const prob = JSON.parse(fs.readFileSync(new URL('phase_probabilities_results.json', dir), 'utf8'));
+const rob = JSON.parse(fs.readFileSync(new URL('engel_robustness_results.json', dir), 'utf8'));
 const weo = Object.fromEntries(JSON.parse(fs.readFileSync(new URL('imf_weo_NGDPRPPPPC_2025_2030.json', dir), 'utf8')).map((d) => [d.iso3, d.y]));
 
 const pts = thr.points.map((p) => ({ x: Math.log(p.gdp), y: p.share }));
@@ -29,7 +30,8 @@ const tracks = Object.entries(prob.countries).map(([iso, o]) => ({
   iso3: iso, country: names[iso], gdp2025: o.base.gdp2025, gdp2030: o.base.gdp2030,
   food2025: +lin(o.base.gdp2025).toFixed(3), food2030: +lin(o.base.gdp2030).toFixed(3),
   pTransition2025: o.base.p_phase_2025.transition, pPost2025: o.base.p_phase_2025.post, pPre2025: o.base.p_phase_2025.pre,
-  pExit2027: o.base.p_past_transition_by['2027'], pExit2030: o.base.p_past_transition_by['2030'], pExit2030Overstated20: o.overstated20.p_past_transition_by['2030'],
+  pExit2027: o.base.p_past_transition_by['2027'], pExit2030: o.base.p_past_transition_by['2030'], pExit2030Overstated10: o.overstated10.p_past_transition_by['2030'], pExit2030Overstated20: o.overstated20.p_past_transition_by['2030'],
+  pExit2027Overstated20: o.overstated20.p_past_transition_by['2027'],
 })).sort((p, q) => p.gdp2025 - q.gdp2025);
 
 const household = [10000, 20000].map((g) => { const s = lin(g); return { income: g, foodShare: +s.toFixed(4), food: Math.round(g * s), nonFood: Math.round(g * (1 - s)) }; });
@@ -38,7 +40,10 @@ const pick = (iso, year) => thr.points.find((p) => p.iso3 === iso && String(p.ye
 const highlights = [['ETH', 2004, 'Ethiopia 2004'], ['IDN', 2007, 'Indonesia 2007'], ['MEX', 2004, 'Mexico 2004'], ['CHE', 2003, 'Switzerland 2003']]
   .map(([iso, y, label]) => ({ ...pick(iso, y), label }));
 
+const labels = { 'all': 'All 85 surveys', 'excl BRA-2008, PAK-2010, PHL-2009 (definition issues)': 'Without 3 surveys with definition issues', 'one observation per country (latest)': 'One survey per country (latest)', 'excl LSMS table A.1': 'Without World Bank LSMS surveys', 'excl ILO tables A.4a/A.4b': 'Without ILO surveys' };
+const robustness = { knotCi: rob.knot_bootstrap_90ci, variants: rob.variants.map((v) => ({ label: labels[v.label], n: v.n, knot: v.knot, supF: v.supF, significant: v.supF > 8.85 })) };
 const out = {
+  robustness,
   piecewise: { knot: Math.round(Math.exp(best.k)), slopeBelow: +best.be[1].toFixed(4), slopeAbove: +(best.be[1] + best.be[2]).toFixed(4), c0: +best.be[0].toFixed(4) },
   piecewiseLine, highlights, tracks, household,
   bounds: { start: Math.round(thr.break_test.best_knot_gdp), end: Math.round(thr.income_at_share_35), startCi: prob.boundaries_ci90.start, endCi: prob.boundaries_ci90.end },
