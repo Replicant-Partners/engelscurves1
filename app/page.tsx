@@ -113,7 +113,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-sm text-[#1b1f23] leading-relaxed">
-                    <span className="font-mono text-xs text-[#6e7681]">[JDG]</span> Overweight ASEAN consumer tech (SE) for inflection optionality. Hold LATAM financials (NU) for certain, high-magnitude operating leverage (proven <$2/mo cost-to-serve).
+                    <span className="font-mono text-xs text-[#6e7681]">[JDG]</span> Overweight ASEAN consumer tech (SE) for inflection optionality. Hold LATAM financials (NU) for certain, high-magnitude operating leverage (proven &lt;$2/mo cost-to-serve).
                   </p>
                 </div>
               </div>
