@@ -8,6 +8,8 @@ import { DollarStreetHouses } from '../../components/story/DollarStreetHouses';
 import { EngelExplorer } from '../../components/story/EngelExplorer';
 import { explorer } from '../../data/explorerData';
 import { dollarStreet } from '../../data/dollarStreet';
+import { deep } from '../../data/deepDive';
+import { JapanChart } from '../../components/story/JapanChart';
 import { RobustnessChart } from '../../components/story/RobustnessChart';
 import { MeasurementRisk } from '../../components/story/MeasurementRisk';
 import { story } from '../../data/storyData';
@@ -110,6 +112,27 @@ export default function StoryPage() {
             <p><Tag t="OBS" />A typical household in Ethiopia (2004) spent 54% of its budget on food; in Switzerland (2003), 9%. Each dot is one national survey; the chart fills poorest to richest as you arrive, and the slider walks it one household survey at a time.</p>
             <p><Tag t="OBS" />The pattern holds across income groups: over 50% in low-income countries, 40&ndash;50% in lower-middle and 30&ndash;40% in upper-middle income countries<Cite ids={[10]} />. Between countries, being 50% richer means a food share about 5 points lower<Cite ids={[9]} />.</p>
           </div>
+          <div className="mt-10">
+            <h3 className="text-lg font-semibold mb-3">Going deeper</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm leading-relaxed">
+              <div>
+                <p><Tag t="OBS" />The slope barely moves across 150 years of measurement:</p>
+                <table className="mt-3 w-full text-sm border-collapse">
+                  <tbody>
+                    {deep.historicalSlopes.map((h) => (
+                      <tr key={h.label} className="border-b border-[#e1e4e8] last:border-0">
+                        <td className="py-1.5 pr-3">{h.label}</td>
+                        <td className="py-1.5 text-right font-mono">{h.v.toFixed(3)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <p className="mt-2 text-xs text-[#57606a]">Engel slope: change in the food share per log point of income. First two rows from Pritchett &amp; Spivack tables A.7&ndash;A.8; third from evidence item 9.</p>
+              </div>
+              <p><Tag t="JDG" />Few relationships in economics are this stable across centuries, methods and samples. That stability is what licenses using the curve as a map at all &mdash; and it is why the deviations matter: Bulgaria and Armenia sit far above the line, Ukraine and the West Bank far below, reminders that prices, measurement and history move individual countries off a very persistent track.</p>
+            </div>
+          </div>
+
           <Record>
             <p>Food shares: survey means from the appendix tables of Pritchett &amp; Spivack (2013), 1991&ndash;2010. Income: World Bank NY.GDP.PCAP.PP.KD, matched to survey year. All {story.fit.n} values checked against the source tables. Labeled dots: four narrative countries (accent) plus, by rule, the two largest deviations above and below the fitted line (grey); Armenia 2003 is also the highest food share in the sample.</p>
           </Record>
@@ -122,6 +145,13 @@ export default function StoryPage() {
             <p><Tag t="INF" />The earlier $15,000 marker sits inside the transition, where food is still about 37% of spending. It marks the middle of the shift, not its start.</p>
             <p><Tag t="GAP" />No paper in the corpus states a dollar threshold. Both boundaries are this study&apos;s estimates<Cite ids={[3]} />.</p>
           </div>
+          <div className="mt-10">
+            <h3 className="text-lg font-semibold mb-3">Going deeper</h3>
+            <p className="text-sm leading-relaxed max-w-3xl mb-4"><Tag t="OBS" />Japan walked most of this curve in one lifetime: between 1955 and 1992 its household food share fell from 37.4% to 15.7% while real spending per person multiplied by 3.7 (38 annual observations, Pritchett &amp; Spivack table A.12). <Tag t="INF" />Japan&rsquo;s case shows the cross-country pattern can also be a within-country path, not only a comparison of different societies &mdash; it entered the window already mid-transition and exited the 35% line around 1973.</p>
+            <div className="border border-[#d0d7de] p-4 md:p-6 overflow-x-auto"><JapanChart /></div>
+            <p className="text-sm leading-relaxed max-w-3xl mt-4"><Tag t="INF" />On the fit, the transition spans about ${deep.freed.delta.toLocaleString('en-US')} per person per year of non-food spending: at our break threshold ($6.6k) non-food spending is ${deep.freed.atBreak.toLocaleString('en-US')}; at our exit threshold ($17.8k) it is ${deep.freed.atExit.toLocaleString('en-US')}. That dollar span &mdash; not the percentage &mdash; is what a consumer business prices.</p>
+          </div>
+
           <div className="mt-12">
             <h3 className="text-lg font-semibold mb-1">Does the break hold up?</h3>
             <p className="text-sm text-[#57606a] leading-relaxed max-w-3xl mb-4">The same model re-estimated on five versions of the data. If the break were an artefact of one group of surveys, it would move or vanish when that group is removed.</p>
@@ -141,6 +171,15 @@ export default function StoryPage() {
             <p><Tag t="INF" />This animated lens uses national-accounts food shares (USDA ERS, {explorer.usda.n} countries, 2017&ndash;2023). On it the shift away from food begins near ${(explorer.usda.knot / 1000).toFixed(1)}k and food reaches 35% near ${(explorer.usda.end / 1000).toFixed(1)}k &mdash; earlier than the survey lens of chapters 1&ndash;2, because national accounts count items surveys miss, such as imputed rent. The static survey lens is one toggle away; the start of the shift agrees across both (about $6.6k&ndash;$8.9k), the end depends on measurement. We show both rather than average them.</p>
             <p><Tag t="JDG" />Click a country in the map below to land here with its trail traced. Hollow dashed bubbles are projections: income moves on the IMF path while each country&rsquo;s food share is held at its 2023 value, not forecast.</p>
           </div>
+          <div className="mt-10">
+            <h3 className="text-lg font-semibold mb-3">Going deeper</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm leading-relaxed">
+              <p><Tag t="INF" />Within countries the street moves slowly: over 2017&ndash;2023 the share fell only {deep.withinCountrySlope} per log point of income growth &mdash; half the cross-section slope on the same USDA panel ({deep.crossSlopeUsda}; the survey fit of chapter 2 gives &minus;0.141). The cross-section behaves like a long-run map, not a five-year forecast.</p>
+              <p><Tag t="OBS" />2020 ran the law in reverse: mean income across the panel fell about 5% and the mean food share rose from {Math.round(deep.covid.share2019 * 1000) / 10}% to {Math.round(deep.covid.share2020 * 1000) / 10}%. <Tag t="JDG" />Part of this may be the law under an income shock; part may be pandemic food-price inflation and lockdown spending composition &mdash; the panel cannot separate them.</p>
+              <p><Tag t="OBS" />The law is a tendency, not destiny: {deep.moversTotal} of {deep.moversPanel} countries raised their food share by a point or more between 2017 and 2023 despite income growth above 5% &mdash; among them {deep.movers.map((m) => `${m.country} (+${m.dpp}pp)`).join(', ')}. <Tag t="JDG" />We attribute those rises mainly to food-price inflation in those years, a judgment the panel itself cannot confirm.</p>
+            </div>
+          </div>
+
           <Record>
             <p>Observed bubbles: USDA ERS food share (via Our World in Data) &times; World Bank GDP per capita PPP (2021$) &times; population, 713 country-years. Projections 2024&ndash;2030: IMF WEO growth from the WB 2023 level; 99 of 102 countries have paths (Bolivia, Lebanon and Sri Lanka stop at 2023). USDA-lens break ${(explorer.usda.knot / 1000).toFixed(1)}k is borderline-significant (sup-F {explorer.usda.supF} vs 8.85); the survey-lens break is strong (sup-F {story.fit.supF}). Script: analysis/explorer/build_explorer_data.mjs.</p>
           </Record>
@@ -204,6 +243,14 @@ export default function StoryPage() {
               <p className="text-xs text-[#57606a] mt-3">&ldquo;Near boundary&rdquo;: 2025 income inside the 90% interval of a phase boundary. Dashes: already past the transition in 2025 on the point estimate; their probability of being post-inflection today is in the fourth column.</p>
             </div>
           </details>
+          <div className="mt-10">
+            <h3 className="text-lg font-semibold mb-3">Going deeper</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm leading-relaxed">
+              <p><Tag t="INF" />Median crossing years on the bootstrap paths: Egypt {deep.medianExit.EGY}, Vietnam {deep.medianExit.VNM}, Indonesia {deep.medianExit.IDN}. India, the Philippines and South Africa do not reach a 50% exit probability by 2030 &mdash; India and the Philippines because the distance is large, South Africa because its projected growth is close to zero.</p>
+              <p><Tag t="JDG" />A tension we watch rather than hide: the survey-based model predicts Indonesia&rsquo;s food share falling as it grows, yet on the USDA national-accounts lens Indonesia&rsquo;s observed share <em>rose</em> 1.7 points over 2017&ndash;2023 (chapter 3). If that persists, the {Math.round(story.tracks.find((t) => t.iso3 === 'IDN')!.pExit2030 * 100)}%-by-2030 exit probability is too optimistic. The first check arrives with the 2024&ndash;2025 USDA releases.</p>
+            </div>
+          </div>
+
           <Record>
             <p>Phase probabilities from 2,000 bootstrap re-fits of the survey curve. 2025 levels: World Bank. 2026&ndash;2030 paths: IMF WEO NGDPRPPPPC growth applied to the World Bank level. Probabilities reflect uncertainty in the curve only, not IMF forecast error.</p>
             <p>Measurement risk: PPP incomes tend to overstate poorer countries&apos; real income<Cite ids={[12]} />. If 2025 incomes were 20% too high, Indonesia&apos;s 2030 exit probability falls from {pct(T.IDN.pExit2030)} to {pct(T.IDN.pExit2030Overstated20)}, Vietnam&apos;s from {pct(T.VNM.pExit2030)} to {pct(T.VNM.pExit2030Overstated20)}. Script: analysis/phase_probabilities.mjs.</p>
@@ -225,6 +272,11 @@ export default function StoryPage() {
               <p><span className="font-semibold">More cyclical.</span> Discretionary demand tracks financial markets more closely than necessities (US retail evidence)<Cite ids={[5]} />.</p>
             </div>
           </div>
+          <div className="mt-10">
+            <h3 className="text-lg font-semibold mb-3">Going deeper</h3>
+            <p className="text-sm leading-relaxed max-w-3xl"><Tag t="INF" />Scaled up, this per-person arithmetic is the largest consumption story of the decade: Kharas projects global middle-class consumption $29 trillion higher in 2030 than in 2015<Cite ids={[15]} />, with today&rsquo;s lower middle-income countries &mdash; including India, Indonesia and Vietnam &mdash; carrying $15 trillion of that market growth<Cite ids={[16]} />. Those are the same markets chapter 4 places inside the transition. <Tag t="JDG" />Both figures are 2017 projections, not observations; we cite them as the order of magnitude, not a forecast we underwrite.</p>
+          </div>
+
           <Record>
             <p>Household figures use the linear fit at $10,000 and $20,000 GDP per capita (recomputed with lisp_eval). This is a comparison across countries at one point in time, not the path of a single country. Numbered citations refer to the evidence table in chapter 8.</p>
             <p>To see what these budgets look like inside real homes, walk <a href="https://www.gapminder.org/dollar-street" target="_blank" rel="noreferrer" className="underline underline-offset-2">Dollar Street</a> &mdash; or jump straight to chapter 6 below.</p>
@@ -237,6 +289,11 @@ export default function StoryPage() {
             <p><Tag t="OBS" />Each house is one documented family, stacked where its consumption per adult per month (PPP) falls on the street; toggle a market to light its homes. The spread inside one country is the point: India’s {dollarStreet.markets.find((m) => m.iso3 === 'IND')!.n} families run from ${dollarStreet.markets.find((m) => m.iso3 === 'IND')!.min} to ${dollarStreet.markets.find((m) => m.iso3 === 'IND')!.max} a month — the whole Engel curve lives inside a single country.</p>
             <p><Tag t="JDG" />The dashed line marks the $11-a-day middle-class entry (about ${dollarStreet.kharasMonthly}/month)<Cite ids={[13]} />. Families to its left spend their budgets largely on food and essentials; to its right, the freed-up wallet of chapter 4 appears — this is the household-level view of the same shift our country phases track in GDP terms. The two scales are related but not convertible, so no phase boundaries are drawn here.</p>
           </div>
+          <div className="mt-10">
+            <h3 className="text-lg font-semibold mb-3">Going deeper</h3>
+            <p className="text-sm leading-relaxed max-w-3xl"><Tag t="OBS" />{deep.street.belowEntry} of the {deep.street.familiesOurMarkets} documented families in our twelve markets ({Math.round(100 * deep.street.belowEntry / deep.street.familiesOurMarkets)}%) live below our $335/month entry line (the $11-a-day definition of item 13, converted to a month<Cite ids={[13]} />). India&rsquo;s 10th-percentile family lives on ${deep.street.indiaP10} a month and its 90th on ${deep.street.indiaP90.toLocaleString('en-US')} &mdash; a {Math.round(deep.street.indiaP90 / deep.street.indiaP10)}&times; spread inside one country. <Tag t="INF" />This is evidence item 11 made visible: a country&rsquo;s average hides most of the street it actually lives on, which is why chapter 4&rsquo;s country phases and this chapter&rsquo;s households are different questions.</p>
+          </div>
+
           <Record>
             <p>Source: Dollar Street family registry via api.dollarstreet.org (fetched {dollarStreet.fetched}; {dollarStreet.usable} families, {dollarStreet.markets.reduce((s2, m) => s2 + m.n, 0)} in these twelve markets; Argentina has none yet). Dollars/month = household consumption per adult-equivalent, PPP, self-reported and Gapminder-adjusted. Dollar Street is a Gapminder project, CC BY 4.0. Script: analysis/dollar-street/build.mjs.</p>
           </Record>
@@ -313,6 +370,16 @@ export default function StoryPage() {
               <li>Survey consumption and GDP per capita measure different things; the boundaries are in GDP terms.</li>
               <li>PPP may overstate poorer countries&apos; incomes, which would move the break lower and delay projected exits.</li>
               <li>Probabilities cover the uncertainty of the curve, not IMF forecast error.</li>
+            </ul>
+          </details>
+
+          <details className="border-b border-[#e1e4e8] py-4">
+            <summary className="cursor-pointer font-semibold">What would falsify this</summary>
+            <ul className="mt-4 text-sm leading-relaxed list-disc pl-5 space-y-1.5 max-w-3xl">
+              <li>The break: new middle-income household surveys that move the knot outside $5.5k&ndash;$9.2k, or push the sup-F below its critical value in full samples (it is already borderline without the ILO surveys).</li>
+              <li>The timing: within-country movement staying near {deep.withinCountrySlope} per log point for another five years &mdash; the exit probabilities of chapter 4 assume countries travel the cross-country curve.</li>
+              <li>The measurement: an ICP/PPP revision cutting Indonesia&rsquo;s or Vietnam&rsquo;s 2025 income by 10%+ &mdash; the stress test in chapter 4 shows exit odds collapse from 66%/83% to 17%/33%.</li>
+              <li>The lens: Indonesia&rsquo;s USDA food share continuing to rise through 2024&ndash;2025 while income grows &mdash; the tension flagged in chapter 4 resolving against the model.</li>
             </ul>
           </details>
         </section>

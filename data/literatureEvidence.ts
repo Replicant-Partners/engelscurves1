@@ -201,4 +201,22 @@ export const evidenceItems: EvidenceItem[] = [
     chunkRef: 'corpus:engel-curves::utf8-6b6861726173323031372e7064662e747874:34',
     note: 'A 2017 projection, not an observation. The listed components sum to 940 million.',
   },
+  {
+    id: 15,
+    claim: 'Kharas projects global middle-class consumption to be $29 trillion higher in 2030 than in 2015.',
+    support: 'supported',
+    quote: 'By 2030, global middle-class consumption could be $29 trillion more than in 2015',
+    sourceKey: 'kharas2017',
+    chunkRef: 'corpus:engel-curves::utf8-6b6861726173323031372e7064662e747874:41',
+    note: 'A 2017 projection (\u201ccould be\u201d), not an observation.',
+  },
+  {
+    id: 16,
+    claim: 'Most of that market growth is projected in today\u2019s lower middle-income countries, including India, Indonesia and Vietnam ($15 trillion).',
+    support: 'supported',
+    quote: 'lower middle-income countries, including India, Indonesia, and Vietnam, will have middle-class markets that are $15 trillion bigger than today',
+    sourceKey: 'kharas2017',
+    chunkRef: 'corpus:engel-curves::utf8-6b6861726173323031372e7064662e747874:41',
+    note: 'Projection to 2030 from the same passage; \u201ctoday\u201d = 2016/2017 baseline.',
+  },
 ];
