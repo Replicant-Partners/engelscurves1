@@ -14,6 +14,7 @@ import { MechanismChart } from '../../components/story/MechanismChart';
 import { JapanChart } from '../../components/story/JapanChart';
 import { RobustnessChart } from '../../components/story/RobustnessChart';
 import { MeasurementRisk } from '../../components/story/MeasurementRisk';
+import { ValuationChains } from '../../components/story/ValuationChains';
 import { story } from '../../data/storyData';
 import { evidenceItems, literatureSources } from '../../data/literatureEvidence';
 
@@ -35,7 +36,8 @@ const chapters = [
   { id: 'money', n: '5', title: 'The freed-up wallet' },
   { id: 'street', n: '6', title: 'The street' },
   { id: 'watch', n: '7', title: 'What we watch' },
-  { id: 'method', n: '8', title: 'Evidence and method' },
+  { id: 'chains', n: '8', title: 'Who captures the transition?' },
+  { id: 'method', n: '9', title: 'Evidence and method' },
 ];
 
 function Tag({ t }: { t: 'OBS' | 'INF' | 'JDG' | 'GAP' }) {
@@ -424,8 +426,25 @@ export default function StoryPage() {
           </Record>
         </Chapter>
 
+
+        <Chapter
+          id="chains"
+          n="8"
+          title="Who captures the transition?"
+          lede="The Engel shift frees up household budgets. The question is which companies capture the freed-up spending — and whether stock prices already reflect the answer."
+        >
+          <p className="text-sm leading-relaxed max-w-3xl mb-6">
+            <Tag t="JDG" />Six market-company pairs trace the chain: income change &rarr; budget share shift &rarr; industry revenue &rarr; one or two listed companies. For each pair we compute the growth rate the current price implicitly assumes (implied terminal growth, derived from forward P/E and a 9% discount rate), compare it with recent observed revenue growth, and assign a calibrated probability to a one-year thesis question using the Tetlock superforecasting pipeline. Click a row to expand the full chain and falsifier.
+          </p>
+          <ValuationChains />
+          <Record>
+            <p>Implied terminal growth: g = 1/fwdPE &minus; 9% (discount rate). All multiples as of late October 2026 from stockanalysis.com, Yahoo Finance, multiples.vc and company earnings releases. Revenue growth from most-recent annual filings. Probabilities: Fermi decomposition (5 sub-questions per pair) &rarr; scenario_calibrate shrinkage toward reference-class base rate (Tetlock &amp; Gardner 2015). All six forecast IDs registered with forecast_persist for Brier scoring; call forecast_record at horizon to close the loop.</p>
+            <p>Falsifiers are stated before the verdict: a condition that would invalidate the premise. Engel curves describe structural budget share shifts; they do not forecast macro shocks, FX moves, or policy reversals. Where macro overwhelms the mechanism (Argentina, Nigeria), we label the trade explicitly as a macro play or paradox case &mdash; the Engel thesis is secondary.</p>
+          </Record>
+        </Chapter>
+
         <section id="method" className="scroll-mt-16 py-14 border-t border-[#d0d7de]">
-          <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">CHAPTER 8</div>
+          <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">CHAPTER 9</div>
           <h2 className="text-3xl font-semibold tracking-tight mb-3">Evidence and method</h2>
           <p className="text-lg leading-relaxed max-w-3xl mb-8">For readers who want to check the work.</p>
 

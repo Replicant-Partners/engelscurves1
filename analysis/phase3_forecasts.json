@@ -1,6 +1,6 @@
 {
   "date": "2026-10-23",
-  "method": "Superforecasting pipeline (Tetlock & Gardner 2015) + scenario_calibrate. Base rates from reference-class analysis. Sub-question Fermi decomposition. Shrinkage toward base rate applied by scenario_calibrate. Brier loop open — forecast_record to be called when each horizon passes.",
+  "method": "Superforecasting pipeline (Tetlock & Gardner 2015) + scenario_calibrate. Base rates from reference-class analysis. Sub-question Fermi decomposition. Shrinkage toward base rate applied by scenario_calibrate. Brier loop open \u2014 forecast_record to be called when each horizon passes.",
   "discount_rate_pe": 0.09,
   "forecasts": [
     {
@@ -8,21 +8,33 @@
       "forecast_id": "34e5c6c0-1941-4e15-92d6-a17ba5e177e8",
       "question": "Will MWG trade at fwd P/E > 15x before 31-Dec-2027?",
       "resolution_criteria": "MWG HOSE closing fwd P/E above 15x on any trading day before 31-Dec-2027",
-      "horizon": "1yr (2026-10-23 → 2027-10-23)",
+      "horizon": "1yr (2026-10-23 \u2192 2027-10-23)",
       "base_rate": 0.35,
       "fermi_estimate": 0.639,
       "calibrated_probability": 0.412,
       "current_multiple": 11.2,
       "target_multiple": 15.0,
       "upside_pct_if_rerate": 33.9,
-      "expected_value_rough": 0.140,
+      "expected_value_rough": 0.14,
       "key_sub_questions": [
-        {"q": "Revenue growth > 12% pa", "p": 0.72},
-        {"q": "VND macro stable", "p": 0.65},
-        {"q": "Vietnam EM appetite stable", "p": 0.55},
-        {"q": "BHX expansion doesn't destroy margins", "p": 0.60}
+        {
+          "q": "Revenue growth > 12% pa",
+          "p": 0.72
+        },
+        {
+          "q": "VND macro stable",
+          "p": 0.65
+        },
+        {
+          "q": "Vietnam EM appetite stable",
+          "p": 0.55
+        },
+        {
+          "q": "BHX expansion doesn't destroy margins",
+          "p": 0.6
+        }
       ],
-      "falsifier": "VND depreciation or China import cost spike compresses margins → growth premium disappears",
+      "falsifier": "VND depreciation or China import cost spike compresses margins \u2192 growth premium disappears",
       "engel_link": "Vietnam transition zone (83% exit by 2030); MWG captures durables/electronics budget share shift (eta=1.15)"
     },
     {
@@ -30,21 +42,33 @@
       "forecast_id": "cdaa91a4-7196-4f72-a5b6-7ea65f463f33",
       "question": "Will Yduqs FCF grow > 20% pa for both FY2026 and FY2027, with no major FIES cut?",
       "resolution_criteria": "Yduqs investor-relations FCF figure > 20% YoY in both FY2026 and FY2027 annual reports, AND no FIES cut/cap announcement by Brazilian government before 31-Dec-2027",
-      "horizon": "1yr (2026-10-23 → 2027-10-23)",
-      "base_rate": 0.30,
+      "horizon": "1yr (2026-10-23 \u2192 2027-10-23)",
+      "base_rate": 0.3,
       "fermi_estimate": 0.669,
       "calibrated_probability": 0.386,
       "current_multiple_fwd_pe": 6.0,
-      "current_ev_ebitda": 4.30,
+      "current_ev_ebitda": 4.3,
       "upside_pct_if_rerate_to_10x": 66.7,
       "expected_value_rough": 0.257,
       "key_sub_questions": [
-        {"q": "Student intake > 10% FY2026", "p": 0.65},
-        {"q": "No major FIES cut by end-2027", "p": 0.55},
-        {"q": "Operational leverage → FCF > 20%", "p": 0.70},
-        {"q": "No debt refinancing crisis", "p": 0.75}
+        {
+          "q": "Student intake > 10% FY2026",
+          "p": 0.65
+        },
+        {
+          "q": "No major FIES cut by end-2027",
+          "p": 0.55
+        },
+        {
+          "q": "Operational leverage \u2192 FCF > 20%",
+          "p": 0.7
+        },
+        {
+          "q": "No debt refinancing crisis",
+          "p": 0.75
+        }
       ],
-      "falsifier": "FIES cut → enrollment drops → FCF growth collapses; OR debt refinancing at higher rates compresses FCF",
+      "falsifier": "FIES cut \u2192 enrollment drops \u2192 FCF growth collapses; OR debt refinancing at higher rates compresses FCF",
       "engel_link": "Brazil post-transition (food 16.2%); first-generation university access is the post-Engel education thesis (effective eta >> 0.97 for this cohort)"
     },
     {
@@ -52,22 +76,147 @@
       "forecast_id": "a3eabd05-87d0-4bb7-afa1-387a61b65dbc",
       "question": "Will GGAL trade above 1.5x book value before 31-Dec-2027?",
       "resolution_criteria": "GGAL Nasdaq ADR closing P/B above 1.5x (per Morningstar or Yahoo Finance) on any trading day before 31-Dec-2027",
-      "horizon": "1yr (2026-10-23 → 2027-10-23)",
+      "horizon": "1yr (2026-10-23 \u2192 2027-10-23)",
       "base_rate": 0.42,
       "fermi_estimate": 0.568,
       "calibrated_probability": 0.454,
       "current_pb": 0.96,
-      "target_pb": 1.50,
+      "target_pb": 1.5,
       "upside_pct_if_rerate": 56.25,
       "expected_value_rough": 0.255,
       "key_sub_questions": [
-        {"q": "Argentina inflation < 30% by end-2026", "p": 0.52},
-        {"q": "IMF program on track through 2027", "p": 0.60},
-        {"q": "No capital controls reimposition", "p": 0.55},
-        {"q": "EM risk appetite stays constructive", "p": 0.60}
+        {
+          "q": "Argentina inflation < 30% by end-2026",
+          "p": 0.52
+        },
+        {
+          "q": "IMF program on track through 2027",
+          "p": 0.6
+        },
+        {
+          "q": "No capital controls reimposition",
+          "p": 0.55
+        },
+        {
+          "q": "EM risk appetite stays constructive",
+          "p": 0.6
+        }
       ],
-      "falsifier": "Milei macro programme fails → inflation returns → GGAL earnings collapse in USD → stays below book",
+      "falsifier": "Milei macro programme fails \u2192 inflation returns \u2192 GGAL earnings collapse in USD \u2192 stays below book",
       "engel_link": "Argentina GDP post-transition (eta=1.37 for financial services) but macro overwhelms Engel mechanism; this is primarily a macro-stabilisation trade, Engel is secondary"
+    },
+    {
+      "symbol": "FMX",
+      "forecast_id": "6532310f-a934-44c3-bbcd-9d6ac0808175",
+      "question": "Will FMX NYSE (FEMSA) deliver total shareholder return > 20% by Dec 31, 2027, driven by Health division growth > 15% and OXXO store count > 25,500?",
+      "resolution_criteria": "FMX NYSE total return (price + dividends) > 20% from Oct 23, 2026 to Dec 31, 2027, AND FEMSA Health division revenue growth > 15% in FY2027 per IR filings",
+      "horizon": "1yr (2026-10-23 \u2192 2027-10-23)",
+      "base_rate": 0.32,
+      "fermi_estimate": 0.556,
+      "calibrated_probability": 0.368,
+      "current_multiple_fwd_pe": 21.82,
+      "implied_g_terminal": -0.0442,
+      "actual_revenue_growth": 0.063,
+      "health_division_growth": 0.105,
+      "key_sub_questions": [
+        {
+          "q": "Mexico consumer spending recovers (ENIGH food share < 26%)",
+          "p": 0.62
+        },
+        {
+          "q": "FEMSA Health grows > 15% in FY2027",
+          "p": 0.58
+        },
+        {
+          "q": "OXXO same-store transactions turn positive by FY2027",
+          "p": 0.6
+        },
+        {
+          "q": "MXN/USD stable (< 20% depreciation through 2027)",
+          "p": 0.55
+        },
+        {
+          "q": "Market re-rates consolidated P/E toward 23x+ (bottling discount removed)",
+          "p": 0.4
+        }
+      ],
+      "falsifier": "Mexico 'tepid consumer spending' persists (FEMSA Q2-2026 wording); OXXO transactions decline; consolidated P/E stays depressed by bottling drag; MXN weakness offsets Engel gains",
+      "engel_link": "Mexico post-transition (food 25.7%, 100% phase probability); freed budget \u2192 convenience retail (\u03b7_restaurants=1.28) + health/pharma (\u03b7_health=1.26); FEMSA captures both at 24,000+ OXXO + 3,000+ pharmacies"
+    },
+    {
+      "symbol": "MTNN",
+      "forecast_id": "65e218eb-e0d8-4814-adcf-dc8b044fee88",
+      "question": "Will MTN Nigeria (MTNN NGX) data revenue sustain > 20% YoY growth in NGN terms for both H2-2026 and FY2027, independent of base naira-devaluation FX effects?",
+      "resolution_criteria": "MTNN data revenue per H2-2026 and FY2027 earnings releases > 20% YoY each, with management commentary distinguishing organic vs FX-rebase growth",
+      "horizon": "1yr (2026-10-23 \u2192 2027-10-23)",
+      "base_rate": 0.25,
+      "fermi_estimate": 0.633,
+      "calibrated_probability": 0.335,
+      "current_multiple_fwd_pe": 10.48,
+      "implied_g_terminal": -0.0082,
+      "actual_revenue_growth_h1_2026": 0.259,
+      "actual_data_revenue_growth_h1_2026": 0.384,
+      "key_sub_questions": [
+        {
+          "q": "Nigeria data penetration growth sustains (smartphone adoption)",
+          "p": 0.72
+        },
+        {
+          "q": "No major NCC tariff cap or rollback by end-2027",
+          "p": 0.62
+        },
+        {
+          "q": "MTN Nigeria maintains > 35% market share in data",
+          "p": 0.75
+        },
+        {
+          "q": "Naira stabilises (no second devaluation > 30% through 2027)",
+          "p": 0.58
+        },
+        {
+          "q": "MTN Fintech (MoMo) turns revenue-positive in FY2027",
+          "p": 0.42
+        }
+      ],
+      "falsifier": "Nigeria revenue growth is naira re-pricing after 2023 devaluation; if naira stabilises and real income doesn't grow (GDP/capita flat-to-falling in USD since 2015), data growth slows to population + penetration alone; MTN Fintech disappoints",
+      "engel_link": "Nigeria paradox: classic Engel mechanism blocked (food=59% flat despite GDP $7,843); data/mobile is the first non-food purchase even at low incomes \u2014 precursor demand, not transition demand; \u03b7_communication=0.79 underestimates data growth"
+    },
+    {
+      "symbol": "SILO",
+      "forecast_id": "4bc890ae-3983-46f3-8dc5-3754df099edc",
+      "question": "Will Siloam International Hospitals (SILO IDX) revenue growth accelerate to > 12% in FY2027 as Indonesia's Engel transition drives middle-class upgrade from public BPJS to private healthcare?",
+      "resolution_criteria": "SILO IDX FY2027 revenue YoY growth > 12% per annual report/IDX filings AND/OR stock outperforms Jakarta Composite by > 10% from Oct 2026 to Oct 2027",
+      "horizon": "1yr (2026-10-23 \u2192 2027-10-23)",
+      "base_rate": 0.28,
+      "fermi_estimate": 0.565,
+      "calibrated_probability": 0.349,
+      "current_multiple_trailing_pe": 18.9,
+      "implied_g_terminal": -0.0371,
+      "actual_revenue_growth": 0.07,
+      "key_sub_questions": [
+        {
+          "q": "Indonesia GDP/capita (PPP) moves toward $17,775 exit threshold",
+          "p": 0.66
+        },
+        {
+          "q": "BPJS does NOT expand coverage to reduce private hospital demand",
+          "p": 0.55
+        },
+        {
+          "q": "Siloam adds >= 3 new hospitals 2026-2027",
+          "p": 0.6
+        },
+        {
+          "q": "Middle-class out-of-pocket health spending share grows in SUSENAS",
+          "p": 0.58
+        },
+        {
+          "q": "SILO IDX outperforms Jakarta Composite by > 10% over 12 months",
+          "p": 0.4
+        }
+      ],
+      "falsifier": "BPJS Kesehatan covers 95% of Indonesia's population; any routine procedure BPJS covers cannibalises private volume; current 7% revenue growth suggests Engel mechanism not yet showing in SILO financials; BPJS expansion is the key refutation risk",
+      "engel_link": "Indonesia transition zone (66% exit by 2030, food share 33.5%); health \u03b7=1.26; private hospital upgrade is post-transition marker \u2014 but BPJS subsidised insurance delays the moment households self-select private"
     }
   ]
 }
