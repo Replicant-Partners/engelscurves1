@@ -67,7 +67,8 @@ export default function StoryPage() {
           {chapters.map((c) => (
             <a key={c.id} href={`#${c.id}`} className="text-[#6e7681] hover:text-[#1b1f23] whitespace-nowrap">{c.n}. {c.title}</a>
           ))}
-          <Link href="/" className="ml-auto text-[#6e7681] hover:text-[#1b1f23] whitespace-nowrap">Dashboard &rarr;</Link>
+          <Link href="/explorer" className="ml-auto text-[#6e7681] hover:text-[#1b1f23] whitespace-nowrap">Explorer &rarr;</Link>
+          <Link href="/" className="text-[#6e7681] hover:text-[#1b1f23] whitespace-nowrap">Dashboard &rarr;</Link>
         </div>
       </nav>
 
@@ -124,6 +125,7 @@ export default function StoryPage() {
           <Record>
             <p>Model: food share on ln(GDP per capita) with one estimated break. Break at {usd(story.bounds.start)} (bootstrap 90% interval {usd(story.bounds.startCi[0])}&ndash;{usd(story.bounds.startCi[2])}); slope {story.piecewise.slopeBelow} below, {story.piecewise.slopeAbove} above. sup-F {story.fit.supF} against an Andrews (1993) 5% critical value of 8.85. The 35% line comes from the linear fit (R&sup2; {story.fit.r2}), 90% interval {usd(story.bounds.endCi[0])}&ndash;{usd(story.bounds.endCi[2])}.</p>
             <p>The break survives dropping definition-problem surveys, one-survey-per-country and dropping the LSMS table; it weakens to borderline without the ILO surveys. Scripts: analysis/engel_threshold.mjs, engel_robustness.mjs; independent check: verify_independent.py.</p>
+            <p>A second lens agrees on the start and moves the end: on national-accounts food shares (USDA ERS, 101 countries, 2023) the break lands near $8.9k (borderline-significant) and food reaches 35% near $12.2k, because national accounts count items surveys miss, such as imputed rent. Both lenses are side by side in the <a href="/explorer" className="underline underline-offset-2">Engel Explorer</a>.</p>
           </Record>
         </Chapter>
 

@@ -29,7 +29,8 @@ export default function Home() {
               [INF] Markets are placed in three phases estimated from 85 household surveys: pre-inflection below about $6.6k GDP per capita (PPP), a transition zone from $6.6k to $17.8k where the food share of spending falls from about 55% to 35%, and post-inflection above. The share of spending on discretionary goods rises with income<sup className="text-[10px] text-[#6e7681] ml-0.5">[1,2]</sup>; the boundaries are this dashboard’s estimates, not values stated in the literature<sup className="text-[10px] text-[#6e7681] ml-0.5">[3]</sup>. For reference, median food shares fall from over 50% in low-income to 30–40% in upper-middle-income countries<sup className="text-[10px] text-[#6e7681] ml-0.5">[10]</sup>.
             </p>
           </div>
-          <div className="text-right">
+          <div className="text-right space-y-1">
+            <div className="text-xs"><a href="/story" className="underline underline-offset-2 mr-3">The story</a><a href="/explorer" className="underline underline-offset-2">Engel Explorer</a></div>
             <div className="text-[10px] font-mono text-[#6e7681] uppercase tracking-wider">Data Provenance</div>
             <div className="text-xs font-semibold text-[#1b1f23]">World Bank (NY.GDP.PCAP.PP.KD)</div>
             <div className="text-xs text-[#6e7681]">Constant 2021 Int'l $</div>
