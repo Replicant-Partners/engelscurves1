@@ -323,6 +323,65 @@
       ],
       "refutation_factor": "Mexico's consumer spending recovery has been slower than expected in 2025-26, with WALMEX noting 'tepid consumption' and transaction declines. The Engel mechanism is structural but the timing depends on real income growth, which may lag behind the food-share trend given peso depreciation and uncertainty. Additionally, FEMSA's non-Mexico operations (Valora Europe) could dilute the Engel thesis if European operations underperform.",
       "note": "Mexico is the cleanest post-transition Latin American Engel play. Food at 25.7% (USDA) or 32.1% (model), with 130 million people and a large formal retail sector already in place. FEMSA uniquely combines restaurants/services (\u03b7=1.28), health (\u03b7=1.26), and fintech (first non-food wallet for many Mexicans) in one listed vehicle \u2014 making it arguably the most multi-dimensional Engel company in the entire analysis."
+    },
+    {
+      "market": "Brazil",
+      "iso3": "BRA",
+      "category": "Education (private higher education) + Health (private hospitals)",
+      "eta_oecd": 1.264,
+      "category_share_pct": 4.7,
+      "source_type": "household_survey",
+      "companies": [
+        {
+          "name": "Yduqs Participa\u00e7\u00f5es S.A. (formerly Est\u00e1cio)",
+          "ticker": "YDUQ3",
+          "exchange": "B3",
+          "currency": "BRL",
+          "market_cap_brl_bn": 3.58,
+          "fcf_brl_bn_2025": 1.051,
+          "fcf_growth_2025_pct": 32,
+          "student_intake_growth_q3_2025_pct": 14,
+          "local_exposure_pct": "~100% Brazil",
+          "note": "Yduqs (Est\u00e1cio, Ibmec, IDOMED brands) is the clearest post-transition Engel play in Brazil and arguably in all of Latin America. The thesis: Brazil crossed the 35% food threshold years ago; the first generation of families where nobody went to university is now entering the workforce and sending children to private higher education. Education has \u03b7=0.974 in the OECD (near unity), but in Brazil where public university access is highly competitive, private higher education is effectively a luxury (\u03b7>1) for the emerging middle class. FCF R$1.051B in 2025 (+32% YoY); student intake +14% Q3-2025. Market cap R$3.58B vs FCF R$1B = very cheap if growth continues. The Milei-Lula uncertainty and Brazil's slow economic growth are the risks.",
+          "provenance": "[OBS] yduqs.com.br IR press release March 2026 (FY2025 results); finzer.io market cap Oct 2026"
+        },
+        {
+          "name": "Rede D'Or S\u00e3o Luiz S.A.",
+          "ticker": "RDOR3",
+          "exchange": "B3",
+          "currency": "BRL",
+          "revenue_usd_approx": 8.9,
+          "hospital_revenue_growth_q2_2026_pct": 9.9,
+          "ebitda_growth_q2_2026_pct": 18.2,
+          "oncology_revenue_growth_yoy_pct": 22.3,
+          "local_exposure_pct": "~90% Brazil; SulAm\u00e9rica insurance nationally",
+          "note": "Brazil's largest private hospital group ($8.9B USD revenue). Health \u03b7=1.26 in OECD; in post-transition Brazil, with food share at 16.2%, health spending is one of the fastest-growing non-food categories. Rede D'Or's thesis: as Brazilian middle class deepens, complex care (oncology +22.3% YoY), elective surgery, and premium insurance (SulAm\u00e9rica subsidiary) grow faster than routine care. Q2-2026: missed EPS estimate but EBITDA +18.2% \u2014 margin expansion story is intact.",
+          "provenance": "[OBS] investing.com RDOR3 page; zoominfo.com revenue; Reuters/Yahoo Finance Q2-2026 results"
+        }
+      ],
+      "refutation_factor": "Brazil's slow GDP growth (~2-3% real) means the Engel-driven market expansion is gradual. For Yduqs specifically, the federal government's PROUNI/FIES student finance programs (which subsidise private education) have been volatile \u2014 any policy reversal compresses enrollment. For Rede D'Or, Brazil's SUS (public health system) competes for routine care; the private market depends on premium insurance penetration growing faster than overall income.",
+      "note": "Brazil is the richest Engel case in Latin America because it has BOTH the data (POF 2017-18 with education at 4.7%) AND the listed companies to test the thesis. Education and health are the two luxury categories (\u03b7>1 in the OECD sense) most clearly at play in a post-transition economy where food is already below 20%. Brazil's B3 is the most liquid market in Latin America."
+    },
+    {
+      "market": "Argentina",
+      "iso3": "ARG",
+      "category": "Financial services / consumer credit (inflation-driven formalisation)",
+      "eta_oecd": 1.37,
+      "category_share_pct": null,
+      "source_type": "gap",
+      "companies": [
+        {
+          "name": "Grupo Financiero Galicia (via Ggal/GGAL ADR)",
+          "ticker": "GGAL / GGAL.BA",
+          "exchange": "Nasdaq ADR / BYMA",
+          "currency": "ARS / USD",
+          "local_exposure_pct": "~100% Argentina",
+          "note": "In hyperinflationary Argentina, the Engel mechanism works differently: the category with the fastest-growing budget share is not food (which is expensive) but financial services \u2014 as Argentines desperately seek dollar savings, credit cards, and inflation hedges. Grupo Galicia is the leading private bank. The Engel lens here is inverted: financial services (\u03b7\u22481.37) capture spending precisely because food prices are out of control, not because food share has fallen peacefully. This is the 'Argentina paradox': post-transition GDP but pre-transition consumer behaviour.",
+          "provenance": "[INF] BYMA listing confirmed; thesis constructed from macro context"
+        }
+      ],
+      "refutation_factor": "Argentina's entire macroeconomic situation is a refutation of the standard Engel thesis. Real incomes fell sharply in 2022-2023 despite nominal GDP PPP appearing high. The Milei administration's shock therapy (2024+) may restore stability but the near-term outlook for consumer spending is highly uncertain. Argentina is included for analytical completeness but is NOT recommended as an Engel-investment candidate without resolution of the macro situation.",
+      "note": "Argentina is the clearest case where the Engel mechanism is overwhelmed by macro factors. GDP PPP of $27,847 suggests deep post-transition, but chronic 100%+ inflation means the population is actually in survival mode for budget allocation. FULL COICOP data is a GAP (no ENGHo since 2017-18). The only Engel-adjacent investment thesis is financial formalisation, which is happening but driven by inflation-hedging demand rather than income growth. Argentina is a 'watch' market, not an active Phase 3 candidate."
     }
   ]
 }

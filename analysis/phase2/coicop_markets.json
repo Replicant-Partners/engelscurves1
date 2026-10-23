@@ -161,6 +161,38 @@
       "restaurants_pct": null,
       "nonfood_total_pct": 74.3,
       "note": "Mexico is solidly post-transition (GDP $21,912 PPP, food 25.7% USDA, 32.1% fitted model). Health share 4.9% of total household expenditure (ENIGH 2022 via academic paper, for households with any health spending). Full COICOP breakdown from ENIGH 2022 microdata is public via INEGI but was not extracted in this search \u2014 transport, education, communication are GAP. Mexico's ENIGH follows COICOP categories; microdata available at inegi.org.mx. ENIGH 2024 was conducted (Aug-Nov 2024); results likely available in 2025."
+    },
+    {
+      "iso3": "BRA",
+      "country": "Brazil",
+      "year": 2018,
+      "source": "IBGE Pesquisa de Or\u00e7amentos Familiares (POF) 2017-2018, 58,000 households. Published via IBGE News Agency. Food+housing+transport = 72.2% of total. USDA food share 2023: 16.2%. World Bank report (doi:10.1596/1813-9450-9598) citing POF 2017-18.",
+      "data_type": "household_survey",
+      "food_pct": 15.7,
+      "health_pct": null,
+      "transport_pct": 18.0,
+      "comm_pct": null,
+      "edu_pct": 4.7,
+      "recreation_pct": null,
+      "restaurants_pct": null,
+      "nonfood_total_pct": 84.3,
+      "note": "Brazil is post-transition (GDP $20,025 PPP, food 15.7% urban/23.8% rural, national avg ~17-18%). Transport 18% (includes vehicles); education 4.7% urban vs 2.3% rural \u2014 large urban/rural gap. Health not separately reported in the IBGE press release reviewed. Note: food share in POF 2017-18 is significantly lower than USDA 2023 (16.2%) because POF urban average differs from national accounts. Brazil's new POF 2022-2023 is currently in field; results not yet published as of late 2026. Housing (moradia) is the largest expenditure category in Brazil alongside food+transport. "
+    },
+    {
+      "iso3": "ARG",
+      "country": "Argentina",
+      "year": 2023,
+      "source": "USDA ERS (via Our World in Data) for food share. INDEC ENGHo (Encuesta Nacional de Gastos de los Hogares) 2017-18 was the last full survey; no new ENGHo published due to statistical capacity issues. USDA food 2023: 23.1%.",
+      "data_type": "partial_proxy",
+      "food_pct": 23.1,
+      "health_pct": null,
+      "transport_pct": null,
+      "comm_pct": null,
+      "edu_pct": null,
+      "recreation_pct": null,
+      "restaurants_pct": null,
+      "nonfood_total_pct": 76.9,
+      "note": "Argentina is deeply post-transition on the GDP-PPP metric ($27,847), but chronic inflation (100%+ in 2022-2023, then stabilisation under Milei) distorts all budget-share data. The 23.1% food share reflects nominal spending patterns under hyperinflationary conditions where food prices rose fastest. INDEC suspended the ENGHo after 2017-18; there is no comparable full COICOP survey for 2022-2023. Argentina is analytically post-transition but practically unstable \u2014 the Engel mechanism is overwhelmed by macro volatility. FULL COICOP BREAKDOWN: GAP."
     }
   ]
 }
