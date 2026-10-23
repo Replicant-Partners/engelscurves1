@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { explorer } from '../../data/explorerData';
 import { engelPoints } from '../../data/engelCrossCountry';
 import { story } from '../../data/storyData';
+import { dollarStreet } from '../../data/dollarStreet';
 
 type Row = { iso3: string; name: string; region: string; year: number; share: number; gdp: number; pop: number; projected?: boolean };
 
@@ -27,6 +28,7 @@ const color = (region: string) => REGION_COLORS[region.trim()] ?? '#9aa4ae';
 const YEARS: number[] = [];
 for (let t = 2017; t <= 2030; t++) YEARS.push(t);
 const ALL: Row[] = [...explorer.observed, ...explorer.projected];
+const DS = new Map(dollarStreet.markets.filter((m) => m.n > 0).map((m) => [m.iso3, m]));
 const COUNTRIES = Array.from(new Map(ALL.map((d) => [d.iso3, d.name] as [string, string]))).sort((a, b) => a[1].localeCompare(b[1]));
 
 export function EngelExplorer() {
@@ -133,6 +135,11 @@ export function EngelExplorer() {
             <div>Food share: <span className="font-mono">{(hover.share * 100).toFixed(1)}%</span>{hover.projected ? ' (held at 2023)' : ''}</div>
             <div>GDP per capita: <span className="font-mono">{usd(hover.gdp)}</span>{hover.projected ? ' (IMF path)' : ''}</div>
             <div>Population: <span className="font-mono">{(hover.pop / 1e6).toFixed(1)}M</span></div>
+            {DS.has(hover.iso3) && (
+              <a href={`https://www.gapminder.org/dollar-street?countries=${DS.get(hover.iso3)!.c2}`} target="_blank" rel="noreferrer" className="underline underline-offset-2 pointer-events-auto block mt-1">
+                {DS.get(hover.iso3)!.n} {DS.get(hover.iso3)!.n === 1 ? 'family' : 'families'} on Dollar Street &rarr;
+              </a>
+            )}
           </div>
         )}
       </div>

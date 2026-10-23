@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { FoodShareChart } from '../../components/story/FoodShareChart';
 import { PhaseTracks } from '../../components/story/PhaseTracks';
 import { HouseholdBars } from '../../components/story/HouseholdBars';
+import { DollarStreetStrip } from '../../components/story/DollarStreetStrip';
+import { dollarStreet } from '../../data/dollarStreet';
 import { RobustnessChart } from '../../components/story/RobustnessChart';
 import { MeasurementRisk } from '../../components/story/MeasurementRisk';
 import { story } from '../../data/storyData';
@@ -22,6 +24,7 @@ const chapters = [
   { id: 'break', n: '2', title: 'The break' },
   { id: 'map', n: '3', title: 'The map' },
   { id: 'money', n: '4', title: 'The freed-up wallet' },
+  { id: 'street', n: '4½', title: 'The street' },
   { id: 'watch', n: '5', title: 'What we watch' },
   { id: 'method', n: '6', title: 'Evidence and method' },
 ];
@@ -210,6 +213,20 @@ export default function StoryPage() {
           </div>
           <Record>
             <p>Household figures use the linear fit at $10,000 and $20,000 GDP per capita (recomputed with lisp_eval). This is a comparison across countries at one point in time, not the path of a single country. Numbered citations refer to the evidence table in chapter 6.</p>
+            <p>To see what these budgets look like inside real homes, walk <a href="https://www.gapminder.org/dollar-street" target="_blank" rel="noreferrer" className="underline underline-offset-2">Dollar Street</a> &mdash; or jump straight to chapter 4½ below.</p>
+          </Record>
+        </Chapter>
+
+        <Chapter id="street" n="4½" title="The street" lede={`The same transition, seen from inside the home. Dollar Street (Gapminder) photographs real families and places them on one global street by consumption per adult — ${dollarStreet.usable} families so far. Here are the ${dollarStreet.markets.filter((m) => m.n > 0).length} of our twelve markets they have visited.`}>
+          <div className="border border-[#d0d7de] p-4 md:p-6 overflow-x-auto">
+            <DollarStreetStrip />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 text-sm leading-relaxed">
+            <p><Tag t="OBS" />Each dot is a documented family’s consumption per adult per month (PPP). The spread inside one country is the point: India’s {dollarStreet.markets.find((m) => m.iso3 === 'IND')!.n} families run from ${dollarStreet.markets.find((m) => m.iso3 === 'IND')!.min} to ${dollarStreet.markets.find((m) => m.iso3 === 'IND')!.max} a month — the whole Engel curve lives inside a single country.</p>
+            <p><Tag t="JDG" />The dashed line marks the $11-a-day middle-class entry (about ${dollarStreet.kharasMonthly}/month)<Cite ids={[13]} />. Families to its left spend their budgets largely on food and essentials; to its right, the freed-up wallet of chapter 4 appears — this is the household-level view of the same shift our country phases track in GDP terms. The two scales are related but not convertible, so no phase boundaries are drawn here.</p>
+          </div>
+          <Record>
+            <p>Source: Dollar Street family registry via api.dollarstreet.org (fetched {dollarStreet.fetched}; {dollarStreet.usable} families, {dollarStreet.markets.reduce((s2, m) => s2 + m.n, 0)} in these twelve markets; Argentina has none yet). Dollars/month = household consumption per adult-equivalent, PPP, self-reported and Gapminder-adjusted. Dollar Street is a Gapminder project, CC BY 4.0. Script: analysis/dollar-street/build.mjs.</p>
           </Record>
         </Chapter>
 
