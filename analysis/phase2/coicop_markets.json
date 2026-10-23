@@ -54,7 +54,7 @@
       "iso3": "IDN",
       "country": "Indonesia",
       "year": 2022,
-      "source": "BPS Susenas (National Socioeconomic Survey) — annual, but COICOP breakdown at national level is in the BPS Statistical Yearbook; direct extract not available from public search. USDA ERS food share 33.5% (2023 national accounts). This row uses USDA food + ICP 2021 PPP-based category proxies.",
+      "source": "BPS Susenas (National Socioeconomic Survey) \u2014 annual, but COICOP breakdown at national level is in the BPS Statistical Yearbook; direct extract not available from public search. USDA ERS food share 33.5% (2023 national accounts). This row uses USDA food + ICP 2021 PPP-based category proxies.",
       "data_type": "partial_proxy",
       "food_pct": 33.5,
       "health_pct": null,
@@ -96,7 +96,55 @@
       "recreation_pct": null,
       "restaurants_pct": null,
       "nonfood_total_pct": 63.1,
-      "note": "GAP: full COICOP breakdown from CAPMAS HIECS not publicly available. Egypt's rising food share 2017-2023 (+3.3pp) reflects food-price inflation more than income effects — per the 'against-grain mover' finding in chapter 3."
+      "note": "GAP: full COICOP breakdown from CAPMAS HIECS not publicly available. Egypt's rising food share 2017-2023 (+3.3pp) reflects food-price inflation more than income effects \u2014 per the 'against-grain mover' finding in chapter 3."
+    },
+    {
+      "iso3": "NGA",
+      "country": "Nigeria",
+      "year": 2023,
+      "source": "USDA ERS (via Our World in Data). National-accounts proxy for food share. GDP PPP: World Bank NY.GDP.PCAP.PP.KD 2023.",
+      "data_type": "partial_proxy",
+      "food_pct": 59.0,
+      "health_pct": null,
+      "transport_pct": null,
+      "comm_pct": null,
+      "edu_pct": null,
+      "recreation_pct": null,
+      "restaurants_pct": null,
+      "nonfood_total_pct": 41.0,
+      "note": "ANOMALY vs model: Nigeria GDP $7,843 PPP puts it inside the estimated break CI ($5,545\u2013$7,650), which predicts food share ~37%. Actual: 59%, flat since 2017. The 22pp gap reflects two distinct economies: Lagos/Abuja elites (low food share) and 80%+ population in near-subsistence conditions (high food share). Additionally, chronic food-price inflation (30%+ in 2023 post-naira devaluation) forces budget compression even as nominal income stagnates. Nigeria is an against-the-grain mover; the Engel mechanism is overwhelmed by inequality and inflation. COICOP category breakdown: NOT AVAILABLE (NBS Nigeria Food Survey 2022 was released but full COICOP breakdown not in public search results)."
+    },
+    {
+      "iso3": "ZAF",
+      "country": "South Africa",
+      "year": 2023,
+      "source": "Statistics South Africa Income and Expenditure Survey (IES) 2022-23, via UNICEF-StatsSA analysis (ZAF-UNICEF-trends-cost-living-2025.pdf). Already in Phase 2 transition-market section; included here for Africa completeness.",
+      "data_type": "household_survey",
+      "food_pct": 21.3,
+      "health_pct": null,
+      "transport_pct": 16.3,
+      "comm_pct": 3.4,
+      "edu_pct": 2.5,
+      "recreation_pct": 3.8,
+      "restaurants_pct": 2.1,
+      "nonfood_total_pct": 78.7,
+      "note": "South Africa is POST-transition (GDP $13,251 PPP, food 21.3%). Its Africa peers are still far behind it. JSE is the most developed stock exchange in sub-Saharan Africa. Health not separately identified in the StatsSA columns reviewed (possibly embedded in 'Miscellaneous G&S'). Full IES 2022-23 microdata available via DataFirst (CC-BY)."
+    },
+    {
+      "iso3": "KEN",
+      "country": "Kenya",
+      "year": 2023,
+      "source": "USDA ERS (via Our World in Data). GDP PPP: World Bank 2023.",
+      "data_type": "partial_proxy",
+      "food_pct": 42.1,
+      "health_pct": null,
+      "transport_pct": null,
+      "comm_pct": null,
+      "edu_pct": null,
+      "recreation_pct": null,
+      "restaurants_pct": null,
+      "nonfood_total_pct": 57.9,
+      "note": "Kenya 2023 food share 42.1% is a remarkable drop from 56.6% (2022) and 58.7% (2020). If this reflects genuine income-driven consumption shift, Kenya may be entering the transition now. However, a 14.5pp single-year drop is large and may partly reflect post-pandemic recomposition or methodology change. The USDA series for Kenya should be verified against KNBS (Kenya National Bureau of Statistics) household surveys before strong conclusions. At GDP $5,692 PPP, Kenya is just below the bootstrap 90% CI lower bound for the break ($5,545). COICOP breakdown: GAP \u2014 full COICOP not publicly available from KNBS in this search."
     }
   ]
 }
