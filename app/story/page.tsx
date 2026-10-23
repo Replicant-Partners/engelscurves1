@@ -27,21 +27,21 @@ const chapters = [
 ];
 
 function Tag({ t }: { t: 'OBS' | 'INF' | 'JDG' | 'GAP' }) {
-  return <span className="font-mono text-[10px] text-[#6e7681] mr-1.5 align-middle">[{t}]</span>;
+  return <span className="font-mono text-[9px] tracking-wider text-[#57606a] border border-[#d0d7de] rounded px-1 py-px mr-1.5 align-middle bg-white">{t}</span>;
 }
 
 function Cite({ ids }: { ids: number[] }) {
-  return <sup className="text-[10px] text-[#6e7681] ml-0.5">[{ids.join(',')}]</sup>;
+  return <sup className="text-[10px] text-[#57606a] ml-0.5">[{ids.join(',')}]</sup>;
 }
 
 function Record({ children }: { children: React.ReactNode }) {
-  return <div className="mt-6 border-l-2 border-[#d0d7de] pl-4 text-xs text-[#6e7681] leading-relaxed space-y-1">{children}</div>;
+  return <div className="mt-6 border-l-2 border-[#d0d7de] pl-4 text-xs text-[#57606a] leading-relaxed space-y-1">{children}</div>;
 }
 
 function Chapter({ id, n, title, lede, children }: { id: string; n: string; title: string; lede: string; children: React.ReactNode }) {
   return (
     <section id={id} className="scroll-mt-16 py-14 border-t border-[#d0d7de]">
-      <div className="text-xs font-mono text-[#6e7681] tracking-widest mb-2">CHAPTER {n}</div>
+      <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">CHAPTER {n}</div>
       <h2 className="text-3xl font-semibold tracking-tight mb-3">{title}</h2>
       <p className="text-lg text-[#1b1f23] leading-relaxed max-w-3xl mb-8">{lede}</p>
       {children}
@@ -65,35 +65,35 @@ export default function StoryPage() {
         <div className="max-w-5xl mx-auto px-6 h-12 flex items-center gap-5 text-xs overflow-x-auto">
           <span className="font-semibold whitespace-nowrap">From Food to Finance</span>
           {chapters.map((c) => (
-            <a key={c.id} href={`#${c.id}`} className="text-[#6e7681] hover:text-[#1b1f23] whitespace-nowrap">{c.n}. {c.title}</a>
+            <a key={c.id} href={`#${c.id}`} className="text-[#57606a] hover:text-[#1b1f23] whitespace-nowrap">{c.n}. {c.title}</a>
           ))}
-          <Link href="/explorer" className="ml-auto text-[#6e7681] hover:text-[#1b1f23] whitespace-nowrap">Explorer &rarr;</Link>
-          <Link href="/" className="text-[#6e7681] hover:text-[#1b1f23] whitespace-nowrap">Dashboard &rarr;</Link>
+          <Link href="/explorer" className="ml-auto text-[#57606a] hover:text-[#1b1f23] whitespace-nowrap">Explorer &rarr;</Link>
+          <Link href="/" className="text-[#57606a] hover:text-[#1b1f23] whitespace-nowrap">Dashboard &rarr;</Link>
         </div>
       </nav>
 
       <div className="max-w-5xl mx-auto px-6">
         {/* Chapter 0 */}
         <header className="pt-16 pb-14">
-          <div className="text-xs font-mono text-[#6e7681] tracking-widest mb-4">ENGEL CURVES RESEARCH &middot; OCTOBER 2026</div>
+          <div className="text-xs font-mono text-[#57606a] tracking-widest mb-4">ENGEL CURVES RESEARCH &middot; OCTOBER 2026</div>
           <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight max-w-4xl">
             As countries get richer, the share of household budgets spent on food falls. The shift starts near {usd(story.bounds.start)} per person, not $15,000.
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
             <div>
               <div className="text-5xl font-semibold tracking-tight">{usd(story.bounds.start)}</div>
-              <p className="text-sm text-[#6e7681] mt-2 leading-relaxed">GDP per capita (PPP) where the food share of spending starts to fall. 90% interval {usd(story.bounds.startCi[0])}&ndash;{usd(story.bounds.startCi[2])}.</p>
+              <p className="text-sm text-[#57606a] mt-2 leading-relaxed">GDP per capita (PPP) where the food share of spending starts to fall. 90% interval {usd(story.bounds.startCi[0])}&ndash;{usd(story.bounds.startCi[2])}.</p>
             </div>
             <div>
               <div className="text-5xl font-semibold tracking-tight">6 of 12</div>
-              <p className="text-sm text-[#6e7681] mt-2 leading-relaxed">Emerging markets tracked here are inside the transition today: India, the Philippines, South Africa, Indonesia, Vietnam and Egypt.</p>
+              <p className="text-sm text-[#57606a] mt-2 leading-relaxed">Emerging markets tracked here are inside the transition today: India, the Philippines, South Africa, Indonesia, Vietnam and Egypt.</p>
             </div>
             <div>
-              <div className="text-5xl font-semibold tracking-tight">3</div>
-              <p className="text-sm text-[#6e7681] mt-2 leading-relaxed">Are more likely than not to complete it by 2030 on IMF growth paths: Egypt ({pct(T.EGY.pExit2030)}), Vietnam ({pct(T.VNM.pExit2030)}) and Indonesia ({pct(T.IDN.pExit2030)}).</p>
+              <div className="text-5xl font-semibold tracking-tight">3 of 6</div>
+              <p className="text-sm text-[#57606a] mt-2 leading-relaxed">Transition markets more likely than not to complete it by 2030 on IMF growth paths: Egypt ({pct(T.EGY.pExit2030)}), Vietnam ({pct(T.VNM.pExit2030)}) and Indonesia ({pct(T.IDN.pExit2030)}).</p>
             </div>
           </div>
-          <p className="text-sm text-[#6e7681] mt-10 max-w-3xl leading-relaxed">
+          <p className="text-sm text-[#57606a] mt-10 max-w-3xl leading-relaxed">
             Built from {story.fit.n} household surveys, World Bank and IMF income data, and 15 papers. Every number links to a source or a script; labels mark what is observed <Tag t="OBS" />, inferred <Tag t="INF" />, judged <Tag t="JDG" /> or missing <Tag t="GAP" />.
           </p>
         </header>
@@ -105,7 +105,7 @@ export default function StoryPage() {
             <p><Tag t="OBS" />The pattern holds across income groups: over 50% in low-income countries, 40&ndash;50% in lower-middle and 30&ndash;40% in upper-middle income countries<Cite ids={[10]} />. Between countries, being 50% richer means a food share about 5 points lower<Cite ids={[9]} />.</p>
           </div>
           <Record>
-            <p>Food shares: survey means from the appendix tables of Pritchett &amp; Spivack (2013), 1991&ndash;2010. Income: World Bank NY.GDP.PCAP.PP.KD, matched to survey year. All {story.fit.n} values checked against the source tables.</p>
+            <p>Food shares: survey means from the appendix tables of Pritchett &amp; Spivack (2013), 1991&ndash;2010. Income: World Bank NY.GDP.PCAP.PP.KD, matched to survey year. All {story.fit.n} values checked against the source tables. Labeled dots: four narrative countries (accent) plus, by rule, the two largest deviations above and below the fitted line (grey); Armenia 2003 is also the highest food share in the sample.</p>
           </Record>
         </Chapter>
 
@@ -118,8 +118,8 @@ export default function StoryPage() {
           </div>
           <div className="mt-12">
             <h3 className="text-lg font-semibold mb-1">Does the break hold up?</h3>
-            <p className="text-sm text-[#6e7681] leading-relaxed max-w-3xl mb-4">The same model re-estimated on five versions of the data. If the break were an artefact of one group of surveys, it would move or vanish when that group is removed.</p>
-            <div className="border border-[#d0d7de] p-4 md:p-6"><RobustnessChart /></div>
+            <p className="text-sm text-[#57606a] leading-relaxed max-w-3xl mb-4">The same model re-estimated on five versions of the data. If the break were an artefact of one group of surveys, it would move or vanish when that group is removed.</p>
+            <div className="border border-[#d0d7de] p-4 md:p-6 overflow-x-auto"><RobustnessChart /></div>
             <p className="text-sm leading-relaxed mt-4 max-w-3xl"><Tag t="INF" />In four of five versions the break lands at $6.6k (between $6,566 and $6,592) and stays significant. Without the ILO surveys, half of the sample and the largest single source inside the transition band (13 of 32 surveys), it moves to $5.7k and becomes borderline (8.6 against 8.85). The location is stable; its sharpness depends on having enough middle-income data.</p>
           </div>
           <Record>
@@ -130,10 +130,10 @@ export default function StoryPage() {
         </Chapter>
 
         <Chapter id="map" n="3" title="The map" lede="Where twelve emerging markets stand today and where IMF growth projections take them by 2030. Six are inside the transition; three of them are likely to finish it this decade.">
-          <div className="border border-[#d0d7de] p-4 md:p-6">
+          <div className="border border-[#d0d7de] p-4 md:p-6 overflow-x-auto">
             <PhaseTracks />
           </div>
-          <p className="text-xs text-[#6e7681] mt-2">Click a country to trace its year-by-year path in the <Link href="/explorer" className="underline underline-offset-2">Engel Explorer</Link>.</p>
+          <p className="text-xs text-[#57606a] mt-2">Click a country to trace its year-by-year path in the <Link href="/explorer" className="underline underline-offset-2">Engel Explorer</Link>.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6 text-sm leading-relaxed">
             <p><Tag t="INF" />India ({usd(T.IND.gdp2025)}) and the Philippines ({usd(T.PHL.gdp2025)}) are early in the transition, with food near {pct(T.IND.food2025)} of spending. Neither reaches the 35% line by 2030.</p>
             <p><Tag t="INF" />Vietnam and Indonesia are in the upper half. On IMF paths they cross by 2030 with {pct(T.VNM.pExit2030)} and {pct(T.IDN.pExit2030)} probability. South Africa stays put: its projected growth is close to zero.</p>
@@ -146,7 +146,7 @@ export default function StoryPage() {
               <p className="text-sm leading-relaxed mt-3"><Tag t="GAP" />Alm&aring;s (2012) estimates the bias for Penn World Table incomes; no source gives its size for the World Bank series used here. The 10% and 20% cases are stress tests, not estimates.</p>
             </div>
             <div className="md:col-span-3 border border-[#d0d7de] p-4 md:p-6">
-              <div className="text-xs font-semibold uppercase tracking-wider text-[#6e7681] mb-4">Probability of leaving the transition by 2030</div>
+              <div className="text-xs font-semibold uppercase tracking-wider text-[#57606a] mb-4">Probability of leaving the transition by 2030</div>
               <MeasurementRisk />
             </div>
           </div>
@@ -156,7 +156,7 @@ export default function StoryPage() {
             <div className="mt-4 overflow-x-auto">
               <table className="w-full text-left border-collapse text-sm">
                 <thead>
-                  <tr className="border-b border-[#d0d7de] text-[#6e7681] text-xs uppercase tracking-wider">
+                  <tr className="border-b border-[#d0d7de] text-[#57606a] text-xs uppercase tracking-wider">
                     <th className="py-2 pr-3">Market</th>
                     <th className="py-2 pr-3 text-right">GDP pc 2025 &rarr; 2030</th>
                     <th className="py-2 pr-3 text-right">Food share 2025 &rarr; 2030</th>
@@ -172,19 +172,19 @@ export default function StoryPage() {
                     const past = r.gdp2025 >= story.bounds.end;
                     return (
                       <tr key={r.iso3} className="border-b border-[#e1e4e8] last:border-0">
-                        <td className="py-2 pr-3 font-sans text-sm">{r.country}{near && <span className="ml-2 text-[10px] text-[#6e7681] uppercase tracking-wider">near boundary</span>}</td>
+                        <td className="py-2 pr-3 font-sans text-sm">{r.country}{near && <span className="ml-2 text-[10px] text-[#57606a] uppercase tracking-wider">near boundary</span>}</td>
                         <td className="py-2 pr-3 text-right">{usd(r.gdp2025)} &rarr; {usd(r.gdp2030)}</td>
                         <td className="py-2 pr-3 text-right">{(r.food2025 * 100).toFixed(1)}% &rarr; {(r.food2030 * 100).toFixed(1)}%</td>
                         <td className="py-2 pr-3 text-right">{pct(r.pPre2025)} / {pct(r.pTransition2025)} / {pct(r.pPost2025)}</td>
                         <td className="py-2 pr-3 text-right">{past ? '—' : pct(r.pExit2027)}</td>
                         <td className="py-2 pr-3 text-right font-semibold">{past ? '—' : pct(r.pExit2030)}</td>
-                        <td className="py-2 text-right text-[#6e7681]">{past ? '—' : pct(r.pExit2030Overstated20)}</td>
+                        <td className="py-2 text-right text-[#57606a]">{past ? '—' : pct(r.pExit2030Overstated20)}</td>
                       </tr>
                     );
                   })}
                 </tbody>
               </table>
-              <p className="text-xs text-[#6e7681] mt-3">&ldquo;Near boundary&rdquo;: 2025 income inside the 90% interval of a phase boundary. Dashes: already past the transition in 2025 on the point estimate; their probability of being post-inflection today is in the fourth column.</p>
+              <p className="text-xs text-[#57606a] mt-3">&ldquo;Near boundary&rdquo;: 2025 income inside the 90% interval of a phase boundary. Dashes: already past the transition in 2025 on the point estimate; their probability of being post-inflection today is in the fourth column.</p>
             </div>
           </details>
           <Record>
@@ -200,7 +200,7 @@ export default function StoryPage() {
               <p className="text-sm leading-relaxed mt-6"><Tag t="INF" />Food falls from {pct(story.household[0].foodShare)} to {pct(story.household[1].foodShare)} of the budget. Non-food spending per person rises from ${story.household[0].nonFood.toLocaleString('en-US')} to ${story.household[1].nonFood.toLocaleString('en-US')}, about +{Math.round((story.household[1].nonFood / story.household[0].nonFood - 1) * 100)}%, while income rises 100%.</p>
             </div>
             <div className="md:col-span-2 text-sm leading-relaxed space-y-4">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-[#6e7681]">Where the money goes, according to the literature</h3>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-[#57606a]">Where the money goes, according to the literature</h3>
               <p><span className="font-semibold">Discretionary goods.</span> The share of spending on discretionary goods rises with income<Cite ids={[1, 2]} />.</p>
               <p><span className="font-semibold">Housing first.</span> In 20 emerging markets, household wealth reaches consumption mainly through housing<Cite ids={[6]} />.</p>
               <p><span className="font-semibold">Finance later.</span> Stock-market gains reach consumption only once the financial sector deepens past a threshold<Cite ids={[7]} />.</p>
@@ -214,11 +214,12 @@ export default function StoryPage() {
         </Chapter>
 
         <Chapter id="watch" n="5" title="What we watch" lede="The thesis makes dated predictions. These are the signals that will confirm or weaken it, in the order they arrive.">
+          <p className="text-xs text-[#57606a] mb-4">Solid marker: an observed fact. Hollow marker: an inferred probability &mdash; the same convention as the Explorer&rsquo;s hollow projection bubbles.</p>
           <ol className="relative border-l border-[#d0d7de] ml-2 space-y-8">
             {watch.map((w) => (
               <li key={w.what} className="pl-6">
-                <span className="absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full bg-[#1b1f23]" />
-                <div className="text-xs font-mono text-[#6e7681] tracking-wider">{w.when}</div>
+                <span className={`absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full ${w.tag === 'OBS' ? 'bg-[#1b1f23]' : 'bg-white border-2 border-[#1b1f23]'}`} />
+                <div className="text-xs font-mono text-[#57606a] tracking-wider">{w.when}</div>
                 <div className="text-lg font-semibold mt-0.5">{w.what}</div>
                 <p className="text-sm text-[#1b1f23] leading-relaxed mt-1 max-w-3xl"><Tag t={w.tag} />{w.detail}</p>
               </li>
@@ -230,7 +231,7 @@ export default function StoryPage() {
         </Chapter>
 
         <section id="method" className="scroll-mt-16 py-14 border-t border-[#d0d7de]">
-          <div className="text-xs font-mono text-[#6e7681] tracking-widest mb-2">CHAPTER 6</div>
+          <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">CHAPTER 6</div>
           <h2 className="text-3xl font-semibold tracking-tight mb-3">Evidence and method</h2>
           <p className="text-lg leading-relaxed max-w-3xl mb-8">For readers who want to check the work.</p>
 
@@ -239,7 +240,7 @@ export default function StoryPage() {
             <div className="mt-4 overflow-x-auto">
               <table className="w-full text-left border-collapse text-sm">
                 <thead>
-                  <tr className="border-b border-[#d0d7de] text-[#6e7681] text-xs uppercase tracking-wider">
+                  <tr className="border-b border-[#d0d7de] text-[#57606a] text-xs uppercase tracking-wider">
                     <th className="py-2 pr-3 w-8">#</th><th className="py-2 pr-3">Claim</th><th className="py-2 pr-3 w-24">Support</th><th className="py-2">Source passage</th>
                   </tr>
                 </thead>
@@ -250,11 +251,11 @@ export default function StoryPage() {
                       <tr key={item.id} className="border-b border-[#e1e4e8] align-top">
                         <td className="py-2 pr-3 font-mono text-xs">{item.id}</td>
                         <td className="py-2 pr-3">{item.claim}</td>
-                        <td className="py-2 pr-3 font-mono text-[10px] uppercase tracking-wider text-[#6e7681]">{item.support}</td>
+                        <td className="py-2 pr-3 font-mono text-[10px] uppercase tracking-wider text-[#57606a]">{item.support}</td>
                         <td className="py-2">
-                          {item.quote ? <p className="italic">&ldquo;{item.quote}&rdquo;</p> : <p className="text-[#6e7681]">No supporting passage in the corpus.</p>}
-                          {s && <p className="text-xs text-[#6e7681] mt-1">{s.citation}</p>}
-                          <p className="text-xs text-[#6e7681] mt-1">{item.note}</p>
+                          {item.quote ? <p className="italic">&ldquo;{item.quote}&rdquo;</p> : <p className="text-[#57606a]">No supporting passage in the corpus.</p>}
+                          {s && <p className="text-xs text-[#57606a] mt-1">{s.citation}</p>}
+                          <p className="text-xs text-[#57606a] mt-1">{item.note}</p>
                         </td>
                       </tr>
                     );
@@ -287,7 +288,7 @@ export default function StoryPage() {
           </details>
         </section>
 
-        <footer className="py-10 text-xs text-[#6e7681] border-t border-[#d0d7de] flex justify-between">
+        <footer className="py-10 text-xs text-[#57606a] border-t border-[#d0d7de] flex justify-between">
           <span>Engel Curves Research &middot; Z-K Quantitative Strategy</span>
           <Link href="/" className="hover:text-[#1b1f23]">Back to the dashboard</Link>
         </footer>

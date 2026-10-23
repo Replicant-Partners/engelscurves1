@@ -15,15 +15,15 @@ export default function ExplorerPage() {
       <nav className="sticky top-0 z-10 bg-white/95 backdrop-blur border-b border-[#d0d7de]">
         <div className="max-w-6xl mx-auto px-6 h-12 flex items-center gap-5 text-xs">
           <span className="font-semibold">Engel Explorer</span>
-          <Link href="/story" className="text-[#6e7681] hover:text-[#1b1f23]">The story &rarr;</Link>
-          <Link href="/" className="ml-auto text-[#6e7681] hover:text-[#1b1f23]">Dashboard &rarr;</Link>
+          <Link href="/story" className="text-[#57606a] hover:text-[#1b1f23]">The story &rarr;</Link>
+          <Link href="/" className="ml-auto text-[#57606a] hover:text-[#1b1f23]">Dashboard &rarr;</Link>
         </div>
       </nav>
       <div className="max-w-6xl mx-auto px-6">
         <header className="pt-12 pb-8">
-          <div className="text-xs font-mono text-[#6e7681] tracking-widest mb-3">ENGEL CURVES RESEARCH &middot; INTERACTIVE</div>
+          <div className="text-xs font-mono text-[#57606a] tracking-widest mb-3">ENGEL CURVES RESEARCH &middot; INTERACTIVE</div>
           <h1 className="text-4xl font-semibold tracking-tight leading-tight max-w-3xl">One law, every country: as income rises, food loses its share of the budget.</h1>
-          <p className="text-base text-[#6e7681] leading-relaxed max-w-3xl mt-4">
+          <p className="text-base text-[#57606a] leading-relaxed max-w-3xl mt-4">
             Each bubble is a country; size is population, color is region. Press play to watch 102 countries move along the Engel curve from 2017 to 2023, then down the IMF income path to 2030. Click a bubble or pick a country to trace its trail. The dark line is the fitted Engel curve &mdash; the law every bubble is read against.
           </p>
         </header>
@@ -31,8 +31,8 @@ export default function ExplorerPage() {
         <section className="py-10 grid grid-cols-1 md:grid-cols-2 gap-10 text-sm leading-relaxed">
           <div>
             <h2 className="text-lg font-semibold mb-2">Two lenses, one law</h2>
-            <p className="mb-3"><span className="font-mono text-[10px] text-[#6e7681] mr-1.5">[INF]</span>The animated lens uses national-accounts food shares (USDA ERS, {explorer.usda.n} countries in 2023). On it, the shift away from food begins near ${(explorer.usda.knot / 1000).toFixed(1)}k and food reaches 35% of spending near ${(explorer.usda.end / 1000).toFixed(1)}k. The static lens uses the {story.fit.n} household surveys behind the main study: the shift begins near ${(story.bounds.start / 1000).toFixed(1)}k and food reaches 35% near ${(story.bounds.end / 1000).toFixed(1)}k.</p>
-            <p><span className="font-mono text-[10px] text-[#6e7681] mr-1.5">[JDG]</span>The start of the shift agrees across lenses (about $6.6k&ndash;$8.9k). Where the transition ends depends on how spending is measured: national accounts include items surveys miss (such as imputed rent), so their food shares run lower and the 35% line arrives earlier. Both readings are shown rather than averaged.</p>
+            <p className="mb-3"><span className="font-mono text-[10px] text-[#57606a] mr-1.5">[INF]</span>The animated lens uses national-accounts food shares (USDA ERS, {explorer.usda.n} countries in 2023). On it, the shift away from food begins near ${(explorer.usda.knot / 1000).toFixed(1)}k and food reaches 35% of spending near ${(explorer.usda.end / 1000).toFixed(1)}k. The static lens uses the {story.fit.n} household surveys behind the main study: the shift begins near ${(story.bounds.start / 1000).toFixed(1)}k and food reaches 35% near ${(story.bounds.end / 1000).toFixed(1)}k.</p>
+            <p><span className="font-mono text-[10px] text-[#57606a] mr-1.5">[JDG]</span>The start of the shift agrees across lenses (about $6.6k&ndash;$8.9k). Where the transition ends depends on how spending is measured: national accounts include items surveys miss (such as imputed rent), so their food shares run lower and the 35% line arrives earlier. Both readings are shown rather than averaged.</p>
           </div>
           <div>
             <h2 className="text-lg font-semibold mb-2">Data and honesty rules</h2>

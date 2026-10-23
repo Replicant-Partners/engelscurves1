@@ -37,6 +37,10 @@ export default function Home() {
           </div>
         </header>
 
+        <div className="border-l-4 border-[#1b1f23] bg-[#f6f8fa] px-4 py-3 text-sm leading-relaxed">
+          <span className="font-semibold">Working dashboard.</span> Full tables, evidence and scenario detail live here. For the five-minute narrative, read <a href="/story" className="underline underline-offset-2 font-semibold">The story</a>; for the animated data, open the <a href="/explorer" className="underline underline-offset-2 font-semibold">Engel Explorer</a>.
+        </div>
+
         <nav className="flex gap-6 border-b border-[#d0d7de] text-sm font-medium">
           <button
             className={`pb-3 transition-colors ${activeTab === 'overview' ? 'border-b-2 border-[#1b1f23] text-[#1b1f23]' : 'text-[#6e7681] hover:text-[#1b1f23]'}`}
@@ -232,12 +236,15 @@ export default function Home() {
               <p className="text-sm text-[#6e7681] leading-relaxed max-w-3xl">
                 Six dated, checkable events. Two macro events feed two Sea Limited outcomes; Shopee’s FY2026 milestone also feeds its FY2028 margin. Nu’s ARPAC is tracked alongside. Each probability states its basis: data, calibrated (outside view blended with a decomposition), or analyst judgment.
               </p>
-              <div className="text-xs font-mono text-[#6e7681] border border-[#d0d7de] p-4 leading-relaxed">
+              <details className="border border-[#d0d7de]">
+              <summary className="cursor-pointer px-4 py-2 text-sm font-semibold">Tree diagram</summary>
+              <div className="text-xs font-mono text-[#6e7681] border-t border-[#d0d7de] p-4 leading-relaxed">
                 E1 Indonesia exits transition (2028) ──┐<br/>
                 E3 Shopee FY2026 EBITDA ≥ $1.0B ───┴──▶ E4 Shopee FY2028 margin ≥ 1.0% of GMV<br/>
                 E2 Indonesia credit ≥ 40% of GDP ──────▶ E5 Monee loan book ≥ $20B (2028)<br/>
                 E6 Nu ARPAC ≥ $20 (Q2 2027) ── independent
               </div>
+              </details>
               <div className="overflow-x-auto border border-[#d0d7de]">
                 <table className="w-full text-left border-collapse text-sm">
                   <thead>

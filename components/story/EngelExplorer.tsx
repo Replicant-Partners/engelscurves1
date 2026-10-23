@@ -15,12 +15,12 @@ const usd = (v: number) => (v >= 1000 ? `$${(v / 1000).toFixed(v >= 10000 ? 0 : 
 
 const REGION_COLORS: Record<string, string> = {
   'East Asia & Pacific': '#4c78a8',
-  'Europe & Central Asia': '#72b7b2',
+  'Europe & Central Asia': '#699bb3',
   'Latin America & Caribbean': '#d8956b',
-  'Middle East, North Africa, Afghanistan & Pakistan': '#b2a25e',
+  'Middle East, North Africa, Afghanistan & Pakistan': '#857a3e',
   'North America': '#8d7fa8',
   'South Asia': '#c26b6b',
-  'Sub-Saharan Africa': '#7aa874',
+  'Sub-Saharan Africa': '#a9c7a0',
 };
 const color = (region: string) => REGION_COLORS[region.trim()] ?? '#9aa4ae';
 
@@ -62,15 +62,15 @@ export function EngelExplorer() {
     <div className="space-y-3">
       <div className="flex flex-wrap items-center gap-3 text-sm">
         <div className="flex border border-[#d0d7de]">
-          <button onClick={() => setLens('usda')} className={`px-3 py-1.5 ${lens === 'usda' ? 'bg-[#1b1f23] text-white' : 'text-[#6e7681]'}`}>National accounts (USDA, animated)</button>
-          <button onClick={() => { setLens('survey'); setPlaying(false); }} className={`px-3 py-1.5 ${lens === 'survey' ? 'bg-[#1b1f23] text-white' : 'text-[#6e7681]'}`}>Household surveys (static)</button>
+          <button onClick={() => setLens('usda')} className={`px-3 py-1.5 ${lens === 'usda' ? 'bg-[#1b1f23] text-white' : 'text-[#57606a]'}`}>National accounts (USDA, animated)</button>
+          <button onClick={() => { setLens('survey'); setPlaying(false); }} className={`px-3 py-1.5 ${lens === 'survey' ? 'bg-[#1b1f23] text-white' : 'text-[#57606a]'}`}>Household surveys (static)</button>
         </div>
         {lens === 'usda' && (
           <>
             <button onClick={() => { if (year >= 2030) setYear(2017); setPlaying((p) => !p); }} className="border border-[#1b1f23] px-4 py-1.5 font-semibold min-w-[72px]">{playing ? 'Pause' : 'Play'}</button>
             <input type="range" min={2017} max={2030} value={year} onChange={(e) => { setPlaying(false); setYear(+e.target.value); }} className="w-56 accent-[#1b1f23]" aria-label="Year" />
-            <span className={`font-mono text-2xl font-semibold w-24 ${year > 2023 ? 'text-[#6e7681]' : ''}`}>{year}{year > 2023 ? '*' : ''}</span>
-            <select className="border border-[#d0d7de] px-2 py-1.5 text-[#6e7681] bg-white" value="" onChange={(e) => e.target.value && toggle(e.target.value)} aria-label="Highlight a country">
+            <span className={`font-mono text-2xl font-semibold w-24 ${year > 2023 ? 'text-[#57606a]' : ''}`}>{year}{year > 2023 ? '*' : ''}</span>
+            <select className="border border-[#d0d7de] px-2 py-1.5 text-[#57606a] bg-white" value="" onChange={(e) => e.target.value && toggle(e.target.value)} aria-label="Highlight a country">
               <option value="">Highlight a country&hellip;</option>
               {COUNTRIES.map(([iso, name]) => <option key={iso} value={iso}>{selected.includes(iso) ? '\u2713 ' : ''}{name}</option>)}
             </select>
@@ -78,8 +78,13 @@ export function EngelExplorer() {
         )}
       </div>
 
-      <div className="relative border border-[#d0d7de]">
-        <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto block" role="img" aria-label="Food share of household spending against GDP per capita">
+      <div className="relative border border-[#d0d7de] overflow-x-auto">
+        <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto block min-w-[760px]" role="img" aria-label="Food share of household spending against GDP per capita">
+          <rect x={0} y={0} width={W} height={H} fill="transparent" onClick={() => setHover(null)} />
+          {lens === 'usda' && (
+            <text x={(M.left + W - M.right) / 2} y={H - M.bottom - 36} textAnchor="middle" fontSize="110" fontWeight={600}
+              fill={year > 2023 ? '#57606a' : '#1b1f23'} opacity={0.1} pointerEvents="none">{year}{year > 2023 ? '*' : ''}</text>
+          )}
           <rect x={x(bounds.start)} y={M.top} width={x(bounds.end) - x(bounds.start)} height={H - M.top - M.bottom} fill="#f2f4f7" />
           {[bounds.start, bounds.end].map((b, i) => (
             <g key={i}>
@@ -90,14 +95,14 @@ export function EngelExplorer() {
           {[0, 0.2, 0.4, 0.6].map((s) => (
             <g key={s}>
               <line x1={M.left} x2={W - M.right} y1={y(s)} y2={y(s)} stroke="#eef0f2" />
-              <text x={M.left - 8} y={y(s) + 4} textAnchor="end" fontSize="11" fill="#6e7681">{Math.round(s * 100)}%</text>
+              <text x={M.left - 8} y={y(s) + 4} textAnchor="end" fontSize="11" fill="#57606a">{Math.round(s * 100)}%</text>
             </g>
           ))}
           {[2000, 5000, 10000, 20000, 50000, 100000].map((g) => (
-            <text key={g} x={x(g)} y={H - M.bottom + 18} textAnchor="middle" fontSize="11" fill="#6e7681">{usd(g)}</text>
+            <text key={g} x={x(g)} y={H - M.bottom + 18} textAnchor="middle" fontSize="11" fill="#57606a">{usd(g)}</text>
           ))}
-          <text x={(M.left + W - M.right) / 2} y={H - 8} textAnchor="middle" fontSize="12" fill="#6e7681">GDP per capita, PPP (2021 international $, log scale)</text>
-          <text transform={`translate(14 ${(M.top + H - M.bottom) / 2}) rotate(-90)`} textAnchor="middle" fontSize="12" fill="#6e7681">Food share of household spending</text>
+          <text x={(M.left + W - M.right) / 2} y={H - 8} textAnchor="middle" fontSize="12" fill="#57606a">GDP per capita, PPP (2021 international $, log scale)</text>
+          <text transform={`translate(14 ${(M.top + H - M.bottom) / 2}) rotate(-90)`} textAnchor="middle" fontSize="12" fill="#57606a">Food share of household spending</text>
 
           <polyline points={curve.map((p) => `${x(p.gdp)},${y(p.share)}`).join(' ')} fill="none" stroke="#1b1f23" strokeWidth={2} opacity={0.75} />
 
@@ -114,8 +119,8 @@ export function EngelExplorer() {
               <circle key={d.iso3} cx={x(d.gdp)} cy={y(d.share)} r={r(d.pop)}
                 fill={d.projected ? 'none' : color(d.region)} stroke={d.projected ? color(d.region) : sel ? '#1b1f23' : 'white'}
                 strokeWidth={d.projected ? 1.8 : sel ? 2 : 0.8} strokeDasharray={d.projected ? '4 3' : undefined}
-                fillOpacity={sel ? 0.95 : 0.72} style={{ cursor: 'pointer', transition: 'cx 0.6s linear, cy 0.6s linear' }}
-                onMouseEnter={() => setHover(d)} onMouseLeave={() => setHover(null)} onClick={() => toggle(d.iso3)} />
+                fillOpacity={sel ? 0.95 : 0.75} style={{ cursor: 'pointer', transition: 'cx 0.6s linear, cy 0.6s linear' }}
+                onMouseEnter={() => setHover(d)} onMouseLeave={() => setHover(null)} onClick={() => { toggle(d.iso3); setHover(d); }} />
             );
           })}
           {lens === 'usda' && frame.filter((d) => selected.includes(d.iso3)).map((d) => (
@@ -132,11 +137,11 @@ export function EngelExplorer() {
         )}
       </div>
 
-      <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-[#6e7681]">
+      <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-[#57606a]">
         {Object.entries(REGION_COLORS).map(([reg, c]) => (
           <span key={reg} className="flex items-center gap-1.5"><span className="inline-block w-2.5 h-2.5 rounded-full" style={{ background: c }} />{reg}</span>
         ))}
-        <span className="flex items-center gap-1.5"><span className="inline-block w-2.5 h-2.5 rounded-full border border-dashed border-[#6e7681]" />2024&ndash;2030*: income on IMF path, food share held at 2023</span>
+        <span className="flex items-center gap-1.5"><span className="inline-block w-2.5 h-2.5 rounded-full border border-dashed border-[#57606a]" />2024&ndash;2030*: income on IMF path, food share held at 2023</span>
       </div>
     </div>
   );

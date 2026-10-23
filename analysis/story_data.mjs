@@ -37,6 +37,12 @@ const tracks = Object.entries(prob.countries).map(([iso, o]) => ({
 const household = [10000, 20000].map((g) => { const s = lin(g); return { income: g, foodShare: +s.toFixed(4), food: Math.round(g * s), nonFood: Math.round(g * (1 - s)) }; });
 
 const pick = (iso, year) => thr.points.find((p) => p.iso3 === iso && String(p.year) === String(year));
+// Rule-based labels (ch.1): the 2 largest positive and 2 largest negative deviations from the
+// linear fit, excluding the 4 narrative countries. Armenia 2003 is also the highest food share.
+const residNames = { BGR: 'Bulgaria', ARM: 'Armenia', UKR: 'Ukraine', PSE: 'West Bank & Gaza' };
+const skip = new Set(['ETH-2004', 'IDN-2007', 'MEX-2004', 'CHE-2003']);
+const resid = thr.points.filter((p) => !skip.has(p.iso3 + '-' + p.year)).map((p) => ({ ...p, r: p.share - lin(p.gdp) })).sort((x, y) => y.r - x.r);
+const autoHighlights = [...resid.slice(0, 2), ...resid.slice(-2)].map((p) => ({ gdp: p.gdp, share: p.share, label: (residNames[p.iso3] ?? p.iso3) + ' ' + p.year }));
 const highlights = [['ETH', 2004, 'Ethiopia 2004'], ['IDN', 2007, 'Indonesia 2007'], ['MEX', 2004, 'Mexico 2004'], ['CHE', 2003, 'Switzerland 2003']]
   .map(([iso, y, label]) => ({ ...pick(iso, y), label }));
 
@@ -45,7 +51,7 @@ const robustness = { knotCi: rob.knot_bootstrap_90ci, variants: rob.variants.map
 const out = {
   robustness,
   piecewise: { knot: Math.round(Math.exp(best.k)), slopeBelow: +best.be[1].toFixed(4), slopeAbove: +(best.be[1] + best.be[2]).toFixed(4), c0: +best.be[0].toFixed(4) },
-  piecewiseLine, highlights, tracks, household,
+  piecewiseLine, highlights, autoHighlights, tracks, household,
   bounds: { start: Math.round(thr.break_test.best_knot_gdp), end: Math.round(thr.income_at_share_35), startCi: prob.boundaries_ci90.start, endCi: prob.boundaries_ci90.end },
   fit: { a: +a.toFixed(4), b: +b.toFixed(4), r2: +thr.r2.toFixed(3), n: thr.n, supF: +thr.break_test.F_vs_linear.toFixed(1) },
 };

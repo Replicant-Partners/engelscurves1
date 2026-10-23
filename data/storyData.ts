@@ -129,6 +129,28 @@ export const story = {
    "label": "Switzerland 2003"
   }
  ],
+ "autoHighlights": [
+  {
+   "gdp": 13591,
+   "share": 0.62,
+   "label": "Bulgaria 1995"
+  },
+  {
+   "gdp": 6569,
+   "share": 0.71,
+   "label": "Armenia 2003"
+  },
+  {
+   "gdp": 10983,
+   "share": 0.216,
+   "label": "Ukraine 1995"
+  },
+  {
+   "gdp": 4503,
+   "share": 0.3,
+   "label": "West Bank & Gaza 2004"
+  }
+ ],
  "tracks": [
   {
    "iso3": "ETH",
