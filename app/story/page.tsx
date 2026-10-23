@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { FoodShareChart } from '../../components/story/FoodShareChart';
 import { PhaseTracks } from '../../components/story/PhaseTracks';
 import { HouseholdBars } from '../../components/story/HouseholdBars';
-import { DollarStreetStrip } from '../../components/story/DollarStreetStrip';
+import { DollarStreetHouses } from '../../components/story/DollarStreetHouses';
 import { dollarStreet } from '../../data/dollarStreet';
 import { RobustnessChart } from '../../components/story/RobustnessChart';
 import { MeasurementRisk } from '../../components/story/MeasurementRisk';
@@ -218,11 +218,9 @@ export default function StoryPage() {
         </Chapter>
 
         <Chapter id="street" n="4½" title="The street" lede={`The same transition, seen from inside the home. Dollar Street (Gapminder) photographs real families and places them on one global street by consumption per adult — ${dollarStreet.usable} families so far. Here are the ${dollarStreet.markets.filter((m) => m.n > 0).length} of our twelve markets they have visited.`}>
-          <div className="border border-[#d0d7de] p-4 md:p-6 overflow-x-auto">
-            <DollarStreetStrip />
-          </div>
+          <DollarStreetHouses />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 text-sm leading-relaxed">
-            <p><Tag t="OBS" />Each dot is a documented family’s consumption per adult per month (PPP). The spread inside one country is the point: India’s {dollarStreet.markets.find((m) => m.iso3 === 'IND')!.n} families run from ${dollarStreet.markets.find((m) => m.iso3 === 'IND')!.min} to ${dollarStreet.markets.find((m) => m.iso3 === 'IND')!.max} a month — the whole Engel curve lives inside a single country.</p>
+            <p><Tag t="OBS" />Each house is one documented family, stacked where its consumption per adult per month (PPP) falls on the street; toggle a market to light its homes. The spread inside one country is the point: India’s {dollarStreet.markets.find((m) => m.iso3 === 'IND')!.n} families run from ${dollarStreet.markets.find((m) => m.iso3 === 'IND')!.min} to ${dollarStreet.markets.find((m) => m.iso3 === 'IND')!.max} a month — the whole Engel curve lives inside a single country.</p>
             <p><Tag t="JDG" />The dashed line marks the $11-a-day middle-class entry (about ${dollarStreet.kharasMonthly}/month)<Cite ids={[13]} />. Families to its left spend their budgets largely on food and essentials; to its right, the freed-up wallet of chapter 4 appears — this is the household-level view of the same shift our country phases track in GDP terms. The two scales are related but not convertible, so no phase boundaries are drawn here.</p>
           </div>
           <Record>
