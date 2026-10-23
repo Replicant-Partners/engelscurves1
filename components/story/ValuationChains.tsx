@@ -9,10 +9,10 @@ const PAIRS = [
     id: 1, symbol: 'MWG', market: 'Vietnam', company: 'Mobile World (MWG)',
     ticker: 'MWG HOSE', engelPhase: 'Transition', eta: 1.15,
     category: 'Consumer electronics / durables',
-    impliedG: -0.0007, actualG: 0.165, pe: 11.2, peType: 'fwd',
+    impliedG: -0.0007, actualG: 0.164, pe: 11.2, peType: 'fwd',  // FY2025: revenue +16.4%; NPAT +89.4%
     verdictCode: 'NOT_DISCOUNTED', verdictLabel: 'Not discounted',
     prob: 0.412, forecastQ: 'fwd P/E > 15× by Dec 2027',
-    chain: 'Income rises → durables share ↑ (η=1.15) → households buy first smartphone/fridge → MWG revenue grows faster than income',
+    chain: 'Income rises → durables share ↑ (η=1.15) → households buy first smartphone/fridge → MWG revenue grows faster than income; FY2025: revenue +16.4%, NPAT +89.4% (VND 7.1tn); 2026 plan: +19% revenue; P/E TTM re-rated 11.2x→17.9x by Apr-2026 — thesis partially pricing in',
     falsifier: 'Import-dependent electronics: USD/VND appreciation or China export price hike compresses margins independently of income growth.',
   },
   {
@@ -29,10 +29,10 @@ const PAIRS = [
     id: 3, symbol: 'YDUQ3', market: 'Brazil', company: 'Yduqs (YDUQ3)',
     ticker: 'YDUQ3 B3', engelPhase: 'Post-transition', eta: 0.97,
     category: 'Private university education',
-    impliedG: 0.0767, actualG: 0.32, pe: 6.0, peType: 'fwd',
+    impliedG: 0.0767, actualG: 0.32, pe: 6.0, peType: 'fwd',  // FCF +32% FY2025; revenue +3.2% < implied g
     verdictCode: 'DEEPLY_UNDERVALUED', verdictLabel: 'Deeply undervalued',
     prob: 0.386, forecastQ: 'FCF > 20% pa FY2026–27, no FIES cut',
-    chain: 'Post-transition (food 16.2%) → first-generation university access → FIES-financed enrollment → Yduqs FCF +32% YoY while fwd P/E = 6×',
+    chain: 'Post-transition (food 16.2%) → first-generation university access → premium education (IDOMED + Ibmec = 44% EBITDA) → FCF R$1.05B (+32% FY2025, historic milestone); tension: revenue +3.2% < implied g 7.7% → on revenue basis slightly overvalued; on FCF basis (32%) still deeply undervalued; net debt R$2.48B (leverage 1.46x, down from 1.55x)',
     falsifier: 'FIES cut → enrollment collapse → FCF reversal; EV R$7.1B vs mkt cap R$2.8B means debt risk amplifies any policy shock.',
   },
   {
