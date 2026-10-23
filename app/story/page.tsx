@@ -9,6 +9,8 @@ import { EngelExplorer } from '../../components/story/EngelExplorer';
 import { explorer } from '../../data/explorerData';
 import { dollarStreet } from '../../data/dollarStreet';
 import { deep } from '../../data/deepDive';
+import { mechanismData } from '../../data/mechanismData';
+import { MechanismChart } from '../../components/story/MechanismChart';
 import { JapanChart } from '../../components/story/JapanChart';
 import { RobustnessChart } from '../../components/story/RobustnessChart';
 import { MeasurementRisk } from '../../components/story/MeasurementRisk';
@@ -25,6 +27,7 @@ const pct = (v: number) => `${Math.round(v * 100)}%`;
 const T = Object.fromEntries(story.tracks.map((t) => [t.iso3, t]));
 
 const chapters = [
+  { id: 'mechanism', n: '0', title: 'The mechanism' },
   { id: 'law', n: '1', title: 'The law' },
   { id: 'break', n: '2', title: 'The break' },
   { id: 'motion', n: '3', title: 'In motion' },
@@ -106,7 +109,112 @@ export default function StoryPage() {
           </p>
         </header>
 
-        <Chapter id="law" n="1" title="The law" lede="Poorer households spend most of their budget on food. Richer ones spend a small share. Engel described this in the 19th century; household surveys across the world still show it.">
+                <section id="mechanism" className="scroll-mt-16 py-14 border-t border-[#d0d7de]">
+          <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">CHAPTER 0</div>
+          <h2 className="text-3xl font-semibold tracking-tight mb-3">The mechanism</h2>
+          <p className="text-lg text-[#1b1f23] leading-relaxed max-w-3xl mb-8">
+            Before looking at countries, the underlying economics: what Engel curves measure, what they don't, and why the distinction matters for industry analysis.
+          </p>
+
+          {/* 0.1 Three distinct concepts */}
+          <div className="space-y-10">
+            <div>
+              <h3 className="text-lg font-semibold mb-3">Three concepts that are easy to confuse</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm leading-relaxed">
+                <div className="border-l-2 border-[#4c78a8] pl-4">
+                  <div className="font-semibold mb-1">Expenditure level (q<sub>i</sub>)</div>
+                  <p>How much a household spends in dollars on category i. Rises with income for all goods except inferior goods. <Tag t="OBS" />Engel's original finding (1857) was about food expenditure in Belgian working-class families — it rises with income, but more slowly.</p>
+                </div>
+                <div className="border-l-2 border-[#9aa4ae] pl-4">
+                  <div className="font-semibold mb-1">Budget share (w<sub>i</sub>)</div>
+                  <p>The fraction of total spending devoted to category i. <Tag t="OBS" />This is what the Engel curve in chapters 1–2 tracks: the food share falls. A good's share falls if its income elasticity is below 1, rises if above 1.<Cite ids={[4]} /></p>
+                </div>
+                <div className="border-l-2 border-[#c26b6b] pl-4">
+                  <div className="font-semibold mb-1">Income elasticity (η<sub>i</sub>)</div>
+                  <p><Tag t="OBS" />"Goods with income elasticities below zero, between zero and 1, and above 1 are called inferior goods, necessities and luxuries respectively."<Cite ids={[4]} /> Critically, a good that is a luxury for the poor can be a necessity for the rich — elasticity changes with income level.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* 0.2 Elasticity chart */}
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Income elasticities across 12 consumption categories</h3>
+              <p className="text-sm text-[#57606a] mb-4 max-w-3xl"><Tag t="OBS" />Estimated from the Working-Leser demand system (w<sub>i</sub> = α<sub>i</sub> + β<sub>i</sub> log Q) on 42 countries, mostly OECD plus Mexico, Korea and Turkey. η<sub>i</sub> = 1 + β<sub>i</sub> / w<sub>i</sub>.<Cite ids={[9]} /> Source: {mechanismData.source}</p>
+              <div className="border border-[#d0d7de] p-4 overflow-x-auto"><MechanismChart /></div>
+              <div className="text-sm leading-relaxed mt-4 max-w-3xl space-y-2">
+                <p><Tag t="INF" />Health (η={mechanismData.categories.find((c: any) => c.id === 'health')?.eta.toFixed(2)}), recreation ({mechanismData.categories.find((c: any) => c.id === 'recreation')?.eta.toFixed(2)}) and restaurants ({mechanismData.categories.find((c: any) => c.id === 'restaurants')?.eta.toFixed(2)}) are luxuries in the OECD: for every 1% rise in total spending, these categories grow by 1.3%+. Food is an inferior good at OECD income levels (η={mechanismData.categories.find((c: any) => c.id === 'food')?.eta.toFixed(2)}): the rich already have enough — additional income flows elsewhere.</p>
+                <p><Tag t="JDG" />These are OECD-weighted estimates. In our transition markets — where incomes are still 15–60% of OECD levels — the sign and magnitude of elasticities differ, especially for health and education, which behave more like luxuries where public provision is low. We mark these differences as [GAP] where no country-specific estimate exists.</p>
+              </div>
+            </div>
+
+            {/* 0.3 Cross-section vs longitudinal */}
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Cross-section is not the same as a country's path over time</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm leading-relaxed">
+                <div>
+                  <p className="font-semibold mb-1">Cross-sectional Engel curve</p>
+                  <p><Tag t="OBS" />"The structure of cross-section Engel curves reflects the structure of individual ones" (Härdle & Jerison 1991, cited in Benda-Prokeinová et al. 2017<Cite ids={[1]} />). A cross-section compares different households at the same moment — it is the map we use in chapters 1–4.</p>
+                </div>
+                <div>
+                  <p className="font-semibold mb-1">Within-country longitudinal change</p>
+                  <p><Tag t="INF" />As chapter 2's Japan chart shows, a single country can walk the cross-sectional map over decades. But the within-country slope (–0.057 per log point) is about half the cross-sectional one (–0.112 in the same USDA panel). The map is the long-run destination, not a five-year forecast.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* 0.4 What moves the curve */}
+            <div>
+              <h3 className="text-lg font-semibold mb-2">What else moves the curve (and why it matters for industry analysis)</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 md:grid-cols-4 gap-4 text-sm leading-relaxed">
+                <div className="border border-[#e1e4e8] p-3">
+                  <div className="font-semibold mb-1">Relative prices</div>
+                  <p><Tag t="OBS" />If health prices rise faster than income, health spending can absorb a larger share even with no real change in quantity.<Cite ids={[9]} /> Budget shares reflect nominal spending; quantity purchased can diverge sharply. This matters especially in markets with rapid healthcare-price inflation.</p>
+                </div>
+                <div className="border border-[#e1e4e8] p-3">
+                  <div className="font-semibold mb-1">Demographic composition</div>
+                  <p><Tag t="OBS" />"Engel curves may also depend on demographic variables and other consumer characteristics."<Cite ids={[4]} /> Household size (children reduce per-capita spending on non-food goods), age structure (retirees spend differently to workers) and urbanisation all shift the curve independently of income.</p>
+                </div>
+                <div className="border border-[#e1e4e8] p-3">
+                  <div className="font-semibold mb-1">Inequality</div>
+                  <p><Tag t="INF" />If income growth is concentrated at the top, the aggregate food share can fall even if median households see no change. A rising food share among lower deciles, as in Egypt 2017–2023 (+3.3pp), may reflect food-price inflation hitting the poor more than income effects.</p>
+                </div>
+                <div className="border border-[#e1e4e8] p-3">
+                  <div className="font-semibold mb-1">Category definitions</div>
+                  <p><Tag t="OBS" />"The level of aggregation across goods affects Engel curve estimates."<Cite ids={[4]} /> Pakistan and the Philippines include tobacco in food; India excludes imputed owner rent. These choices move budget shares by 2–5 points — a gap larger than the transition effect in some years.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* 0.5 What the data cannot say */}
+            <div>
+              <h3 className="text-lg font-semibold mb-2">What we can and cannot infer for industry analysis</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm leading-relaxed">
+                <div>
+                  <p className="font-semibold mb-1">What the curve establishes</p>
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>The direction and approximate magnitude of budget-share shifts as income rises — a durable pattern across 150 years of data.</li>
+                    <li>Which categories capture a disproportionate share of new income (η &gt; 1) and which lose share (η &lt; 1 or &lt; 0).</li>
+                    <li>Where a country sits on the transition today and how far it needs to travel (chapters 3–4).</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-semibold mb-1">What it cannot establish alone</p>
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li><Tag t="GAP" />The speed of the within-country transition — that depends on growth, inequality, prices and policy.</li>
+                    <li><Tag t="GAP" />Market structure: a growing category benefits all suppliers; which firm captures share depends on competition, not on Engel curves.</li>
+                    <li><Tag t="GAP" />Whether current stock prices already discount the transition — that requires valuation analysis, which begins in phase 3.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <Record>
+            <p>Core definitions: Lewbel &amp; Houthakker (2008), evidence item 4. Elasticity estimates: Clements &amp; Chen (2010), 42-country Working-Leser system, evidence item 9. Cross-section vs. longitudinal distinction: Benda-Prokeinová et al. (2017), evidence item 1; Japan time series (Pritchett &amp; Spivack 2013, table A.12). Confounding factors: Lewbel (2008) on aggregation; Almås (2012) on PPP bias, evidence item 12. Script: analysis/mechanism.mjs.</p>
+          </Record>
+        </section>
+
+<Chapter id="law" n="1" title="The law" lede="Poorer households spend most of their budget on food. Richer ones spend a small share. Engel described this in the 19th century; household surveys across the world still show it.">
           <LawChart />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 text-sm leading-relaxed">
             <p><Tag t="OBS" />A typical household in Ethiopia (2004) spent 54% of its budget on food; in Switzerland (2003), 9%. Each dot is one national survey; the chart fills poorest to richest as you arrive, and the slider walks it one household survey at a time.</p>
