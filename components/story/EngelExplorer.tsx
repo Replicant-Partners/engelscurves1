@@ -38,6 +38,14 @@ export function EngelExplorer() {
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get('highlight');
+    if (q) {
+      const codes = q.split(',').map((c) => c.trim().toUpperCase()).filter((iso) => ALL.some((d) => d.iso3 === iso));
+      if (codes.length) setSelected(codes);
+    }
+  }, []);
+
+  useEffect(() => {
     if (playing && lens === 'usda') {
       timer.current = setInterval(() => setYear((t) => (t >= 2030 ? (setPlaying(false), 2030) : t + 1)), 750);
       return () => { if (timer.current) clearInterval(timer.current); };

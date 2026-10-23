@@ -32,7 +32,9 @@ export function PhaseTracks() {
         const inTransition = r.gdp2025 >= start && r.gdp2025 < end;
         const prob = r.gdp2025 >= end ? 'already past' : r.gdp2025 < start ? 'pre-inflection' : `${Math.round(r.pExit2030 * 100)}%`;
         return (
-          <g key={r.iso3}>
+          <a key={r.iso3} href={'/explorer?highlight=' + r.iso3} aria-label={'Trace ' + r.country + ' in the Engel Explorer'}>
+          <g style={{ cursor: 'pointer' }}>
+            <title>{'Trace ' + r.country + ' in the Engel Explorer'}</title>
             <text x={LEFT - 12} y={y + 4} textAnchor="end" fontSize="13" fill="#1b1f23" fontWeight={inTransition ? 600 : 400}>{r.country}</text>
             <line x1={LEFT} x2={W - RIGHT} y1={y} y2={y} stroke="#e1e4e8" />
             <line x1={x(r.gdp2025)} x2={x(r.gdp2030) - 4} y1={y} y2={y} stroke={ACCENT} strokeWidth={2} markerEnd="url(#arrow)" />
@@ -40,6 +42,7 @@ export function PhaseTracks() {
             <text x={(x(r.gdp2025) + x(r.gdp2030)) / 2} y={y - 8} textAnchor="middle" fontSize="10" fill="#6e7681">{(r.food2025 * 100).toFixed(1)}% &rarr; {(r.food2030 * 100).toFixed(1)}%</text>
             <text x={W - RIGHT + 14} y={y + 4} fontSize="13" fill={inTransition ? '#1b1f23' : '#6e7681'} fontWeight={inTransition ? 600 : 400}>{prob}</text>
           </g>
+          </a>
         );
       })}
       {[2000, 5000, 10000, 20000, 50000].map((g) => (

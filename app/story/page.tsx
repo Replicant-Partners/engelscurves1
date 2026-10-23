@@ -133,6 +133,7 @@ export default function StoryPage() {
           <div className="border border-[#d0d7de] p-4 md:p-6">
             <PhaseTracks />
           </div>
+          <p className="text-xs text-[#6e7681] mt-2">Click a country to trace its year-by-year path in the <Link href="/explorer" className="underline underline-offset-2">Engel Explorer</Link>.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6 text-sm leading-relaxed">
             <p><Tag t="INF" />India ({usd(T.IND.gdp2025)}) and the Philippines ({usd(T.PHL.gdp2025)}) are early in the transition, with food near {pct(T.IND.food2025)} of spending. Neither reaches the 35% line by 2030.</p>
             <p><Tag t="INF" />Vietnam and Indonesia are in the upper half. On IMF paths they cross by 2030 with {pct(T.VNM.pExit2030)} and {pct(T.IDN.pExit2030)} probability. South Africa stays put: its projected growth is close to zero.</p>
