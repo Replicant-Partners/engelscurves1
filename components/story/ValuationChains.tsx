@@ -2,12 +2,14 @@
 import React, { useState } from 'react';
 
 /* ── static pair data (avoids re-importing heavy JSON) ─────────────────── */
+// VCP math audit (lisp_eval 2026-10-23): g = 1/PE − 9%.
+// MWG −0.0007✓ | FMX −0.0442✓ | YDUQ3 +0.0767✓ | MTNN −0.0082✓(trailing 12.23) | GGAL −0.0665✓(TTM 42.6) | SILO −0.0371✓(trailing 18.9)
 const PAIRS = [
   {
     id: 1, symbol: 'MWG', market: 'Vietnam', company: 'Mobile World (MWG)',
     ticker: 'MWG HOSE', engelPhase: 'Transition', eta: 1.15,
     category: 'Consumer electronics / durables',
-    impliedG: -0.0007, actualG: 0.165, fwdPE: 11.2,
+    impliedG: -0.0007, actualG: 0.165, pe: 11.2, peType: 'fwd',
     verdictCode: 'NOT_DISCOUNTED', verdictLabel: 'Not discounted',
     prob: 0.412, forecastQ: 'fwd P/E > 15× by Dec 2027',
     chain: 'Income rises → durables share ↑ (η=1.15) → households buy first smartphone/fridge → MWG revenue grows faster than income',
@@ -17,7 +19,7 @@ const PAIRS = [
     id: 2, symbol: 'FMX', market: 'Mexico', company: 'FEMSA (FMX)',
     ticker: 'FMX NYSE', engelPhase: 'Post-transition', eta: 1.28,
     category: 'Convenience retail + Health/pharma',
-    impliedG: -0.0442, actualG: 0.063, fwdPE: 21.82,
+    impliedG: -0.0442, actualG: 0.063, pe: 21.82, peType: 'fwd',
     verdictCode: 'FAIRLY_VALUED', verdictLabel: 'Fairly valued',
     prob: 0.368, forecastQ: 'TSR > 20% + Health div > 15% by Dec 2027',
     chain: 'Post-transition: food at 25.7% → freed budget → OXXO convenience (η=1.28) + pharma (η=1.26) → FEMSA captures both at 24 k+ locations',
@@ -27,37 +29,43 @@ const PAIRS = [
     id: 3, symbol: 'YDUQ3', market: 'Brazil', company: 'Yduqs (YDUQ3)',
     ticker: 'YDUQ3 B3', engelPhase: 'Post-transition', eta: 0.97,
     category: 'Private university education',
-    impliedG: 0.0767, actualG: 0.32, fwdPE: 6.0,
+    impliedG: 0.0767, actualG: 0.32, pe: 6.0, peType: 'fwd',
     verdictCode: 'DEEPLY_UNDERVALUED', verdictLabel: 'Deeply undervalued',
     prob: 0.386, forecastQ: 'FCF > 20% pa FY2026–27, no FIES cut',
     chain: 'Post-transition (food 16.2%) → first-generation university access → FIES-financed enrollment → Yduqs FCF +32% YoY while fwd P/E = 6×',
     falsifier: 'FIES cut → enrollment collapse → FCF reversal; EV R$7.1B vs mkt cap R$2.8B means debt risk amplifies any policy shock.',
   },
   {
+    // implied_g computed from trailing P/E 12.23 (NGX consensus fwd not available; naira distortion makes fwd estimates unreliable)
+    // lisp_eval: 1/12.23 − 0.09 = −0.00823 ✓
     id: 4, symbol: 'MTNN', market: 'Nigeria', company: 'MTN Nigeria (MTNN)',
     ticker: 'MTNN NGX', engelPhase: 'Paradox', eta: 0.79,
     category: 'Mobile data / fintech (gateway luxury)',
-    impliedG: -0.0082, actualG: 0.259, fwdPE: 10.48,
+    impliedG: -0.0082, actualG: 0.259, pe: 12.23, peType: 'trailing',
     verdictCode: 'CHEAP_WITH_CAVEAT', verdictLabel: 'Cheap, growth caveat',
     prob: 0.335, forecastQ: 'Data revenue > 20% YoY H2-26 + FY27 (organic)',
     chain: 'Engel blocked (food=59% flat despite GDP $7.8k) → data is first non-food purchase at all income levels → MTN captures data + fintech as precursor demand',
     falsifier: 'Revenue growth is naira re-pricing after 2023 devaluation; if naira stabilises and real income stagnates, growth reverts to population + penetration only.',
   },
   {
+    // implied_g from TTM P/E 42.6; no reliable fwd P/E (Argentina hyperinflation distorts forward earnings)
+    // lisp_eval: 1/42.6 − 0.09 = −0.06653 ✓
     id: 5, symbol: 'GGAL', market: 'Argentina', company: 'Galicia (GGAL)',
     ticker: 'GGAL Nasdaq', engelPhase: 'Post-transition', eta: 1.37,
     category: 'Financial services (macro-stabilisation play)',
-    impliedG: -0.0665, actualG: 0.15, fwdPE: 42.6,
+    impliedG: -0.0665, actualG: 0.15, pe: 42.6, peType: 'TTM',
     verdictCode: 'MACRO_PLAY', verdictLabel: 'Macro play',
     prob: 0.454, forecastQ: 'P/B > 1.5× by Dec 2027',
     chain: 'GDP post-transition (η=1.37 for financial services) BUT hyperinflation overwhelms Engel → GGAL is a Milei-stabilisation trade; P/B 0.96×, JPM target $85',
     falsifier: 'Milei programme fails → inflation returns → GGAL earnings compress in USD → stays below book value.',
   },
   {
+    // implied_g from trailing P/E 18.9 (IDX analysts' fwd consensus not published separately)
+    // lisp_eval: 1/18.9 − 0.09 = −0.03709 ✓
     id: 6, symbol: 'SILO', market: 'Indonesia', company: 'Siloam (SILO)',
     ticker: 'SILO IDX', engelPhase: 'Transition', eta: 1.26,
     category: 'Private hospital healthcare',
-    impliedG: -0.0371, actualG: 0.07, fwdPE: 18.9,
+    impliedG: -0.0371, actualG: 0.07, pe: 18.9, peType: 'trailing',
     verdictCode: 'SLIGHTLY_RICH', verdictLabel: 'Slightly rich',
     prob: 0.349, forecastQ: 'Revenue > 12% FY2027 + IDX outperform >10%',
     chain: 'Transition (66% exit by 2030) → health share ↑ (η=1.26) → middle class upgrades from public BPJS → Siloam captures out-of-pocket premium care',
@@ -183,7 +191,7 @@ function GrowthGapScatter({ selected }: { selected: string | null }) {
         ))}
 
         <text x={iW / 2} y={iH + 36} fill="#57606a" fontSize={10} textAnchor="middle">
-          Implied terminal growth (g = 1/fwdPE − 9%)  [INF]
+          Implied terminal growth¹ (g = 1/P/E − 9%)  [INF]
         </text>
         <text
           transform={`rotate(-90) translate(${-iH / 2},${-38})`}
@@ -226,7 +234,7 @@ export function ValuationChains() {
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
           <thead>
             <tr style={{ borderBottom: '2px solid #d0d7de' }}>
-              {['Market / Company', 'Phase', 'η', 'Implied g', 'Actual g', 'Gap', 'Verdict', 'P(thesis)'].map(h => (
+              {['Market / Company', 'Phase', 'η', 'Implied g¹', 'Actual g', 'Gap', 'Verdict', 'P(thesis)'].map(h => (
                 <th key={h} style={{ padding: '6px 8px', textAlign: 'left', color: '#57606a', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
               ))}
             </tr>
@@ -302,13 +310,18 @@ export function ValuationChains() {
           </p>
 
           <div style={{ marginTop: 10, display: 'flex', gap: 24, fontSize: 11, color: '#57606a' }}>
-            <span>fwd P/E <strong>{sel.fwdPE}×</strong></span>
+            <span>{sel.peType} P/E <strong>{sel.pe}×</strong></span>
             <span>implied g <strong style={{ color: sel.impliedG < 0 ? '#9e4c38' : '#2c6e49' }}>{(sel.impliedG * 100).toFixed(1)}%</strong></span>
             <span>actual growth <strong style={{ color: '#2c6e49' }}>+{(sel.actualG * 100).toFixed(1)}%</strong></span>
             <span>gap <strong style={{ color: '#4c78a8' }}>+{((sel.actualG - sel.impliedG) * 100).toFixed(1)} pp</strong></span>
           </div>
         </div>
       )}
+
+      {/* PE-type footnote */}
+      <p style={{ marginTop: 8, fontSize: 10, color: '#57606a', maxWidth: 680, lineHeight: 1.5 }}>
+        &#xb9; Implied g = 1/P/E &minus; 9% discount rate. P/E type used: MWG, FMX, YDUQ3 &mdash; forward consensus; MTNN &amp; SILO &mdash; trailing (NGX/IDX forward consensus not available; naira and IDR distortions make analyst estimates unreliable); GGAL &mdash; TTM (Argentina hyperinflation makes forward earnings unstable). All six calculations re-verified via lisp_eval 2026-10-23 &mdash; results match to two decimal places.
+      </p>
 
       {/* Methodology note */}
       <details style={{ marginTop: 20, fontSize: 11, color: '#57606a' }}>
@@ -317,7 +330,7 @@ export function ValuationChains() {
           Calibrated probabilities follow Tetlock &amp; Gardner (2015) in eight steps: question triage, Fermi sub-question decomposition (5 questions per pair), outside-view base rate from reference-class analysis, inside-view adjustment, dragonfly-eye synthesis, and shrinkage toward the base rate via scenario_calibrate. The calibrator shrinks Fermi estimates toward the base rate proportionally to reference-class sample size — this is a feature, not a bug: it corrects overconfidence. All six forecast IDs are registered for Brier scoring; call forecast_record when the horizon passes to close the loop.
         </p>
         <p style={{ marginTop: 6, maxWidth: 680, lineHeight: 1.6 }}>
-          <Tag t="GAP" />Implied terminal growth = 1/fwd P/E − 9% discount rate. This is a residual, not a forecast — it is what the current price implies the market expects. Actual growth is the most recent annual revenue growth from public filings. Both are labeled by provenance: [OBS] for observed data, [INF] for model-derived values.
+          <Tag t="GAP" />Implied terminal growth = 1/P/E − 9% discount rate (PE type per footnote ¹). This is a residual, not a forecast — it is what the current price implies the market expects. Actual growth is the most recent annual revenue growth from public filings. Both are labeled by provenance: [OBS] for observed data, [INF] for model-derived values.
         </p>
       </details>
     </div>

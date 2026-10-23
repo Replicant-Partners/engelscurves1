@@ -438,7 +438,7 @@ export default function StoryPage() {
           </p>
           <ValuationChains />
           <Record>
-            <p>Implied terminal growth: g = 1/fwdPE &minus; 9% (discount rate). All multiples as of late October 2026 from stockanalysis.com, Yahoo Finance, multiples.vc and company earnings releases. Revenue growth from most-recent annual filings. Probabilities: Fermi decomposition (5 sub-questions per pair) &rarr; scenario_calibrate shrinkage toward reference-class base rate (Tetlock &amp; Gardner 2015). All six forecast IDs registered with forecast_persist for Brier scoring; call forecast_record at horizon to close the loop.</p>
+            <p>Implied terminal growth: g = 1/P/E &minus; 9% (discount rate). P/E type: forward for MWG, FMX, YDUQ3; trailing for MTNN and SILO; TTM for GGAL &mdash; see ValuationChains footnote. All multiples as of late October 2026 from stockanalysis.com, Yahoo Finance, multiples.vc and company earnings releases. Revenue growth from most-recent annual filings. Probabilities: Fermi decomposition (5 sub-questions per pair) &rarr; scenario_calibrate shrinkage toward reference-class base rate (Tetlock &amp; Gardner 2015). All six forecast IDs registered with forecast_persist for Brier scoring; call forecast_record at horizon to close the loop.</p>
             <p>Falsifiers are stated before the verdict: a condition that would invalidate the premise. Engel curves describe structural budget share shifts; they do not forecast macro shocks, FX moves, or policy reversals. Where macro overwhelms the mechanism (Argentina, Nigeria), we label the trade explicitly as a macro play or paradox case &mdash; the Engel thesis is secondary.</p>
           </Record>
         </Chapter>
