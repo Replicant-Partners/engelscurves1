@@ -30,7 +30,7 @@ export default function Home() {
             </p>
           </div>
           <div className="text-right space-y-1">
-            <div className="text-xs"><a href="/story" className="underline underline-offset-2 mr-3">The story</a><a href="/explorer" className="underline underline-offset-2">Engel Explorer</a></div>
+            <div className="text-xs"><a href="/story" className="underline underline-offset-2 mr-3">The story</a><a href="/story#motion" className="underline underline-offset-2">Engel Explorer</a></div>
             <div className="text-[10px] font-mono text-[#6e7681] uppercase tracking-wider">Data Provenance</div>
             <div className="text-xs font-semibold text-[#1b1f23]">World Bank (NY.GDP.PCAP.PP.KD)</div>
             <div className="text-xs text-[#6e7681]">Constant 2021 Int'l $</div>
@@ -38,7 +38,7 @@ export default function Home() {
         </header>
 
         <div className="border-l-4 border-[#1b1f23] bg-[#f6f8fa] px-4 py-3 text-sm leading-relaxed">
-          <span className="font-semibold">Working dashboard.</span> Full tables, evidence and scenario detail live here. For the five-minute narrative, read <a href="/story" className="underline underline-offset-2 font-semibold">The story</a>; for the animated data, open the <a href="/explorer" className="underline underline-offset-2 font-semibold">Engel Explorer</a>.
+          <span className="font-semibold">Working dashboard.</span> Full tables, evidence and scenario detail live here. For the five-minute narrative, read <a href="/story" className="underline underline-offset-2 font-semibold">The story</a>; for the animated data, open the <a href="/story#motion" className="underline underline-offset-2 font-semibold">Engel Explorer</a>.
         </div>
 
         <nav className="flex gap-6 border-b border-[#d0d7de] text-sm font-medium">

@@ -32,9 +32,9 @@ export function PhaseTracks() {
         const inTransition = r.gdp2025 >= start && r.gdp2025 < end;
         const prob = r.gdp2025 >= end ? 'already past' : r.gdp2025 < start ? 'pre-inflection' : `${Math.round(r.pExit2030 * 100)}%`;
         return (
-          <a key={r.iso3} href={'/explorer?highlight=' + r.iso3} aria-label={'Trace ' + r.country + ' in the Engel Explorer'} className="group focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#4c78a8]">
+          <a key={r.iso3} href={'/story?highlight=' + r.iso3 + '#motion'} aria-label={'Trace ' + r.country + ' in chapter 3'} className="group focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#4c78a8]">
           <g style={{ cursor: 'pointer' }}>
-            <title>{'Trace ' + r.country + ' in the Engel Explorer'}</title>
+            <title>{'Trace ' + r.country + ' in chapter 3 (In motion)'}</title>
             <text x={LEFT - 12} y={y + 4} textAnchor="end" fontSize="13" fill="#1b1f23" fontWeight={inTransition ? 600 : 400} className="group-hover:underline">{r.country}</text>
             <line x1={LEFT} x2={W - RIGHT} y1={y} y2={y} stroke="#e1e4e8" />
             <line x1={x(r.gdp2025)} x2={x(r.gdp2030) - 4} y1={y} y2={y} stroke={ACCENT} strokeWidth={2} markerEnd="url(#arrow)" />

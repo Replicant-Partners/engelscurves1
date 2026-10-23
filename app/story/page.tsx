@@ -4,6 +4,8 @@ import { FoodShareChart } from '../../components/story/FoodShareChart';
 import { PhaseTracks } from '../../components/story/PhaseTracks';
 import { HouseholdBars } from '../../components/story/HouseholdBars';
 import { DollarStreetHouses } from '../../components/story/DollarStreetHouses';
+import { EngelExplorer } from '../../components/story/EngelExplorer';
+import { explorer } from '../../data/explorerData';
 import { dollarStreet } from '../../data/dollarStreet';
 import { RobustnessChart } from '../../components/story/RobustnessChart';
 import { MeasurementRisk } from '../../components/story/MeasurementRisk';
@@ -12,7 +14,7 @@ import { evidenceItems, literatureSources } from '../../data/literatureEvidence'
 
 export const metadata: Metadata = {
   title: 'From Food to Finance | Engel Curves Research',
-  description: 'How rising incomes shift household budgets away from food, where twelve emerging markets stand, and what to watch.',
+  description: 'How rising incomes shift household budgets away from food: the law, the break, 102 countries in motion, twelve markets, the street, and what to watch.',
 };
 
 const usd = (v: number) => `$${(v / 1000).toFixed(1)}k`;
@@ -22,11 +24,12 @@ const T = Object.fromEntries(story.tracks.map((t) => [t.iso3, t]));
 const chapters = [
   { id: 'law', n: '1', title: 'The law' },
   { id: 'break', n: '2', title: 'The break' },
-  { id: 'map', n: '3', title: 'The map' },
-  { id: 'money', n: '4', title: 'The freed-up wallet' },
-  { id: 'street', n: '4½', title: 'The street' },
-  { id: 'watch', n: '5', title: 'What we watch' },
-  { id: 'method', n: '6', title: 'Evidence and method' },
+  { id: 'motion', n: '3', title: 'In motion' },
+  { id: 'map', n: '4', title: 'The map' },
+  { id: 'money', n: '5', title: 'The freed-up wallet' },
+  { id: 'street', n: '6', title: 'The street' },
+  { id: 'watch', n: '7', title: 'What we watch' },
+  { id: 'method', n: '8', title: 'Evidence and method' },
 ];
 
 function Tag({ t }: { t: 'OBS' | 'INF' | 'JDG' | 'GAP' }) {
@@ -70,8 +73,7 @@ export default function StoryPage() {
           {chapters.map((c) => (
             <a key={c.id} href={`#${c.id}`} className="text-[#57606a] hover:text-[#1b1f23] whitespace-nowrap">{c.n}. {c.title}</a>
           ))}
-          <Link href="/explorer" className="ml-auto text-[#57606a] hover:text-[#1b1f23] whitespace-nowrap">Explorer &rarr;</Link>
-          <Link href="/" className="text-[#57606a] hover:text-[#1b1f23] whitespace-nowrap">Dashboard &rarr;</Link>
+          <Link href="/" className="ml-auto text-[#57606a] hover:text-[#1b1f23] whitespace-nowrap">Dashboard &rarr;</Link>
         </div>
       </nav>
 
@@ -128,15 +130,26 @@ export default function StoryPage() {
           <Record>
             <p>Model: food share on ln(GDP per capita) with one estimated break. Break at {usd(story.bounds.start)} (bootstrap 90% interval {usd(story.bounds.startCi[0])}&ndash;{usd(story.bounds.startCi[2])}); slope {story.piecewise.slopeBelow} below, {story.piecewise.slopeAbove} above. sup-F {story.fit.supF} against an Andrews (1993) 5% critical value of 8.85. The 35% line comes from the linear fit (R&sup2; {story.fit.r2}), 90% interval {usd(story.bounds.endCi[0])}&ndash;{usd(story.bounds.endCi[2])}.</p>
             <p>The break survives dropping definition-problem surveys, one-survey-per-country and dropping the LSMS table; it weakens to borderline without the ILO surveys. Scripts: analysis/engel_threshold.mjs, engel_robustness.mjs; independent check: verify_independent.py.</p>
-            <p>A second lens agrees on the start and moves the end: on national-accounts food shares (USDA ERS, 101 countries, 2023) the break lands near $8.9k (borderline-significant) and food reaches 35% near $12.2k, because national accounts count items surveys miss, such as imputed rent. Both lenses are side by side in the <a href="/explorer" className="underline underline-offset-2">Engel Explorer</a>.</p>
+            <p>A second lens agrees on the start and moves the end: on national-accounts food shares (USDA ERS, 101 countries, 2023) the break lands near $8.9k (borderline-significant) and food reaches 35% near $12.2k, because national accounts count items surveys miss, such as imputed rent. Both lenses are side by side in <a href="#motion" className="underline underline-offset-2">chapter 3</a>.</p>
           </Record>
         </Chapter>
 
-        <Chapter id="map" n="3" title="The map" lede="Where twelve emerging markets stand today and where IMF growth projections take them by 2030. Six are inside the transition; three of them are likely to finish it this decade.">
+        <Chapter id="motion" n="3" title="In motion" lede="The same law, set in motion. Each bubble is one of 102 countries; press play to watch seven observed years, then the IMF income path to 2030. The dark line is the Engel curve every bubble is read against.">
+          <EngelExplorer />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 text-sm leading-relaxed">
+            <p><Tag t="INF" />This animated lens uses national-accounts food shares (USDA ERS, {explorer.usda.n} countries, 2017&ndash;2023). On it the shift away from food begins near ${(explorer.usda.knot / 1000).toFixed(1)}k and food reaches 35% near ${(explorer.usda.end / 1000).toFixed(1)}k &mdash; earlier than the survey lens of chapters 1&ndash;2, because national accounts count items surveys miss, such as imputed rent. The static survey lens is one toggle away; the start of the shift agrees across both (about $6.6k&ndash;$8.9k), the end depends on measurement. We show both rather than average them.</p>
+            <p><Tag t="JDG" />Click a country in the map below to land here with its trail traced. Hollow dashed bubbles are projections: income moves on the IMF path while each country&rsquo;s food share is held at its 2023 value, not forecast.</p>
+          </div>
+          <Record>
+            <p>Observed bubbles: USDA ERS food share (via Our World in Data) &times; World Bank GDP per capita PPP (2021$) &times; population, 713 country-years. Projections 2024&ndash;2030: IMF WEO growth from the WB 2023 level; 99 of 102 countries have paths (Bolivia, Lebanon and Sri Lanka stop at 2023). USDA-lens break ${(explorer.usda.knot / 1000).toFixed(1)}k is borderline-significant (sup-F {explorer.usda.supF} vs 8.85); the survey-lens break is strong (sup-F {story.fit.supF}). Script: analysis/explorer/build_explorer_data.mjs.</p>
+          </Record>
+        </Chapter>
+
+        <Chapter id="map" n="4" title="The map" lede="Where twelve emerging markets stand today and where IMF growth projections take them by 2030. Six are inside the transition; three of them are likely to finish it this decade.">
           <div className="border border-[#d0d7de] p-4 md:p-6 overflow-x-auto">
             <PhaseTracks />
           </div>
-          <p className="text-xs text-[#57606a] mt-2">Click a country to trace its year-by-year path in the <Link href="/explorer" className="underline underline-offset-2">Engel Explorer</Link>.</p>
+          <p className="text-xs text-[#57606a] mt-2">Click a country to trace its year-by-year path in <a href="#motion" className="underline underline-offset-2">chapter 3</a>.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6 text-sm leading-relaxed">
             <p><Tag t="INF" />India ({usd(T.IND.gdp2025)}) and the Philippines ({usd(T.PHL.gdp2025)}) are early in the transition, with food near {pct(T.IND.food2025)} of spending. Neither reaches the 35% line by 2030.</p>
             <p><Tag t="INF" />Vietnam and Indonesia are in the upper half. On IMF paths they cross by 2030 with {pct(T.VNM.pExit2030)} and {pct(T.IDN.pExit2030)} probability. South Africa stays put: its projected growth is close to zero.</p>
@@ -196,7 +209,7 @@ export default function StoryPage() {
           </Record>
         </Chapter>
 
-        <Chapter id="money" n="4" title="The freed-up wallet" lede="What the transition means for a household. When income per person doubles from $10,000 to $20,000, spending on everything other than food more than doubles.">
+        <Chapter id="money" n="5" title="The freed-up wallet" lede="What the transition means for a household. When income per person doubles from $10,000 to $20,000, spending on everything other than food more than doubles.">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
             <div className="md:col-span-3">
               <HouseholdBars />
@@ -212,12 +225,12 @@ export default function StoryPage() {
             </div>
           </div>
           <Record>
-            <p>Household figures use the linear fit at $10,000 and $20,000 GDP per capita (recomputed with lisp_eval). This is a comparison across countries at one point in time, not the path of a single country. Numbered citations refer to the evidence table in chapter 6.</p>
-            <p>To see what these budgets look like inside real homes, walk <a href="https://www.gapminder.org/dollar-street" target="_blank" rel="noreferrer" className="underline underline-offset-2">Dollar Street</a> &mdash; or jump straight to chapter 4½ below.</p>
+            <p>Household figures use the linear fit at $10,000 and $20,000 GDP per capita (recomputed with lisp_eval). This is a comparison across countries at one point in time, not the path of a single country. Numbered citations refer to the evidence table in chapter 8.</p>
+            <p>To see what these budgets look like inside real homes, walk <a href="https://www.gapminder.org/dollar-street" target="_blank" rel="noreferrer" className="underline underline-offset-2">Dollar Street</a> &mdash; or jump straight to chapter 6 below.</p>
           </Record>
         </Chapter>
 
-        <Chapter id="street" n="4½" title="The street" lede={`The same transition, seen from inside the home. Dollar Street (Gapminder) photographs real families and places them on one global street by consumption per adult — ${dollarStreet.usable} families so far. Here are the ${dollarStreet.markets.filter((m) => m.n > 0).length} of our twelve markets they have visited.`}>
+        <Chapter id="street" n="6" title="The street" lede={`The same transition, seen from inside the home. Dollar Street (Gapminder) photographs real families and places them on one global street by consumption per adult — ${dollarStreet.usable} families so far. Here are the ${dollarStreet.markets.filter((m) => m.n > 0).length} of our twelve markets they have visited.`}>
           <DollarStreetHouses />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 text-sm leading-relaxed">
             <p><Tag t="OBS" />Each house is one documented family, stacked where its consumption per adult per month (PPP) falls on the street; toggle a market to light its homes. The spread inside one country is the point: India’s {dollarStreet.markets.find((m) => m.iso3 === 'IND')!.n} families run from ${dollarStreet.markets.find((m) => m.iso3 === 'IND')!.min} to ${dollarStreet.markets.find((m) => m.iso3 === 'IND')!.max} a month — the whole Engel curve lives inside a single country.</p>
@@ -228,7 +241,7 @@ export default function StoryPage() {
           </Record>
         </Chapter>
 
-        <Chapter id="watch" n="5" title="What we watch" lede="The thesis makes dated predictions. These are the signals that will confirm or weaken it, in the order they arrive.">
+        <Chapter id="watch" n="7" title="What we watch" lede="The thesis makes dated predictions. These are the signals that will confirm or weaken it, in the order they arrive.">
           <p className="text-xs text-[#57606a] mb-4">Solid marker: an observed fact. Hollow marker: an inferred probability &mdash; the same convention as the Explorer&rsquo;s hollow projection bubbles.</p>
           <ol className="relative border-l border-[#d0d7de] ml-2 space-y-8">
             {watch.map((w) => (
@@ -246,7 +259,7 @@ export default function StoryPage() {
         </Chapter>
 
         <section id="method" className="scroll-mt-16 py-14 border-t border-[#d0d7de]">
-          <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">CHAPTER 6</div>
+          <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">CHAPTER 8</div>
           <h2 className="text-3xl font-semibold tracking-tight mb-3">Evidence and method</h2>
           <p className="text-lg leading-relaxed max-w-3xl mb-8">For readers who want to check the work.</p>
 
