@@ -283,6 +283,46 @@
       ],
       "refutation_factor": "The 2023 food-share drop (42.1% from 56.6%) is a single data point that may reflect post-pandemic recomposition rather than genuine Engel transition. If the 2024/25 USDA data shows reversion to ~55%, the Kenya transition story weakens. Additionally, Safaricom's Ethiopia operations are deeply loss-making and dilute the group's returns from the Kenya Engel story.",
       "note": "Kenya is the most plausible new-entry Engel market in Africa for 2024-2030. The 2023 food-share data point needs verification \u2014 but if confirmed, Safaricom is positioned to capture the financial-inclusion dimension of the transition before any other African company. The communication category may understate Safaricom's effective elasticity because M-PESA is simultaneously communication, financial services, and infrastructure."
+    },
+    {
+      "market": "Mexico",
+      "iso3": "MEX",
+      "category": "Restaurants / convenience retail + health (post-transition formalisation)",
+      "eta_oecd": 1.279,
+      "category_share_pct": null,
+      "source_type": "partial",
+      "companies": [
+        {
+          "name": "Fomento Econ\u00f3mico Mexicano (FEMSA)",
+          "ticker": "FEMSAUBD / FMX",
+          "exchange": "BMV / NYSE ADR",
+          "currency": "MXN",
+          "oxxo_stores_mexico": 24000,
+          "oxxo_revenue_fx_fy2025_mxn_bn": 328.84,
+          "oxxo_revenue_growth_fy2025_pct": 7.04,
+          "health_division_revenue_mxn_bn_fy2025": 88.13,
+          "health_division_growth_pct": 10.5,
+          "total_revenue_usd_approx_q2_2026_bn": 13.2,
+          "local_exposure_pct": "~70% Mexico; 30% rest of LatAm (Colombia, Chile, Peru, Brazil, European Valora)",
+          "note": "FEMSA is the most direct Engel-transition investment in Mexico and possibly in all of Latin America. As Mexico's food share has fallen from ~35% to 25.7%, the freed budget goes two places that FEMSA captures simultaneously: (1) OXXO convenience (restaurants/services \u03b7=1.28): Mexicans formalise snack and prepared-food spending from street vendors to OXXO \u2014 24,000 stores, one on every corner, billing payment + food + coffee + financial services; (2) Health Division (pharmacies YZA, Moderna, Cruz Verde \u2014 health \u03b7=1.26): as incomes rise, out-of-pocket pharma and wellness spending increases. FEMSA Health grew 10.5% in FY2025. FEMSA is also expanding OXXO in Brazil, Colombia, Peru and Chile \u2014 giving multi-country Engel-transition exposure in one vehicle. SPIN fintech (9.4M active users, +18.8% in 2Q25) is the M-PESA equivalent embedded in OXXO stores.",
+          "provenance": "[OBS] koalagains.com business analysis FY2025; cspdailynews.com Q2 2026 earnings; femsa.com press release; Reuters Q1 revenue report"
+        },
+        {
+          "name": "Walmart de M\u00e9xico y Centroam\u00e9rica (Walmex)",
+          "ticker": "WALMEX",
+          "exchange": "BMV",
+          "currency": "MXN",
+          "revenue_mxn_bn_fy2025": 1004.5,
+          "revenue_growth_fy2025_pct": 5.6,
+          "ecommerce_sales_growth_pct": 15.4,
+          "active_fintech_users_m": 26.4,
+          "local_exposure_pct": "~85% Mexico; 15% Central America",
+          "note": "Walmart Mexico captures the formalisation of food and consumer discretionary spending in post-transition Mexico. As food share falls from 25.7% toward 20%, Mexican households shift from tianguis (informal markets) to Sam's Club and Walmart supercenters. Walmex is also building a fintech layer (Bait telecom, Cashi wallet, credits). Consumer recovery has been slow in 2025-26 ('tepid consumer spending'), giving a cautious short-term view but the long-run Engel story remains intact. Caveat: Walmex's growth is partly ticket-size inflation, not volume, at the current cycle.",
+          "provenance": "[OBS] mexicobusiness.news Q2 2026; Walmex 2Q26 Earnings Release PDF; Yahoo Finance Q2 2025"
+        }
+      ],
+      "refutation_factor": "Mexico's consumer spending recovery has been slower than expected in 2025-26, with WALMEX noting 'tepid consumption' and transaction declines. The Engel mechanism is structural but the timing depends on real income growth, which may lag behind the food-share trend given peso depreciation and uncertainty. Additionally, FEMSA's non-Mexico operations (Valora Europe) could dilute the Engel thesis if European operations underperform.",
+      "note": "Mexico is the cleanest post-transition Latin American Engel play. Food at 25.7% (USDA) or 32.1% (model), with 130 million people and a large formal retail sector already in place. FEMSA uniquely combines restaurants/services (\u03b7=1.28), health (\u03b7=1.26), and fintech (first non-food wallet for many Mexicans) in one listed vehicle \u2014 making it arguably the most multi-dimensional Engel company in the entire analysis."
     }
   ]
 }

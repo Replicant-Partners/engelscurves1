@@ -145,6 +145,22 @@
       "restaurants_pct": null,
       "nonfood_total_pct": 57.9,
       "note": "Kenya 2023 food share 42.1% is a remarkable drop from 56.6% (2022) and 58.7% (2020). If this reflects genuine income-driven consumption shift, Kenya may be entering the transition now. However, a 14.5pp single-year drop is large and may partly reflect post-pandemic recomposition or methodology change. The USDA series for Kenya should be verified against KNBS (Kenya National Bureau of Statistics) household surveys before strong conclusions. At GDP $5,692 PPP, Kenya is just below the bootstrap 90% CI lower bound for the break ($5,545). COICOP breakdown: GAP \u2014 full COICOP not publicly available from KNBS in this search."
+    },
+    {
+      "iso3": "MEX",
+      "country": "Mexico",
+      "year": 2022,
+      "source": "INEGI ENIGH 2022 (microdata via FAO/INEGI). Health share: peer-reviewed paper PMC12924604 citing ENIGH 2000-2022 series (HE as share of total expenditure ~4.9%). Food: USDA ERS 2023 (25.7%).",
+      "data_type": "household_survey",
+      "food_pct": 25.7,
+      "health_pct": 4.9,
+      "transport_pct": null,
+      "comm_pct": null,
+      "edu_pct": null,
+      "recreation_pct": null,
+      "restaurants_pct": null,
+      "nonfood_total_pct": 74.3,
+      "note": "Mexico is solidly post-transition (GDP $21,912 PPP, food 25.7% USDA, 32.1% fitted model). Health share 4.9% of total household expenditure (ENIGH 2022 via academic paper, for households with any health spending). Full COICOP breakdown from ENIGH 2022 microdata is public via INEGI but was not extracted in this search \u2014 transport, education, communication are GAP. Mexico's ENIGH follows COICOP categories; microdata available at inegi.org.mx. ENIGH 2024 was conducted (Aug-Nov 2024); results likely available in 2025."
     }
   ]
 }
