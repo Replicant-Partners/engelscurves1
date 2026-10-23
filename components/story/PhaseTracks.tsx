@@ -1,4 +1,5 @@
 import { story } from '../../data/storyData';
+import { BAND_FILL } from './regionColors';
 
 const W = 820, LEFT = 120, RIGHT = 150, ROW = 46, TOP = 50;
 const MIN = 2000, MAX = 50000;
@@ -14,7 +15,7 @@ export function PhaseTracks() {
     <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto min-w-[700px]" role="img" aria-label="Each market's GDP per capita in 2025 and projected 2030, against the three Engel phases">
       <rect x={x(startCi[0])} y={TOP - 14} width={x(startCi[2]) - x(startCi[0])} height={rows.length * ROW + 8} fill="#f6f8fa" />
       <rect x={x(endCi[0])} y={TOP - 14} width={x(endCi[2]) - x(endCi[0])} height={rows.length * ROW + 8} fill="#f6f8fa" />
-      <rect x={x(start)} y={TOP - 14} width={x(end) - x(start)} height={rows.length * ROW + 8} fill="#eceff3" />
+      <rect x={x(start)} y={TOP - 14} width={x(end) - x(start)} height={rows.length * ROW + 8} fill={BAND_FILL} />
       <line x1={x(start)} x2={x(start)} y1={TOP - 14} y2={TOP + rows.length * ROW - 6} stroke="#1b1f23" strokeDasharray="3 3" />
       <line x1={x(end)} x2={x(end)} y1={TOP - 14} y2={TOP + rows.length * ROW - 6} stroke="#1b1f23" strokeDasharray="3 3" />
       <text x={(LEFT + x(start)) / 2} y={22} textAnchor="middle" fontSize="12" fill="#57606a" letterSpacing="1.2">PRE-INFLECTION</text>

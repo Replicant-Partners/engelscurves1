@@ -4,6 +4,7 @@ import { explorer } from '../../data/explorerData';
 import { engelPoints } from '../../data/engelCrossCountry';
 import { story } from '../../data/storyData';
 import { dollarStreet } from '../../data/dollarStreet';
+import { REGION_COLORS, regionColor as color, BAND_FILL } from './regionColors';
 
 type Row = { iso3: string; name: string; region: string; year: number; share: number; gdp: number; pop: number; projected?: boolean };
 
@@ -14,16 +15,6 @@ const y = (s: number) => M.top + (1 - s / MAXY) * (H - M.top - M.bottom);
 const r = (pop: number) => Math.max(3, Math.min(30, 0.012 * Math.sqrt(pop)));
 const usd = (v: number) => (v >= 1000 ? `$${(v / 1000).toFixed(v >= 10000 ? 0 : 1)}k` : `$${v}`);
 
-const REGION_COLORS: Record<string, string> = {
-  'East Asia & Pacific': '#4c78a8',
-  'Europe & Central Asia': '#699bb3',
-  'Latin America & Caribbean': '#d8956b',
-  'Middle East, North Africa, Afghanistan & Pakistan': '#857a3e',
-  'North America': '#8d7fa8',
-  'South Asia': '#c26b6b',
-  'Sub-Saharan Africa': '#a9c7a0',
-};
-const color = (region: string) => REGION_COLORS[region.trim()] ?? '#9aa4ae';
 
 const YEARS: number[] = [];
 for (let t = 2017; t <= 2030; t++) YEARS.push(t);

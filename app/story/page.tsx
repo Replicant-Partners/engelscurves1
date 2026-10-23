@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { FoodShareChart } from '../../components/story/FoodShareChart';
 import { LawChart } from '../../components/story/LawChart';
+import { BreakChart } from '../../components/story/BreakChart';
 import { PhaseTracks } from '../../components/story/PhaseTracks';
 import { HouseholdBars } from '../../components/story/HouseholdBars';
 import { DollarStreetHouses } from '../../components/story/DollarStreetHouses';
@@ -116,9 +116,9 @@ export default function StoryPage() {
         </Chapter>
 
         <Chapter id="break" n="2" title="The break" lede={`The decline is not smooth from the start. Below about ${usd(story.bounds.start)}, the food share barely moves. Above it, it falls steadily until food is about a third of the budget near ${usd(story.bounds.end)}. That band is the transition.`}>
-          <FoodShareChart mode="break" />
+          <BreakChart />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6 text-sm leading-relaxed">
-            <p><Tag t="INF" />Below the break the fitted food share stays near 56&ndash;59%, with individual surveys mostly between 50% and 70%. Above it, it falls about {Math.round(Math.abs(story.piecewise.slopeAbove) * Math.LN2 * 100)} percentage points each time income doubles.</p>
+            <p><Tag t="INF" />Toggle &ldquo;one slope&rdquo; to see why a straight line fails: it cannot hold the flat poor-country stretch and the steep decline at once. Below the break the fitted food share stays near 56&ndash;59%, with individual surveys mostly between 50% and 70%. Above it, it falls about {Math.round(Math.abs(story.piecewise.slopeAbove) * Math.LN2 * 100)} percentage points each time income doubles.</p>
             <p><Tag t="INF" />The earlier $15,000 marker sits inside the transition, where food is still about 37% of spending. It marks the middle of the shift, not its start.</p>
             <p><Tag t="GAP" />No paper in the corpus states a dollar threshold. Both boundaries are this study&apos;s estimates<Cite ids={[3]} />.</p>
           </div>

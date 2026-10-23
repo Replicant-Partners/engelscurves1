@@ -6,595 +6,680 @@ export const story = {
    "country": "Ethiopia",
    "year": 2004,
    "gdp": 877,
-   "share": 0.54
+   "share": 0.54,
+   "region": "Sub-Saharan Africa"
   },
   {
    "iso3": "MWI",
    "country": "Malawi",
    "year": 2004,
    "gdp": 1208,
-   "share": 0.61
+   "share": 0.61,
+   "region": "Sub-Saharan Africa"
   },
   {
    "iso3": "UGA",
    "country": "Uganda",
    "year": 2003,
    "gdp": 1649,
-   "share": 0.49
+   "share": 0.49,
+   "region": "Sub-Saharan Africa"
   },
   {
    "iso3": "TJK",
    "country": "Tajikistan",
    "year": 2003,
    "gdp": 1737,
-   "share": 0.7
+   "share": 0.7,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "NPL",
    "country": "Nepal",
    "year": 1996,
    "gdp": 2106,
-   "share": 0.6
+   "share": 0.6,
+   "region": "South Asia"
   },
   {
    "iso3": "NPL",
    "country": "Nepal",
    "year": 2003,
    "gdp": 2439,
-   "share": 0.56
+   "share": 0.56,
+   "region": "South Asia"
   },
   {
    "iso3": "VNM",
    "country": "Vietnam",
    "year": 1992,
    "gdp": 2726,
-   "share": 0.62
+   "share": 0.62,
+   "region": "East Asia & Pacific"
   },
   {
    "iso3": "GHA",
    "country": "Ghana",
    "year": 1991,
    "gdp": 2860,
-   "share": 0.61
+   "share": 0.61,
+   "region": "Sub-Saharan Africa"
   },
   {
    "iso3": "GHA",
    "country": "Ghana",
    "year": 1998,
    "gdp": 3229,
-   "share": 0.6
+   "share": 0.6,
+   "region": "Sub-Saharan Africa"
   },
   {
    "iso3": "PAK",
    "country": "Pakistan",
    "year": 1991,
    "gdp": 3252,
-   "share": 0.52
+   "share": 0.52,
+   "region": "Middle East, North Africa, Afghanistan & Pakistan"
   },
   {
    "iso3": "BGD",
    "country": "Bangladesh",
    "year": 2007,
    "gdp": 3609,
-   "share": 0.59
+   "share": 0.59,
+   "region": "South Asia"
   },
   {
    "iso3": "VNM",
    "country": "Vietnam",
    "year": 1997,
    "gdp": 3820,
-   "share": 0.57
+   "share": 0.57,
+   "region": "East Asia & Pacific"
   },
   {
    "iso3": "PAK",
    "country": "Pakistan",
    "year": 2010,
    "gdp": 4229,
-   "share": 0.53
+   "share": 0.53,
+   "region": "Middle East, North Africa, Afghanistan & Pakistan"
   },
   {
    "iso3": "PSE",
    "country": "West Bank and Gaza",
    "year": 2004,
    "gdp": 4503,
-   "share": 0.3
+   "share": 0.3,
+   "region": "Middle East, North Africa, Afghanistan & Pakistan"
   },
   {
    "iso3": "ALB",
    "country": "Albania",
    "year": 1996,
    "gdp": 5564,
-   "share": 0.6
+   "share": 0.6,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "IDN",
    "country": "Indonesia",
    "year": 1993,
    "gdp": 5609,
-   "share": 0.56
+   "share": 0.56,
+   "region": "East Asia & Pacific"
   },
   {
    "iso3": "PHL",
    "country": "Philippines",
    "year": 2009,
    "gdp": 5965,
-   "share": 0.53
+   "share": 0.53,
+   "region": "East Asia & Pacific"
   },
   {
    "iso3": "IDN",
    "country": "Indonesia",
    "year": 2000,
    "gdp": 6056,
-   "share": 0.6
+   "share": 0.6,
+   "region": "East Asia & Pacific"
   },
   {
    "iso3": "LKA",
    "country": "Sri Lanka",
    "year": 2002,
    "gdp": 6410,
-   "share": 0.54
+   "share": 0.54,
+   "region": "South Asia"
   },
   {
    "iso3": "ARM",
    "country": "Armenia",
    "year": 2003,
    "gdp": 6569,
-   "share": 0.71
+   "share": 0.71,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "IDN",
    "country": "Indonesia",
    "year": 1997,
    "gdp": 6897,
-   "share": 0.57
+   "share": 0.57,
+   "region": "East Asia & Pacific"
   },
   {
    "iso3": "VNM",
    "country": "Vietnam",
    "year": 2010,
    "gdp": 7275,
-   "share": 0.5
+   "share": 0.5,
+   "region": "East Asia & Pacific"
   },
   {
    "iso3": "AZE",
    "country": "Azerbaijan",
    "year": 2003,
    "gdp": 7329,
-   "share": 0.57
+   "share": 0.57,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "MDA",
    "country": "Moldova",
    "year": 2004,
    "gdp": 7574,
-   "share": 0.6
+   "share": 0.6,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "ALB",
    "country": "Albania",
    "year": 2002,
    "gdp": 7590,
-   "share": 0.67
+   "share": 0.67,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "ALB",
    "country": "Albania",
    "year": 2002,
    "gdp": 7590,
-   "share": 0.64
+   "share": 0.64,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "IDN",
    "country": "Indonesia",
    "year": 2007,
    "gdp": 7802,
-   "share": 0.56
+   "share": 0.56,
+   "region": "East Asia & Pacific"
   },
   {
    "iso3": "BIH",
    "country": "Bosnia",
    "year": 2001,
    "gdp": 7983,
-   "share": 0.34
+   "share": 0.34,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "PER",
    "country": "Peru",
    "year": 2004,
    "gdp": 8495,
-   "share": 0.415
+   "share": 0.415,
+   "region": "Latin America & Caribbean"
   },
   {
    "iso3": "GTM",
    "country": "Guatemala",
    "year": 2000,
    "gdp": 8770,
-   "share": 0.48
+   "share": 0.48,
+   "region": "Latin America & Caribbean"
   },
   {
    "iso3": "ALB",
    "country": "Albania",
    "year": 2005,
    "gdp": 8964,
-   "share": 0.59
+   "share": 0.59,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "GTM",
    "country": "Guatemala",
    "year": 2006,
    "gdp": 9386,
-   "share": 0.436
+   "share": 0.436,
+   "region": "Latin America & Caribbean"
   },
   {
    "iso3": "ECU",
    "country": "Ecuador",
    "year": 1995,
    "gdp": 9525,
-   "share": 0.48
+   "share": 0.48,
+   "region": "Latin America & Caribbean"
   },
   {
    "iso3": "ECU",
    "country": "Ecuador",
    "year": 1998,
    "gdp": 9877,
-   "share": 0.49
+   "share": 0.49,
+   "region": "Latin America & Caribbean"
   },
   {
    "iso3": "UKR",
    "country": "Ukraine",
    "year": 1995,
    "gdp": 10983,
-   "share": 0.216
+   "share": 0.216,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "SRB",
    "country": "Serbia & Montenegro",
    "year": 2002,
    "gdp": 12662,
-   "share": 0.44
+   "share": 0.44,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "PAN",
    "country": "Panama",
    "year": 1997,
    "gdp": 13014,
-   "share": 0.47
+   "share": 0.47,
+   "region": "Latin America & Caribbean"
   },
   {
    "iso3": "PAN",
    "country": "Panama",
    "year": 1997,
    "gdp": 13014,
-   "share": 0.32
+   "share": 0.32,
+   "region": "Latin America & Caribbean"
   },
   {
    "iso3": "BGR",
    "country": "Bulgaria",
    "year": 2001,
    "gdp": 13307,
-   "share": 0.56
+   "share": 0.56,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "IRN",
    "country": "Iran",
    "year": 2003,
    "gdp": 13519,
-   "share": 0.29
+   "share": 0.29,
+   "region": "Middle East, North Africa, Afghanistan & Pakistan"
   },
   {
    "iso3": "BGR",
    "country": "Bulgaria",
    "year": 1995,
    "gdp": 13591,
-   "share": 0.62
+   "share": 0.62,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "MDV",
    "country": "Maldives",
    "year": 2002,
    "gdp": 13690,
-   "share": 0.28
+   "share": 0.28,
+   "region": "South Asia"
   },
   {
    "iso3": "MUS",
    "country": "Mauritius",
    "year": 2001,
    "gdp": 13713,
-   "share": 0.36
+   "share": 0.36,
+   "region": "Sub-Saharan Africa"
   },
   {
    "iso3": "ZAF",
    "country": "South Africa",
    "year": 2008,
    "gdp": 14298,
-   "share": 0.391
+   "share": 0.391,
+   "region": "Sub-Saharan Africa"
   },
   {
    "iso3": "ROU",
    "country": "Romania",
    "year": 1995,
    "gdp": 14863,
-   "share": 0.574
+   "share": 0.574,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "PAN",
    "country": "Panama",
    "year": 2003,
    "gdp": 14958,
-   "share": 0.43
+   "share": 0.43,
+   "region": "Latin America & Caribbean"
   },
   {
    "iso3": "BLR",
    "country": "Belarus",
    "year": 2004,
    "gdp": 15052,
-   "share": 0.39
+   "share": 0.39,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "TUR",
    "country": "Turkey",
    "year": 2003,
    "gdp": 15256,
-   "share": 0.32
+   "share": 0.32,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "BGR",
    "country": "Bulgaria",
    "year": 2004,
    "gdp": 16389,
-   "share": 0.43
+   "share": 0.43,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "BRA",
    "country": "Brazil",
    "year": 2008,
    "gdp": 17113,
-   "share": 0.18
+   "share": 0.18,
+   "region": "Latin America & Caribbean"
   },
   {
    "iso3": "ROU",
    "country": "Romania",
    "year": 2003,
    "gdp": 17587,
-   "share": 0.5
+   "share": 0.5,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "LVA",
    "country": "Latvia",
    "year": 2003,
    "gdp": 18718,
-   "share": 0.37
+   "share": 0.37,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "MEX",
    "country": "Mexico",
    "year": 2002,
    "gdp": 19745,
-   "share": 0.27
+   "share": 0.27,
+   "region": "Latin America & Caribbean"
   },
   {
    "iso3": "POL",
    "country": "Poland",
    "year": 2003,
    "gdp": 19856,
-   "share": 0.33
+   "share": 0.33,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "MEX",
    "country": "Mexico",
    "year": 2004,
    "gdp": 20127,
-   "share": 0.223
+   "share": 0.223,
+   "region": "Latin America & Caribbean"
   },
   {
    "iso3": "LTU",
    "country": "Lithuania",
    "year": 2003,
    "gdp": 20311,
-   "share": 0.45
+   "share": 0.45,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "EST",
    "country": "Estonia",
    "year": 2000,
    "gdp": 20527,
-   "share": 0.444
+   "share": 0.444,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "POL",
    "country": "Poland",
    "year": 2004,
    "gdp": 20879,
-   "share": 0.346
+   "share": 0.346,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "HUN",
    "country": "Hungary",
    "year": 1999,
    "gdp": 21129,
-   "share": 0.393
+   "share": 0.393,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "ARG",
    "country": "Argentina",
    "year": 1996,
    "gdp": 21696,
-   "share": 0.35
+   "share": 0.35,
+   "region": "Latin America & Caribbean"
   },
   {
    "iso3": "HUN",
    "country": "Hungary",
    "year": 2003,
    "gdp": 25256,
-   "share": 0.27
+   "share": 0.27,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "HRV",
    "country": "Croatia",
    "year": 2003,
    "gdp": 25474,
-   "share": 0.29
+   "share": 0.29,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "EST",
    "country": "Estonia",
    "year": 2004,
    "gdp": 27382,
-   "share": 0.32
+   "share": 0.32,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "KOR",
    "country": "Korea",
    "year": 2004,
    "gdp": 31580,
-   "share": 0.26
+   "share": 0.26,
+   "region": "East Asia & Pacific"
   },
   {
    "iso3": "CZE",
    "country": "Czech Republic",
    "year": 2003,
    "gdp": 31949,
-   "share": 0.18
+   "share": 0.18,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "ISR",
    "country": "Israel",
    "year": 2005,
    "gdp": 33492,
-   "share": 0.16
+   "share": 0.16,
+   "region": "Middle East, North Africa, Afghanistan & Pakistan"
   },
   {
    "iso3": "SVN",
    "country": "Slovenia",
    "year": 2004,
    "gdp": 34305,
-   "share": 0.201
+   "share": 0.201,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "HKG",
    "country": "Hong Kong",
    "year": 1999,
    "gdp": 37340,
-   "share": 0.12
+   "share": 0.12,
+   "region": "East Asia & Pacific"
   },
   {
    "iso3": "CYP",
    "country": "Cyprus",
    "year": 2003,
    "gdp": 38618,
-   "share": 0.18
+   "share": 0.18,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "ESP",
    "country": "Spain",
    "year": 2002,
    "gdp": 41766,
-   "share": 0.19
+   "share": 0.19,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "AUS",
    "country": "Australia",
    "year": 1998,
    "gdp": 42257,
-   "share": 0.13
+   "share": 0.13,
+   "region": "East Asia & Pacific"
   },
   {
    "iso3": "FRA",
    "country": "France",
    "year": 2001,
    "gdp": 46455,
-   "share": 0.21
+   "share": 0.21,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "GBR",
    "country": "United Kingdom",
    "year": 2003,
    "gdp": 46505,
-   "share": 0.12
+   "share": 0.12,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "FIN",
    "country": "Finland",
    "year": 2001,
    "gdp": 48099,
-   "share": 0.14
+   "share": 0.14,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "FRA",
    "country": "France",
    "year": 2005,
    "gdp": 48257,
-   "share": 0.17
+   "share": 0.17,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "ITA",
    "country": "Italy",
    "year": 2000,
    "gdp": 50353,
-   "share": 0.305
+   "share": 0.305,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "BEL",
    "country": "Belgium",
    "year": 2001,
    "gdp": 50835,
-   "share": 0.14
+   "share": 0.14,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "ISL",
    "country": "Iceland",
    "year": 2001,
    "gdp": 51468,
-   "share": 0.16
+   "share": 0.16,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "NLD",
    "country": "Netherlands",
    "year": 2000,
    "gdp": 56017,
-   "share": 0.11
+   "share": 0.11,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "USA",
    "country": "United States",
    "year": 2003,
    "gdp": 56505,
-   "share": 0.12
+   "share": 0.12,
+   "region": "North America"
   },
   {
    "iso3": "DNK",
    "country": "Denmark",
    "year": 2001,
    "gdp": 57925,
-   "share": 0.08
+   "share": 0.08,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "MAC",
    "country": "Macau",
    "year": 2002,
    "gdp": 61626,
-   "share": 0.25
+   "share": 0.25,
+   "region": "East Asia & Pacific"
   },
   {
    "iso3": "SGP",
    "country": "Singapore",
    "year": 2002,
    "gdp": 68329,
-   "share": 0.24
+   "share": 0.24,
+   "region": "East Asia & Pacific"
   },
   {
    "iso3": "CHE",
    "country": "Switzerland",
    "year": 2003,
    "gdp": 68521,
-   "share": 0.09
+   "share": 0.09,
+   "region": "Europe & Central Asia"
   },
   {
    "iso3": "NOR",
    "country": "Norway",
    "year": 2002,
    "gdp": 78753,
-   "share": 0.13
+   "share": 0.13,
+   "region": "Europe & Central Asia"
   }
  ],
  "robustness": {

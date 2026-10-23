@@ -1,13 +1,13 @@
 'use client';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { story } from '../../data/storyData';
+import { REGION_COLORS, regionColor } from './regionColors';
 
 const W = 900, H = 460, M = { top: 26, right: 26, bottom: 48, left: 54 };
 const MINX = 700, MAXX = 90000, MAXY = 0.8;
 const x = (g: number) => M.left + ((Math.log(g) - Math.log(MINX)) / (Math.log(MAXX) - Math.log(MINX))) * (W - M.left - M.right);
 const y = (s: number) => M.top + (1 - s / MAXY) * (H - M.top - M.bottom);
 const usd = (v: number) => (v >= 1000 ? `$${(v / 1000).toFixed(v >= 10000 ? 0 : 1)}k` : `$${v}`);
-const ACCENT = '#4c78a8';
 
 const NARRATIVE = new Set(story.highlights.map((h) => `${h.gdp}-${h.share}`));
 const RULE = new Set(story.autoHighlights.map((h) => `${h.gdp}-${h.share}`));
@@ -51,10 +51,10 @@ export function LawChart() {
           {pts.map((p, i) => {
             const key = `${p.gdp}-${p.share}`;
             const isSel = i === idx;
-            const fill = isSel ? '#1b1f23' : NARRATIVE.has(key) ? ACCENT : RULE.has(key) ? '#57606a' : '#9aa4ae';
+            const fill = isSel ? '#1b1f23' : regionColor(p.region);
             return (
               <circle key={i} cx={x(p.gdp)} cy={entered ? y(p.share) : y(0)} r={isSel ? 7 : 4.5}
-                fill={fill} fillOpacity={isSel ? 1 : 0.8} stroke={isSel ? 'white' : 'none'} strokeWidth={1.5}
+                fill={fill} fillOpacity={isSel ? 1 : 0.8} stroke={isSel ? 'white' : NARRATIVE.has(key) || RULE.has(key) ? '#1b1f23' : 'none'} strokeWidth={isSel ? 1.5 : 1}
                 style={{ transition: `cy 0.55s ease ${i * 11}ms, r 0.15s ease, fill 0.15s ease`, cursor: 'pointer' }}
                 onMouseEnter={() => setIdx(i)} onClick={() => setIdx(i)} />
             );
@@ -84,6 +84,11 @@ export function LawChart() {
         <button onClick={() => setIdx((i) => Math.max(0, (i ?? 1) - 1))} className="border border-[#d0d7de] px-2 py-1 hover:text-[#1b1f23]">&larr;</button>
         <button onClick={() => setIdx((i) => Math.min(pts.length - 1, (i ?? -1) + 1))} className="border border-[#d0d7de] px-2 py-1 hover:text-[#1b1f23]">&rarr;</button>
         <span className="hidden md:inline">or hover any dot</span>
+      </div>
+      <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-[#57606a]">
+        {Object.entries(REGION_COLORS).map(([r, c]) => (
+          <span key={r} className="flex items-center gap-1.5"><span className="inline-block w-2.5 h-2.5 rounded-full" style={{ background: c }} />{r}</span>
+        ))}
       </div>
     </div>
   );

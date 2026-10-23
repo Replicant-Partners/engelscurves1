@@ -52,7 +52,10 @@ const robustness = { knotCi: rob.knot_bootstrap_90ci, variants: rob.variants.map
 const csv = fs.readFileSync(new URL('food_share_surveys.csv', dir), 'utf8').trim().split('\n').slice(1);
 const nameByKey = {};
 for (const line of csv) { const c = line.split(','); nameByKey[c[0] + '-' + c[2]] = c[1]; }
-const lawPoints = thr.points.map((p) => ({ iso3: p.iso3, country: nameByKey[p.iso3 + '-' + p.year] ?? p.iso3, year: +p.year, gdp: p.gdp, share: p.share })).sort((x, y) => x.gdp - y.gdp);
+const wbMeta = Object.fromEntries(JSON.parse(fs.readFileSync(new URL('explorer/wb_countries.json', dir), 'utf8'))[1].filter((c) => c.region.value !== 'Aggregates').map((c) => [c.id, c.region.value.trim()]));
+const lawPoints = thr.points.map((p) => ({ iso3: p.iso3, country: nameByKey[p.iso3 + '-' + p.year] ?? p.iso3, year: +p.year, gdp: p.gdp, share: p.share, region: wbMeta[p.iso3] ?? 'Other' })).sort((x, y) => x.gdp - y.gdp);
+const missingRegion = lawPoints.filter((p) => p.region === 'Other').map((p) => p.iso3);
+if (missingRegion.length) console.error('no region for:', [...new Set(missingRegion)].join(','));
 const out = {
   lawPoints,
   robustness,
