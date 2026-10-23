@@ -131,6 +131,11 @@ export function EngelExplorer() {
                 {DS.get(hover.iso3)!.n} {DS.get(hover.iso3)!.n === 1 ? 'family' : 'families'} on Dollar Street &rarr;
               </a>
             )}
+            {['VNM','MEX','BRA','NGA','ARG','IDN'].includes(hover.iso3) && (
+              <a href="/story#chains" className="underline underline-offset-2 pointer-events-auto block mt-1 text-[#4c78a8]">
+                Valuation chain &rarr; chapter 8
+              </a>
+            )}
           </div>
         )}
       </div>
