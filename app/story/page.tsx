@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { FoodShareChart } from '../../components/story/FoodShareChart';
+import { LawChart } from '../../components/story/LawChart';
 import { PhaseTracks } from '../../components/story/PhaseTracks';
 import { HouseholdBars } from '../../components/story/HouseholdBars';
 import { DollarStreetHouses } from '../../components/story/DollarStreetHouses';
@@ -104,9 +105,9 @@ export default function StoryPage() {
         </header>
 
         <Chapter id="law" n="1" title="The law" lede="Poorer households spend most of their budget on food. Richer ones spend a small share. Engel described this in the 19th century; household surveys across the world still show it.">
-          <FoodShareChart mode="law" />
+          <LawChart />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 text-sm leading-relaxed">
-            <p><Tag t="OBS" />A typical household in Ethiopia (2004) spent 54% of its budget on food; in Switzerland (2003), 9%. Each dot is one national survey.</p>
+            <p><Tag t="OBS" />A typical household in Ethiopia (2004) spent 54% of its budget on food; in Switzerland (2003), 9%. Each dot is one national survey; the chart fills poorest to richest as you arrive, and the slider walks it one household survey at a time.</p>
             <p><Tag t="OBS" />The pattern holds across income groups: over 50% in low-income countries, 40&ndash;50% in lower-middle and 30&ndash;40% in upper-middle income countries<Cite ids={[10]} />. Between countries, being 50% richer means a food share about 5 points lower<Cite ids={[9]} />.</p>
           </div>
           <Record>

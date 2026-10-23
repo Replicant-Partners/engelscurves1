@@ -48,7 +48,13 @@ const highlights = [['ETH', 2004, 'Ethiopia 2004'], ['IDN', 2007, 'Indonesia 200
 
 const labels = { 'all': 'All 85 surveys', 'excl BRA-2008, PAK-2010, PHL-2009 (definition issues)': 'Without 3 surveys with definition issues', 'one observation per country (latest)': 'One survey per country (latest)', 'excl LSMS table A.1': 'Without World Bank LSMS surveys', 'excl ILO tables A.4a/A.4b': 'Without ILO surveys' };
 const robustness = { knotCi: rob.knot_bootstrap_90ci, variants: rob.variants.map((v) => ({ label: labels[v.label], n: v.n, knot: v.knot, supF: v.supF, significant: v.supF > 8.85 })) };
+// Chapter-1 interactive points: survey points joined to country names from the source CSV.
+const csv = fs.readFileSync(new URL('food_share_surveys.csv', dir), 'utf8').trim().split('\n').slice(1);
+const nameByKey = {};
+for (const line of csv) { const c = line.split(','); nameByKey[c[0] + '-' + c[2]] = c[1]; }
+const lawPoints = thr.points.map((p) => ({ iso3: p.iso3, country: nameByKey[p.iso3 + '-' + p.year] ?? p.iso3, year: +p.year, gdp: p.gdp, share: p.share })).sort((x, y) => x.gdp - y.gdp);
 const out = {
+  lawPoints,
   robustness,
   piecewise: { knot: Math.round(Math.exp(best.k)), slopeBelow: +best.be[1].toFixed(4), slopeAbove: +(best.be[1] + best.be[2]).toFixed(4), c0: +best.be[0].toFixed(4) },
   piecewiseLine, highlights, autoHighlights, tracks, household,
