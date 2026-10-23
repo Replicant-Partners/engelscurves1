@@ -1,6 +1,6 @@
 {
   "date": "2026-10-23",
-  "methodology": "For each pair: Engel income-elasticity chain → company financials [OBS] from public markets data → implied terminal growth from forward P/E (g = 1/PE - discount_rate, discount_rate=9%) → comparison with actual revenue growth → verdict. Sources: stockanalysis.com, Yahoo Finance, multiples.vc, company earnings releases. All multiples marked as of late October 2026.",
+  "methodology": "For each pair: Engel income-elasticity chain \u2192 company financials [OBS] from public markets data \u2192 implied terminal growth from forward P/E (g = 1/PE - discount_rate, discount_rate=9%) \u2192 comparison with actual revenue growth \u2192 verdict. Sources: stockanalysis.com, Yahoo Finance, multiples.vc, company earnings releases. All multiples marked as of late October 2026.",
   "discount_rate": 0.09,
   "pairs": [
     {
@@ -10,7 +10,7 @@
       "engel_phase": "Transition (83% exit by 2030)",
       "category": "Consumer electronics / durables",
       "eta_oecd": 1.152,
-      "chain": "Vietnam income rises in transition → durables/electronics budget share increases (η=1.15) → MWG captures the moment households buy first smartphone/refrigerator → revenue grows faster than income",
+      "chain": "Vietnam income rises in transition \u2192 durables/electronics budget share increases (\u03b7=1.15) \u2192 MWG captures the moment households buy first smartphone/refrigerator \u2192 revenue grows faster than income",
       "company": "Mobile World Investment Corp (MWG)",
       "ticker": "MWG HOSE",
       "source_multiples": "investing.com, Shinhan Securities report",
@@ -22,8 +22,8 @@
       "implied_g_terminal": -0.0007,
       "growth_premium_vs_implied": 0.166,
       "verdict": "NOT DISCOUNTED",
-      "verdict_detail": "Forward P/E of 11.2x implies near-zero terminal growth (g≈0%). Actual revenue +16.5% YoY with H1-2026 at +28.5% YoY. The Engel transition in Vietnam has barely started (food share still 37%), MWG has 95%+ Vietnam exposure, and the market prices it as a mature no-growth business. Either the market is wrong about long-run growth, or it is discounting the FX/import-cost risk (most goods are imported from China). ROE 30%, EV/EBITDA 6.2x.",
-      "falsifier": "Vietnam's consumer electronics market is import-dependent. If USD/VND appreciates or China raises export prices, MWG's margins compress independently of income growth — breaking the Engel→company link."
+      "verdict_detail": "Forward P/E of 11.2x implies near-zero terminal growth (g\u22480%). Actual revenue +16.5% YoY with H1-2026 at +28.5% YoY. The Engel transition in Vietnam has barely started (food share still 37%), MWG has 95%+ Vietnam exposure, and the market prices it as a mature no-growth business. Either the market is wrong about long-run growth, or it is discounting the FX/import-cost risk (most goods are imported from China). ROE 30%, EV/EBITDA 6.2x.",
+      "falsifier": "Vietnam's consumer electronics market is import-dependent. If USD/VND appreciates or China raises export prices, MWG's margins compress independently of income growth \u2014 breaking the Engel\u2192company link."
     },
     {
       "id": 2,
@@ -33,7 +33,7 @@
       "category": "Restaurants/services + Health (convenience + pharma)",
       "eta_oecd_restaurants": 1.279,
       "eta_oecd_health": 1.264,
-      "chain": "Mexico already post-transition → food share at 25.7% → freed budget goes to convenience services (OXXO) and health/pharma (YZA, Moderna pharmacies) → FEMSA captures both at 24,000+ locations",
+      "chain": "Mexico already post-transition \u2192 food share at 25.7% \u2192 freed budget goes to convenience services (OXXO) and health/pharma (YZA, Moderna pharmacies) \u2192 FEMSA captures both at 24,000+ locations",
       "company": "FEMSA (FMX NYSE / FEMSAUBD BMV)",
       "ticker": "FMX NYSE",
       "source_multiples": "stockanalysis.com as of Oct 2026",
@@ -42,13 +42,17 @@
       "ev_ebitda": 8.58,
       "ev_usd_bn": 50.56,
       "market_cap_usd_bn": 38.85,
-      "revenue_growth_actual": 0.063,
+      "revenue_growth_actual": 0.076,
       "health_division_growth": 0.105,
-      "oxxo_stores": 24000,
+      "oxxo_stores": 25587,
       "implied_g_terminal": -0.0442,
       "verdict": "FAIRLY VALUED / SLIGHTLY DISCOUNTED",
-      "verdict_detail": "Forward P/E of 21.82x implies slight negative terminal growth (g≈-4.4%), which seems pessimistic for a company that grew revenue 6.3% and opened 1,000+ OXXO stores. However, FEMSA's consolidated P/E includes the low-margin Coca-Cola FEMSA bottling business (~40% of revenues); the pure-play OXXO and Health businesses are valued higher internally. At EV/EBITDA 8.58x with 11% health division growth, the Engel premium may not yet be visible in the consolidated multiple. YTD return +33.5% vs benchmark +8.7% — market may be catching up.",
-      "falsifier": "FEMSA's Mexico operations face 'tepid consumer spending' (their own Q2-2026 words) with transaction count declining -1.1%. If the consumption recovery stalls, the Engel mechanism is structurally present but the timing is poor. Mexico's formal retail also faces competition from informal sector and Mercado Libre e-commerce."
+      "verdict_detail": "Forward P/E of 21.82x implies slight negative terminal growth (g\u2248-4.4%), which seems pessimistic for a company that grew revenue 6.3% and opened 1,000+ OXXO stores. However, FEMSA's consolidated P/E includes the low-margin Coca-Cola FEMSA bottling business (~40% of revenues); the pure-play OXXO and Health businesses are valued higher internally. At EV/EBITDA 8.58x with 11% health division growth, the Engel premium may not yet be visible in the consolidated multiple. YTD return +33.5% vs benchmark +8.7% \u2014 market may be catching up.",
+      "falsifier": "FEMSA's Mexico operations face 'tepid consumer spending' (their own Q2-2026 words) with transaction count declining -1.1%. If the consumption recovery stalls, the Engel mechanism is structurally present but the timing is poor. Mexico's formal retail also faces competition from informal sector and Mercado Libre e-commerce.",
+      "revenue_fy2025_mxnM": 840954,
+      "ebitda_margin_fy2025": 0.149,
+      "health_division_growth_fy2025": 0.105,
+      "note_fy2025": "FY2025 AR: revenues Ps.840,954M (+7.6%); OXXO 25,587 stores; Health +10.5%; EBITDA margin 14.9%"
     },
     {
       "id": 3,
@@ -58,7 +62,7 @@
       "category": "Education + Health",
       "eta_oecd_education": 0.974,
       "eta_oecd_health": 1.264,
-      "chain": "Brazil post-transition since ~2000s → education share rising (4.7% of household budget per POF 2017-18) → first generation of families sending children to private university → Yduqs captures the demand",
+      "chain": "Brazil post-transition since ~2000s \u2192 education share rising (4.7% of household budget per POF 2017-18) \u2192 first generation of families sending children to private university \u2192 Yduqs captures the demand",
       "company_1": "Yduqs (YDUQ3 B3)",
       "company_2": "Rede D'Or (RDOR3 B3)",
       "source_multiples": "Yahoo Finance key-statistics, stockanalysis.com as of Oct 2026",
@@ -66,14 +70,14 @@
         "ticker": "YDUQ3 B3",
         "pe_fwd": 6.0,
         "pe_trailing": 25.9,
-        "ev_ebitda": 4.30,
+        "ev_ebitda": 4.3,
         "market_cap_brl_bn": 2.76,
         "revenue_ttm_brl_bn": 5.54,
         "fcf_growth_2025": 0.32,
         "implied_g_terminal": 0.0767,
         "growth_premium_vs_implied": 0.243,
         "verdict": "DEEPLY UNDERVALUED vs FCF growth",
-        "verdict_detail": "Forward P/E 6.0x implies 7.7% terminal growth — modest. Actual FCF grew 32% YoY in 2025. The gap between implied growth (7.7%) and actual growth (32%) is 24 percentage points. This is either a significant value opportunity or the market is pricing in a structural risk: Brazil's PROUNI/FIES policy reversal, high debt levels (EV R$7.08B vs mkt cap R$2.76B), or margin compression. EV/EBITDA at 4.3x is exceptionally cheap for an education business with 14% student intake growth. Dividend yield 7.2%."
+        "verdict_detail": "Forward P/E 6.0x implies 7.7% terminal growth \u2014 modest. Actual FCF grew 32% YoY in 2025. The gap between implied growth (7.7%) and actual growth (32%) is 24 percentage points. This is either a significant value opportunity or the market is pricing in a structural risk: Brazil's PROUNI/FIES policy reversal, high debt levels (EV R$7.08B vs mkt cap R$2.76B), or margin compression. EV/EBITDA at 4.3x is exceptionally cheap for an education business with 14% student intake growth. Dividend yield 7.2%."
       },
       "rdor": {
         "ticker": "RDOR3 B3",
@@ -86,7 +90,7 @@
         "net_income_growth_ttm": 0.173,
         "implied_g_terminal": -0.0244,
         "verdict": "FAIRLY VALUED",
-        "verdict_detail": "Forward P/E 15.24x implies slight negative terminal growth (-2.4%) — reasonable for a large hospital group. Revenue +9.4% YoY and net income +17.3% YoY. Oncology +22.3% is the Engel play within the company: as Brazil's middle class ages and income rises, complex care replaces routine care. EV/EBITDA 6.91x vs 10-11x for Indian healthcare peers — Brazil discount applies."
+        "verdict_detail": "Forward P/E 15.24x implies slight negative terminal growth (-2.4%) \u2014 reasonable for a large hospital group. Revenue +9.4% YoY and net income +17.3% YoY. Oncology +22.3% is the Engel play within the company: as Brazil's middle class ages and income rises, complex care replaces routine care. EV/EBITDA 6.91x vs 10-11x for Indian healthcare peers \u2014 Brazil discount applies."
       },
       "falsifier": "Brazil's FIES student finance program has been cut multiple times; any further cuts would directly reduce Yduqs enrollment. For Rede D'Or, Brazil's SUS public hospital system competes in routine care; NHI discussion (private hospital reimbursement changes) is a systemic risk."
     },
@@ -97,7 +101,7 @@
       "engel_phase": "Paradox (GDP $7,843 but food=59%, flat 2017-2023)",
       "category": "Communication/data (as de facto first non-food priority)",
       "eta_oecd": 0.788,
-      "chain": "Nigeria: classic Engel mechanism BLOCKED by inequality and food inflation → instead, data and mobile money are the first non-food purchase even for low-income households → MTN captures data growth and fintech",
+      "chain": "Nigeria: classic Engel mechanism BLOCKED by inequality and food inflation \u2192 instead, data and mobile money are the first non-food purchase even for low-income households \u2192 MTN captures data growth and fintech",
       "company": "MTN Nigeria Communications Plc (MTNN NGX)",
       "ticker": "MTNN NGX",
       "source_multiples": "stockanalysis.com NGX MTNN, simplywall.st H1-2026",
@@ -111,8 +115,15 @@
       "ebitda_margin_target": 0.55,
       "implied_g_terminal": -0.0082,
       "verdict": "CHEAP on multiples, but growth is partly inflation-driven",
-      "verdict_detail": "P/E 12.23x implies near-zero terminal growth (-0.8%). Actual revenue +25.9% H1-2026, data +38.4%. However, Nigeria's 2023 naira devaluation created a large baseline FX effect in NGN revenues — USD-equivalent revenue at LTM $4.6B grew more modestly. Management targets: service revenue low-20%+ growth, EBITDA margins mid-to-high 50%. EV/EBITDA 6.09x is cheap. The Engel thesis for Nigeria is that data is a 'gateway luxury' before income fully crosses the threshold — but the refutation is that this growth may deflate once the naira stabilises. The fintech (Fintech revenue -7.2% H1-2026) is disappointing.",
-      "falsifier": "MTN Nigeria's revenue growth is partly naira re-pricing after the devaluation. If the naira stabilises and real income doesn't grow (Nigeria's GDP per capita has been flat-to-falling in USD terms since 2015), the data demand growth slows to population growth + penetration rates, not to an Engel curve shift."
+      "verdict_detail": "P/E 12.23x implies near-zero terminal growth (-0.8%). Actual revenue +25.9% H1-2026, data +38.4%. However, Nigeria's 2023 naira devaluation created a large baseline FX effect in NGN revenues \u2014 USD-equivalent revenue at LTM $4.6B grew more modestly. Management targets: service revenue low-20%+ growth, EBITDA margins mid-to-high 50%. EV/EBITDA 6.09x is cheap. The Engel thesis for Nigeria is that data is a 'gateway luxury' before income fully crosses the threshold \u2014 but the refutation is that this growth may deflate once the naira stabilises. The fintech (Fintech revenue -7.2% H1-2026) is disappointing.",
+      "falsifier": "MTN Nigeria's revenue growth is partly naira re-pricing after the devaluation. If the naira stabilises and real income doesn't grow (Nigeria's GDP per capita has been flat-to-falling in USD terms since 2015), the data demand growth slows to population growth + penetration rates, not to an Engel curve shift.",
+      "revenue_growth_fy2025_ngn": 0.551,
+      "data_users_M": 53.2,
+      "subscribers_M": 87.3,
+      "market_share_gsm_pct": 38.5,
+      "ebitda_margin_fy2025": 0.527,
+      "pat_fy2025_ngn_tn": 1.1,
+      "note_fy2025": "FY2025: service revenue N5.2tn (+55.1% NGN); naira strengthened N1535\u2192N1436/USD \u2192 real growth in USD; EBITDA 52.7%; PAT N1.1tn vs loss N400B in 2024; FCF N1.2tn (+215%); NGX market share 38.5% (NCC data)"
     },
     {
       "id": 5,
@@ -120,21 +131,24 @@
       "iso3": "ARG",
       "engel_phase": "Post-transition GDP but macro overwhelmed (food 23.1%, INDEC GAP)",
       "category": "Financial services (inflation-driven, not income-driven)",
-      "eta_oecd": 1.370,
-      "chain": "Argentina: Engel post-transition (GDP $27,847) → BUT hyperinflation means financial services are sought for protection, not because income rose → GGAL captures the formalisation play under Milei stability scenario",
+      "eta_oecd": 1.37,
+      "chain": "Argentina: Engel post-transition (GDP $27,847) \u2192 BUT hyperinflation means financial services are sought for protection, not because income rose \u2192 GGAL captures the formalisation play under Milei stability scenario",
       "company": "Grupo Financiero Galicia (GGAL Nasdaq ADR / GGAL.BA BYMA)",
       "ticker": "GGAL Nasdaq",
       "source_multiples": "Yahoo Finance, Morningstar, investing.com as of Oct 2026",
-      "pe_ttm": 42.60,
+      "pe_ttm": 42.6,
       "pb": 0.96,
       "market_cap_usd_bn": 6.42,
       "ytd_return_pct": 27.57,
-      "analyst_target_avg_usd": 62.20,
-      "analyst_range": [45.0, 85.0],
+      "analyst_target_avg_usd": 62.2,
+      "analyst_range": [
+        45.0,
+        85.0
+      ],
       "implied_g_terminal": -0.0665,
-      "verdict": "MACRO PLAY, NOT ENGEL PLAY — currently at discount to book",
-      "verdict_detail": "P/B of 0.96x means the market prices GGAL below its book value — deeply unusual for a profitable bank with ROE 13.3% (Morningstar normalized). P/E 42.6x on TTM earnings is high, but Argentina earnings are hyperinflation-adjusted, making the multiple unreliable. The investment thesis is Milei macro-stabilisation: if Argentina achieves stable inflation and the ARS normalises, GGAL re-rates to 2-3x book (vs current 0.96x). JPMorgan has a $85 target, Itau BBA $60. The Engel angle is secondary to the macro one. Argentina financial services DO have a structural under-penetration story (credit to GDP ~13%), but realising it requires stable macro, not just rising incomes.",
-      "falsifier": "Argentina's macro is the falsifier. If Milei's shock therapy fails, inflation returns to 100%+, and real incomes continue to fall, GGAL's earnings compress and the book value erodes in USD terms. The Engel thesis requires stable incomes — incompatible with Argentine macro risk."
+      "verdict": "MACRO PLAY, NOT ENGEL PLAY \u2014 currently at discount to book",
+      "verdict_detail": "P/B of 0.96x means the market prices GGAL below its book value \u2014 deeply unusual for a profitable bank with ROE 13.3% (Morningstar normalized). P/E 42.6x on TTM earnings is high, but Argentina earnings are hyperinflation-adjusted, making the multiple unreliable. The investment thesis is Milei macro-stabilisation: if Argentina achieves stable inflation and the ARS normalises, GGAL re-rates to 2-3x book (vs current 0.96x). JPMorgan has a $85 target, Itau BBA $60. The Engel angle is secondary to the macro one. Argentina financial services DO have a structural under-penetration story (credit to GDP ~13%), but realising it requires stable macro, not just rising incomes.",
+      "falsifier": "Argentina's macro is the falsifier. If Milei's shock therapy fails, inflation returns to 100%+, and real incomes continue to fall, GGAL's earnings compress and the book value erodes in USD terms. The Engel thesis requires stable incomes \u2014 incompatible with Argentine macro risk."
     },
     {
       "id": 6,
@@ -143,7 +157,7 @@
       "engel_phase": "Transition (66% exit by 2030, food share 33.5%)",
       "category": "Health",
       "eta_oecd": 1.264,
-      "chain": "Indonesia income rises through transition → health share grows (η=1.26) → private hospitals capture out-of-pocket spending as middle class upgrades from public BPJS → Siloam captures volume; Mitra captures premium",
+      "chain": "Indonesia income rises through transition \u2192 health share grows (\u03b7=1.26) \u2192 private hospitals capture out-of-pocket spending as middle class upgrades from public BPJS \u2192 Siloam captures volume; Mitra captures premium",
       "company": "Siloam International Hospitals (SILO IDX)",
       "ticker": "SILO IDX",
       "source_multiples": "investing.com, multiples.vc as of Oct 2026",
@@ -152,19 +166,40 @@
       "market_cap_idr_tn": 23.31,
       "revenue_usd_m_ltm": 756,
       "ebitda_margin": 0.24,
-      "revenue_growth_actual": 0.07,
+      "revenue_growth_actual": 0.052,
       "implied_g_terminal": -0.0371,
       "verdict": "SLIGHTLY RICH vs current growth, NEUTRAL vs Engel projection",
-      "verdict_detail": "P/E 18.9x implies negative terminal growth (-3.7%), which appears conservative given Indonesia's transition dynamics. BUT actual revenue growth is only 7% (vs 9% and 5% forecast in 2025/2026). The Engel thesis for Indonesia is not yet showing in revenue data — either because (1) BPJS is absorbing the increased demand, (2) the transition is too early to show in revenue, or (3) SILO's growth is capacity-constrained. EV/EBITDA 10.3x is reasonable for an emerging market hospital. The stock is -4.7% in the past year vs broader IDX. Mitra Keluarga (MIKA), not covered here, has higher margins (38.3% EBITDA) but serves a different income segment.",
-      "falsifier": "BPJS Kesehatan covers 95% of Indonesia's population with government-subsidised healthcare. Any routine procedure that BPJS covers cannibalises private hospital volume. The Engel private healthcare play requires the middle class to choose private over BPJS for speed, quality, or services not covered — which is happening but slowly."
+      "verdict_detail": "P/E 18.9x implies negative terminal growth (-3.7%), which appears conservative given Indonesia's transition dynamics. BUT actual revenue growth is only 7% (vs 9% and 5% forecast in 2025/2026). The Engel thesis for Indonesia is not yet showing in revenue data \u2014 either because (1) BPJS is absorbing the increased demand, (2) the transition is too early to show in revenue, or (3) SILO's growth is capacity-constrained. EV/EBITDA 10.3x is reasonable for an emerging market hospital. The stock is -4.7% in the past year vs broader IDX. Mitra Keluarga (MIKA), not covered here, has higher margins (38.3% EBITDA) but serves a different income segment.",
+      "falsifier": "BPJS Kesehatan covers 95% of Indonesia's population with government-subsidised healthcare. Any routine procedure that BPJS covers cannibalises private hospital volume. The Engel private healthcare play requires the middle class to choose private over BPJS for speed, quality, or services not covered \u2014 which is happening but slowly.",
+      "market_share_private_hosp_pct": 9.0,
+      "hospitals": 41,
+      "beds": 4310,
+      "occupancy_rate_pct": 64.2,
+      "ebitda_margin_fy2025": 0.291,
+      "net_profit_growth_fy2025": 0.225,
+      "note_fy2025": "FY2025 IDX filing: revenue Rp9.95tn (+5.2%); EBITDA Rp2.90tn (+18.3%); net profit +22.5%; 9% private hospital market share (StocksBNB 2024)"
     }
   ],
   "summary": {
-    "not_discounted": ["VNM_MWG"],
-    "deeply_undervalued": ["BRA_YDUQ3"],
-    "fairly_valued": ["MEX_FEMSA", "BRA_RDOR3"],
-    "slightly_rich": ["IDN_SILO"],
-    "cheap_with_caveat": ["NGA_MTNN"],
-    "macro_play_not_engel": ["ARG_GGAL"]
-  }
+    "not_discounted": [
+      "VNM_MWG"
+    ],
+    "deeply_undervalued": [
+      "BRA_YDUQ3"
+    ],
+    "fairly_valued": [
+      "MEX_FEMSA",
+      "BRA_RDOR3"
+    ],
+    "slightly_rich": [
+      "IDN_SILO"
+    ],
+    "cheap_with_caveat": [
+      "NGA_MTNN"
+    ],
+    "macro_play_not_engel": [
+      "ARG_GGAL"
+    ]
+  },
+  "data_vintage": "FY2025 primary filings (FEMSA AR 2025, SILO IDX Mar-2026, MTNN Feb-2026)"
 }

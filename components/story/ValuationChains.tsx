@@ -19,10 +19,10 @@ const PAIRS = [
     id: 2, symbol: 'FMX', market: 'Mexico', company: 'FEMSA (FMX)',
     ticker: 'FMX NYSE', engelPhase: 'Post-transition', eta: 1.28,
     category: 'Convenience retail + Health/pharma',
-    impliedG: -0.0442, actualG: 0.063, pe: 21.82, peType: 'fwd',
+    impliedG: -0.0442, actualG: 0.076, pe: 21.82, peType: 'fwd',  // FY2025 AR: +7.6%
     verdictCode: 'FAIRLY_VALUED', verdictLabel: 'Fairly valued',
     prob: 0.368, forecastQ: 'TSR > 20% + Health div > 15% by Dec 2027',
-    chain: 'Post-transition: food at 25.7% → freed budget → OXXO convenience (η=1.28) + pharma (η=1.26) → FEMSA captures both at 24 k+ locations',
+    chain: 'Post-transition: food at 25.7% → freed budget → OXXO convenience (η=1.28) + pharma (η=1.26) → FEMSA captures both at 25,587 OXXO + 3 k+ pharmacies; Health div +10.5% FY2025; 13M OXXO tickets/day in Mexico',
     falsifier: 'Tepid Mexico consumer spending (FEMSA Q2-2026); OXXO transactions −1.1%; informal/e-commerce competition; MXN depreciation.',
   },
   {
@@ -44,7 +44,7 @@ const PAIRS = [
     impliedG: -0.0082, actualG: 0.259, pe: 12.23, peType: 'trailing',
     verdictCode: 'CHEAP_WITH_CAVEAT', verdictLabel: 'Cheap, growth caveat',
     prob: 0.335, forecastQ: 'Data revenue > 20% YoY H2-26 + FY27 (organic)',
-    chain: 'Engel blocked (food=59% flat despite GDP $7.8k) → data is first non-food purchase at all income levels → MTN captures data + fintech as precursor demand',
+    chain: 'Engel blocked (food=59% flat despite GDP $7.8k) → data is first non-food purchase at all income levels → MTN captures data + fintech; FY2025: service rev +55.1% NGN (naira strengthened N1535→N1436/USD — real growth); EBITDA 52.7%; market share 38.5% (NCC); 53.2M data users',
     falsifier: 'Revenue growth is naira re-pricing after 2023 devaluation; if naira stabilises and real income stagnates, growth reverts to population + penetration only.',
   },
   {
@@ -65,10 +65,10 @@ const PAIRS = [
     id: 6, symbol: 'SILO', market: 'Indonesia', company: 'Siloam (SILO)',
     ticker: 'SILO IDX', engelPhase: 'Transition', eta: 1.26,
     category: 'Private hospital healthcare',
-    impliedG: -0.0371, actualG: 0.07, pe: 18.9, peType: 'trailing',
+    impliedG: -0.0371, actualG: 0.052, pe: 18.9, peType: 'trailing',  // FY2025: +5.2% revenue
     verdictCode: 'SLIGHTLY_RICH', verdictLabel: 'Slightly rich',
     prob: 0.349, forecastQ: 'Revenue > 12% FY2027 + IDX outperform >10%',
-    chain: 'Transition (66% exit by 2030) → health share ↑ (η=1.26) → middle class upgrades from public BPJS → Siloam captures out-of-pocket premium care',
+    chain: 'Transition (66% exit by 2030) → health share ↑ (η=1.26) → middle class upgrades from public BPJS → Siloam: 9% private hospital market share; 41 hospitals; EBITDA 29.1% FY2025; revenue +5.2% — BPJS headwind visible but EBITDA margin expanding',
     falsifier: 'BPJS covers 95% of population; any expansion to non-emergency care cannibalises private volume; current 7% growth suggests Engel not yet showing.',
   },
 ] as const;
