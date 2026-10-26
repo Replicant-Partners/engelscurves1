@@ -495,27 +495,81 @@ export default function StoryPage() {
           id="chains"
           n="7"
           title="Who captures the transition?"
-          lede="The Engel mechanism identifies which categories of spending grow as incomes rise. The investment question is which listed companies sit in those categories — and whether current prices already discount the growth."
+          lede="Chapters 1–6 showed where the transition is happening and at what speed. This chapter asks the harder question: which listed companies sit in the spending categories that grow as incomes rise — and does the current stock price already know?"
         >
-          <p className="text-sm leading-relaxed mb-6">
-            <Tag t="JDG" />Chapters 1&ndash;6 established the mechanism, the data, and the country-level predictions. This chapter traces the last mile: income change &rarr; budget share shift &rarr; industry revenue &rarr; one or two listed companies per market. For each pair we compute the implied terminal growth embedded in the current stock price and compare it with observed revenue growth. A second section asks whether the early company-level signals already confirm what the macro predicts. Six market-company pairs trace the chain: income change &rarr; budget share shift &rarr; industry revenue &rarr; one or two listed companies. For each pair we compute the growth rate the current price implicitly assumes (implied terminal growth, derived from forward P/E and a 9% discount rate), compare it with recent observed revenue growth, and assign a calibrated probability to a one-year thesis question using the Tetlock superforecasting pipeline. Click a row to expand the full chain and falsifier.
+
+          {/* ── Intro ─────────────────────────────────────────────────── */}
+          <p className="text-[15px] leading-[1.75] mb-5">
+            <Tag t="JDG" />The Engel mechanism is directional, not company-specific. It says that as Vietnam&rsquo;s households cross $6.6k, they redirect spending from food toward electronics, health, and services. It does not say which firm captures that redirection. The second step — from category growth to company revenue to stock price — requires a separate chain of reasoning, and that chain can fail at every link.
           </p>
+          <p className="text-[15px] leading-[1.75] mb-10">
+            <Tag t="OBS" />For each of the six pairs below, we verify the chain against FY2025 primary filings, compute the growth rate the current price implicitly assumes (implied terminal growth = 1/P/E &minus; 9%), and compare it with observed revenue or FCF growth. The gap between the two is the market&rsquo;s apparent mispricing of the transition — if it exists. Calibrated probabilities (Tetlock &amp; Gardner 2015) assign a one-year confidence to each thesis.
+          </p>
+
+          {/* ── Archetype taxonomy ────────────────────────────────────── */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div className="border-l-2 border-[#2c6e49] pl-4">
+              <div className="font-semibold mb-2 text-[#2c6e49]">Pure Engel plays</div>
+              <p className="text-sm leading-[1.7]">MWG (Vietnam) and Yduqs (Brazil). The budget-share shift is the primary driver. Vietnam electronics and Brazilian first-generation university access are direct readings of the transition.</p>
+            </div>
+            <div className="border-l-2 border-[#4c78a8] pl-4">
+              <div className="font-semibold mb-2 text-[#4c78a8]">Engel + structural</div>
+              <p className="text-sm leading-[1.7]">FEMSA (Mexico) and Siloam (Indonesia). The mechanism is present but structural headwinds — tepid Mexico consumer spending, BPJS coverage in Indonesia — delay the translation from income growth to company revenue.</p>
+            </div>
+            <div className="border-l-2 border-[#7c5c9e] pl-4">
+              <div className="font-semibold mb-2 text-[#7c5c9e]">Macro overlay</div>
+              <p className="text-sm leading-[1.7]">GGAL (Argentina) and MTN Nigeria. The Engel thesis exists — financial services (η=1.37) and mobile data as a precursor luxury — but macro overwhelms the mechanism. These are explicitly labelled as macro plays.</p>
+            </div>
+          </div>
+
+          {/* ── Valuation chains + charts ─────────────────────────────── */}
           <ValuationChains />
 
-          <div style={{ marginTop: 48 }}>
-            <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">PART II OF THIS CHAPTER</div>
-            <h3 className="text-xl font-semibold tracking-tight mb-2">Are they capturing it yet? Early signals</h3>
-            <p className="text-sm text-[#57606a] leading-relaxed mb-0">
-              The valuation chains above ask <em>who could</em> capture the transition. This section asks <em>who already is</em>: which company-level metrics confirm the Engel mechanism is showing up in observed financials. FY2025 primary filings. Click a pair to expand.
+          {/* ── Reading guide ─────────────────────────────────────────── */}
+          <div className="mt-10 p-6 bg-[#f6f8fa] border border-[#e1e4e8] rounded-lg">
+            <p className="text-xs font-mono text-[#57606a] tracking-widest mb-5">HOW TO READ THE SCATTER ABOVE</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div>
+                <p className="font-semibold text-sm mb-2">Above the diagonal &rarr; market underprices growth</p>
+                <p className="text-sm leading-[1.7] text-[#57606a]">Actual recent revenue growth exceeds what the current P/E implies. MWG and YDUQ3 are the clearest cases: priced as zero/low growth while delivering 16% and 32% FCF respectively.</p>
+              </div>
+              <div>
+                <p className="font-semibold text-sm mb-2">Near the diagonal &rarr; fairly priced</p>
+                <p className="text-sm leading-[1.7] text-[#57606a]">Market pricing roughly matches observed performance. FEMSA and SILO sit close — not obviously cheap or expensive relative to what we can observe today.</p>
+              </div>
+              <div>
+                <p className="font-semibold text-sm mb-2">The essential caveat</p>
+                <p className="text-sm leading-[1.7] text-[#57606a]">Implied terminal growth is a residual — what the price assumes about the indefinite future, not a forecast. The diagonal is a benchmark for conversation, not a verdict. Each pair states its own falsifier.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* ── Analytical synthesis ──────────────────────────────────── */}
+          <div className="mt-8 pl-6 border-l-4 border-[#1b1f23]">
+            <p className="text-xs font-mono text-[#57606a] tracking-widest mb-4">ANALYTICAL SYNTHESIS</p>
+            <p className="text-[15px] leading-[1.75] mb-4">
+              <Tag t="JDG" />Across the six pairs, markets consistently price transition-phase companies as if growth will stall. MWG at 11.2&times; fwd P/E implies near-zero terminal growth in a market growing at 8% GDP with food share still at 37% — priced as a mature no-growth business while the transition has barely started. Vietnam consumer electronics e-commerce was up 23% in 2025. The stock since re-rated to 17.9&times; TTM (April 2026) — one visible sign the market is beginning to price the mechanism in.
+            </p>
+            <p className="text-[15px] leading-[1.75] text-[#57606a]">
+              The most asymmetric case by expected value is YDUQ3 (+13.6% EV): fwd P/E 6&times; implies 7.7% terminal growth, but FCF grew 32% in FY2025 &mdash; a historic milestone. The market prices on revenue (+3.2%) rather than FCF (+32%), creating a persistent valuation gap if the deleveraging trajectory holds. The macro and paradox cases (GGAL, MTNN) are included deliberately: where macro overwhelms Engel, the thesis changes character but remains traceable to the same underlying mechanism &mdash; the freed-up budget that the transition creates.
+            </p>
+          </div>
+
+          {/* ── From theory to observation ───────────────────────────── */}
+          <div className="mt-14 pt-8 border-t border-[#d0d7de]">
+            <p className="text-xs font-mono text-[#57606a] tracking-widest mb-1">FROM THEORY TO OBSERVATION</p>
+            <h3 className="text-xl font-semibold tracking-tight mb-3">Are they capturing it yet?</h3>
+            <p className="text-[15px] leading-[1.75] text-[#57606a] mb-8">
+              The chains above answer who <em>should</em> benefit. This section answers the harder question: which companies already show it in their numbers? FY2025 primary filings, pair by pair. Two confirmed, three mixed, one falsifier structurally weakened. Click any pair to expand its signal detail.
             </p>
             <EarlySignals />
           </div>
 
           <Record>
-            <p><strong>Mechanism.</strong> The link from income to category demand rests on Clements &amp; Chen (2010): &ldquo;when the relative price of food is constant, [the food share equation] implies d&#x175; &asymp; &beta;Q&#x302;, with &beta; = w(&eta; &minus; 1)&rdquo; &mdash; the budget share falls when the elasticity is below 1. Their 42-country cross-section yields a median slope &beta; &asymp; &minus;0.13 (food-share change per log-point of income, R&sup2;&thinsp;=&thinsp;0.85). That is the slope every chain below uses to link a country&rsquo;s income position to its freed-up budget. <Tag t="OBS" /></p>
-            <p><strong>Middle-class threshold.</strong> Kharas (2017) defines the global middle class as households with per capita incomes &ldquo;between $10 and $100 per person per day (pppd) in 2005 PPP terms&rdquo; &mdash; $11&ndash;$110 in 2011 PPP. The six pairs are chosen from countries already at or approaching this band: the freed-up wallet is not hypothetical but observable in current household survey data. <Tag t="OBS" /></p>
-            <p><strong>Data vintage.</strong> Revenue growth: FY2025 primary filings for FEMSA (AR Mar-2026), Siloam (IDX Mar-2026), MTN Nigeria (NGX Feb-2026); H1-2026 for MWG and MTNN where more recent. Multiples as of late Oct 2026. P/E type: forward for MWG, FMX, YDUQ3; trailing for MTNN and SILO; TTM for GGAL &mdash; see footnote ¹ in the chart. All six <code>forecast_persist</code> IDs registered; call <code>forecast_record</code> at horizon to close the Brier loop.</p>
-            <p><strong>Falsifiers.</strong> Each chain states a condition that would invalidate its premise. Engel curves describe structural budget share shifts over years; they do not predict macro shocks, FX moves, or policy reversals. Where macro overwhelms the mechanism (Argentina, Nigeria), the trade is labelled macro play or paradox &mdash; the Engel thesis is secondary.</p>
+            <p><strong>Mechanism anchor.</strong> Clements &amp; Chen (2010): &ldquo;when the relative price of food is constant, [the food share equation] implies d&#x175; &asymp; &beta;Q&#x302;, with &beta; = w(&eta; &minus; 1)&rdquo;. Median slope &beta; &asymp; &minus;0.13, R&sup2; = 0.85 (42 countries). <Tag t="OBS" /> Consumption and stock returns: Osadchiy et al. (2013) cite Friedman&rsquo;s permanent income hypothesis — &ldquo;consumption depends on long-term income expectations rather than short-term changes in disposable income&rdquo; — as the basis for linking income growth to spending category shifts. <Tag t="OBS" /></p>
+            <p><strong>Middle-class threshold.</strong> Kharas (2017): &ldquo;between $10 and $100 per person per day (pppd) in 2005 PPP terms&rdquo;. The six pairs are from countries at or approaching this band; the freed-up wallet is observable, not projected. <Tag t="OBS" /></p>
+            <p><strong>Data vintage.</strong> Revenue growth: FY2025 primary filings (FEMSA AR Mar-2026, SILO IDX Mar-2026, MTNN NGX Feb-2026); H1-2026 for MWG. Multiples: late Oct 2026. P/E type: fwd for MWG/FMX/YDUQ3; trailing for MTNN/SILO; TTM for GGAL. All implied-g calculations verified via lisp_eval 2026-10-23. All six <code>forecast_persist</code> IDs registered for Brier scoring.</p>
+            <p><strong>Scope.</strong> This is an analytical framework, not investment advice. The chains state falsifiers; macro risk is in chapter 8; portfolio sizing is in chapter 9.</p>
           </Record>
         </Chapter>
 
