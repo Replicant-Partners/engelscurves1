@@ -251,20 +251,24 @@ export function ValuationChains() {
 
         <GrowthGapScatter selected={selected} hovered={hovered} onHover={setHovered} onClick={handleClick} />
 
-        {/* Hover tooltip */}
-        {hov && (
-          <div style={{ marginTop: 12, padding: '12px 16px', background: '#f6f8fa', border: `1px solid ${VERDICT_COLOR[hov.verdictCode]}`, borderRadius: 6, display: 'flex', gap: 24, alignItems: 'center', flexWrap: 'wrap' }}>
-            <span style={{ fontWeight: 700, fontSize: 13, color: VERDICT_COLOR[hov.verdictCode] }}>{hov.company}</span>
-            <span style={{ fontSize: 12, color: '#57606a' }}>{hov.category}</span>
-            <span style={{ fontSize: 12 }}>implied <strong style={{ color: hov.impliedG < 0 ? '#9e4c38' : '#2c6e49' }}>{(hov.impliedG*100).toFixed(1)}%</strong></span>
-            <span style={{ fontSize: 12 }}>actual <strong style={{ color: '#2c6e49' }}>+{(hov.actualG*100).toFixed(1)}%</strong></span>
-            <span style={{ fontSize: 12 }}>gap <strong style={{ color: '#4c78a8' }}>+{((hov.actualG - hov.impliedG)*100).toFixed(1)} pp</strong></span>
-            <ProbBadge p={hov.prob} />
-            <span style={{ fontSize: 11, color: '#57606a', marginLeft: 'auto' }}>click to expand chain →</span>
-          </div>
-        )}
+        {/* Hover info — fixed height so no layout shift */}
+        <div style={{ marginTop: 10, height: 40, display: 'flex', alignItems: 'center' }}>
+          {hov ? (
+            <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap', fontSize: 12 }}>
+              <span style={{ fontWeight: 700, color: VERDICT_COLOR[hov.verdictCode] }}>{hov.company}</span>
+              <span style={{ color: '#57606a' }}>{hov.category}</span>
+              <span>implied <strong style={{ color: hov.impliedG < 0 ? '#9e4c38' : '#2c6e49' }}>{(hov.impliedG*100).toFixed(1)}%</strong></span>
+              <span>actual <strong style={{ color: '#2c6e49' }}>+{(hov.actualG*100).toFixed(1)}%</strong></span>
+              <span>gap <strong style={{ color: '#4c78a8' }}>+{((hov.actualG - hov.impliedG)*100).toFixed(1)} pp</strong></span>
+              <ProbBadge p={hov.prob} />
+              <span style={{ color: '#8c96a0', fontSize: 11 }}>click to expand →</span>
+            </div>
+          ) : (
+            <span style={{ color: '#c8ced4', fontSize: 11 }}>hover a bubble or bar to inspect</span>
+          )}
+        </div>
 
-        <p style={{ marginTop: 10, fontSize: 10, color: '#8c96a0', lineHeight: 1.5 }}>
+        <p style={{ marginTop: 4, fontSize: 10, color: '#8c96a0', lineHeight: 1.5 }}>
           ¹ Implied g = 1/P/E − 9% discount rate. P/E type: MWG, FMX, YDUQ3 forward; MTNN &amp; SILO trailing; GGAL TTM. All six re-verified via lisp_eval 2026-10-23.
         </p>
       </div>
@@ -385,6 +389,21 @@ export function ValuationChains() {
           <p style={{ fontSize: 13, lineHeight: 1.75, color: '#57606a', margin: 0 }}>
             <Tag t="JDG" />YDUQ3 has the widest gap: 7.7% implied vs 32% FCF actual (24.3pp). This is the most asymmetric case by expected value (+13.6% EV). MWG is second: near-zero implied vs 16.4% actual. The key question for both: is the recent growth rate persistent, or a one-cycle event? The falsifier for each pair answers this directly.
           </p>
+        </div>
+        {/* Fixed-height hover info — no layout shift */}
+        <div style={{ height: 36, display: 'flex', alignItems: 'center', marginBottom: 8 }}>
+          {hov ? (
+            <div style={{ display: 'flex', gap: 20, alignItems: 'center', fontSize: 12 }}>
+              <span style={{ fontWeight: 700, color: VERDICT_COLOR[hov.verdictCode] }}>{hov.company}</span>
+              <span>implied <strong style={{ color: hov.impliedG < 0 ? '#9e4c38' : '#2c6e49' }}>{(hov.impliedG*100).toFixed(1)}%</strong></span>
+              <span>actual <strong style={{ color: '#2c6e49' }}>+{(hov.actualG*100).toFixed(1)}%</strong></span>
+              <span>gap <strong style={{ color: '#4c78a8' }}>+{((hov.actualG - hov.impliedG)*100).toFixed(1)} pp</strong></span>
+              <ProbBadge p={hov.prob} />
+              {!selected && <span style={{ color: '#8c96a0', fontSize: 11 }}>click to expand chain →</span>}
+            </div>
+          ) : (
+            <span style={{ color: '#c8ced4', fontSize: 11 }}>hover a bar to inspect</span>
+          )}
         </div>
         <GrowthGapChart selected={selected} hovered={hovered} onHover={setHovered} onClick={handleClick} />
       </div>
