@@ -91,17 +91,27 @@ export function SearchBar() {
 
   return (
     <>
-      {/* Trigger button in nav */}
+      {/* Fixed floating search button — always visible */}
       <button
         onClick={() => setOpen(true)}
-        className="ml-auto flex items-center gap-2 text-[#57606a] hover:text-[#1b1f23] text-xs border border-[#d0d7de] rounded px-2.5 py-1 bg-white hover:bg-[#f6f8fa] transition-colors"
         aria-label="Search chapters (Ctrl+K)"
+        style={{
+          position: 'fixed', bottom: 24, right: 24, zIndex: 40,
+          display: 'flex', alignItems: 'center', gap: 8,
+          background: '#1b1f23', color: '#fff',
+          border: 'none', borderRadius: 8,
+          padding: '10px 16px', fontSize: 13, fontWeight: 600,
+          cursor: 'pointer', boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+          transition: 'transform 0.15s ease, box-shadow 0.15s ease',
+        }}
+        onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.04)')}
+        onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
       >
-        <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="white">
           <path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"/>
         </svg>
-        <span>Search</span>
-        <kbd className="hidden md:inline text-[10px] text-[#8c96a0] border border-[#d0d7de] rounded px-1">⌘K</kbd>
+        Search
+        <kbd style={{ fontSize: 10, opacity: 0.6, border: '1px solid rgba(255,255,255,0.3)', borderRadius: 4, padding: '1px 5px' }}>⌘K</kbd>
       </button>
 
       {/* Modal */}

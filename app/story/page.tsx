@@ -90,13 +90,14 @@ export default function StoryPage() {
 
   return (
     <main className="min-h-screen bg-white text-[#1b1f23]" style={{ fontFamily: 'Inter, sans-serif' }}>
+      <SearchBar />
       <nav className="sticky top-0 z-10 bg-white/95 backdrop-blur border-b border-[#d0d7de]">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12 xl:px-20 h-12 flex items-center gap-5 text-xs overflow-x-auto">
           <span className="font-semibold whitespace-nowrap">From Food to Finance</span>
           {chapters.map((c) => (
             <a key={c.id} href={`#${c.id}`} className="text-[#57606a] hover:text-[#1b1f23] whitespace-nowrap">{c.n}. {c.title}</a>
           ))}
-          <SearchBar /><Link href="/" className="text-[#57606a] hover:text-[#1b1f23] whitespace-nowrap text-xs">Dashboard &rarr;</Link>
+          <Link href="/" className="ml-auto text-[#57606a] hover:text-[#1b1f23] whitespace-nowrap">Dashboard &rarr;</Link>
         </div>
       </nav>
 
