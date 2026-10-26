@@ -30,7 +30,7 @@ function Spark({ points, unit, color }: { points: SparkPoint[]; unit: string; co
   const vals = points.map(p => p.value);
   const min = Math.min(...vals); const max = Math.max(...vals);
   const range = max - min || 1;
-  const W = 180; const H = 48; const PAD = { t: 6, b: 18, l: 4, r: 4 };
+  const W = 260; const H = 72; const PAD = { t: 8, b: 22, l: 4, r: 4 };
   const iW = W - PAD.l - PAD.r; const iH = H - PAD.t - PAD.b;
   const x = (i: number) => PAD.l + (i / (points.length - 1)) * iW;
   const y = (v: number) => PAD.t + iH - ((v - min) / range) * iH;
@@ -45,10 +45,10 @@ function Spark({ points, unit, color }: { points: SparkPoint[]; unit: string; co
             fill={p.projected ? 'white' : color}
             stroke={color} strokeWidth={1.2}
           />
-          <text x={x(i)} y={H - 2} fontSize={8} textAnchor="middle" fill="#8c96a0">{p.label}</text>
+          <text x={x(i)} y={H - 2} fontSize={9} textAnchor="middle" fill="#8c96a0">{p.label}</text>
         </g>
       ))}
-      <text x={x(points.length - 1) + 4} y={y(last.value) + 4} fontSize={9} fontWeight={600}
+      <text x={x(points.length - 1) + 4} y={y(last.value) + 4} fontSize={11} fontWeight={700}
         fill={color} textAnchor="start">
         {last.value > 0 && unit !== 'x' ? '+' : ''}{last.value.toFixed(unit === 'x' ? 2 : 1)}{unit}
       </text>
@@ -243,9 +243,9 @@ function StatusBadge({ status, small }: { status: SignalStatus; small?: boolean 
   const s = STATUS_STYLE[status];
   return (
     <span style={{
-      fontSize: small ? 10 : 11, fontWeight: 600, color: s.color,
+      fontSize: small ? 11 : 13, fontWeight: 600, color: s.color,
       background: s.bg, border: `1px solid ${s.color}`,
-      borderRadius: 4, padding: small ? '1px 5px' : '2px 7px', whiteSpace: 'nowrap',
+      borderRadius: 4, padding: small ? '2px 6px' : '3px 9px', whiteSpace: 'nowrap',
     }}>{s.label}</span>
   );
 }
@@ -279,7 +279,7 @@ export function EarlySignals() {
 
   return (
     <div style={{ marginTop: 24 }}>
-      <p style={{ fontSize: 12, color: '#57606a', marginBottom: 14, maxWidth: 680, lineHeight: 1.6 }}>
+      <p style={{ fontSize: 14, color: '#57606a', marginBottom: 14, maxWidth: 680, lineHeight: 1.6 }}>
         Three signal types per pair:
         <strong style={{ color: TYPE_COLOR.thesis }}> ↑ Thesis</strong> (confirms the Engel chain),
         <strong style={{ color: TYPE_COLOR.refutation }}> ✗ Refutation</strong> (tests the falsifier),
@@ -288,7 +288,7 @@ export function EarlySignals() {
         Sources: FY2025 primary filings (Feb–Mar 2026) and latest public data.
       </p>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {PAIRS.map((pair) => {
           const isOpen = open === pair.symbol;
           const color = SPARK_COLOR[pair.symbol];
@@ -299,17 +299,17 @@ export function EarlySignals() {
                 onClick={() => setOpen(isOpen ? null : pair.symbol)}
                 style={{
                   width: '100%', display: 'flex', alignItems: 'center', gap: 12,
-                  padding: '10px 14px', background: isOpen ? '#f0f4f8' : '#f6f8fa',
+                  padding: '16px 20px', background: isOpen ? '#f0f4f8' : '#f6f8fa',
                   border: 'none', cursor: 'pointer', textAlign: 'left',
                 }}
               >
                 {/* Left: name + phase + conviction bar */}
                 <div style={{ flex: '0 0 160px' }}>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 3 }}>
-                    <span style={{ fontWeight: 700, fontSize: 13, color: '#1b1f23' }}>{pair.market}</span>
-                    <span style={{ fontSize: 10, color: '#57606a' }}>{pair.ticker}</span>
+                    <span style={{ fontWeight: 700, fontSize: 16, color: '#1b1f23' }}>{pair.market}</span>
+                    <span style={{ fontSize: 14, color: '#57606a' }}>{pair.ticker}</span>
                   </div>
-                  <span style={{ fontSize: 10, color: '#57606a', border: '1px solid #d0d7de', borderRadius: 3, padding: '0 4px', display: 'inline-block', marginBottom: 4 }}>
+                  <span style={{ fontSize: 11, color: '#57606a', border: '1px solid #d0d7de', borderRadius: 3, padding: '2px 6px', display: 'inline-block', marginBottom: 4 }}>
                     {pair.engelPhase}
                   </span>
                   <ConvictionBar signals={pair.signals} />
@@ -318,7 +318,7 @@ export function EarlySignals() {
                 {/* Sparkline */}
                 <div style={{ flex: 1, display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
                   <div>
-                    <div style={{ fontSize: 9, color: '#8c96a0', marginBottom: 2 }}>{pair.keyMetric}</div>
+                    <div style={{ fontSize: 11, color: '#8c96a0', marginBottom: 4 }}>{pair.keyMetric}</div>
                     <Spark points={pair.spark} unit={pair.keyMetricUnit} color={color} />
                   </div>
                 </div>
@@ -326,15 +326,15 @@ export function EarlySignals() {
                 {/* Status */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4 }}>
                   <StatusBadge status={pair.overallStatus} />
-                  <span style={{ fontSize: 12, color: '#57606a' }}>{isOpen ? '▲' : '▼'}</span>
+                  <span style={{ fontSize: 14, color: '#57606a' }}>{isOpen ? '▲' : '▼'}</span>
                 </div>
               </button>
 
               {/* Expanded */}
               {isOpen && (
-                <div style={{ padding: '14px 14px 12px', borderTop: '1px solid #e1e4e8' }}>
+                <div style={{ padding: '20px 24px 18px', borderTop: '1px solid #e1e4e8' }}>
                   {/* Overall note */}
-                  <p style={{ fontSize: 11, color: '#57606a', fontStyle: 'italic', marginBottom: 12 }}>
+                  <p style={{ fontSize: 13, color: '#57606a', fontStyle: 'italic', marginBottom: 16 }}>
                     {pair.overallNote}
                   </p>
 
@@ -347,11 +347,11 @@ export function EarlySignals() {
                         </span>
                         <div style={{ flex: 1 }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
-                            <span style={{ fontSize: 11, fontWeight: 600, color: '#1b1f23' }}>{sig.metric}</span>
+                            <span style={{ fontSize: 13, fontWeight: 700, color: '#1b1f23' }}>{sig.metric}</span>
                             <StatusBadge status={sig.status} small />
                           </div>
-                          <p style={{ fontSize: 11, color: '#57606a', lineHeight: 1.7, margin: 0 }}>{sig.reading}</p>
-                          <span style={{ fontSize: 10, color: '#8c96a0', marginTop: 1, display: 'block' }}>{sig.source}</span>
+                          <p style={{ fontSize: 13, color: '#57606a', lineHeight: 1.75, margin: 0 }}>{sig.reading}</p>
+                          <span style={{ fontSize: 11, color: '#8c96a0', marginTop: 3, display: 'block' }}>{sig.source}</span>
                         </div>
                       </div>
                     ))}
@@ -360,7 +360,7 @@ export function EarlySignals() {
                   {/* Catalyst */}
                   <div style={{ background: '#f6f8fa', borderLeft: '3px solid ' + color, padding: '8px 10px', borderRadius: '0 4px 4px 0' }}>
                     <span style={{ fontSize: 10, fontWeight: 700, color: color, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Next catalyst</span>
-                    <p style={{ fontSize: 12, color: '#57606a', lineHeight: 1.7, margin: '4px 0 0' }}>{pair.catalyst}</p>
+                    <p style={{ fontSize: 14, color: '#57606a', lineHeight: 1.7, margin: '4px 0 0' }}>{pair.catalyst}</p>
                   </div>
                 </div>
               )}
@@ -370,7 +370,7 @@ export function EarlySignals() {
       </div>
 
       {/* Summary scorecard */}
-      <div style={{ marginTop: 14, display: 'flex', flexWrap: 'wrap', gap: 14, fontSize: 11, color: '#57606a', alignItems: 'center' }}>
+      <div style={{ marginTop: 14, display: 'flex', flexWrap: 'wrap', gap: 14, fontSize: 13, color: '#57606a', alignItems: 'center' }}>
         {Object.entries(STATUS_STYLE).map(([k, v]) => {
           const count = PAIRS.filter(p => p.overallStatus === k).length;
           return count > 0 ? (
