@@ -1,3 +1,4 @@
+'use client';
 import { story } from '../../data/storyData';
 
 const markets = ['EGY', 'VNM', 'IDN'] as const;

@@ -1,3 +1,4 @@
+'use client';
 import { story } from '../../data/storyData';
 
 const W = 820, LEFT = 300, RIGHT = 120, ROW = 34, TOP = 30;

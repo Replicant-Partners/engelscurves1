@@ -1,6 +1,7 @@
+'use client';
 import { story } from '../../data/storyData';
 
-const fmt = (v: number) => `$${v.toLocaleString('en-US')}`;
+const fmt = (v: number) => `$${Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;  // deterministic: avoids ICU mismatch
 
 export function HouseholdBars() {
   const max = story.household[1].income;
