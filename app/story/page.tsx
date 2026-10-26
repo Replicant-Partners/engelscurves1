@@ -243,26 +243,27 @@ export default function StoryPage() {
             </p>
           </div>
 
-          {/* Going deeper — Ch0 card style */}
+          {/* Going deeper — EXACT Ch0 hero stat style */}
           <div className="mt-12 pt-8 border-t border-[#d0d7de]">
             <h3 className="text-lg font-semibold mb-1">Going deeper</h3>
-            <p className="text-sm text-[#57606a] leading-relaxed mb-6">150 years, four studies, one slope. A relationship estimated on Prussian working-class budgets in the 1850s holds in 2010 household surveys from 85 countries.</p>
+            <p className="text-sm text-[#57606a] leading-relaxed mb-8">150 years, four studies, the same slope.</p>
 
-            {/* 4 border-left cards — exactly like Ch0 concept cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
               {deep.historicalSlopes.map((h) => (
-                <div key={h.label} className="border-l-2 border-[#d0d7de] pl-4">
-                  <div className="text-3xl font-semibold tracking-tight mb-1">{h.v.toFixed(3)}</div>
-                  <div className="font-semibold text-sm mb-1">{h.label}</div>
-                  <p className="text-xs text-[#57606a] leading-relaxed">Engel slope: % change in food share per log point of income.</p>
+                <div key={h.label}>
+                  <div className="text-5xl font-semibold tracking-tight">{h.v.toFixed(3)}</div>
+                  <p className="text-sm text-[#57606a] mt-2 leading-relaxed">{h.label}</p>
                 </div>
               ))}
             </div>
 
-            {/* Two analysis paragraphs — Ch0 grid style */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm leading-relaxed">
-              <p><Tag t="JDG" />Few relationships in economics are this stable across centuries, methods and samples. That stability is what licenses using the curve as a map at all — if the slope varied by era or method, the projections in chapter 4 would be guesswork.</p>
-              <p className="text-[#57606a]">And it is why the deviations matter: Bulgaria and Armenia sit far above the line, Ukraine and the West Bank far below — reminders that prices, measurement and history move individual countries off a very persistent track. The curve is a long-run attractor, not a five-year forecast.</p>
+              <div className="border-l-2 border-[#d0d7de] pl-4">
+                <p><Tag t="JDG" />Few relationships in economics are this stable across centuries, methods and samples. That stability is what licenses using the curve as a map at all.</p>
+              </div>
+              <div className="border-l-2 border-[#d0d7de] pl-4">
+                <p className="text-[#57606a]">And it is why the deviations matter: Bulgaria and Armenia sit far above the line, Ukraine and the West Bank far below. The curve is a long-run attractor, not a five-year forecast.</p>
+              </div>
             </div>
           </div>
 
