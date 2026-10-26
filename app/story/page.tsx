@@ -233,44 +233,42 @@ export default function StoryPage() {
 <Chapter id="law" n="1" title="The law" lede="Poorer households spend most of their budget on food. Richer ones spend a small share. Engel described this in the 19th century; household surveys across the world still show it.">
           <LawChart />
 
-          {/* Two key observations below the chart */}
+          {/* Two key observations */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 mt-8">
             <p className="text-[15px] leading-[1.75] text-[#1b1f23]">
               <Tag t="OBS" />A typical household in Ethiopia (2004) spent 54% of its budget on food; in Switzerland (2003), 9%. Each dot is one national survey — the chart fills poorest to richest as you arrive, and the slider walks it one survey at a time.
             </p>
             <p className="text-[15px] leading-[1.75] text-[#1b1f23]">
-              <Tag t="OBS" />The pattern holds across income groups: over 50% in low-income countries, 40&ndash;50% in lower-middle and 30&ndash;40% in upper-middle income countries<Cite ids={[10]} />. Between countries, being 50% richer means a food share about 5 points lower<Cite ids={[9]} />.
+              <Tag t="OBS" />The pattern holds across income groups: over 50% in low-income countries, 40– 50% in lower-middle and 30–40% in upper-middle income countries<Cite ids={[10]} />. Between countries, being 50% richer means a food share about 5 points lower<Cite ids={[9]} />.
             </p>
           </div>
 
-          {/* Going deeper — EXACT Ch0 hero stat style */}
-          <div className="mt-12 pt-8 border-t border-[#d0d7de]">
-            <h3 className="text-lg font-semibold mb-1">Going deeper</h3>
-            <p className="text-sm text-[#57606a] leading-relaxed mb-8">150 years, four studies, the same slope.</p>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-              {deep.historicalSlopes.map((h) => (
-                <div key={h.label}>
-                  <div className="text-5xl font-semibold tracking-tight">{h.v.toFixed(3)}</div>
-                  <p className="text-sm text-[#57606a] mt-2 leading-relaxed">{h.label}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm leading-relaxed">
-              <div className="border-l-2 border-[#d0d7de] pl-4">
-                <p><Tag t="JDG" />Few relationships in economics are this stable across centuries, methods and samples. That stability is what licenses using the curve as a map at all.</p>
-              </div>
-              <div className="border-l-2 border-[#d0d7de] pl-4">
-                <p className="text-[#57606a]">And it is why the deviations matter: Bulgaria and Armenia sit far above the line, Ukraine and the West Bank far below. The curve is a long-run attractor, not a five-year forecast.</p>
-              </div>
-            </div>
-          </div>
-
           <Record>
-            <p>Food shares: survey means from the appendix tables of Pritchett &amp; Spivack (2013), 1991&ndash;2010. Income: World Bank NY.GDP.PCAP.PP.KD, matched to survey year. All {story.fit.n} values checked against the source tables. Labeled dots: four narrative countries (accent) plus, by rule, the two largest deviations above and below the fitted line (grey); Armenia 2003 is also the highest food share in the sample.</p>
+            <p>Food shares: survey means from the appendix tables of Pritchett &amp; Spivack (2013), 1991–2010. Income: World Bank NY.GDP.PCAP.PP.KD, matched to survey year. All {story.fit.n} values checked against the source tables.</p>
           </Record>
         </Chapter>
+
+        {/* Going deeper — FULL WIDTH outside Chapter */}
+        <div className="py-12 border-t border-[#d0d7de]">
+          <h3 className="text-lg font-semibold mb-1">Going deeper</h3>
+          <p className="text-sm text-[#57606a] leading-relaxed mb-8">150 years, four studies, the same slope.</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+            {deep.historicalSlopes.map((h) => (
+              <div key={h.label}>
+                <div className="text-5xl font-semibold tracking-tight">{h.v.toFixed(3)}</div>
+                <p className="text-sm text-[#57606a] mt-2 leading-relaxed">{h.label}</p>
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm leading-relaxed">
+            <div className="border-l-2 border-[#d0d7de] pl-4">
+              <p><Tag t="JDG" />Few relationships in economics are this stable across centuries, methods and samples. That stability licenses using the curve as a map — if the slope varied by era or method, the projections in chapter 4 would be guesswork.</p>
+            </div>
+            <div className="border-l-2 border-[#d0d7de] pl-4">
+              <p className="text-[#57606a]">And it is why deviations matter: Bulgaria and Armenia sit far above the line, Ukraine and the West Bank far below. The curve is a long-run attractor, not a five-year forecast.</p>
+            </div>
+          </div>
+        </div>
 
         <Chapter id="break" n="2" title="The break" lede={`The decline is not smooth from the start. Below about ${usd(story.bounds.start)}, the food share barely moves. Above it, it falls steadily until food is about a third of the budget near ${usd(story.bounds.end)}. That band is the transition.`}>
 
