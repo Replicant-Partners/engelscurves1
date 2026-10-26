@@ -380,7 +380,7 @@ export default function StoryPage() {
             <PhaseTracks />
           </div>
           <p className="text-xs text-[#57606a] mt-2">Click a country to trace its year-by-year path in <a href="#motion" className="underline underline-offset-2">chapter 3</a>.</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6 text-sm leading-relaxed">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8 mt-14 text-[15px] leading-[1.75]">
             <p><Tag t="INF" />India ({usd(T.IND.gdp2025)}) and the Philippines ({usd(T.PHL.gdp2025)}) are early in the transition, with food near {pct(T.IND.food2025)} of spending. Neither reaches the 35% line by 2030.</p>
             <p><Tag t="INF" />Vietnam and Indonesia are in the upper half. On IMF paths they cross by 2030 with {pct(T.VNM.pExit2030)} and {pct(T.IDN.pExit2030)} probability. South Africa stays put: its projected growth is close to zero.</p>
             <p><Tag t="INF" />Ten of twelve markets sit in their phase with at least 94% probability. The uncertain ones are Egypt and Colombia, near the upper boundary.</p>
@@ -475,7 +475,7 @@ export default function StoryPage() {
 
         <Chapter id="street" n="6" title="The street" lede={`The same transition, seen from inside the home. Dollar Street (Gapminder) photographs real families and places them on one global street by consumption per adult — ${dollarStreet.usable} families so far. Here are the ${dollarStreet.markets.filter((m) => m.n > 0).length} of our twelve markets they have visited.`}>
           <DollarStreetHouses />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 text-sm leading-relaxed">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mt-14 text-[15px] leading-[1.75]">
             <p><Tag t="OBS" />Each house is one documented family, stacked where its consumption per adult per month (PPP) falls on the street; toggle a market to light its homes. The spread inside one country is the point: India’s {dollarStreet.markets.find((m) => m.iso3 === 'IND')!.n} families run from ${dollarStreet.markets.find((m) => m.iso3 === 'IND')!.min} to ${dollarStreet.markets.find((m) => m.iso3 === 'IND')!.max} a month — the whole Engel curve lives inside a single country.</p>
             <p><Tag t="JDG" />The dashed line marks the $11-a-day middle-class entry (about ${dollarStreet.kharasMonthly}/month)<Cite ids={[13]} />. Families to its left spend their budgets largely on food and essentials; to its right, the freed-up wallet of chapter 4 appears — this is the household-level view of the same shift our country phases track in GDP terms. The two scales are related but not convertible, so no phase boundaries are drawn here.</p>
           </div>
