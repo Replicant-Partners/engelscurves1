@@ -134,8 +134,8 @@ const EXIT_SENSITIVITY = [
 function RiskBadge({ level, small }: { level: RiskLevel; small?: boolean }) {
   const s = RISK_STYLE[level];
   return (
-    <span style={{ fontSize: small ? 9 : 10, fontWeight: 600, color: s.color, background: s.bg,
-      border: `1px solid ${s.color}`, borderRadius: 3, padding: small ? '0 4px' : '1px 6px', whiteSpace: 'nowrap' }}>
+    <span style={{ fontSize: small ? 10 : 12, fontWeight: 600, color: s.color, background: s.bg,
+      border: `1px solid ${s.color}`, borderRadius: 3, padding: small ? '1px 6px' : '3px 9px', whiteSpace: 'nowrap' }}>
       {s.label}
     </span>
   );
@@ -268,7 +268,7 @@ export function MacroRisk() {
         ].map(t => (
           <button key={t.key} onClick={() => setTab(t.key as typeof tab)}
             style={{
-              padding: '5px 12px', fontSize: 11, borderRadius: 4, cursor: 'pointer',
+              padding: '7px 16px', fontSize: 13, borderRadius: 4, cursor: 'pointer',
               border: tab === t.key ? '2px solid #1b1f23' : '1px solid #d0d7de',
               background: tab === t.key ? '#1b1f23' : '#f6f8fa',
               color: tab === t.key ? '#fff' : '#1b1f23',
@@ -281,10 +281,10 @@ export function MacroRisk() {
 
       {tab === 'scorecards' && (
         <div>
-          <p style={{ fontSize: 11, color: '#57606a', marginBottom: 12 }}>
+          <p style={{ fontSize: 13, color: '#57606a', marginBottom: 16 }}>
             Click a country to expand the risk detail and Engel mechanism status. Sources: primary central bank reports, IMF Article IV consultations, and national statistics offices (FY2025 / Q1-2026).
           </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {COUNTRIES.map(c => {
               const isOpen = open === c.iso3;
               const eng = ENGEL_STYLE[c.engelMechanism];
@@ -292,23 +292,23 @@ export function MacroRisk() {
                 <div key={c.iso3} style={{ border: '1px solid #d0d7de', borderRadius: 6, overflow: 'hidden' }}>
                   <button onClick={() => setOpen(isOpen ? null : c.iso3)}
                     style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 10,
-                      padding: '9px 14px', background: isOpen ? '#f0f4f8' : '#f6f8fa',
+                      padding: '16px 20px', background: isOpen ? '#f0f4f8' : '#f6f8fa',
                       border: 'none', cursor: 'pointer', textAlign: 'left' }}>
                     <div style={{ flex: '0 0 100px' }}>
-                      <span style={{ fontWeight: 700, fontSize: 13, color: '#1b1f23' }}>{c.country}</span><br />
-                      <span style={{ fontSize: 10, color: '#57606a' }}>{c.symbol}</span>
+                      <span style={{ fontWeight: 700, fontSize: 17, color: '#1b1f23' }}>{c.country}</span><br />
+                      <span style={{ fontSize: 13, color: '#57606a' }}>{c.symbol}</span>
                     </div>
-                    <div style={{ flex: '0 0 70px', fontVariantNumeric: 'tabular-nums', fontSize: 12 }}>
+                    <div style={{ flex: '0 0 90px', fontVariantNumeric: 'tabular-nums', fontSize: 15 }}>
                       <span style={{ color: c.gdpGrowth2025 >= 4 ? '#2c6e49' : c.gdpGrowth2025 >= 2 ? '#7c5c00' : '#9e3c38', fontWeight: 700 }}>
                         {c.gdpGrowth2025 > 0 ? '+' : ''}{c.gdpGrowth2025.toFixed(1)}%
                       </span>
-                      <span style={{ fontSize: 9, color: '#8c96a0' }}> GDP</span>
+                      <span style={{ fontSize: 11, color: '#8c96a0' }}> GDP</span>
                     </div>
-                    <div style={{ flex: '0 0 70px', fontVariantNumeric: 'tabular-nums', fontSize: 12 }}>
+                    <div style={{ flex: '0 0 90px', fontVariantNumeric: 'tabular-nums', fontSize: 15 }}>
                       <span style={{ color: c.inflation2025 <= 5 ? '#2c6e49' : c.inflation2025 <= 15 ? '#7c5c00' : '#9e3c38', fontWeight: 700 }}>
                         {c.inflation2025.toFixed(1)}%
                       </span>
-                      <span style={{ fontSize: 9, color: '#8c96a0' }}> CPI</span>
+                      <span style={{ fontSize: 11, color: '#8c96a0' }}> CPI</span>
                     </div>
                     <div style={{ display: 'flex', gap: 6, flex: 1, flexWrap: 'wrap' }}>
                       <RiskBadge level={c.gdpRisk} small />
@@ -316,29 +316,29 @@ export function MacroRisk() {
                       <RiskBadge level={c.fxRisk} small />
                       <RiskBadge level={c.politicalRisk} small />
                     </div>
-                    <span style={{ fontSize: 13, fontWeight: 700, color: eng.color, marginRight: 4 }}>{eng.icon}</span>
-                    <span style={{ fontSize: 12, color: '#57606a' }}>{isOpen ? '▲' : '▼'}</span>
+                    <span style={{ fontSize: 18, fontWeight: 700, color: eng.color, marginRight: 6 }}>{eng.icon}</span>
+                    <span style={{ fontSize: 14, color: '#57606a' }}>{isOpen ? '▲' : '▼'}</span>
                   </button>
                   {isOpen && (
-                    <div style={{ padding: '12px 14px', borderTop: '1px solid #e1e4e8' }}>
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 10, marginBottom: 10 }}>
+                    <div style={{ padding: '20px 24px', borderTop: '1px solid #e1e4e8' }}>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 14, marginBottom: 14 }}>
                         {[
                           { label: 'GDP 2025', val: `+${c.gdpGrowth2025.toFixed(1)}%`, sub: `2026F: +${c.gdpGrowth2026F.toFixed(1)}%` },
                           { label: 'Inflation 2025', val: `${c.inflation2025.toFixed(1)}%`, sub: `Trend: ${c.inflationTrend}` },
                           { label: 'FX vs USD (2025)', val: `${c.fxChange2025> 0 ? '+' : ''}${c.fxChange2025.toFixed(1)}%`, sub: `Risk: ${RISK_STYLE[c.fxRisk].label}` },
                           { label: 'Policy rate', val: `${c.policyRate.toFixed(1)}%`, sub: `Risk: ${RISK_STYLE[c.policyRisk].label}` },
                         ].map(({ label, val, sub }) => (
-                          <div key={label} style={{ background: '#f6f8fa', borderRadius: 4, padding: '8px 10px' }}>
-                            <div style={{ fontSize: 9, color: '#8c96a0', marginBottom: 2 }}>{label}</div>
-                            <div style={{ fontSize: 14, fontWeight: 700, color: '#1b1f23', fontVariantNumeric: 'tabular-nums' }}>{val}</div>
-                            <div style={{ fontSize: 9, color: '#57606a' }}>{sub}</div>
+                          <div key={label} style={{ background: '#f6f8fa', borderRadius: 4, padding: '12px 14px' }}>
+                            <div style={{ fontSize: 11, color: '#8c96a0', marginBottom: 4 }}>{label}</div>
+                            <div style={{ fontSize: 18, fontWeight: 700, color: '#1b1f23', fontVariantNumeric: 'tabular-nums' }}>{val}</div>
+                            <div style={{ fontSize: 12, color: '#57606a' }}>{sub}</div>
                           </div>
                         ))}
                       </div>
-                      <p style={{ fontSize: 11, color: '#57606a', lineHeight: 1.75, marginBottom: 8 }}>
+                      <p style={{ fontSize: 13, color: '#57606a', lineHeight: 1.75, marginBottom: 10 }}>
                         <span style={{ fontWeight: 700, color: eng.color }}>{eng.icon} Engel:</span> {c.engelNote}
                       </p>
-                      <div style={{ background: '#fdf0f0', borderLeft: '3px solid #9e3c38', padding: '7px 10px', borderRadius: '0 4px 4px 0' }}>
+                      <div style={{ background: '#fdf0f0', borderLeft: '3px solid #9e3c38', padding: '10px 14px', borderRadius: '0 4px 4px 0' }}>
                         <span style={{ fontSize: 9, fontWeight: 700, color: '#9e3c38', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Top macro risk</span>
                         <p style={{ fontSize: 11, color: '#57606a', margin: '3px 0 0', lineHeight: 1.55 }}>{c.topRisk}</p>
                       </div>
