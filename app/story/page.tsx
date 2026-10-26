@@ -17,6 +17,7 @@ import { MeasurementRisk } from '../../components/story/MeasurementRisk';
 import { ValuationChains } from '../../components/story/ValuationChains';
 import { EarlySignals } from '../../components/story/EarlySignals';
 import { PortfolioBuilder } from '../../components/story/PortfolioBuilder';
+import { MacroRisk } from '../../components/story/MacroRisk';
 import { story } from '../../data/storyData';
 import { evidenceItems, literatureSources } from '../../data/literatureEvidence';
 
@@ -40,7 +41,8 @@ const chapters = [
   { id: 'watch', n: '7', title: 'What we watch' },
   { id: 'chains', n: '8', title: 'Who captures the transition?' },
   { id: 'portfolio', n: '9', title: 'Portfolio construction' },
-  { id: 'method', n: '10', title: 'Evidence and method' },
+  { id: 'macrorisk', n: '10', title: 'Macro risk' },
+  { id: 'method', n: '11', title: 'Evidence and method' },
 ];
 
 function Tag({ t }: { t: 'OBS' | 'INF' | 'JDG' | 'GAP' }) {
@@ -474,8 +476,24 @@ export default function StoryPage() {
           </Record>
         </Chapter>
 
+
+        <Chapter
+          id="macrorisk"
+          n="10"
+          title="Macro risk"
+          lede="The six markets face different macro headwinds. Vietnam is the strongest backdrop; Mexico GDP at +0.3% delays the mechanism; Brazil's Selic at 15% compresses YDUQ3 profits; Argentina's disinflation from 211% to 31% is the most dramatic stabilization in the dataset."
+        >
+          <p className="text-sm leading-relaxed max-w-3xl mb-6">
+            <Tag t="OBS" />Country-level macro risk is distinct from company-level falsifiers: it operates upstream of the Engel mechanism, controlling whether income growth materialises at all. Three tabs: scorecards (GDP, inflation, FX, policy rate per country), Engel exit sensitivity (how GDP growth stress shifts 2030 exit probabilities), and FX stress test (how currency depreciation reduces USD returns under base/bear/shock scenarios).
+          </p>
+          <MacroRisk />
+          <Record>
+            <p>GDP and inflation data: national statistics offices (Vietnam GSO, INEGI Mexico, IBGE Brazil, NBS Nigeria, INDEC Argentina, BPS Indonesia) and IMF Article IV consultations (FY2025, latest available Q1-2026). FX changes: 2025 calendar-year vs USD. Policy rates: central bank decisions as of Q4-2025 / Q1-2026. Engel exit sensitivity: re-derived from the 2,000-draw bootstrap of the survey curve (analysis/phase_probabilities.mjs) under alternate GDP growth paths. FX stress test: USD return = (1 + local return) &times; (1 + base FX + stress) &minus; 1; local returns are analyst assumptions, not guarantees.</p>
+          </Record>
+        </Chapter>
+
         <section id="method" className="scroll-mt-16 py-14 border-t border-[#d0d7de]">
-          <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">CHAPTER 10</div>
+          <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">CHAPTER 11</div>
           <h2 className="text-3xl font-semibold tracking-tight mb-3">Evidence and method</h2>
           <p className="text-lg leading-relaxed max-w-3xl mb-8">For readers who want to check the work.</p>
 
