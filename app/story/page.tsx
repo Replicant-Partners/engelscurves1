@@ -63,10 +63,16 @@ function Record({ children }: { children: React.ReactNode }) {
 function Chapter({ id, n, title, lede, children }: { id: string; n: string; title: string; lede: string; children: React.ReactNode }) {
   return (
     <section id={id} className="scroll-mt-16 py-14 border-t border-[#d0d7de]">
-      <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">CHAPTER {n}</div>
-      <h2 className="text-3xl font-semibold tracking-tight mb-3">{title}</h2>
-      <p className="text-lg text-[#1b1f23] leading-relaxed max-w-3xl mb-8">{lede}</p>
-      {children}
+      <div className="lg:grid lg:grid-cols-[280px_1fr] lg:gap-16 xl:grid-cols-[320px_1fr]">
+        <div className="mb-8 lg:mb-0 lg:pt-1">
+          <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">CHAPTER {n}</div>
+          <h2 className="text-2xl lg:text-3xl font-semibold tracking-tight mb-3">{title}</h2>
+          <p className="text-base lg:text-lg text-[#57606a] leading-relaxed">{lede}</p>
+        </div>
+        <div>
+          {children}
+        </div>
+      </div>
     </section>
   );
 }
@@ -84,7 +90,7 @@ export default function StoryPage() {
   return (
     <main className="min-h-screen bg-white text-[#1b1f23]" style={{ fontFamily: 'Inter, sans-serif' }}>
       <nav className="sticky top-0 z-10 bg-white/95 backdrop-blur border-b border-[#d0d7de]">
-        <div className="max-w-5xl mx-auto px-6 h-12 flex items-center gap-5 text-xs overflow-x-auto">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12 xl:px-20 h-12 flex items-center gap-5 text-xs overflow-x-auto">
           <span className="font-semibold whitespace-nowrap">From Food to Finance</span>
           {chapters.map((c) => (
             <a key={c.id} href={`#${c.id}`} className="text-[#57606a] hover:text-[#1b1f23] whitespace-nowrap">{c.n}. {c.title}</a>
@@ -93,11 +99,11 @@ export default function StoryPage() {
         </div>
       </nav>
 
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-12 xl:px-20">
         {/* Chapter 0 */}
         <header className="pt-16 pb-14">
           <div className="text-xs font-mono text-[#57606a] tracking-widest mb-4">ENGEL CURVES RESEARCH &middot; OCTOBER 2026</div>
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight max-w-4xl">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight max-w-5xl">
             As countries get richer, the share of household budgets spent on food falls. The shift starts near {usd(story.bounds.start)} per person, not $15,000.
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
