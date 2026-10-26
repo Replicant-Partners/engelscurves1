@@ -41,10 +41,10 @@ const chapters = [
   { id: 'map', n: '4', title: 'The map' },
   { id: 'money', n: '5', title: 'The freed-up wallet' },
   { id: 'street', n: '6', title: 'The street' },
-  { id: 'watch', n: '7', title: 'What we watch' },
+  { id: 'watch', n: '7', title: 'Predictions' },
   { id: 'chains', n: '8', title: 'Who captures the transition?' },
-  { id: 'portfolio', n: '9', title: 'Portfolio construction' },
-  { id: 'macrorisk', n: '10', title: 'Macro risk' },
+  { id: 'macrorisk', n: '9', title: 'Macro risk' },
+  { id: 'portfolio', n: '10', title: 'Portfolio construction' },
   { id: 'method', n: '11', title: 'Evidence and method' },
 ];
 
@@ -417,7 +417,7 @@ export default function StoryPage() {
           </Record>
         </Chapter>
 
-        <Chapter id="watch" n="7" title="What we watch" lede="The thesis makes dated predictions. These are the signals that will confirm or weaken it, in the order they arrive.">
+        <Chapter id="watch" n="7" title="Predictions" lede="The Engel mechanism generates falsifiable country-level predictions. These are the dated claims the data will confirm or refute — ordered by when each signal arrives.">
           <p className="text-xs text-[#57606a] mb-4">Solid marker: an observed fact. Hollow marker: an inferred probability &mdash; the same convention as the Explorer&rsquo;s hollow projection bubbles.</p>
           <ol className="relative border-l border-[#d0d7de] ml-2 space-y-8">
             {watch.map((w) => (
@@ -443,18 +443,18 @@ export default function StoryPage() {
           id="chains"
           n="8"
           title="Who captures the transition?"
-          lede="The Engel shift frees up household budgets. The question is which companies capture the freed-up spending — and whether stock prices already reflect the answer."
+          lede="The Engel mechanism identifies which categories of spending grow as incomes rise. The investment question is which listed companies sit in those categories — and whether current prices already discount the growth."
         >
           <p className="text-sm leading-relaxed max-w-3xl mb-6">
-            <Tag t="JDG" />Six market-company pairs trace the chain: income change &rarr; budget share shift &rarr; industry revenue &rarr; one or two listed companies. For each pair we compute the growth rate the current price implicitly assumes (implied terminal growth, derived from forward P/E and a 9% discount rate), compare it with recent observed revenue growth, and assign a calibrated probability to a one-year thesis question using the Tetlock superforecasting pipeline. Click a row to expand the full chain and falsifier.
+            <Tag t="JDG" />Chapters 1&ndash;7 established the mechanism, the data, and the country-level predictions. This chapter traces the last mile: income change &rarr; budget share shift &rarr; industry revenue &rarr; one or two listed companies per market. For each pair we compute the implied terminal growth embedded in the current stock price and compare it with observed revenue growth. A second section asks whether the early company-level signals already confirm what the macro predicts. Six market-company pairs trace the chain: income change &rarr; budget share shift &rarr; industry revenue &rarr; one or two listed companies. For each pair we compute the growth rate the current price implicitly assumes (implied terminal growth, derived from forward P/E and a 9% discount rate), compare it with recent observed revenue growth, and assign a calibrated probability to a one-year thesis question using the Tetlock superforecasting pipeline. Click a row to expand the full chain and falsifier.
           </p>
           <ValuationChains />
 
           <div style={{ marginTop: 48 }}>
-            <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">PHASE 4</div>
-            <h3 className="text-xl font-semibold tracking-tight mb-2">Early signals</h3>
+            <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">PART II OF THIS CHAPTER</div>
+            <h3 className="text-xl font-semibold tracking-tight mb-2">Are they capturing it yet? Early signals</h3>
             <p className="text-sm text-[#57606a] leading-relaxed max-w-3xl mb-0">
-              Which thesis signals are already observable? Click a pair to expand.
+              The valuation chains above ask <em>who could</em> capture the transition. This section asks <em>who already is</em>: which company-level metrics confirm the Engel mechanism is showing up in observed financials. FY2025 primary filings. Click a pair to expand.
             </p>
             <EarlySignals />
           </div>
@@ -469,24 +469,8 @@ export default function StoryPage() {
 
 
         <Chapter
-          id="portfolio"
-          n="9"
-          title="Portfolio construction"
-          lede="Given the Engel analysis, how would you size these positions? Three systematic approaches — equal-weight, signal-weighted, and expected-value tilted — plus the portfolio risks that hit all six simultaneously."
-        >
-          <p className="text-sm leading-relaxed max-w-3xl mb-6">
-            <Tag t="JDG" />Portfolio construction here is an analytical exercise, not investment advice. The framework makes the trade-offs explicit: calibrated probability sets the base; signal confirmation and liquidity adjust it; expected value shows where the asymmetry lives. Four pre-built views — switch between them to see how the weighting changes.
-          </p>
-          <PortfolioBuilder />
-          <Record>
-            <p>Weights computed as: calibrated_P &times; signal_multiplier &times; liquidity_multiplier, normalised to 100%. Signal multipliers: Confirmed=1.00, Weakened=0.85, Mixed=0.75. Liquidity: NYSE/Nasdaq=1.00, B3/NGX=0.85, HOSE/IDX=0.80. Expected value: P(thesis) &times; upside + (1&minus;P) &times; downside. Upside and downside assumptions are author estimates, not model outputs; they carry significant uncertainty. This is a pedagogical framework for connecting the Engel analysis to capital allocation decisions &mdash; the kind of bridge an academic economist rarely builds explicitly.</p>
-          </Record>
-        </Chapter>
-
-
-        <Chapter
           id="macrorisk"
-          n="10"
+          n="9"
           title="Macro risk"
           lede="The six markets face different macro headwinds. Vietnam is the strongest backdrop; Mexico GDP at +0.3% delays the mechanism; Brazil's Selic at 15% compresses YDUQ3 profits; Argentina's disinflation from 211% to 31% is the most dramatic stabilization in the dataset."
         >
@@ -496,6 +480,22 @@ export default function StoryPage() {
           <MacroRisk />
           <Record>
             <p>GDP and inflation data: national statistics offices (Vietnam GSO, INEGI Mexico, IBGE Brazil, NBS Nigeria, INDEC Argentina, BPS Indonesia) and IMF Article IV consultations (FY2025, latest available Q1-2026). FX changes: 2025 calendar-year vs USD. Policy rates: central bank decisions as of Q4-2025 / Q1-2026. Engel exit sensitivity: re-derived from the 2,000-draw bootstrap of the survey curve (analysis/phase_probabilities.mjs) under alternate GDP growth paths. FX stress test: USD return = (1 + local return) &times; (1 + base FX + stress) &minus; 1; local returns are analyst assumptions, not guarantees.</p>
+          </Record>
+        </Chapter>
+
+
+        <Chapter
+          id="portfolio"
+          n="10"
+          title="Portfolio construction"
+          lede="Given the Engel analysis, how would you size these positions? Three systematic approaches — equal-weight, signal-weighted, and expected-value tilted — plus the portfolio risks that hit all six simultaneously."
+        >
+          <p className="text-sm leading-relaxed max-w-3xl mb-6">
+            <Tag t="JDG" />Portfolio construction here is an analytical exercise, not investment advice. The framework makes the trade-offs explicit: calibrated probability sets the base; signal confirmation and liquidity adjust it; expected value shows where the asymmetry lives. Four pre-built views — switch between them to see how the weighting changes.
+          </p>
+          <PortfolioBuilder />
+          <Record>
+            <p>Weights computed as: calibrated_P &times; signal_multiplier &times; liquidity_multiplier, normalised to 100%. Signal multipliers: Confirmed=1.00, Weakened=0.85, Mixed=0.75. Liquidity: NYSE/Nasdaq=1.00, B3/NGX=0.85, HOSE/IDX=0.80. Expected value: P(thesis) &times; upside + (1&minus;P) &times; downside. Upside and downside assumptions are author estimates, not model outputs; they carry significant uncertainty. This is a pedagogical framework for connecting the Engel analysis to capital allocation decisions &mdash; the kind of bridge an academic economist rarely builds explicitly.</p>
           </Record>
         </Chapter>
 
