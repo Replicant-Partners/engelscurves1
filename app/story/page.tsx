@@ -28,6 +28,8 @@ export const metadata: Metadata = {
 };
 
 const usd = (v: number) => `$${(v / 1000).toFixed(1)}k`;
+// Deterministic comma-formatter: avoids toLocaleString() ICU mismatch between Node.js and browser
+const num = (v: number) => Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 const pct = (v: number) => `${Math.round(v * 100)}%`;
 const T = Object.fromEntries(story.tracks.map((t) => [t.iso3, t]));
 
@@ -265,7 +267,7 @@ export default function StoryPage() {
             <h3 className="text-lg font-semibold mb-3">Going deeper</h3>
             <p className="text-sm leading-relaxed max-w-3xl mb-4"><Tag t="OBS" />Japan walked most of this curve in one lifetime: between 1955 and 1992 its household food share fell from 37.4% to 15.7% while real spending per person multiplied by 3.7 (38 annual observations, Pritchett &amp; Spivack table A.12). <Tag t="INF" />Japan&rsquo;s case shows the cross-country pattern can also be a within-country path, not only a comparison of different societies &mdash; it entered the window already mid-transition and exited the 35% line around 1973.</p>
             <div className="border border-[#d0d7de] p-4 md:p-6 overflow-x-auto"><JapanChart /></div>
-            <p className="text-sm leading-relaxed max-w-3xl mt-4"><Tag t="INF" />On the fit, the transition spans about ${deep.freed.delta.toLocaleString('en-US')} per person per year of non-food spending: at our break threshold ($6.6k) non-food spending is ${deep.freed.atBreak.toLocaleString('en-US')}; at our exit threshold ($17.8k) it is ${deep.freed.atExit.toLocaleString('en-US')}. That dollar span &mdash; not the percentage &mdash; is what a consumer business prices.</p>
+            <p className="text-sm leading-relaxed max-w-3xl mt-4"><Tag t="INF" />On the fit, the transition spans about ${num(deep.freed.delta)} per person per year of non-food spending: at our break threshold ($6.6k) non-food spending is ${num(deep.freed.atBreak)}; at our exit threshold ($17.8k) it is ${num(deep.freed.atExit)}. That dollar span &mdash; not the percentage &mdash; is what a consumer business prices.</p>
           </div>
 
           <div className="mt-12">
@@ -377,7 +379,7 @@ export default function StoryPage() {
           <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
             <div className="md:col-span-3">
               <HouseholdBars />
-              <p className="text-sm leading-relaxed mt-6"><Tag t="INF" />Food falls from {pct(story.household[0].foodShare)} to {pct(story.household[1].foodShare)} of the budget. Non-food spending per person rises from ${story.household[0].nonFood.toLocaleString('en-US')} to ${story.household[1].nonFood.toLocaleString('en-US')}, about +{Math.round((story.household[1].nonFood / story.household[0].nonFood - 1) * 100)}%, while income rises 100%.</p>
+              <p className="text-sm leading-relaxed mt-6"><Tag t="INF" />Food falls from {pct(story.household[0].foodShare)} to {pct(story.household[1].foodShare)} of the budget. Non-food spending per person rises from ${num(story.household[0].nonFood)} to ${num(story.household[1].nonFood)}, about +{Math.round((story.household[1].nonFood / story.household[0].nonFood - 1) * 100)}%, while income rises 100%.</p>
             </div>
             <div className="md:col-span-2 text-sm leading-relaxed space-y-4">
               <h3 className="text-xs font-semibold uppercase tracking-wider text-[#57606a]">Where the money goes, according to the literature</h3>
@@ -407,7 +409,7 @@ export default function StoryPage() {
           </div>
           <div className="mt-10">
             <h3 className="text-lg font-semibold mb-3">Going deeper</h3>
-            <p className="text-sm leading-relaxed max-w-3xl"><Tag t="OBS" />{deep.street.belowEntry} of the {deep.street.familiesOurMarkets} documented families in our twelve markets ({Math.round(100 * deep.street.belowEntry / deep.street.familiesOurMarkets)}%) live below our $335/month entry line (the $11-a-day definition of item 13, converted to a month<Cite ids={[13]} />). India&rsquo;s 10th-percentile family lives on ${deep.street.indiaP10} a month and its 90th on ${deep.street.indiaP90.toLocaleString('en-US')} &mdash; a {Math.round(deep.street.indiaP90 / deep.street.indiaP10)}&times; spread inside one country. <Tag t="INF" />This is evidence item 11 made visible: a country&rsquo;s average hides most of the street it actually lives on, which is why chapter 4&rsquo;s country phases and this chapter&rsquo;s households are different questions.</p>
+            <p className="text-sm leading-relaxed max-w-3xl"><Tag t="OBS" />{deep.street.belowEntry} of the {deep.street.familiesOurMarkets} documented families in our twelve markets ({Math.round(100 * deep.street.belowEntry / deep.street.familiesOurMarkets)}%) live below our $335/month entry line (the $11-a-day definition of item 13, converted to a month<Cite ids={[13]} />). India&rsquo;s 10th-percentile family lives on ${deep.street.indiaP10} a month and its 90th on ${num(deep.street.indiaP90)} &mdash; a {Math.round(deep.street.indiaP90 / deep.street.indiaP10)}&times; spread inside one country. <Tag t="INF" />This is evidence item 11 made visible: a country&rsquo;s average hides most of the street it actually lives on, which is why chapter 4&rsquo;s country phases and this chapter&rsquo;s households are different questions.</p>
           </div>
 
           <Record>
