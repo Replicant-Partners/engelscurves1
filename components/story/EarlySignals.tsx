@@ -30,7 +30,7 @@ function Spark({ points, unit, color }: { points: SparkPoint[]; unit: string; co
   const vals = points.map(p => p.value);
   const min = Math.min(...vals); const max = Math.max(...vals);
   const range = max - min || 1;
-  const W = 260; const H = 72; const PAD = { t: 8, b: 22, l: 4, r: 4 };
+  const W = 320; const H = 90; const PAD = { t: 10, b: 26, l: 4, r: 4 };
   const iW = W - PAD.l - PAD.r; const iH = H - PAD.t - PAD.b;
   const x = (i: number) => PAD.l + (i / (points.length - 1)) * iW;
   const y = (v: number) => PAD.t + iH - ((v - min) / range) * iH;
@@ -288,7 +288,7 @@ export function EarlySignals() {
         Sources: FY2025 primary filings (Feb–Mar 2026) and latest public data.
       </p>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {PAIRS.map((pair) => {
           const isOpen = open === pair.symbol;
           const color = SPARK_COLOR[pair.symbol];
@@ -299,14 +299,14 @@ export function EarlySignals() {
                 onClick={() => setOpen(isOpen ? null : pair.symbol)}
                 style={{
                   width: '100%', display: 'flex', alignItems: 'center', gap: 12,
-                  padding: '16px 20px', background: isOpen ? '#f0f4f8' : '#f6f8fa',
+                  padding: '18px 24px', background: isOpen ? '#f0f4f8' : '#f6f8fa',
                   border: 'none', cursor: 'pointer', textAlign: 'left',
                 }}
               >
                 {/* Left: name + phase + conviction bar */}
                 <div style={{ flex: '0 0 160px' }}>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 3 }}>
-                    <span style={{ fontWeight: 700, fontSize: 16, color: '#1b1f23' }}>{pair.market}</span>
+                    <span style={{ fontWeight: 700, fontSize: 18, color: '#1b1f23' }}>{pair.market}</span>
                     <span style={{ fontSize: 14, color: '#57606a' }}>{pair.ticker}</span>
                   </div>
                   <span style={{ fontSize: 11, color: '#57606a', border: '1px solid #d0d7de', borderRadius: 3, padding: '2px 6px', display: 'inline-block', marginBottom: 4 }}>
@@ -332,9 +332,9 @@ export function EarlySignals() {
 
               {/* Expanded */}
               {isOpen && (
-                <div style={{ padding: '20px 24px 18px', borderTop: '1px solid #e1e4e8' }}>
+                <div style={{ padding: '22px 28px 20px', borderTop: '1px solid #e1e4e8' }}>
                   {/* Overall note */}
-                  <p style={{ fontSize: 13, color: '#57606a', fontStyle: 'italic', marginBottom: 16 }}>
+                  <p style={{ fontSize: 14, color: '#57606a', fontStyle: 'italic', marginBottom: 16 }}>
                     {pair.overallNote}
                   </p>
 
@@ -347,10 +347,10 @@ export function EarlySignals() {
                         </span>
                         <div style={{ flex: 1 }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
-                            <span style={{ fontSize: 13, fontWeight: 700, color: '#1b1f23' }}>{sig.metric}</span>
+                            <span style={{ fontSize: 14, fontWeight: 700, color: '#1b1f23' }}>{sig.metric}</span>
                             <StatusBadge status={sig.status} small />
                           </div>
-                          <p style={{ fontSize: 13, color: '#57606a', lineHeight: 1.75, margin: 0 }}>{sig.reading}</p>
+                          <p style={{ fontSize: 14, color: '#57606a', lineHeight: 1.75, margin: 0 }}>{sig.reading}</p>
                           <span style={{ fontSize: 11, color: '#8c96a0', marginTop: 3, display: 'block' }}>{sig.source}</span>
                         </div>
                       </div>
