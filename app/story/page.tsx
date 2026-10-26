@@ -232,28 +232,58 @@ export default function StoryPage() {
 
 <Chapter id="law" n="1" title="The law" lede="Poorer households spend most of their budget on food. Richer ones spend a small share. Engel described this in the 19th century; household surveys across the world still show it.">
           <LawChart />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 text-sm leading-relaxed">
-            <p><Tag t="OBS" />A typical household in Ethiopia (2004) spent 54% of its budget on food; in Switzerland (2003), 9%. Each dot is one national survey; the chart fills poorest to richest as you arrive, and the slider walks it one household survey at a time.</p>
-            <p><Tag t="OBS" />The pattern holds across income groups: over 50% in low-income countries, 40&ndash;50% in lower-middle and 30&ndash;40% in upper-middle income countries<Cite ids={[10]} />. Between countries, being 50% richer means a food share about 5 points lower<Cite ids={[9]} />.</p>
+
+          {/* Two key observations below the chart */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 mt-8">
+            <p className="text-[15px] leading-[1.75] text-[#1b1f23]">
+              <Tag t="OBS" />A typical household in Ethiopia (2004) spent 54% of its budget on food; in Switzerland (2003), 9%. Each dot is one national survey — the chart fills poorest to richest as you arrive, and the slider walks it one survey at a time.
+            </p>
+            <p className="text-[15px] leading-[1.75] text-[#1b1f23]">
+              <Tag t="OBS" />The pattern holds across income groups: over 50% in low-income countries, 40&ndash;50% in lower-middle and 30&ndash;40% in upper-middle income countries<Cite ids={[10]} />. Between countries, being 50% richer means a food share about 5 points lower<Cite ids={[9]} />.
+            </p>
           </div>
-          <div className="mt-10">
-            <h3 className="text-lg font-semibold mb-3">Going deeper</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm leading-relaxed">
+
+          {/* Going deeper */}
+          <div className="mt-12 pt-8 border-t border-[#e1e4e8]">
+            <p className="text-xs font-mono text-[#57606a] tracking-widest mb-4">GOING DEEPER</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+
+              {/* Left: historical stability table */}
               <div>
-                <p><Tag t="OBS" />The slope barely moves across 150 years of measurement:</p>
-                <table className="mt-3 w-full text-sm border-collapse">
-                  <tbody>
-                    {deep.historicalSlopes.map((h) => (
-                      <tr key={h.label} className="border-b border-[#e1e4e8] last:border-0">
-                        <td className="py-1.5 pr-3">{h.label}</td>
-                        <td className="py-1.5 text-right font-mono">{h.v.toFixed(3)}</td>
+                <p className="text-[15px] leading-[1.75] mb-4">
+                  <Tag t="OBS" />The slope barely moves across 150 years of measurement. A relationship estimated in the 1850s on Prussian working-class budgets holds in 2010 household surveys from 85 countries.
+                </p>
+                <div className="border border-[#e1e4e8] rounded overflow-hidden">
+                  <table className="w-full text-sm border-collapse">
+                    <thead>
+                      <tr className="bg-[#f6f8fa] border-b border-[#e1e4e8]">
+                        <th className="py-2 px-3 text-left text-xs font-semibold text-[#57606a] uppercase tracking-wide">Study / Era</th>
+                        <th className="py-2 px-3 text-right text-xs font-semibold text-[#57606a] uppercase tracking-wide">Slope</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <p className="mt-2 text-xs text-[#57606a]">Engel slope: change in the food share per log point of income. First two rows from Pritchett &amp; Spivack tables A.7&ndash;A.8; third from evidence item 9.</p>
+                    </thead>
+                    <tbody>
+                      {deep.historicalSlopes.map((h) => (
+                        <tr key={h.label} className="border-b border-[#f0f0f0] last:border-0 hover:bg-[#f6f8fa]">
+                          <td className="py-2 px-3 text-[13px]">{h.label}</td>
+                          <td className="py-2 px-3 text-right font-mono text-[13px] font-semibold">{h.v.toFixed(3)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p className="mt-2 text-xs text-[#57606a] leading-relaxed">Engel slope: percentage-point change in food share per log point of income. First two rows from Pritchett &amp; Spivack tables A.7&ndash;A.8; third from evidence item 9.</p>
               </div>
-              <p><Tag t="JDG" />Few relationships in economics are this stable across centuries, methods and samples. That stability is what licenses using the curve as a map at all &mdash; and it is why the deviations matter: Bulgaria and Armenia sit far above the line, Ukraine and the West Bank far below, reminders that prices, measurement and history move individual countries off a very persistent track.</p>
+
+              {/* Right: why stability matters */}
+              <div className="flex flex-col justify-center">
+                <p className="text-[15px] leading-[1.75] mb-4">
+                  <Tag t="JDG" />Few relationships in economics are this stable across centuries, methods and samples. That stability is what licenses using the curve as a map at all.
+                </p>
+                <p className="text-[15px] leading-[1.75] text-[#57606a]">
+                  And it is why the deviations matter: Bulgaria and Armenia sit far above the line, Ukraine and the West Bank far below — reminders that prices, measurement and history move individual countries off a very persistent track. The curve is a long-run attractor, not a five-year forecast.
+                </p>
+              </div>
+
             </div>
           </div>
 
