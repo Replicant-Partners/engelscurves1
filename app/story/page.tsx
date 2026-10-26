@@ -293,25 +293,55 @@ export default function StoryPage() {
         </Chapter>
 
         <Chapter id="break" n="2" title="The break" lede={`The decline is not smooth from the start. Below about ${usd(story.bounds.start)}, the food share barely moves. Above it, it falls steadily until food is about a third of the budget near ${usd(story.bounds.end)}. That band is the transition.`}>
+
           <BreakChart />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6 text-sm leading-relaxed">
-            <p><Tag t="INF" />Toggle &ldquo;one slope&rdquo; to see why a straight line fails: it cannot hold the flat poor-country stretch and the steep decline at once. Below the break the fitted food share stays near 56&ndash;59%, with individual surveys mostly between 50% and 70%. Above it, it falls about {Math.round(Math.abs(story.piecewise.slopeAbove) * Math.LN2 * 100)} percentage points each time income doubles.</p>
-            <p><Tag t="INF" />The earlier $15,000 marker sits inside the transition, where food is still about 37% of spending. It marks the middle of the shift, not its start.</p>
-            <p><Tag t="GAP" />No paper in the corpus states a dollar threshold. Both boundaries are this study&apos;s estimates<Cite ids={[3]} />.</p>
-          </div>
-          <div className="mt-10">
-            <h3 className="text-lg font-semibold mb-3">Going deeper</h3>
-            <p className="text-sm leading-relaxed mb-4"><Tag t="OBS" />Japan walked most of this curve in one lifetime: between 1955 and 1992 its household food share fell from 37.4% to 15.7% while real spending per person multiplied by 3.7 (38 annual observations, Pritchett &amp; Spivack table A.12). <Tag t="INF" />Japan&rsquo;s case shows the cross-country pattern can also be a within-country path, not only a comparison of different societies &mdash; it entered the window already mid-transition and exited the 35% line around 1973.</p>
-            <div className="border border-[#d0d7de] p-4 md:p-6 overflow-x-auto"><JapanChart /></div>
-            <p className="text-sm leading-relaxed mt-4"><Tag t="INF" />On the fit, the transition spans about ${num(deep.freed.delta)} per person per year of non-food spending: at our break threshold ($6.6k) non-food spending is ${num(deep.freed.atBreak)}; at our exit threshold ($17.8k) it is ${num(deep.freed.atExit)}. That dollar span &mdash; not the percentage &mdash; is what a consumer business prices.</p>
+
+          {/* Three key observations */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-4 mt-8">
+            <p className="text-[15px] leading-[1.75]">
+              <Tag t="INF" />Toggle &ldquo;one slope&rdquo; to see why a straight line fails: below the break the fitted share stays near 56&ndash;59%; above it, food falls about {Math.round(Math.abs(story.piecewise.slopeAbove) * Math.LN2 * 100)} percentage points each time income doubles.
+            </p>
+            <p className="text-[15px] leading-[1.75]">
+              <Tag t="INF" />The earlier $15,000 marker sits inside the transition, where food is still about 37% of spending. It marks the middle of the shift, not its start.
+            </p>
+            <p className="text-[15px] leading-[1.75]">
+              <Tag t="GAP" />No paper in the corpus states a dollar threshold. Both boundaries are this study&apos;s estimates<Cite ids={[3]} />.
+            </p>
           </div>
 
-          <div className="mt-12">
-            <h3 className="text-lg font-semibold mb-1">Does the break hold up?</h3>
-            <p className="text-sm text-[#57606a] leading-relaxed mb-4">The same model re-estimated on five versions of the data. If the break were an artefact of one group of surveys, it would move or vanish when that group is removed.</p>
-            <div className="border border-[#d0d7de] p-4 md:p-6 overflow-x-auto"><RobustnessChart /></div>
-            <p className="text-sm leading-relaxed mt-4"><Tag t="INF" />In four of five versions the break lands at $6.6k (between $6,566 and $6,592) and stays significant. Without the ILO surveys, half of the sample and the largest single source inside the transition band (13 of 32 surveys), it moves to $5.7k and becomes borderline (8.6 against 8.85). The location is stable; its sharpness depends on having enough middle-income data.</p>
+          {/* Going deeper: Japan case study */}
+          <div className="mt-12 pt-8 border-t border-[#e1e4e8]">
+            <p className="text-xs font-mono text-[#57606a] tracking-widest mb-6">GOING DEEPER — ONE COUNTRY, ONE LIFETIME</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 mb-6">
+              <p className="text-[15px] leading-[1.75]">
+                <Tag t="OBS" />Japan walked most of this curve in one lifetime: between 1955 and 1992 its household food share fell from 37.4% to 15.7% while real spending per person multiplied by 3.7 (38 annual observations, Pritchett &amp; Spivack table A.12).
+              </p>
+              <p className="text-[15px] leading-[1.75] text-[#57606a]">
+                <Tag t="INF" />Japan&rsquo;s case shows the cross-country pattern can also be a within-country path — it entered the window already mid-transition and exited the 35% line around 1973. The transition took about 18 years at Japan&rsquo;s growth rate; at slower emerging-market rates it takes longer.
+              </p>
+            </div>
+            <div className="overflow-x-auto rounded border border-[#e1e4e8]">
+              <JapanChart />
+            </div>
+            <p className="text-[14px] leading-[1.7] text-[#57606a] mt-4">
+              <Tag t="INF" />On the fit, the transition spans about ${num(deep.freed.delta)} per person per year of non-food spending: at our break threshold ($6.6k) non-food spending is ${num(deep.freed.atBreak)}; at our exit threshold ($17.8k) it is ${num(deep.freed.atExit)}. That dollar span — not the percentage — is what a consumer business prices.
+            </p>
           </div>
+
+          {/* Does the break hold up? */}
+          <div className="mt-12 pt-8 border-t border-[#e1e4e8]">
+            <p className="text-xs font-mono text-[#57606a] tracking-widest mb-3">ROBUSTNESS — DOES THE BREAK HOLD UP?</p>
+            <p className="text-[15px] leading-[1.75] text-[#57606a] mb-6">
+              The same model re-estimated on five versions of the data. If the break were an artefact of one group of surveys, it would move or vanish when that group is removed.
+            </p>
+            <div className="overflow-x-auto rounded border border-[#e1e4e8]">
+              <RobustnessChart />
+            </div>
+            <p className="text-[15px] leading-[1.75] mt-4">
+              <Tag t="INF" />In four of five versions the break lands at $6.6k (between $6,566 and $6,592) and stays significant. Without the ILO surveys — half the sample and the largest single source inside the transition band (13 of 32 surveys) — it moves to $5.7k and becomes borderline (sup-F 8.6 vs 8.85 critical). The location is stable; its sharpness depends on having enough middle-income data.
+            </p>
+          </div>
+
           <Record>
             <p>Model: food share on ln(GDP per capita) with one estimated break. Break at {usd(story.bounds.start)} (bootstrap 90% interval {usd(story.bounds.startCi[0])}&ndash;{usd(story.bounds.startCi[2])}); slope {story.piecewise.slopeBelow} below, {story.piecewise.slopeAbove} above. sup-F {story.fit.supF} against an Andrews (1993) 5% critical value of 8.85. The 35% line comes from the linear fit (R&sup2; {story.fit.r2}), 90% interval {usd(story.bounds.endCi[0])}&ndash;{usd(story.bounds.endCi[2])}.</p>
             <p>The break survives dropping definition-problem surveys, one-survey-per-country and dropping the LSMS table; it weakens to borderline without the ILO surveys. Scripts: analysis/engel_threshold.mjs, engel_robustness.mjs; independent check: verify_independent.py.</p>
