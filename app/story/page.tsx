@@ -15,6 +15,7 @@ import { JapanChart } from '../../components/story/JapanChart';
 import { RobustnessChart } from '../../components/story/RobustnessChart';
 import { MeasurementRisk } from '../../components/story/MeasurementRisk';
 import { ValuationChains } from '../../components/story/ValuationChains';
+import { EarlySignals } from '../../components/story/EarlySignals';
 import { story } from '../../data/storyData';
 import { evidenceItems, literatureSources } from '../../data/literatureEvidence';
 
@@ -437,6 +438,16 @@ export default function StoryPage() {
             <Tag t="JDG" />Six market-company pairs trace the chain: income change &rarr; budget share shift &rarr; industry revenue &rarr; one or two listed companies. For each pair we compute the growth rate the current price implicitly assumes (implied terminal growth, derived from forward P/E and a 9% discount rate), compare it with recent observed revenue growth, and assign a calibrated probability to a one-year thesis question using the Tetlock superforecasting pipeline. Click a row to expand the full chain and falsifier.
           </p>
           <ValuationChains />
+
+          <div style={{ marginTop: 48 }}>
+            <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">PHASE 4</div>
+            <h3 className="text-xl font-semibold tracking-tight mb-2">Early signals</h3>
+            <p className="text-sm text-[#57606a] leading-relaxed max-w-3xl mb-0">
+              Which thesis signals are already observable? Click a pair to expand.
+            </p>
+            <EarlySignals />
+          </div>
+
           <Record>
             <p><strong>Mechanism.</strong> The link from income to category demand rests on Clements &amp; Chen (2010): &ldquo;when the relative price of food is constant, [the food share equation] implies d&#x175; &asymp; &beta;Q&#x302;, with &beta; = w(&eta; &minus; 1)&rdquo; &mdash; the budget share falls when the elasticity is below 1. Their 42-country cross-section yields a median slope &beta; &asymp; &minus;0.13 (food-share change per log-point of income, R&sup2;&thinsp;=&thinsp;0.85). That is the slope every chain below uses to link a country&rsquo;s income position to its freed-up budget. <Tag t="OBS" /></p>
             <p><strong>Middle-class threshold.</strong> Kharas (2017) defines the global middle class as households with per capita incomes &ldquo;between $10 and $100 per person per day (pppd) in 2005 PPP terms&rdquo; &mdash; $11&ndash;$110 in 2011 PPP. The six pairs are chosen from countries already at or approaching this band: the freed-up wallet is not hypothetical but observable in current household survey data. <Tag t="OBS" /></p>
