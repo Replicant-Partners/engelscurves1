@@ -57,7 +57,7 @@ function Cite({ ids }: { ids: number[] }) {
 }
 
 function Record({ children }: { children: React.ReactNode }) {
-  return <div className="mt-6 border-l-2 border-[#d0d7de] pl-4 text-xs text-[#57606a] leading-relaxed space-y-1">{children}</div>;
+  return <div className="mt-8 border-l-2 border-[#d0d7de] pl-5 text-xs text-[#57606a] leading-relaxed space-y-2 max-w-[720px]">{children}</div>;
 }
 
 function Chapter({ id, n, title, lede, children }: { id: string; n: string; title: string; lede: string; children: React.ReactNode }) {
@@ -69,7 +69,7 @@ function Chapter({ id, n, title, lede, children }: { id: string; n: string; titl
           <h2 className="text-2xl lg:text-3xl font-semibold tracking-tight mb-3">{title}</h2>
           <p className="text-base lg:text-lg text-[#57606a] leading-relaxed">{lede}</p>
         </div>
-        <div>
+        <div className="[&>p]:max-w-[680px] [&>p]:leading-[1.75] [&_.text-sm]:leading-[1.7] space-y-0">
           {children}
         </div>
       </div>
@@ -120,7 +120,7 @@ export default function StoryPage() {
               <p className="text-sm text-[#57606a] mt-2 leading-relaxed">Transition markets more likely than not to complete it by 2030 on IMF growth paths: Egypt ({pct(T.EGY.pExit2030)}), Vietnam ({pct(T.VNM.pExit2030)}) and Indonesia ({pct(T.IDN.pExit2030)}).</p>
             </div>
           </div>
-          <p className="text-sm text-[#57606a] mt-10 max-w-3xl leading-relaxed">
+          <p className="text-base text-[#57606a] mt-10 leading-relaxed max-w-[680px]">
             Built from {story.fit.n} household surveys, World Bank and IMF income data, and 15 papers. Every number links to a source or a script; labels mark what is observed <Tag t="OBS" />, inferred <Tag t="INF" />, judged <Tag t="JDG" /> or missing <Tag t="GAP" />.
           </p>
         </header>
@@ -128,7 +128,7 @@ export default function StoryPage() {
                 <section id="mechanism" className="scroll-mt-16 py-14 border-t border-[#d0d7de]">
           <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">CHAPTER 0</div>
           <h2 className="text-3xl font-semibold tracking-tight mb-3">The mechanism</h2>
-          <p className="text-lg text-[#1b1f23] leading-relaxed max-w-3xl mb-8">
+          <p className="text-lg text-[#1b1f23] leading-relaxed mb-8 max-w-[680px]">
             Before looking at countries, the underlying economics: what Engel curves measure, what they don't, and why the distinction matters for industry analysis.
           </p>
 
@@ -155,9 +155,9 @@ export default function StoryPage() {
             {/* 0.2 Elasticity chart */}
             <div>
               <h3 className="text-lg font-semibold mb-2">Income elasticities across 12 consumption categories</h3>
-              <p className="text-sm text-[#57606a] mb-4 max-w-3xl"><Tag t="OBS" />Estimated from the Working-Leser demand system (w<sub>i</sub> = α<sub>i</sub> + β<sub>i</sub> log Q) on 42 countries, mostly OECD plus Mexico, Korea and Turkey. η<sub>i</sub> = 1 + β<sub>i</sub> / w<sub>i</sub>.<Cite ids={[9]} /> Source: {mechanismData.source}</p>
+              <p className="text-sm text-[#57606a] mb-4"><Tag t="OBS" />Estimated from the Working-Leser demand system (w<sub>i</sub> = α<sub>i</sub> + β<sub>i</sub> log Q) on 42 countries, mostly OECD plus Mexico, Korea and Turkey. η<sub>i</sub> = 1 + β<sub>i</sub> / w<sub>i</sub>.<Cite ids={[9]} /> Source: {mechanismData.source}</p>
               <div className="border border-[#d0d7de] p-4 overflow-x-auto"><MechanismChart /></div>
-              <div className="text-sm leading-relaxed mt-4 max-w-3xl space-y-2">
+              <div className="text-sm leading-relaxed mt-4 space-y-2">
                 <p><Tag t="INF" />Health (η={mechanismData.categories.find((c: any) => c.id === 'health')?.eta.toFixed(2)}), recreation ({mechanismData.categories.find((c: any) => c.id === 'recreation')?.eta.toFixed(2)}) and restaurants ({mechanismData.categories.find((c: any) => c.id === 'restaurants')?.eta.toFixed(2)}) are luxuries in the OECD: for every 1% rise in total spending, these categories grow by 1.3%+. Food is an inferior good at OECD income levels (η={mechanismData.categories.find((c: any) => c.id === 'food')?.eta.toFixed(2)}): the rich already have enough — additional income flows elsewhere.</p>
                 <p><Tag t="JDG" />These are OECD-weighted estimates. In our transition markets — where incomes are still 15–60% of OECD levels — the sign and magnitude of elasticities differ, especially for health and education, which behave more like luxuries where public provision is low. We mark these differences as [GAP] where no country-specific estimate exists.</p>
               </div>
@@ -271,16 +271,16 @@ export default function StoryPage() {
           </div>
           <div className="mt-10">
             <h3 className="text-lg font-semibold mb-3">Going deeper</h3>
-            <p className="text-sm leading-relaxed max-w-3xl mb-4"><Tag t="OBS" />Japan walked most of this curve in one lifetime: between 1955 and 1992 its household food share fell from 37.4% to 15.7% while real spending per person multiplied by 3.7 (38 annual observations, Pritchett &amp; Spivack table A.12). <Tag t="INF" />Japan&rsquo;s case shows the cross-country pattern can also be a within-country path, not only a comparison of different societies &mdash; it entered the window already mid-transition and exited the 35% line around 1973.</p>
+            <p className="text-sm leading-relaxed mb-4"><Tag t="OBS" />Japan walked most of this curve in one lifetime: between 1955 and 1992 its household food share fell from 37.4% to 15.7% while real spending per person multiplied by 3.7 (38 annual observations, Pritchett &amp; Spivack table A.12). <Tag t="INF" />Japan&rsquo;s case shows the cross-country pattern can also be a within-country path, not only a comparison of different societies &mdash; it entered the window already mid-transition and exited the 35% line around 1973.</p>
             <div className="border border-[#d0d7de] p-4 md:p-6 overflow-x-auto"><JapanChart /></div>
-            <p className="text-sm leading-relaxed max-w-3xl mt-4"><Tag t="INF" />On the fit, the transition spans about ${num(deep.freed.delta)} per person per year of non-food spending: at our break threshold ($6.6k) non-food spending is ${num(deep.freed.atBreak)}; at our exit threshold ($17.8k) it is ${num(deep.freed.atExit)}. That dollar span &mdash; not the percentage &mdash; is what a consumer business prices.</p>
+            <p className="text-sm leading-relaxed mt-4"><Tag t="INF" />On the fit, the transition spans about ${num(deep.freed.delta)} per person per year of non-food spending: at our break threshold ($6.6k) non-food spending is ${num(deep.freed.atBreak)}; at our exit threshold ($17.8k) it is ${num(deep.freed.atExit)}. That dollar span &mdash; not the percentage &mdash; is what a consumer business prices.</p>
           </div>
 
           <div className="mt-12">
             <h3 className="text-lg font-semibold mb-1">Does the break hold up?</h3>
-            <p className="text-sm text-[#57606a] leading-relaxed max-w-3xl mb-4">The same model re-estimated on five versions of the data. If the break were an artefact of one group of surveys, it would move or vanish when that group is removed.</p>
+            <p className="text-sm text-[#57606a] leading-relaxed mb-4">The same model re-estimated on five versions of the data. If the break were an artefact of one group of surveys, it would move or vanish when that group is removed.</p>
             <div className="border border-[#d0d7de] p-4 md:p-6 overflow-x-auto"><RobustnessChart /></div>
-            <p className="text-sm leading-relaxed mt-4 max-w-3xl"><Tag t="INF" />In four of five versions the break lands at $6.6k (between $6,566 and $6,592) and stays significant. Without the ILO surveys, half of the sample and the largest single source inside the transition band (13 of 32 surveys), it moves to $5.7k and becomes borderline (8.6 against 8.85). The location is stable; its sharpness depends on having enough middle-income data.</p>
+            <p className="text-sm leading-relaxed mt-4"><Tag t="INF" />In four of five versions the break lands at $6.6k (between $6,566 and $6,592) and stays significant. Without the ILO surveys, half of the sample and the largest single source inside the transition band (13 of 32 surveys), it moves to $5.7k and becomes borderline (8.6 against 8.85). The location is stable; its sharpness depends on having enough middle-income data.</p>
           </div>
           <Record>
             <p>Model: food share on ln(GDP per capita) with one estimated break. Break at {usd(story.bounds.start)} (bootstrap 90% interval {usd(story.bounds.startCi[0])}&ndash;{usd(story.bounds.startCi[2])}); slope {story.piecewise.slopeBelow} below, {story.piecewise.slopeAbove} above. sup-F {story.fit.supF} against an Andrews (1993) 5% critical value of 8.85. The 35% line comes from the linear fit (R&sup2; {story.fit.r2}), 90% interval {usd(story.bounds.endCi[0])}&ndash;{usd(story.bounds.endCi[2])}.</p>
@@ -398,7 +398,7 @@ export default function StoryPage() {
           </div>
           <div className="mt-10">
             <h3 className="text-lg font-semibold mb-3">Going deeper</h3>
-            <p className="text-sm leading-relaxed max-w-3xl"><Tag t="INF" />Scaled up, this per-person arithmetic is the largest consumption story of the decade: Kharas projects global middle-class consumption $29 trillion higher in 2030 than in 2015<Cite ids={[15]} />, with today&rsquo;s lower middle-income countries &mdash; including India, Indonesia and Vietnam &mdash; carrying $15 trillion of that market growth<Cite ids={[16]} />. Those are the same markets chapter 4 places inside the transition. <Tag t="JDG" />Both figures are 2017 projections, not observations; we cite them as the order of magnitude, not a forecast we underwrite.</p>
+            <p className="text-sm leading-relaxed"><Tag t="INF" />Scaled up, this per-person arithmetic is the largest consumption story of the decade: Kharas projects global middle-class consumption $29 trillion higher in 2030 than in 2015<Cite ids={[15]} />, with today&rsquo;s lower middle-income countries &mdash; including India, Indonesia and Vietnam &mdash; carrying $15 trillion of that market growth<Cite ids={[16]} />. Those are the same markets chapter 4 places inside the transition. <Tag t="JDG" />Both figures are 2017 projections, not observations; we cite them as the order of magnitude, not a forecast we underwrite.</p>
           </div>
 
           <Record>
@@ -415,7 +415,7 @@ export default function StoryPage() {
           </div>
           <div className="mt-10">
             <h3 className="text-lg font-semibold mb-3">Going deeper</h3>
-            <p className="text-sm leading-relaxed max-w-3xl"><Tag t="OBS" />{deep.street.belowEntry} of the {deep.street.familiesOurMarkets} documented families in our twelve markets ({Math.round(100 * deep.street.belowEntry / deep.street.familiesOurMarkets)}%) live below our $335/month entry line (the $11-a-day definition of item 13, converted to a month<Cite ids={[13]} />). India&rsquo;s 10th-percentile family lives on ${deep.street.indiaP10} a month and its 90th on ${num(deep.street.indiaP90)} &mdash; a {Math.round(deep.street.indiaP90 / deep.street.indiaP10)}&times; spread inside one country. <Tag t="INF" />This is evidence item 11 made visible: a country&rsquo;s average hides most of the street it actually lives on, which is why chapter 4&rsquo;s country phases and this chapter&rsquo;s households are different questions.</p>
+            <p className="text-sm leading-relaxed"><Tag t="OBS" />{deep.street.belowEntry} of the {deep.street.familiesOurMarkets} documented families in our twelve markets ({Math.round(100 * deep.street.belowEntry / deep.street.familiesOurMarkets)}%) live below our $335/month entry line (the $11-a-day definition of item 13, converted to a month<Cite ids={[13]} />). India&rsquo;s 10th-percentile family lives on ${deep.street.indiaP10} a month and its 90th on ${num(deep.street.indiaP90)} &mdash; a {Math.round(deep.street.indiaP90 / deep.street.indiaP10)}&times; spread inside one country. <Tag t="INF" />This is evidence item 11 made visible: a country&rsquo;s average hides most of the street it actually lives on, which is why chapter 4&rsquo;s country phases and this chapter&rsquo;s households are different questions.</p>
           </div>
 
           <Record>
@@ -451,7 +451,7 @@ export default function StoryPage() {
           title="Who captures the transition?"
           lede="The Engel mechanism identifies which categories of spending grow as incomes rise. The investment question is which listed companies sit in those categories — and whether current prices already discount the growth."
         >
-          <p className="text-sm leading-relaxed max-w-3xl mb-6">
+          <p className="text-sm leading-relaxed mb-6">
             <Tag t="JDG" />Chapters 1&ndash;7 established the mechanism, the data, and the country-level predictions. This chapter traces the last mile: income change &rarr; budget share shift &rarr; industry revenue &rarr; one or two listed companies per market. For each pair we compute the implied terminal growth embedded in the current stock price and compare it with observed revenue growth. A second section asks whether the early company-level signals already confirm what the macro predicts. Six market-company pairs trace the chain: income change &rarr; budget share shift &rarr; industry revenue &rarr; one or two listed companies. For each pair we compute the growth rate the current price implicitly assumes (implied terminal growth, derived from forward P/E and a 9% discount rate), compare it with recent observed revenue growth, and assign a calibrated probability to a one-year thesis question using the Tetlock superforecasting pipeline. Click a row to expand the full chain and falsifier.
           </p>
           <ValuationChains />
@@ -459,7 +459,7 @@ export default function StoryPage() {
           <div style={{ marginTop: 48 }}>
             <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">PART II OF THIS CHAPTER</div>
             <h3 className="text-xl font-semibold tracking-tight mb-2">Are they capturing it yet? Early signals</h3>
-            <p className="text-sm text-[#57606a] leading-relaxed max-w-3xl mb-0">
+            <p className="text-sm text-[#57606a] leading-relaxed mb-0">
               The valuation chains above ask <em>who could</em> capture the transition. This section asks <em>who already is</em>: which company-level metrics confirm the Engel mechanism is showing up in observed financials. FY2025 primary filings. Click a pair to expand.
             </p>
             <EarlySignals />
@@ -480,7 +480,7 @@ export default function StoryPage() {
           title="Macro risk"
           lede="The six markets face different macro headwinds. Vietnam is the strongest backdrop; Mexico GDP at +0.3% delays the mechanism; Brazil's Selic at 15% compresses YDUQ3 profits; Argentina's disinflation from 211% to 31% is the most dramatic stabilization in the dataset."
         >
-          <p className="text-sm leading-relaxed max-w-3xl mb-6">
+          <p className="text-sm leading-relaxed mb-6">
             <Tag t="OBS" />Country-level macro risk is distinct from company-level falsifiers: it operates upstream of the Engel mechanism, controlling whether income growth materialises at all. Three tabs: scorecards (GDP, inflation, FX, policy rate per country), Engel exit sensitivity (how GDP growth stress shifts 2030 exit probabilities), and FX stress test (how currency depreciation reduces USD returns under base/bear/shock scenarios).
           </p>
           <MacroRisk />
@@ -496,7 +496,7 @@ export default function StoryPage() {
           title="Portfolio construction"
           lede="Given the Engel analysis, how would you size these positions? Three systematic approaches — equal-weight, signal-weighted, and expected-value tilted — plus the portfolio risks that hit all six simultaneously."
         >
-          <p className="text-sm leading-relaxed max-w-3xl mb-6">
+          <p className="text-sm leading-relaxed mb-6">
             <Tag t="JDG" />Portfolio construction here is an analytical exercise, not investment advice. The framework makes the trade-offs explicit: calibrated probability sets the base; signal confirmation and liquidity adjust it; expected value shows where the asymmetry lives. Four pre-built views — switch between them to see how the weighting changes.
           </p>
           <PortfolioBuilder />
@@ -508,7 +508,7 @@ export default function StoryPage() {
         <section id="method" className="scroll-mt-16 py-14 border-t border-[#d0d7de]">
           <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">CHAPTER 11</div>
           <h2 className="text-3xl font-semibold tracking-tight mb-3">Evidence and method</h2>
-          <p className="text-lg leading-relaxed max-w-3xl mb-8">For readers who want to check the work.</p>
+          <p className="text-lg leading-relaxed mb-8">For readers who want to check the work.</p>
 
           <details className="border-t border-[#e1e4e8] py-4" open>
             <summary className="cursor-pointer font-semibold">Evidence table ({evidenceItems.length} claims, each with its source passage)</summary>

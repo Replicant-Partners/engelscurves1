@@ -335,7 +335,7 @@ export function MacroRisk() {
                           </div>
                         ))}
                       </div>
-                      <p style={{ fontSize: 11, color: '#57606a', lineHeight: 1.6, marginBottom: 8 }}>
+                      <p style={{ fontSize: 11, color: '#57606a', lineHeight: 1.75, marginBottom: 8 }}>
                         <span style={{ fontWeight: 700, color: eng.color }}>{eng.icon} Engel:</span> {c.engelNote}
                       </p>
                       <div style={{ background: '#fdf0f0', borderLeft: '3px solid #9e3c38', padding: '7px 10px', borderRadius: '0 4px 4px 0' }}>

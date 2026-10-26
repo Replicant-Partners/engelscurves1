@@ -350,7 +350,7 @@ export function EarlySignals() {
                             <span style={{ fontSize: 11, fontWeight: 600, color: '#1b1f23' }}>{sig.metric}</span>
                             <StatusBadge status={sig.status} small />
                           </div>
-                          <p style={{ fontSize: 11, color: '#57606a', lineHeight: 1.55, margin: 0 }}>{sig.reading}</p>
+                          <p style={{ fontSize: 11, color: '#57606a', lineHeight: 1.7, margin: 0 }}>{sig.reading}</p>
                           <span style={{ fontSize: 10, color: '#8c96a0', marginTop: 1, display: 'block' }}>{sig.source}</span>
                         </div>
                       </div>
@@ -360,7 +360,7 @@ export function EarlySignals() {
                   {/* Catalyst */}
                   <div style={{ background: '#f6f8fa', borderLeft: '3px solid ' + color, padding: '8px 10px', borderRadius: '0 4px 4px 0' }}>
                     <span style={{ fontSize: 10, fontWeight: 700, color: color, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Next catalyst</span>
-                    <p style={{ fontSize: 11, color: '#57606a', lineHeight: 1.55, margin: '4px 0 0' }}>{pair.catalyst}</p>
+                    <p style={{ fontSize: 12, color: '#57606a', lineHeight: 1.7, margin: '4px 0 0' }}>{pair.catalyst}</p>
                   </div>
                 </div>
               )}
