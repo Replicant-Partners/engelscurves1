@@ -234,7 +234,7 @@ export default function StoryPage() {
           <LawChart />
 
           {/* Two key observations */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6 mt-10 mb-8">
             <p className="text-[15px] leading-[1.75] text-[#1b1f23]">
               <Tag t="OBS" />A typical household in Ethiopia (2004) spent 54% of its budget on food; in Switzerland (2003), 9%. Each dot is one national survey — the chart fills poorest to richest as you arrive, and the slider walks it one survey at a time.
             </p>
