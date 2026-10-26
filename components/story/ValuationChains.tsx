@@ -219,129 +219,164 @@ export function ValuationChains() {
   const sel = PAIRS.find(p => p.symbol === selected) ?? null;
 
   return (
-    <div>
-      {/* Scatter chart */}
-      <div className="mb-6">
-        <p className="text-xs text-[#57606a] mb-2">
-          Bubble size reflects calibrated probability (Tetlock superforecasting + scenario_calibrate shrinkage).
-          The diagonal is where implied terminal growth equals actual growth — above it the market prices in less growth than currently observed.
-          <Tag t="INF" />Implied g = 1/fwd P/E − 9% discount rate. Actual growth = most recent annual revenue growth per public filings.
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 48 }}>
+
+      {/* ── SECTION 1: The position map ─────────────────────────────── */}
+      <div>
+        <p style={{ fontSize: 10, fontWeight: 700, color: '#57606a', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 6 }}>
+          SECTION 1 — THE POSITION MAP
         </p>
-        <GrowthGapScatter selected={selected} />
-      </div>
-
-      {/* Table */}
-      <div style={{ overflowX: 'auto', marginTop: 32 }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
-          <thead>
-            <tr style={{ borderBottom: '2px solid #d0d7de' }}>
-              {['Market / Company', 'Phase', 'η', 'Implied g¹', 'Actual g', 'Gap', 'Verdict', 'P(thesis)'].map(h => (
-                <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: '#57606a', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {PAIRS.map((p, i) => {
-              const isEven = i % 2 === 0;
-              const isSelected = selected === p.symbol;
-              const gap = p.actualG - p.impliedG;
-              return (
-                <tr
-                  key={p.symbol}
-                  style={{
-                    background: isSelected ? '#f0f4f8' : isEven ? '#f6f8fa' : '#fff',
-                    borderBottom: '1px solid #e1e4e8',
-                    cursor: 'pointer',
-                  }}
-                  onClick={() => setSelected(isSelected ? null : p.symbol)}
-                >
-                  <td style={{ padding: '12px 12px', fontWeight: 600, color: VERDICT_COLOR[p.verdictCode] }}>
-                    {p.market}<br />
-                    <span style={{ fontWeight: 400, color: '#57606a', fontSize: 11 }}>{p.ticker}</span>
-                  </td>
-                  <td style={{ padding: '7px 8px', color: '#57606a' }}>
-                    <span style={{ fontSize: 10, border: '1px solid #d0d7de', borderRadius: 3, padding: '1px 4px' }}>
-                      {PHASE_LABEL[p.engelPhase] ?? p.engelPhase}
-                    </span>
-                  </td>
-                  <td style={{ padding: '12px 12px', fontVariantNumeric: 'tabular-nums' }}>{p.eta.toFixed(2)}</td>
-                  <td style={{ padding: '12px 12px', fontVariantNumeric: 'tabular-nums', color: p.impliedG < 0 ? '#9e4c38' : '#2c6e49' }}>
-                    {(p.impliedG * 100).toFixed(1)}%
-                  </td>
-                  <td style={{ padding: '12px 12px', fontVariantNumeric: 'tabular-nums', color: '#2c6e49' }}>
-                    +{(p.actualG * 100).toFixed(1)}%
-                  </td>
-                  <td style={{ padding: '12px 12px', fontVariantNumeric: 'tabular-nums', fontWeight: 600, color: '#4c78a8' }}>
-                    +{(gap * 100).toFixed(1)} pp
-                  </td>
-                  <td style={{ padding: '12px 12px' }}>
-                    <span style={{ color: VERDICT_COLOR[p.verdictCode], fontWeight: 600, fontSize: 11 }}>
-                      {p.verdictLabel}
-                    </span>
-                  </td>
-                  <td style={{ padding: '12px 12px' }}>
-                    <ProbBadge p={p.prob} />
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Growth gap chart */}
-      <div style={{ marginTop: 28 }}>
-        <h4 style={{ fontSize: 13, fontWeight: 600, color: '#1b1f23', marginBottom: 4 }}>
-          Implied terminal growth vs actual growth — all 6 pairs
+        <h4 style={{ fontSize: 17, fontWeight: 700, color: '#1b1f23', marginBottom: 12 }}>
+          Where does each company sit relative to market expectations?
         </h4>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, marginBottom: 20, alignItems: 'start' }}>
+          <p style={{ fontSize: 13, lineHeight: 1.75, color: '#1b1f23', margin: 0 }}>
+            <Tag t="INF" />Each bubble is one company. The x-axis shows the growth rate the current P/E implicitly assumes the company will sustain forever (implied terminal growth = 1/P/E − 9%). The y-axis shows the growth actually delivered in the most recent year. <strong>Bubbles above the diagonal mean the market underprices growth</strong> — it assumes less than we currently observe.
+          </p>
+          <p style={{ fontSize: 13, lineHeight: 1.75, color: '#57606a', margin: 0 }}>
+            <Tag t="JDG" />The two clearest outliers: YDUQ3 at the top (FCF +32%, yet P/E implies only 7.7% terminal growth) and MWG to the right (revenue +16%, yet P/E implies near-zero). GGAL and MTNN are above the diagonal too, but their growth partly reflects macro factors rather than the Engel mechanism. Bubble size = calibrated probability.
+          </p>
+        </div>
+
+        <GrowthGapScatter selected={selected} />
+
+        <p style={{ marginTop: 10, fontSize: 10, color: '#8c96a0', lineHeight: 1.5 }}>
+          ¹ Implied g = 1/P/E − 9% discount rate. P/E type: MWG, FMX, YDUQ3 forward; MTNN &amp; SILO trailing; GGAL TTM. All six re-verified via lisp_eval 2026-10-23.
+        </p>
+      </div>
+
+      {/* ── SECTION 2: The six pairs ─────────────────────────────────── */}
+      <div>
+        <p style={{ fontSize: 10, fontWeight: 700, color: '#57606a', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 6 }}>
+          SECTION 2 — THE SIX PAIRS
+        </p>
+        <h4 style={{ fontSize: 17, fontWeight: 700, color: '#1b1f23', marginBottom: 8 }}>
+          Income chain, verdict, and calibrated probability
+        </h4>
+        <p style={{ fontSize: 13, lineHeight: 1.75, color: '#57606a', marginBottom: 20 }}>
+          Each row is one market-company pair. Click to expand the full Engel chain (income change → category demand → company revenue), the one-year forecast question, and the falsifier that would invalidate the thesis. Probabilities are calibrated via Tetlock superforecasting + scenario_calibrate shrinkage toward reference-class base rates.
+        </p>
+
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+            <thead>
+              <tr style={{ borderBottom: '2px solid #d0d7de', background: '#f6f8fa' }}>
+                {['Market / Company', 'Phase', 'η', 'Implied g¹', 'Actual g', 'Gap', 'Verdict', 'P(thesis)'].map(h => (
+                  <th key={h} style={{ padding: '10px 14px', textAlign: 'left', color: '#57606a', fontWeight: 600, whiteSpace: 'nowrap', fontSize: 11, letterSpacing: '0.03em' }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {PAIRS.map((p, i) => {
+                const isEven = i % 2 === 0;
+                const isSelected = selected === p.symbol;
+                const gap = p.actualG - p.impliedG;
+                return (
+                  <React.Fragment key={p.symbol}>
+                    <tr
+                      style={{
+                        background: isSelected ? '#eef4fb' : isEven ? '#f6f8fa' : '#fff',
+                        borderBottom: isSelected ? 'none' : '1px solid #e1e4e8',
+                        cursor: 'pointer',
+                        transition: 'background 0.15s ease',
+                      }}
+                      onClick={() => setSelected(isSelected ? null : p.symbol)}
+                    >
+                      <td style={{ padding: '14px 14px', fontWeight: 700, color: VERDICT_COLOR[p.verdictCode], fontSize: 13 }}>
+                        {p.market}
+                        <div style={{ fontWeight: 400, color: '#8c96a0', fontSize: 11, marginTop: 2 }}>{p.ticker}</div>
+                      </td>
+                      <td style={{ padding: '14px 14px', color: '#57606a' }}>
+                        <span style={{ fontSize: 10, border: '1px solid #d0d7de', borderRadius: 3, padding: '2px 6px', whiteSpace: 'nowrap' }}>
+                          {PHASE_LABEL[p.engelPhase] ?? p.engelPhase}
+                        </span>
+                      </td>
+                      <td style={{ padding: '14px 14px', fontVariantNumeric: 'tabular-nums', fontSize: 13 }}>{p.eta.toFixed(2)}</td>
+                      <td style={{ padding: '14px 14px', fontVariantNumeric: 'tabular-nums', fontSize: 13, color: p.impliedG < 0 ? '#9e4c38' : '#2c6e49', fontWeight: 600 }}>
+                        {(p.impliedG * 100).toFixed(1)}%
+                      </td>
+                      <td style={{ padding: '14px 14px', fontVariantNumeric: 'tabular-nums', fontSize: 13, color: '#2c6e49', fontWeight: 600 }}>
+                        +{(p.actualG * 100).toFixed(1)}%
+                      </td>
+                      <td style={{ padding: '14px 14px', fontVariantNumeric: 'tabular-nums', fontSize: 13, fontWeight: 700, color: '#4c78a8' }}>
+                        +{(gap * 100).toFixed(1)} pp
+                      </td>
+                      <td style={{ padding: '14px 14px' }}>
+                        <span style={{ color: VERDICT_COLOR[p.verdictCode], fontWeight: 600, fontSize: 12 }}>
+                          {p.verdictLabel}
+                        </span>
+                      </td>
+                      <td style={{ padding: '14px 14px' }}>
+                        <ProbBadge p={p.prob} />
+                      </td>
+                    </tr>
+
+                    {/* Inline expanded detail */}
+                    {isSelected && (
+                      <tr style={{ background: '#eef4fb', borderBottom: '1px solid #d0d7de' }}>
+                        <td colSpan={8} style={{ padding: '16px 20px' }}>
+                          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 20 }}>
+                            <div>
+                              <p style={{ fontSize: 10, fontWeight: 700, color: '#57606a', letterSpacing: '0.06em', marginBottom: 6 }}>ENGEL CHAIN</p>
+                              <p style={{ fontSize: 12, lineHeight: 1.65, margin: 0 }}><Tag t="INF" />{sel!.chain}</p>
+                            </div>
+                            <div>
+                              <p style={{ fontSize: 10, fontWeight: 700, color: '#57606a', letterSpacing: '0.06em', marginBottom: 6 }}>FORECAST QUESTION</p>
+                              <p style={{ fontSize: 12, lineHeight: 1.65, margin: 0, marginBottom: 8 }}><Tag t="JDG" />{sel!.forecastQ}</p>
+                              <div style={{ display: 'flex', gap: 16, fontSize: 11, color: '#57606a', flexWrap: 'wrap' }}>
+                                <span>{sel!.peType} P/E <strong>{sel!.pe}×</strong></span>
+                                <span>implied g <strong style={{ color: sel!.impliedG < 0 ? '#9e4c38' : '#2c6e49' }}>{(sel!.impliedG * 100).toFixed(1)}%</strong></span>
+                                <span>actual <strong style={{ color: '#2c6e49' }}>+{(sel!.actualG * 100).toFixed(1)}%</strong></span>
+                                <ProbBadge p={sel!.prob} />
+                              </div>
+                            </div>
+                            <div>
+                              <p style={{ fontSize: 10, fontWeight: 700, color: '#9e3c38', letterSpacing: '0.06em', marginBottom: 6 }}>FALSIFIER</p>
+                              <p style={{ fontSize: 12, lineHeight: 1.65, color: '#9e3c38', margin: 0 }}>{sel!.falsifier}</p>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    )}
+                  </React.Fragment>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* ── SECTION 3: The growth gap ────────────────────────────────── */}
+      <div>
+        <p style={{ fontSize: 10, fontWeight: 700, color: '#57606a', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 6 }}>
+          SECTION 3 — THE GROWTH GAP
+        </p>
+        <h4 style={{ fontSize: 17, fontWeight: 700, color: '#1b1f23', marginBottom: 8 }}>
+          What the price assumes vs what the company delivers
+        </h4>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, marginBottom: 20, alignItems: 'start' }}>
+          <p style={{ fontSize: 13, lineHeight: 1.75, color: '#1b1f23', margin: 0 }}>
+            <Tag t="OBS" />Each pair has two bars: the grey bar is what the current P/E implies the company will grow forever (the market's embedded assumption); the coloured bar is actual recent revenue or FCF growth. The larger the gap between the two bars, the larger the apparent mispricing — if the recent growth rate is sustainable.
+          </p>
+          <p style={{ fontSize: 13, lineHeight: 1.75, color: '#57606a', margin: 0 }}>
+            <Tag t="JDG" />YDUQ3 has the widest gap: 7.7% implied vs 32% FCF actual (24.3pp). This is the most asymmetric case by expected value (+13.6% EV). MWG is second: near-zero implied vs 16.4% actual. The key question for both: is the recent growth rate persistent, or a one-cycle event? The falsifier for each pair answers this directly.
+          </p>
+        </div>
         <GrowthGapChart />
       </div>
 
-      {/* Detail panel — expands on row click */}
-      {sel && (
-        <div style={{ marginTop: 16, padding: 16, border: `1px solid ${VERDICT_COLOR[sel.verdictCode]}`, borderRadius: 6, background: '#f6f8fa' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
-            <div>
-              <span style={{ fontWeight: 700, fontSize: 14, color: VERDICT_COLOR[sel.verdictCode] }}>{sel.company}</span>
-              <span style={{ marginLeft: 8, fontSize: 12, color: '#57606a' }}>{sel.category}</span>
-            </div>
-            <ProbBadge p={sel.prob} />
-          </div>
-
-          <p style={{ fontSize: 12, lineHeight: 1.6, marginBottom: 8 }}>
-            <strong>Chain: </strong><Tag t="INF" />{sel.chain}
-          </p>
-          <p style={{ fontSize: 12, lineHeight: 1.6, marginBottom: 8 }}>
-            <strong>Forecast question: </strong><Tag t="JDG" />{sel.forecastQ}
-          </p>
-          <p style={{ fontSize: 12, lineHeight: 1.6, color: '#9e4c38' }}>
-            <strong>Falsifier: </strong>{sel.falsifier}
-          </p>
-
-          <div style={{ marginTop: 10, display: 'flex', gap: 24, fontSize: 11, color: '#57606a' }}>
-            <span>{sel.peType} P/E <strong>{sel.pe}×</strong></span>
-            <span>implied g <strong style={{ color: sel.impliedG < 0 ? '#9e4c38' : '#2c6e49' }}>{(sel.impliedG * 100).toFixed(1)}%</strong></span>
-            <span>actual growth <strong style={{ color: '#2c6e49' }}>+{(sel.actualG * 100).toFixed(1)}%</strong></span>
-            <span>gap <strong style={{ color: '#4c78a8' }}>+{((sel.actualG - sel.impliedG) * 100).toFixed(1)} pp</strong></span>
-          </div>
-        </div>
-      )}
-
-      {/* PE-type footnote */}
-      <p style={{ marginTop: 8, fontSize: 10, color: '#57606a', maxWidth: 680, lineHeight: 1.5 }}>
-        &#xb9; Implied g = 1/P/E &minus; 9% discount rate. P/E type used: MWG, FMX, YDUQ3 &mdash; forward consensus; MTNN &amp; SILO &mdash; trailing (NGX/IDX forward consensus not available; naira and IDR distortions make analyst estimates unreliable); GGAL &mdash; TTM (Argentina hyperinflation makes forward earnings unstable). All six calculations re-verified via lisp_eval 2026-10-23 &mdash; results match to two decimal places.
-      </p>
-
-      {/* Methodology note */}
-      <details style={{ marginTop: 20, fontSize: 11, color: '#57606a' }}>
-        <summary style={{ cursor: 'pointer', fontWeight: 600 }}>Methodology — probability estimates</summary>
-        <p style={{ marginTop: 8, maxWidth: 680, lineHeight: 1.6 }}>
-          Calibrated probabilities follow Tetlock &amp; Gardner (2015) in eight steps: question triage, Fermi sub-question decomposition (5 questions per pair), outside-view base rate from reference-class analysis, inside-view adjustment, dragonfly-eye synthesis, and shrinkage toward the base rate via scenario_calibrate. The calibrator shrinks Fermi estimates toward the base rate proportionally to reference-class sample size — this is a feature, not a bug: it corrects overconfidence. All six forecast IDs are registered for Brier scoring; call forecast_record when the horizon passes to close the loop.
+      {/* Methodology note — collapsed */}
+      <details style={{ fontSize: 11, color: '#57606a', borderTop: '1px solid #e1e4e8', paddingTop: 16 }}>
+        <summary style={{ cursor: 'pointer', fontWeight: 600, fontSize: 12 }}>Methodology — probability calibration</summary>
+        <p style={{ marginTop: 8, lineHeight: 1.7 }}>
+          Calibrated probabilities follow Tetlock &amp; Gardner (2015): question triage, Fermi sub-question decomposition (5 questions per pair), outside-view base rate, inside-view adjustment, dragonfly-eye synthesis, and shrinkage toward the base rate via scenario_calibrate. All six forecast IDs are registered for Brier scoring.
         </p>
-        <p style={{ marginTop: 6, maxWidth: 680, lineHeight: 1.6 }}>
-          <Tag t="GAP" />Implied terminal growth = 1/P/E − 9% discount rate (PE type per footnote ¹). This is a residual, not a forecast — it is what the current price implies the market expects. Actual growth is the most recent annual revenue growth from public filings. Both are labeled by provenance: [OBS] for observed data, [INF] for model-derived values.
+        <p style={{ marginTop: 6, lineHeight: 1.7 }}>
+          <Tag t="GAP" />Implied terminal growth = 1/P/E − 9% discount rate — a residual of what the current price assumes, not a forecast. Actual growth = most recent annual revenue growth per primary filings.
         </p>
       </details>
+
     </div>
   );
 }
