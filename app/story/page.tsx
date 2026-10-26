@@ -243,48 +243,34 @@ export default function StoryPage() {
             </p>
           </div>
 
-          {/* Going deeper */}
+          {/* Going deeper — full-width horizontal */}
           <div className="mt-12 pt-8 border-t border-[#e1e4e8]">
-            <p className="text-xs font-mono text-[#57606a] tracking-widest mb-4">GOING DEEPER</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+            <p className="text-xs font-mono text-[#57606a] tracking-widest mb-1">GOING DEEPER — 150 YEARS, FOUR STUDIES, ONE SLOPE</p>
+            <p className="text-[14px] text-[#57606a] leading-relaxed mb-6">
+              <Tag t="OBS" />The slope barely moves across 150 years of measurement. A relationship estimated on Prussian working-class budgets in the 1850s holds in 2010 household surveys from 85 countries.
+            </p>
 
-              {/* Left: historical stability table */}
-              <div>
-                <p className="text-[15px] leading-[1.75] mb-4">
-                  <Tag t="OBS" />The slope barely moves across 150 years of measurement. A relationship estimated in the 1850s on Prussian working-class budgets holds in 2010 household surveys from 85 countries.
-                </p>
-                <div className="border border-[#e1e4e8] rounded overflow-hidden">
-                  <table className="w-full text-sm border-collapse">
-                    <thead>
-                      <tr className="bg-[#f6f8fa] border-b border-[#e1e4e8]">
-                        <th className="py-2 px-3 text-left text-xs font-semibold text-[#57606a] uppercase tracking-wide">Study / Era</th>
-                        <th className="py-2 px-3 text-right text-xs font-semibold text-[#57606a] uppercase tracking-wide">Slope</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {deep.historicalSlopes.map((h) => (
-                        <tr key={h.label} className="border-b border-[#f0f0f0] last:border-0 hover:bg-[#f6f8fa]">
-                          <td className="py-2 px-3 text-[13px]">{h.label}</td>
-                          <td className="py-2 px-3 text-right font-mono text-[13px] font-semibold">{h.v.toFixed(3)}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+            {/* 4 metric tiles — full width */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+              {deep.historicalSlopes.map((h, i) => (
+                <div key={h.label} className="border border-[#e1e4e8] rounded-lg p-5 bg-[#f6f8fa] flex flex-col">
+                  <span className="text-xs font-mono text-[#57606a] tracking-wider mb-3 leading-tight">{h.label.toUpperCase()}</span>
+                  <span className="text-4xl font-semibold font-mono text-[#1b1f23] mt-auto">{h.v.toFixed(3)}</span>
+                  <span className="text-xs text-[#8c96a0] mt-1">Engel slope</span>
                 </div>
-                <p className="mt-2 text-xs text-[#57606a] leading-relaxed">Engel slope: percentage-point change in food share per log point of income. First two rows from Pritchett &amp; Spivack tables A.7&ndash;A.8; third from evidence item 9.</p>
-              </div>
-
-              {/* Right: why stability matters */}
-              <div className="flex flex-col justify-center">
-                <p className="text-[15px] leading-[1.75] mb-4">
-                  <Tag t="JDG" />Few relationships in economics are this stable across centuries, methods and samples. That stability is what licenses using the curve as a map at all.
-                </p>
-                <p className="text-[15px] leading-[1.75] text-[#57606a]">
-                  And it is why the deviations matter: Bulgaria and Armenia sit far above the line, Ukraine and the West Bank far below — reminders that prices, measurement and history move individual countries off a very persistent track. The curve is a long-run attractor, not a five-year forecast.
-                </p>
-              </div>
-
+              ))}
             </div>
+
+            {/* Analysis — full width */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+              <p className="text-[15px] leading-[1.75]">
+                <Tag t="JDG" />Few relationships in economics are this stable across centuries, methods and samples. That stability is what licenses using the curve as a map at all — if the slope varied by era or method, the projections in chapter 4 would be guesswork.
+              </p>
+              <p className="text-[15px] leading-[1.75] text-[#57606a]">
+                And it is why the deviations matter: Bulgaria and Armenia sit far above the line, Ukraine and the West Bank far below — reminders that prices, measurement and history move individual countries off a very persistent track. The curve is a long-run attractor, not a five-year forecast.
+              </p>
+            </div>
+            <p className="mt-3 text-xs text-[#8c96a0]">Engel slope: percentage-point change in food share per log point of income. Rows 1–2 from Pritchett &amp; Spivack tables A.7&ndash;A.8; row 3 from evidence item 9; row 4 this study.</p>
           </div>
 
           <Record>
