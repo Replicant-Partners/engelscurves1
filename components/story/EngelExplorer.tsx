@@ -28,6 +28,8 @@ export function EngelExplorer() {
   const [lens, setLens] = useState<'usda' | 'survey'>('usda');
   const [selected, setSelected] = useState<string[]>(['IDN', 'VNM', 'IND', 'BRA']);
   const [hover, setHover] = useState<Row | null>(null);
+  const [search, setSearch] = useState('');
+  const [showDrop, setShowDrop] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
@@ -63,17 +65,43 @@ export function EngelExplorer() {
             <button onClick={() => { if (year >= 2030) setYear(2017); setPlaying((p) => !p); }} className="border border-[#1b1f23] px-4 py-1.5 font-semibold min-w-[72px]">{playing ? 'Pause' : 'Play'}</button>
             <input type="range" min={2017} max={2030} value={year} onChange={(e) => { setPlaying(false); setYear(+e.target.value); }} className="w-56 accent-[#1b1f23]" aria-label="Year" />
             <span className={`font-mono text-2xl font-semibold w-24 ${year > 2023 ? 'text-[#57606a]' : ''}`}>{year}{year > 2023 ? '*' : ''}</span>
-            <select className="border border-[#d0d7de] px-2 py-1.5 text-[#57606a] bg-white" value="" onChange={(e) => e.target.value && toggle(e.target.value)} aria-label="Highlight a country">
-              <option value="">Highlight a country&hellip;</option>
-              {COUNTRIES.map(([iso, name]) => <option key={iso} value={iso}>{selected.includes(iso) ? '\u2713 ' : ''}{name}</option>)}
-            </select>
+            <div className="relative">
+              <div className="flex items-center gap-1.5 border border-[#d0d7de] rounded px-2.5 py-1.5 bg-white text-xs focus-within:border-[#1b1f23] focus-within:ring-1 focus-within:ring-[#1b1f23]">
+                <svg width="11" height="11" viewBox="0 0 16 16" fill="#8c96a0">
+                  <path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"/>
+                </svg>
+                <input
+                  value={search}
+                  onChange={e => { setSearch(e.target.value); setShowDrop(true); }}
+                  onFocus={() => setShowDrop(true)}
+                  placeholder="Highlight a country…"
+                  className="outline-none w-40 text-[#1b1f23] placeholder:text-[#8c96a0] text-xs"
+                />
+                {search && <button onClick={() => { setSearch(''); setShowDrop(false); }} className="text-[#8c96a0] hover:text-[#57606a]">✕</button>}
+              </div>
+              {showDrop && search.trim().length > 0 && (() => {
+                const hits = COUNTRIES.filter(([, name]) => name.toLowerCase().includes(search.toLowerCase())).slice(0, 8);
+                return hits.length > 0 ? (
+                  <ul className="absolute top-full left-0 mt-1 w-56 bg-white border border-[#d0d7de] rounded shadow-lg z-20 text-xs overflow-hidden">
+                    {hits.map(([iso, name]) => (
+                      <li key={iso}>
+                        <button className="w-full text-left px-3 py-2 hover:bg-[#f6f8fa] flex items-center justify-between"
+                          onClick={() => { toggle(iso); setSearch(''); setShowDrop(false); }}>
+                          <span className="font-medium">{selected.includes(iso) ? '✓ ' : ''}{name}</span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null;
+              })()}
+            </div>
           </>
         )}
       </div>
 
       <div className="relative border border-[#d0d7de] overflow-x-auto">
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto block min-w-[760px]" role="img" aria-label="Food share of household spending against GDP per capita">
-          <rect x={0} y={0} width={W} height={H} fill="transparent" onClick={() => setHover(null)} />
+          <rect x={0} y={0} width={W} height={H} fill="transparent" onClick={() => { setHover(null); setShowDrop(false); }} />
           {lens === 'usda' && (
             <text x={(M.left + W - M.right) / 2} y={H - M.bottom - 36} textAnchor="middle" fontSize="110" fontWeight={600}
               fill={year > 2023 ? '#57606a' : '#1b1f23'} opacity={0.1} pointerEvents="none">{year}{year > 2023 ? '*' : ''}</text>
