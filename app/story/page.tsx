@@ -275,7 +275,7 @@ export default function StoryPage() {
           <BreakChart />
 
           {/* Three key observations */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-4 mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8 mt-14">
             <p className="text-[15px] leading-[1.75]">
               <Tag t="INF" />Toggle &ldquo;one slope&rdquo; to see why a straight line fails: below the break the fitted share stays near 56&ndash;59%; above it, food falls about {Math.round(Math.abs(story.piecewise.slopeAbove) * Math.LN2 * 100)} percentage points each time income doubles.
             </p>
@@ -332,7 +332,7 @@ export default function StoryPage() {
           <EngelExplorer />
 
           {/* Two context notes */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mt-14">
             <p className="text-[15px] leading-[1.75]">
               <Tag t="INF" />This animated lens uses national-accounts food shares (USDA ERS, {explorer.usda.n} countries, 2017&ndash;2023). The shift begins near ${(explorer.usda.knot / 1000).toFixed(1)}k and food reaches 35% near ${(explorer.usda.end / 1000).toFixed(1)}k — earlier than the survey lens because national accounts include imputed rent. The static survey lens is one toggle away; both lenses agree on where the shift <em>starts</em> ($6.6k&ndash;$8.9k) and disagree on where it <em>ends</em>.
             </p>
