@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import { GrowthGapChart } from './GrowthGapChart';
 
 /* ── static pair data (avoids re-importing heavy JSON) ─────────────────── */
 // VCP math audit (lisp_eval 2026-10-23): g = 1/PE − 9%.
@@ -286,6 +287,14 @@ export function ValuationChains() {
             })}
           </tbody>
         </table>
+      </div>
+
+      {/* Growth gap chart */}
+      <div style={{ marginTop: 28 }}>
+        <h4 style={{ fontSize: 13, fontWeight: 600, color: '#1b1f23', marginBottom: 4 }}>
+          Implied terminal growth vs actual growth — all 6 pairs
+        </h4>
+        <GrowthGapChart />
       </div>
 
       {/* Detail panel — expands on row click */}

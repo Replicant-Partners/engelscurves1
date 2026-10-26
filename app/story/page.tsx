@@ -18,6 +18,7 @@ import { ValuationChains } from '../../components/story/ValuationChains';
 import { EarlySignals } from '../../components/story/EarlySignals';
 import { PortfolioBuilder } from '../../components/story/PortfolioBuilder';
 import { MacroRisk } from '../../components/story/MacroRisk';
+import { WatchTimeline } from '../../components/story/WatchTimeline';
 import { story } from '../../data/storyData';
 import { evidenceItems, literatureSources } from '../../data/literatureEvidence';
 
@@ -426,6 +427,10 @@ export default function StoryPage() {
               </li>
             ))}
           </ol>
+          <div style={{ marginTop: 24 }}>
+            <h4 className="text-sm font-semibold mb-2">Forecast horizon timeline</h4>
+            <WatchTimeline />
+          </div>
           <Record>
             <p>No Polymarket or Kalshi market exists on any of these country events (783 open markets screened on 22 Oct 2026); the Brazil runoff is the only related market. Each event resolves on a public figure and will be Brier-scored when it does.</p>
           </Record>

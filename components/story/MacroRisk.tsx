@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import { GDPCPIQuadrant, GDPBars, InflationBars, FXBars, ArgentinaInflation } from './MacroCharts';
 
 /* ── Risk level ─────────────────────────────────────────────────────────── */
 type RiskLevel = 'low' | 'medium' | 'elevated' | 'high';
@@ -252,7 +253,7 @@ function FXSensitivity() {
 
 /* ── Main ────────────────────────────────────────────────────────────────── */
 export function MacroRisk() {
-  const [tab, setTab] = useState<'scorecards'|'exit'|'fx'>('scorecards');
+  const [tab, setTab] = useState<'scorecards'|'charts'|'exit'|'fx'>('scorecards');
   const [open, setOpen] = useState<string | null>(null);
 
   return (
@@ -261,6 +262,7 @@ export function MacroRisk() {
       <div style={{ display: 'flex', gap: 6, marginBottom: 16, flexWrap: 'wrap' }}>
         {[
           { key: 'scorecards', label: 'Country scorecards' },
+          { key: 'charts',     label: 'Charts' },
           { key: 'exit',       label: 'Engel exit sensitivity' },
           { key: 'fx',         label: 'FX stress test' },
         ].map(t => (
@@ -354,6 +356,34 @@ export function MacroRisk() {
         </div>
       )}
 
+      {tab === 'charts' && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+          <div>
+            <h4 style={{ fontSize: 13, fontWeight: 600, marginBottom: 8, color: '#1b1f23' }}>GDP growth vs inflation — macro backdrop for Engel</h4>
+            <GDPCPIQuadrant />
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+            <div>
+              <h4 style={{ fontSize: 13, fontWeight: 600, marginBottom: 8, color: '#1b1f23' }}>GDP growth 2025</h4>
+              <GDPBars />
+            </div>
+            <div>
+              <h4 style={{ fontSize: 13, fontWeight: 600, marginBottom: 8, color: '#1b1f23' }}>CPI inflation 2025</h4>
+              <InflationBars />
+            </div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+            <div>
+              <h4 style={{ fontSize: 13, fontWeight: 600, marginBottom: 8, color: '#1b1f23' }}>FX change vs USD (2025)</h4>
+              <FXBars />
+            </div>
+            <div>
+              <h4 style={{ fontSize: 13, fontWeight: 600, marginBottom: 8, color: '#1b1f23' }}>Argentina — inflation trajectory</h4>
+              <ArgentinaInflation />
+            </div>
+          </div>
+        </div>
+      )}
       {tab === 'exit' && <ExitSensitivity />}
       {tab === 'fx' && <FXSensitivity />}
     </div>
