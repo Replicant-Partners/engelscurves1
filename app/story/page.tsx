@@ -19,6 +19,7 @@ import { EarlySignals } from '../../components/story/EarlySignals';
 import { PortfolioBuilder } from '../../components/story/PortfolioBuilder';
 import { MacroRisk } from '../../components/story/MacroRisk';
 import { WatchTimeline } from '../../components/story/WatchTimeline';
+import { SearchBar } from '../../components/story/SearchBar';
 import { story } from '../../data/storyData';
 import { evidenceItems, literatureSources } from '../../data/literatureEvidence';
 
@@ -95,7 +96,7 @@ export default function StoryPage() {
           {chapters.map((c) => (
             <a key={c.id} href={`#${c.id}`} className="text-[#57606a] hover:text-[#1b1f23] whitespace-nowrap">{c.n}. {c.title}</a>
           ))}
-          <Link href="/" className="ml-auto text-[#57606a] hover:text-[#1b1f23] whitespace-nowrap">Dashboard &rarr;</Link>
+          <SearchBar /><Link href="/" className="text-[#57606a] hover:text-[#1b1f23] whitespace-nowrap text-xs">Dashboard &rarr;</Link>
         </div>
       </nav>
 
