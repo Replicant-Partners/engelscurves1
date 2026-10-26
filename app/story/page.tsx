@@ -41,10 +41,10 @@ const chapters = [
   { id: 'map', n: '4', title: 'The map' },
   { id: 'money', n: '5', title: 'The freed-up wallet' },
   { id: 'street', n: '6', title: 'The street' },
-  { id: 'watch', n: '7', title: 'Predictions' },
-  { id: 'chains', n: '8', title: 'Who captures the transition?' },
-  { id: 'macrorisk', n: '9', title: 'Macro risk' },
-  { id: 'portfolio', n: '10', title: 'Portfolio construction' },
+  { id: 'chains', n: '7', title: 'Who captures the transition?' },
+  { id: 'macrorisk', n: '8', title: 'Macro risk' },
+  { id: 'portfolio', n: '9', title: 'Portfolio construction' },
+  { id: 'watch', n: '10', title: 'Predictions' },
   { id: 'method', n: '11', title: 'Evidence and method' },
 ];
 
@@ -489,31 +489,9 @@ export default function StoryPage() {
           </Record>
         </Chapter>
 
-        <Chapter id="watch" n="7" title="Predictions" lede="The Engel mechanism generates falsifiable country-level predictions. These are the dated claims the data will confirm or refute — ordered by when each signal arrives.">
-          <p className="text-xs text-[#57606a] mb-4">Solid marker: an observed fact. Hollow marker: an inferred probability &mdash; the same convention as the Explorer&rsquo;s hollow projection bubbles.</p>
-          <ol className="relative border-l border-[#d0d7de] ml-2 space-y-8">
-            {watch.map((w) => (
-              <li key={w.what} className="pl-6">
-                <span className={`absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full ${w.tag === 'OBS' ? 'bg-[#1b1f23]' : 'bg-white border-2 border-[#1b1f23]'}`} />
-                <div className="text-xs font-mono text-[#57606a] tracking-wider">{w.when}</div>
-                <div className="text-lg font-semibold mt-0.5">{w.what}</div>
-                <p className="text-sm text-[#1b1f23] leading-relaxed mt-1 max-w-3xl"><Tag t={w.tag} />{w.detail}</p>
-              </li>
-            ))}
-          </ol>
-          <div style={{ marginTop: 24 }}>
-            <h4 className="text-sm font-semibold mb-2">Forecast horizon timeline</h4>
-            <WatchTimeline />
-          </div>
-          <Record>
-            <p>No Polymarket or Kalshi market exists on any of these country events (783 open markets screened on 22 Oct 2026); the Brazil runoff is the only related market. Each event resolves on a public figure and will be Brier-scored when it does.</p>
-          </Record>
-        </Chapter>
-
-
-        <Chapter
+                <Chapter
           id="chains"
-          n="8"
+          n="7"
           title="Who captures the transition?"
           lede="The Engel mechanism identifies which categories of spending grow as incomes rise. The investment question is which listed companies sit in those categories — and whether current prices already discount the growth."
         >
@@ -539,10 +517,9 @@ export default function StoryPage() {
           </Record>
         </Chapter>
 
-
-        <Chapter
+                <Chapter
           id="macrorisk"
-          n="9"
+          n="8"
           title="Macro risk"
           lede="The six markets face different macro headwinds. Vietnam is the strongest backdrop; Mexico GDP at +0.3% delays the mechanism; Brazil's Selic at 15% compresses YDUQ3 profits; Argentina's disinflation from 211% to 31% is the most dramatic stabilization in the dataset."
         >
@@ -555,10 +532,9 @@ export default function StoryPage() {
           </Record>
         </Chapter>
 
-
-        <Chapter
+                <Chapter
           id="portfolio"
-          n="10"
+          n="9"
           title="Portfolio construction"
           lede="Given the Engel analysis, how would you size these positions? Three systematic approaches — equal-weight, signal-weighted, and expected-value tilted — plus the portfolio risks that hit all six simultaneously."
         >
@@ -571,6 +547,26 @@ export default function StoryPage() {
           </Record>
         </Chapter>
 
+                <Chapter id="watch" n="7" title="Predictions" lede="The Engel mechanism generates falsifiable country-level predictions. These are the dated claims the data will confirm or refute — ordered by when each signal arrives.">
+          <p className="text-xs text-[#57606a] mb-4">Solid marker: an observed fact. Hollow marker: an inferred probability &mdash; the same convention as the Explorer&rsquo;s hollow projection bubbles.</p>
+          <ol className="relative border-l border-[#d0d7de] ml-2 space-y-8">
+            {watch.map((w) => (
+              <li key={w.what} className="pl-6">
+                <span className={`absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full ${w.tag === 'OBS' ? 'bg-[#1b1f23]' : 'bg-white border-2 border-[#1b1f23]'}`} />
+                <div className="text-xs font-mono text-[#57606a] tracking-wider">{w.when}</div>
+                <div className="text-lg font-semibold mt-0.5">{w.what}</div>
+                <p className="text-sm text-[#1b1f23] leading-relaxed mt-1 max-w-3xl"><Tag t={w.tag} />{w.detail}</p>
+              </li>
+            ))}
+          </ol>
+          <div style={{ marginTop: 24 }}>
+            <h4 className="text-sm font-semibold mb-2">Forecast horizon timeline</h4>
+            <WatchTimeline />
+          </div>
+          <Record>
+            <p>No Polymarket or Kalshi market exists on any of these country events (783 open markets screened on 22 Oct 2026); the Brazil runoff is the only related market. Each event resolves on a public figure and will be Brier-scored when it does.</p>
+          </Record>
+        </Chapter>
         <section id="method" className="scroll-mt-16 py-14 border-t border-[#d0d7de]">
           <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">CHAPTER 11</div>
           <h2 className="text-3xl font-semibold tracking-tight mb-3">Evidence and method</h2>
