@@ -57,7 +57,7 @@ function Cite({ ids }: { ids: number[] }) {
 }
 
 function Record({ children }: { children: React.ReactNode }) {
-  return <div className="mt-8 border-l-2 border-[#d0d7de] pl-5 text-xs text-[#57606a] leading-relaxed space-y-2 max-w-[720px]">{children}</div>;
+  return <div className="mt-10 pt-6 border-t border-[#e1e4e8] text-xs text-[#8c96a0] leading-[1.7] space-y-2">{children}</div>;
 }
 
 function Chapter({ id, n, title, lede, children }: { id: string; n: string; title: string; lede: string; children: React.ReactNode }) {
@@ -234,7 +234,7 @@ export default function StoryPage() {
           <LawChart />
 
           {/* Two key observations */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6 mt-10 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8 mt-14 mb-12">
             <p className="text-[15px] leading-[1.75] text-[#1b1f23]">
               <Tag t="OBS" />A typical household in Ethiopia (2004) spent 54% of its budget on food; in Switzerland (2003), 9%. Each dot is one national survey — the chart fills poorest to richest as you arrive, and the slider walks it one survey at a time.
             </p>
