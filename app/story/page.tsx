@@ -350,17 +350,45 @@ export default function StoryPage() {
         </Chapter>
 
         <Chapter id="motion" n="3" title="In motion" lede="The same law, set in motion. Each bubble is one of 102 countries; press play to watch seven observed years, then the IMF income path to 2030. The dark line is the Engel curve every bubble is read against.">
+
           <EngelExplorer />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 text-sm leading-relaxed">
-            <p><Tag t="INF" />This animated lens uses national-accounts food shares (USDA ERS, {explorer.usda.n} countries, 2017&ndash;2023). On it the shift away from food begins near ${(explorer.usda.knot / 1000).toFixed(1)}k and food reaches 35% near ${(explorer.usda.end / 1000).toFixed(1)}k &mdash; earlier than the survey lens of chapters 1&ndash;2, because national accounts count items surveys miss, such as imputed rent. The static survey lens is one toggle away; the start of the shift agrees across both (about $6.6k&ndash;$8.9k), the end depends on measurement. We show both rather than average them.</p>
-            <p><Tag t="JDG" />Click a country in the map below to land here with its trail traced. Hollow dashed bubbles are projections: income moves on the IMF path while each country&rsquo;s food share is held at its 2023 value, not forecast.</p>
+
+          {/* Two context notes */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 mt-8">
+            <p className="text-[15px] leading-[1.75]">
+              <Tag t="INF" />This animated lens uses national-accounts food shares (USDA ERS, {explorer.usda.n} countries, 2017&ndash;2023). The shift begins near ${(explorer.usda.knot / 1000).toFixed(1)}k and food reaches 35% near ${(explorer.usda.end / 1000).toFixed(1)}k — earlier than the survey lens because national accounts include imputed rent. The static survey lens is one toggle away; both lenses agree on where the shift <em>starts</em> ($6.6k&ndash;$8.9k) and disagree on where it <em>ends</em>.
+            </p>
+            <p className="text-[15px] leading-[1.75] text-[#57606a]">
+              <Tag t="JDG" />Click any country to trace its year-by-year path. Hollow dashed bubbles are projections: income moves on the IMF path, food share is held at its 2023 value — not forecast. The projection shows direction, not magnitude.
+            </p>
           </div>
-          <div className="mt-10">
-            <h3 className="text-lg font-semibold mb-3">Going deeper</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm leading-relaxed">
-              <p><Tag t="INF" />Within countries the street moves slowly: over 2017&ndash;2023 the share fell only {deep.withinCountrySlope} per log point of income growth &mdash; half the cross-section slope on the same USDA panel ({deep.crossSlopeUsda}; the survey fit of chapter 2 gives &minus;0.141). The cross-section behaves like a long-run map, not a five-year forecast.</p>
-              <p><Tag t="OBS" />2020 ran the law in reverse: mean income across the panel fell about 5% and the mean food share rose from {Math.round(deep.covid.share2019 * 1000) / 10}% to {Math.round(deep.covid.share2020 * 1000) / 10}%. <Tag t="JDG" />Part of this may be the law under an income shock; part may be pandemic food-price inflation and lockdown spending composition &mdash; the panel cannot separate them.</p>
-              <p><Tag t="OBS" />The law is a tendency, not destiny: {deep.moversTotal} of {deep.moversPanel} countries raised their food share by a point or more between 2017 and 2023 despite income growth above 5% &mdash; among them {deep.movers.map((m) => `${m.country} (+${m.dpp}pp)`).join(', ')}. <Tag t="JDG" />We attribute those rises mainly to food-price inflation in those years, a judgment the panel itself cannot confirm.</p>
+
+          {/* Going deeper: 3 observations as insight cards */}
+          <div className="mt-12 pt-8 border-t border-[#e1e4e8]">
+            <p className="text-xs font-mono text-[#57606a] tracking-widest mb-6">GOING DEEPER — THREE THINGS THE ANIMATION SHOWS</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+              <div className="bg-[#f6f8fa] rounded-lg p-5 border border-[#e1e4e8]">
+                <p className="text-xs font-mono text-[#57606a] tracking-widest mb-3">THE MAP MOVES SLOWLY</p>
+                <p className="text-[14px] leading-[1.75]">
+                  <Tag t="INF" />Within countries the share fell only {deep.withinCountrySlope} per log point of income growth over 2017&ndash;2023 — half the cross-section slope. The cross-section is a long-run map, not a five-year forecast.
+                </p>
+              </div>
+
+              <div className="bg-[#f6f8fa] rounded-lg p-5 border border-[#e1e4e8]">
+                <p className="text-xs font-mono text-[#57606a] tracking-widest mb-3">2020 RAN IT IN REVERSE</p>
+                <p className="text-[14px] leading-[1.75]">
+                  <Tag t="OBS" />Mean income fell ~5% in 2020 and mean food share rose from {Math.round(deep.covid.share2019 * 1000) / 10}% to {Math.round(deep.covid.share2020 * 1000) / 10}%. <Tag t="JDG" />Whether this was the law under a shock, food-price inflation, or lockdown spending composition — the panel cannot separate them.
+                </p>
+              </div>
+
+              <div className="bg-[#f6f8fa] rounded-lg p-5 border border-[#e1e4e8]">
+                <p className="text-xs font-mono text-[#57606a] tracking-widest mb-3">A TENDENCY, NOT DESTINY</p>
+                <p className="text-[14px] leading-[1.75]">
+                  <Tag t="OBS" />{deep.moversTotal} of {deep.moversPanel} countries raised their food share despite income growth above 5%, including {deep.movers.map((m) => `${m.country} (+${m.dpp}pp)`).join(', ')}. <Tag t="JDG" />We attribute those rises mainly to food-price inflation — a judgment the panel cannot confirm.
+                </p>
+              </div>
+
             </div>
           </div>
 
