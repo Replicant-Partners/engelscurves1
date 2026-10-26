@@ -18,9 +18,9 @@ const COLOR: Record<string, string> = {
 };
 
 export function GrowthGapChart() {
-  const W = 500; const BAR_H = 20; const GAP = 10;
+  const W = 720; const BAR_H = 26; const GAP = 14;
   const H = PAIRS.length * (BAR_H * 2 + GAP + 10) + 36;
-  const PAD_L = 80; const ZERO_PCT = -0.10; const MAX_PCT = 0.38;
+  const PAD_L = 96; const ZERO_PCT = -0.10; const MAX_PCT = 0.38;
   const RANGE = MAX_PCT - ZERO_PCT;
   const xS = (v: number) => PAD_L + ((v - ZERO_PCT) / RANGE) * (W - PAD_L - 20);
 
@@ -30,7 +30,7 @@ export function GrowthGapChart() {
         Each pair shows two bars: implied terminal growth (what the current P/E says the market expects) and actual recent revenue growth. The gap between them is the market's "mispricing" — above the implied = market underprices growth.
         P/E type in parentheses (fwd/trailing/TTM). Implied g = 1/P/E − 9% discount rate.
       </p>
-      <svg width={W} height={H} style={{ display: 'block', overflow: 'visible', maxWidth: '100%' }}>
+      <svg width={W} height={H} style={{ display: 'block', overflow: 'visible', width: '100%' }}>
         {/* zero line */}
         <line x1={xS(0)} x2={xS(0)} y1={20} y2={H - 14} stroke="#57606a" strokeWidth={0.8} />
         <text x={xS(0)} y={H - 2} fontSize={8} fill="#57606a" textAnchor="middle">0%</text>

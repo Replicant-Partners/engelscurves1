@@ -111,7 +111,7 @@ function Tag({ t }: { t: 'OBS' | 'INF' | 'JDG' | 'GAP' }) {
 
 /* ── Growth-gap scatter ─────────────────────────────────────────────────── */
 function GrowthGapScatter({ selected }: { selected: string | null }) {
-  const W = 520, H = 320;
+  const W = 800, H = 420;
   const MARGIN = { top: 20, right: 30, bottom: 48, left: 52 };
   const iW = W - MARGIN.left - MARGIN.right;
   const iH = H - MARGIN.top - MARGIN.bottom;
@@ -131,7 +131,7 @@ function GrowthGapScatter({ selected }: { selected: string | null }) {
   const yTicks = [0, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35];
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', maxWidth: W, display: 'block', overflow: 'visible' }}>
+    <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', display: 'block', overflow: 'visible' }}>
       <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
         {/* grid */}
         {xTicks.map(v => (
@@ -231,12 +231,12 @@ export function ValuationChains() {
       </div>
 
       {/* Table */}
-      <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
+      <div style={{ overflowX: 'auto', marginTop: 32 }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
           <thead>
             <tr style={{ borderBottom: '2px solid #d0d7de' }}>
               {['Market / Company', 'Phase', 'η', 'Implied g¹', 'Actual g', 'Gap', 'Verdict', 'P(thesis)'].map(h => (
-                <th key={h} style={{ padding: '6px 8px', textAlign: 'left', color: '#57606a', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
+                <th key={h} style={{ padding: '10px 12px', textAlign: 'left', color: '#57606a', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
               ))}
             </tr>
           </thead>
@@ -255,7 +255,7 @@ export function ValuationChains() {
                   }}
                   onClick={() => setSelected(isSelected ? null : p.symbol)}
                 >
-                  <td style={{ padding: '7px 8px', fontWeight: 600, color: VERDICT_COLOR[p.verdictCode] }}>
+                  <td style={{ padding: '12px 12px', fontWeight: 600, color: VERDICT_COLOR[p.verdictCode] }}>
                     {p.market}<br />
                     <span style={{ fontWeight: 400, color: '#57606a', fontSize: 11 }}>{p.ticker}</span>
                   </td>
@@ -264,22 +264,22 @@ export function ValuationChains() {
                       {PHASE_LABEL[p.engelPhase] ?? p.engelPhase}
                     </span>
                   </td>
-                  <td style={{ padding: '7px 8px', fontVariantNumeric: 'tabular-nums' }}>{p.eta.toFixed(2)}</td>
-                  <td style={{ padding: '7px 8px', fontVariantNumeric: 'tabular-nums', color: p.impliedG < 0 ? '#9e4c38' : '#2c6e49' }}>
+                  <td style={{ padding: '12px 12px', fontVariantNumeric: 'tabular-nums' }}>{p.eta.toFixed(2)}</td>
+                  <td style={{ padding: '12px 12px', fontVariantNumeric: 'tabular-nums', color: p.impliedG < 0 ? '#9e4c38' : '#2c6e49' }}>
                     {(p.impliedG * 100).toFixed(1)}%
                   </td>
-                  <td style={{ padding: '7px 8px', fontVariantNumeric: 'tabular-nums', color: '#2c6e49' }}>
+                  <td style={{ padding: '12px 12px', fontVariantNumeric: 'tabular-nums', color: '#2c6e49' }}>
                     +{(p.actualG * 100).toFixed(1)}%
                   </td>
-                  <td style={{ padding: '7px 8px', fontVariantNumeric: 'tabular-nums', fontWeight: 600, color: '#4c78a8' }}>
+                  <td style={{ padding: '12px 12px', fontVariantNumeric: 'tabular-nums', fontWeight: 600, color: '#4c78a8' }}>
                     +{(gap * 100).toFixed(1)} pp
                   </td>
-                  <td style={{ padding: '7px 8px' }}>
+                  <td style={{ padding: '12px 12px' }}>
                     <span style={{ color: VERDICT_COLOR[p.verdictCode], fontWeight: 600, fontSize: 11 }}>
                       {p.verdictLabel}
                     </span>
                   </td>
-                  <td style={{ padding: '7px 8px' }}>
+                  <td style={{ padding: '12px 12px' }}>
                     <ProbBadge p={p.prob} />
                   </td>
                 </tr>
