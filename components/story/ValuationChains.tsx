@@ -110,7 +110,8 @@ function Tag({ t }: { t: 'OBS' | 'INF' | 'JDG' | 'GAP' }) {
 }
 
 /* ── Growth-gap scatter ─────────────────────────────────────────────────── */
-function GrowthGapScatter({ selected }: { selected: string | null }) {
+function GrowthGapScatter({ selected, hovered, onHover, onClick }:
+  { selected: string | null; hovered: string | null; onHover: (s: string | null) => void; onClick: (s: string) => void }) {
   const W = 800, H = 420;
   const MARGIN = { top: 20, right: 30, bottom: 48, left: 52 };
   const iW = W - MARGIN.left - MARGIN.right;
@@ -162,7 +163,12 @@ function GrowthGapScatter({ selected }: { selected: string | null }) {
           const isSelected = selected === p.symbol;
           const labelAbove = p.symbol === 'YDUQ3';
           return (
-            <g key={p.symbol}>
+            <g key={p.symbol}
+            style={{ cursor: 'pointer' }}
+            onMouseEnter={() => onHover?.(p.symbol)}
+            onMouseLeave={() => onHover?.(null)}
+            onClick={() => onClick?.(p.symbol)}
+          >
               <circle
                 cx={cx} cy={cy} r={r}
                 fill={color} fillOpacity={isSelected ? 0.85 : 0.45}
@@ -216,7 +222,11 @@ function GrowthGapScatter({ selected }: { selected: string | null }) {
 /* ── Main component ─────────────────────────────────────────────────────── */
 export function ValuationChains() {
   const [selected, setSelected] = useState<string | null>(null);
+  const [hovered, setHovered] = useState<string | null>(null);
   const sel = PAIRS.find(p => p.symbol === selected) ?? null;
+  const hov = PAIRS.find(p => p.symbol === hovered) ?? null;
+
+  const handleClick = (sym: string) => setSelected(s => s === sym ? null : sym);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 48 }}>
@@ -239,7 +249,20 @@ export function ValuationChains() {
           </p>
         </div>
 
-        <GrowthGapScatter selected={selected} />
+        <GrowthGapScatter selected={selected} hovered={hovered} onHover={setHovered} onClick={handleClick} />
+
+        {/* Hover tooltip */}
+        {hov && (
+          <div style={{ marginTop: 12, padding: '12px 16px', background: '#f6f8fa', border: `1px solid ${VERDICT_COLOR[hov.verdictCode]}`, borderRadius: 6, display: 'flex', gap: 24, alignItems: 'center', flexWrap: 'wrap' }}>
+            <span style={{ fontWeight: 700, fontSize: 13, color: VERDICT_COLOR[hov.verdictCode] }}>{hov.company}</span>
+            <span style={{ fontSize: 12, color: '#57606a' }}>{hov.category}</span>
+            <span style={{ fontSize: 12 }}>implied <strong style={{ color: hov.impliedG < 0 ? '#9e4c38' : '#2c6e49' }}>{(hov.impliedG*100).toFixed(1)}%</strong></span>
+            <span style={{ fontSize: 12 }}>actual <strong style={{ color: '#2c6e49' }}>+{(hov.actualG*100).toFixed(1)}%</strong></span>
+            <span style={{ fontSize: 12 }}>gap <strong style={{ color: '#4c78a8' }}>+{((hov.actualG - hov.impliedG)*100).toFixed(1)} pp</strong></span>
+            <ProbBadge p={hov.prob} />
+            <span style={{ fontSize: 11, color: '#57606a', marginLeft: 'auto' }}>click to expand chain →</span>
+          </div>
+        )}
 
         <p style={{ marginTop: 10, fontSize: 10, color: '#8c96a0', lineHeight: 1.5 }}>
           ¹ Implied g = 1/P/E − 9% discount rate. P/E type: MWG, FMX, YDUQ3 forward; MTNN &amp; SILO trailing; GGAL TTM. All six re-verified via lisp_eval 2026-10-23.
@@ -363,7 +386,7 @@ export function ValuationChains() {
             <Tag t="JDG" />YDUQ3 has the widest gap: 7.7% implied vs 32% FCF actual (24.3pp). This is the most asymmetric case by expected value (+13.6% EV). MWG is second: near-zero implied vs 16.4% actual. The key question for both: is the recent growth rate persistent, or a one-cycle event? The falsifier for each pair answers this directly.
           </p>
         </div>
-        <GrowthGapChart />
+        <GrowthGapChart selected={selected} hovered={hovered} onHover={setHovered} onClick={handleClick} />
       </div>
 
       {/* Methodology note — collapsed */}

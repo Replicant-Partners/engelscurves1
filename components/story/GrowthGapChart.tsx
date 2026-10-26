@@ -17,7 +17,8 @@ const COLOR: Record<string, string> = {
   MTNN: '#7c5c9e', GGAL: '#9e3c38', SILO: '#8b7355',
 };
 
-export function GrowthGapChart() {
+export function GrowthGapChart({ hovered = null, onHover, onClick, selected = null }:
+  { hovered?: string | null; onHover?: (s: string | null) => void; onClick?: (s: string) => void; selected?: string | null } = {}) {
   const W = 720; const BAR_H = 26; const GAP = 14;
   const H = PAIRS.length * (BAR_H * 2 + GAP + 10) + 36;
   const PAD_L = 96; const ZERO_PCT = -0.10; const MAX_PCT = 0.38;
@@ -56,7 +57,12 @@ export function GrowthGapChart() {
           const actualW = xS(p.actualG) - xS(0);
 
           return (
-            <g key={p.symbol}>
+            <g key={p.symbol}
+            style={{ cursor: 'pointer' }}
+            onMouseEnter={() => onHover?.(p.symbol)}
+            onMouseLeave={() => onHover?.(null)}
+            onClick={() => onClick?.(p.symbol)}
+          >
               {/* label */}
               <text x={PAD_L - 6} y={y0 + BAR_H + 4} fontSize={11} fontWeight={700}
                 fill={color} textAnchor="end">{p.symbol}</text>
@@ -64,7 +70,9 @@ export function GrowthGapChart() {
 
               {/* implied g */}
               <rect x={impliedX} y={y0} width={Math.max(impliedW, 3)} height={BAR_H}
-                fill={p.impliedG >= 0 ? '#d0d7de' : '#f4c4c2'} stroke="#d0d7de" strokeWidth={0.5} rx={2} />
+                fill={p.impliedG >= 0 ? '#d0d7de' : '#f4c4c2'} stroke="#d0d7de" strokeWidth={0.5} rx={2}
+                opacity={(selected || hovered) && selected !== p.symbol && hovered !== p.symbol ? 0.2 : 1}
+                style={{ transition: 'opacity 0.15s' }} />
               <text x={impliedX + (p.impliedG >= 0 ? Math.max(impliedW,3)+3 : -3)} y={y0 + BAR_H/2 + 4}
                 fontSize={8} fill="#57606a"
                 textAnchor={p.impliedG >= 0 ? 'start' : 'end'}>
@@ -74,7 +82,8 @@ export function GrowthGapChart() {
 
               {/* actual growth */}
               <rect x={xS(0)} y={y0 + BAR_H + 3} width={Math.max(actualW, 4)} height={BAR_H}
-                fill={color} fillOpacity={0.75} rx={2} />
+                fill={color} fillOpacity={(selected || hovered) && selected !== p.symbol && hovered !== p.symbol ? 0.12 : hovered === p.symbol ? 1 : 0.75} rx={2}
+                style={{ transition: 'fill-opacity 0.15s' }} />
               <text x={xS(0) + Math.max(actualW, 4) + 3} y={y0 + BAR_H * 2 + 3 + BAR_H/2 - 6}
                 fontSize={9} fontWeight={700} fill={color}>
                 +{(p.actualG*100).toFixed(1)}%
