@@ -243,34 +243,27 @@ export default function StoryPage() {
             </p>
           </div>
 
-          {/* Going deeper — full-width horizontal */}
-          <div className="mt-12 pt-8 border-t border-[#e1e4e8]">
-            <p className="text-xs font-mono text-[#57606a] tracking-widest mb-1">GOING DEEPER — 150 YEARS, FOUR STUDIES, ONE SLOPE</p>
-            <p className="text-[14px] text-[#57606a] leading-relaxed mb-6">
-              <Tag t="OBS" />The slope barely moves across 150 years of measurement. A relationship estimated on Prussian working-class budgets in the 1850s holds in 2010 household surveys from 85 countries.
-            </p>
+          {/* Going deeper — Ch0 card style */}
+          <div className="mt-12 pt-8 border-t border-[#d0d7de]">
+            <h3 className="text-lg font-semibold mb-1">Going deeper</h3>
+            <p className="text-sm text-[#57606a] leading-relaxed mb-6">150 years, four studies, one slope. A relationship estimated on Prussian working-class budgets in the 1850s holds in 2010 household surveys from 85 countries.</p>
 
-            {/* 4 metric tiles — full width */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-              {deep.historicalSlopes.map((h, i) => (
-                <div key={h.label} className="border border-[#e1e4e8] rounded-lg p-5 bg-[#f6f8fa] flex flex-col">
-                  <span className="text-xs font-mono text-[#57606a] tracking-wider mb-3 leading-tight">{h.label.toUpperCase()}</span>
-                  <span className="text-4xl font-semibold font-mono text-[#1b1f23] mt-auto">{h.v.toFixed(3)}</span>
-                  <span className="text-xs text-[#8c96a0] mt-1">Engel slope</span>
+            {/* 4 border-left cards — exactly like Ch0 concept cards */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+              {deep.historicalSlopes.map((h) => (
+                <div key={h.label} className="border-l-2 border-[#d0d7de] pl-4">
+                  <div className="text-3xl font-semibold tracking-tight mb-1">{h.v.toFixed(3)}</div>
+                  <div className="font-semibold text-sm mb-1">{h.label}</div>
+                  <p className="text-xs text-[#57606a] leading-relaxed">Engel slope: % change in food share per log point of income.</p>
                 </div>
               ))}
             </div>
 
-            {/* Analysis — full width */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
-              <p className="text-[15px] leading-[1.75]">
-                <Tag t="JDG" />Few relationships in economics are this stable across centuries, methods and samples. That stability is what licenses using the curve as a map at all — if the slope varied by era or method, the projections in chapter 4 would be guesswork.
-              </p>
-              <p className="text-[15px] leading-[1.75] text-[#57606a]">
-                And it is why the deviations matter: Bulgaria and Armenia sit far above the line, Ukraine and the West Bank far below — reminders that prices, measurement and history move individual countries off a very persistent track. The curve is a long-run attractor, not a five-year forecast.
-              </p>
+            {/* Two analysis paragraphs — Ch0 grid style */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm leading-relaxed">
+              <p><Tag t="JDG" />Few relationships in economics are this stable across centuries, methods and samples. That stability is what licenses using the curve as a map at all — if the slope varied by era or method, the projections in chapter 4 would be guesswork.</p>
+              <p className="text-[#57606a]">And it is why the deviations matter: Bulgaria and Armenia sit far above the line, Ukraine and the West Bank far below — reminders that prices, measurement and history move individual countries off a very persistent track. The curve is a long-run attractor, not a five-year forecast.</p>
             </div>
-            <p className="mt-3 text-xs text-[#8c96a0]">Engel slope: percentage-point change in food share per log point of income. Rows 1–2 from Pritchett &amp; Spivack tables A.7&ndash;A.8; row 3 from evidence item 9; row 4 this study.</p>
           </div>
 
           <Record>
