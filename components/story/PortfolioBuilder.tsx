@@ -130,7 +130,7 @@ function PieChart({ weights }: { weights: Record<string, number> }) {
   });
 
   return (
-    <svg width={160} height={160} viewBox="0 0 160 160" style={{ display: 'block' }}>
+    <svg width={220} height={220} viewBox="0 0 160 160" style={{ display: 'block', width: '100%', maxWidth: 220 }}>
       {slices.map(s => (
         <path key={s.symbol} d={s.d} fill={s.color} stroke="white" strokeWidth={1} />
       ))}
@@ -239,9 +239,9 @@ export function PortfolioBuilder() {
   return (
     <div>
       {/* Archetype legend */}
-      <div style={{ display: 'flex', gap: 16, marginBottom: 16, flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', gap: 20, marginBottom: 20, flexWrap: 'wrap' }}>
         {(Object.entries(ARCHETYPE_COLOR) as [Archetype, string][]).map(([k, c]) => (
-          <span key={k} style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 11 }}>
+          <span key={k} style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 13 }}>
             <span style={{ width: 10, height: 10, borderRadius: 2, background: c, display: 'inline-block' }} />
             <strong style={{ color: c }}>{ARCHETYPE_LABEL[k]}</strong>
             <span style={{ color: '#57606a' }}>({PAIRS.filter(p => p.archetype === k).map(p => p.symbol).join(', ')})</span>
@@ -250,11 +250,11 @@ export function PortfolioBuilder() {
       </div>
 
       {/* Mode selector */}
-      <div style={{ display: 'flex', gap: 6, marginBottom: 16, flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', gap: 8, marginBottom: 20, flexWrap: 'wrap' }}>
         {MODES.map(m => (
           <button key={m.mode} onClick={() => setMode(m.mode)}
             style={{
-              padding: '5px 12px', fontSize: 11, borderRadius: 4, cursor: 'pointer',
+              padding: '8px 18px', fontSize: 13, borderRadius: 4, cursor: 'pointer',
               border: mode === m.mode ? '2px solid #1b1f23' : '1px solid #d0d7de',
               background: mode === m.mode ? '#1b1f23' : '#f6f8fa',
               color: mode === m.mode ? '#fff' : '#1b1f23',
@@ -264,19 +264,19 @@ export function PortfolioBuilder() {
           </button>
         ))}
       </div>
-      <p style={{ fontSize: 11, color: '#57606a', marginBottom: 16 }}>
+      <p style={{ fontSize: 14, color: '#57606a', marginBottom: 20, lineHeight: 1.7 }}>
         {MODES.find(m => m.mode === mode)?.desc}
       </p>
 
       {/* Row 1: Pie (left) + Table (right) */}
-      <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', gap: 32, marginBottom: 28, alignItems: 'start' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: 40, marginBottom: 36, alignItems: 'start' }}>
 
         {/* Pie + EV */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
           <PieChart weights={weights} />
           <div style={{ textAlign: 'center' }}>
-            <div style={{ color: '#57606a', fontSize: 12 }}>Portfolio EV</div>
-            <div style={{ fontWeight: 700, fontSize: 22, color: portEV >= 0 ? '#2c6e49' : '#9e3c38' }}>
+            <div style={{ color: '#57606a', fontSize: 14 }}>Portfolio EV</div>
+            <div style={{ fontWeight: 700, fontSize: 28, color: portEV >= 0 ? '#2c6e49' : '#9e3c38' }}>
               {portEV > 0 ? '+' : ''}{(portEV * 100).toFixed(1)}%
             </div>
           </div>
@@ -318,7 +318,7 @@ export function PortfolioBuilder() {
               })}
             </tbody>
           </table>
-          <p style={{ fontSize:11, color:'#8c96a0', marginTop:8, lineHeight: 1.6 }}>
+          <p style={{ fontSize:12, color:'#8c96a0', marginTop:10, lineHeight: 1.65 }}>
             EV = P(thesis) × upside + (1−P) × downside. Upside: YDUQ3 +67%, GGAL +30%, MTNN +25%, others +20%. Downside: −15% to −20%.
           </p>
         </div>
@@ -326,7 +326,7 @@ export function PortfolioBuilder() {
 
       {/* Row 2: EV Scatter — full width */}
       <div style={{ marginBottom: 20 }}>
-        <p style={{ fontSize: 11, color: '#8c96a0', marginBottom: 8 }}>
+        <p style={{ fontSize: 13, color: '#8c96a0', marginBottom: 10 }}>
           Bubble size = portfolio weight. X = calibrated probability. Y = expected value. Dashed line = EV 0%.
         </p>
         <EVScatter weights={weights} />
@@ -334,8 +334,8 @@ export function PortfolioBuilder() {
 
       {/* Key insight */}
       <div style={{ background:'#f0f4f8', border:'1px solid #d0d7de', borderRadius:6, padding:'12px 14px', marginBottom:16 }}>
-        <div style={{ fontSize:10, fontWeight:700, color:'#4c78a8', textTransform:'uppercase', letterSpacing:'0.05em', marginBottom:6 }}>Key insight — entry timing</div>
-        <p style={{ fontSize:12, color:'#1b1f23', lineHeight:1.65, margin:0 }}>
+        <div style={{ fontSize:11, fontWeight:700, color:'#4c78a8', textTransform:'uppercase', letterSpacing:'0.05em', marginBottom:8 }}>Key insight — entry timing</div>
+        <p style={{ fontSize:14, color:'#1b1f23', lineHeight:1.7, margin:0 }}>
           The best risk/reward for this portfolio was <em>before</em> the early signals confirmed the thesis — MWG at 11.2× P/E, YDUQ3 at 6× fwd P/E before FCF reached R$1B.
           Phase 4 (early signals) is not a buy signal by itself: it tells you the thesis is playing out and reduces the probability of a permanent loss. But the expected value declines as confirmation arrives because the price has already moved.
           The asymmetric case remaining is <strong>YDUQ3</strong> (+13.6% EV): the market still prices the stock on revenue (+3.2%) rather than FCF (+32%), creating a persistent mispricing if the deleveraging path continues.
@@ -344,17 +344,17 @@ export function PortfolioBuilder() {
 
       {/* Risk register toggle */}
       <button onClick={() => setShowRisk(!showRisk)}
-        style={{ fontSize:11, color:'#4c78a8', background:'none', border:'1px solid #d0d7de', borderRadius:4, padding:'5px 12px', cursor:'pointer', marginBottom:8 }}>
+        style={{ fontSize:13, color:'#4c78a8', background:'none', border:'1px solid #d0d7de', borderRadius:4, padding:'7px 16px', cursor:'pointer', marginBottom:8 }}>
         {showRisk ? '▲ Hide' : '▼ Show'} portfolio risk register (what kills everything simultaneously)
       </button>
 
       {showRisk && (
         <div style={{ marginTop:8 }}>
           {RISKS.map((r, i) => (
-            <div key={i} style={{ display:'flex', gap:12, padding:'8px 0', borderBottom:'1px solid #e1e4e8', alignItems:'flex-start' }}>
-              <div style={{ flex:'0 0 160px', fontSize:11, fontWeight:600, color:'#1b1f23' }}>{r.label}</div>
+            <div key={i} style={{ display:'flex', gap:12, padding:'12px 0', borderBottom:'1px solid #e1e4e8', alignItems:'flex-start' }}>
+              <div style={{ flex:'0 0 180px', fontSize:13, fontWeight:600, color:'#1b1f23' }}>{r.label}</div>
               <div style={{ flex:1 }}>
-                <p style={{ fontSize:11, color:'#57606a', margin:0, lineHeight:1.55 }}>{r.note}</p>
+                <p style={{ fontSize:13, color:'#57606a', margin:0, lineHeight:1.7 }}>{r.note}</p>
                 <div style={{ display:'flex', gap:4, marginTop:4, flexWrap:'wrap' }}>
                   {r.pairs.map(s => (
                     <span key={s} style={{ fontSize:10, border:'1px solid #d0d7de', borderRadius:3, padding:'1px 5px', color:'#57606a' }}>{s}</span>
