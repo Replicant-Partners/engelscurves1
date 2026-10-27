@@ -283,6 +283,25 @@ export function ValuationChains() {
         <p style={{ marginTop: 4, fontSize: 10, color: '#8c96a0', lineHeight: 1.5 }}>
           ¹ Implied g = 1/P/E − 9% discount rate. P/E type: MWG, FMX, YDUQ3 forward; MTNN &amp; SILO trailing; GGAL TTM. All six re-verified via lisp_eval 2026-10-23.
         </p>
+
+        {/* Reading guide — immediately below the scatter */}
+        <div style={{ marginTop: 20, padding: '16px 20px', background: '#f6f8fa', border: '1px solid #e1e4e8', borderRadius: 6 }}>
+          <p style={{ fontSize: 10, fontWeight: 700, color: '#57606a', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 14 }}>How to read the scatter</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+            <div>
+              <p style={{ fontWeight: 700, fontSize: 13, marginBottom: 5 }}>Above the diagonal → underpriced growth</p>
+              <p style={{ fontSize: 12, lineHeight: 1.65, color: '#57606a', margin: 0 }}>Actual revenue growth exceeds what the current P/E implies. MWG and YDUQ3 are the clearest cases: priced as zero/low-growth while delivering 16% and 32% FCF.</p>
+            </div>
+            <div>
+              <p style={{ fontWeight: 700, fontSize: 13, marginBottom: 5 }}>Near the diagonal → fairly priced</p>
+              <p style={{ fontSize: 12, lineHeight: 1.65, color: '#57606a', margin: 0 }}>Market pricing roughly matches observed performance. FEMSA and SILO sit close — not obviously cheap or expensive relative to what we currently observe.</p>
+            </div>
+            <div>
+              <p style={{ fontWeight: 700, fontSize: 13, marginBottom: 5 }}>Essential caveat</p>
+              <p style={{ fontSize: 12, lineHeight: 1.65, color: '#57606a', margin: 0 }}>Implied g is a residual — what the price assumes about the indefinite future, not a forecast. The diagonal is a benchmark, not a verdict. Each pair states its own falsifier.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* ── SECTION 2: The six pairs ─────────────────────────────────── */}

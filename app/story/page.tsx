@@ -586,25 +586,6 @@ export default function StoryPage() {
           {/* ── Valuation chains + charts ─────────────────────────────── */}
           <ValuationChains />
 
-          {/* ── Reading guide ─────────────────────────────────────────── */}
-          <div className="mt-10 p-6 bg-[#f6f8fa] border border-[#e1e4e8] rounded-lg">
-            <p className="text-xs font-mono text-[#57606a] tracking-widest mb-5">HOW TO READ THE SCATTER ABOVE</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div>
-                <p className="font-semibold text-sm mb-2">Above the diagonal &rarr; market underprices growth</p>
-                <p className="text-sm leading-[1.7] text-[#57606a]">Actual recent revenue growth exceeds what the current P/E implies. MWG and YDUQ3 are the clearest cases: priced as zero/low growth while delivering 16% and 32% FCF respectively.</p>
-              </div>
-              <div>
-                <p className="font-semibold text-sm mb-2">Near the diagonal &rarr; fairly priced</p>
-                <p className="text-sm leading-[1.7] text-[#57606a]">Market pricing roughly matches observed performance. FEMSA and SILO sit close — not obviously cheap or expensive relative to what we can observe today.</p>
-              </div>
-              <div>
-                <p className="font-semibold text-sm mb-2">The essential caveat</p>
-                <p className="text-sm leading-[1.7] text-[#57606a]">Implied terminal growth is a residual — what the price assumes about the indefinite future, not a forecast. The diagonal is a benchmark for conversation, not a verdict. Each pair states its own falsifier.</p>
-              </div>
-            </div>
-          </div>
-
           {/* ── Analytical synthesis ──────────────────────────────────── */}
           <div className="mt-8 pl-6 border-l-4 border-[#1b1f23]">
             <p className="text-xs font-mono text-[#57606a] tracking-widest mb-4">ANALYTICAL SYNTHESIS</p>
