@@ -25,7 +25,7 @@ const COUNTRIES = Array.from(new Map(ALL.map((d) => [d.iso3, d.name] as [string,
 export function EngelExplorer() {
   const [year, setYear] = useState(2023);
   const [playing, setPlaying] = useState(false);
-  const [lens, setLens] = useState<'usda' | 'survey'>('usda');
+  const lens = 'usda';
   const [selected, setSelected] = useState<string[]>(['IDN', 'VNM', 'IND', 'BRA']);
   const [hover, setHover] = useState<Row | null>(null);
   const [search, setSearch] = useState('');
@@ -41,7 +41,7 @@ export function EngelExplorer() {
   }, []);
 
   useEffect(() => {
-    if (playing && lens === 'usda') {
+    if (playing) {
       timer.current = setInterval(() => setYear((t) => (t >= 2030 ? (setPlaying(false), 2030) : t + 1)), 750);
       return () => { if (timer.current) clearInterval(timer.current); };
     }
@@ -49,18 +49,16 @@ export function EngelExplorer() {
 
   const frame = useMemo(() => ALL.filter((d) => d.year === year).sort((a, b) => b.pop - a.pop), [year]);
   const trails = useMemo(() => selected.map((iso) => ({ iso, pts: ALL.filter((d) => d.iso3 === iso && d.year <= year).sort((a, b) => a.year - b.year) })), [selected, year]);
-  const bounds = lens === 'usda' ? { start: explorer.usda.knot, end: explorer.usda.end } : { start: story.bounds.start, end: story.bounds.end };
-  const curve = lens === 'usda' ? explorer.usda.curve : story.piecewiseLine;
+  const bounds = { start: explorer.usda.knot, end: explorer.usda.end };
+  const curve = explorer.usda.curve;
   const toggle = (iso: string) => setSelected((s) => (s.includes(iso) ? s.filter((c) => c !== iso) : [...s, iso]));
 
   return (
     <div className="space-y-3">
       <div className="flex flex-wrap items-center gap-3 text-sm">
         <div className="flex border border-[#d0d7de]">
-          <button onClick={() => setLens('usda')} className={`px-3 py-1.5 ${lens === 'usda' ? 'bg-[#1b1f23] text-white' : 'text-[#57606a]'}`}>National accounts (USDA, animated)</button>
-          <button onClick={() => { setLens('survey'); setPlaying(false); }} className={`px-3 py-1.5 ${lens === 'survey' ? 'bg-[#1b1f23] text-white' : 'text-[#57606a]'}`}>Household surveys (static)</button>
         </div>
-        {lens === 'usda' && (
+        {(
           <>
             <button onClick={() => { if (year >= 2030) setYear(2017); setPlaying((p) => !p); }} className="border border-[#1b1f23] px-4 py-1.5 font-semibold min-w-[72px]">{playing ? 'Pause' : 'Play'}</button>
             <input type="range" min={2017} max={2030} value={year} onChange={(e) => { setPlaying(false); setYear(+e.target.value); }} className="w-56 accent-[#1b1f23]" aria-label="Year" />
@@ -102,7 +100,7 @@ export function EngelExplorer() {
       <div className="relative border border-[#d0d7de] overflow-x-auto">
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto block min-w-[760px]" role="img" aria-label="Food share of household spending against GDP per capita">
           <rect x={0} y={0} width={W} height={H} fill="transparent" onClick={() => { setHover(null); setShowDrop(false); }} />
-          {lens === 'usda' && (
+          {(
             <text x={(M.left + W - M.right) / 2} y={H - M.bottom - 36} textAnchor="middle" fontSize="110" fontWeight={600}
               fill={year > 2023 ? '#57606a' : '#1b1f23'} opacity={0.1} pointerEvents="none">{year}{year > 2023 ? '*' : ''}</text>
           )}
@@ -131,10 +129,10 @@ export function EngelExplorer() {
             <circle key={i} cx={x(p.gdp)} cy={y(p.share)} r={4} fill="#9aa4ae" opacity={0.75}><title>{`${p.iso3} ${p.year}: ${(p.share * 100).toFixed(0)}% at ${usd(p.gdp)}`}</title></circle>
           ))}
 
-          {lens === 'usda' && trails.map((t) => t.pts.length > 1 && (
+          {trails.map((t) => t.pts.length > 1 && (
             <polyline key={t.iso} points={t.pts.map((p) => `${x(p.gdp)},${y(p.share)}`).join(' ')} fill="none" stroke={color(t.pts[0].region)} strokeWidth={1.5} opacity={0.9} strokeDasharray={t.pts.some((p) => p.projected) ? undefined : undefined} />
           ))}
-          {lens === 'usda' && frame.map((d) => {
+          {frame.map((d) => {
             const sel = selected.includes(d.iso3);
             return (
               <circle key={d.iso3} cx={x(d.gdp)} cy={y(d.share)} r={r(d.pop)}
@@ -144,7 +142,7 @@ export function EngelExplorer() {
                 onMouseEnter={() => setHover(d)} onMouseLeave={() => setHover(null)} onClick={() => { toggle(d.iso3); setHover(d); }} />
             );
           })}
-          {lens === 'usda' && frame.filter((d) => selected.includes(d.iso3)).map((d) => (
+          {frame.filter((d) => selected.includes(d.iso3)).map((d) => (
             <text key={d.iso3} x={x(d.gdp)} y={y(d.share) - r(d.pop) - 5} textAnchor="middle" fontSize="11.5" fontWeight={600} fill="#1b1f23">{d.name}</text>
           ))}
         </svg>
