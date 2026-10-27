@@ -18,7 +18,6 @@ import { RobustnessChart } from '../../components/story/RobustnessChart';
 import { MeasurementRisk } from '../../components/story/MeasurementRisk';
 import { ValuationChains } from '../../components/story/ValuationChains';
 import { EarlySignals } from '../../components/story/EarlySignals';
-import { PortfolioBuilder } from '../../components/story/PortfolioBuilder';
 import { MacroRisk } from '../../components/story/MacroRisk';
 import { WatchTimeline } from '../../components/story/WatchTimeline';
 import { SearchBar } from '../../components/story/SearchBar';
@@ -46,9 +45,8 @@ const chapters = [
   { id: 'street', n: '6', title: 'The street' },
   { id: 'chains', n: '7', title: 'Who captures the transition?' },
   { id: 'macrorisk', n: '8', title: 'Macro risk' },
-  { id: 'portfolio', n: '9', title: 'Portfolio construction' },
-  { id: 'watch', n: '10', title: 'Predictions' },
-  { id: 'method', n: '11', title: 'Evidence and method' },
+  { id: 'watch', n: '9', title: 'Predictions' },
+  { id: 'method', n: '10', title: 'Evidence and method' },
 ];
 
 function Tag({ t }: { t: 'OBS' | 'INF' | 'JDG' | 'GAP' }) {
@@ -630,22 +628,7 @@ export default function StoryPage() {
           </Record>
         </Chapter>
 
-                <Chapter
-          id="portfolio"
-          n="9"
-          title="Portfolio construction"
-          lede="Given the Engel analysis, how would you size these positions? Three systematic approaches — equal-weight, signal-weighted, and expected-value tilted — plus the portfolio risks that hit all six simultaneously."
-        >
-          <p className="text-sm leading-relaxed mb-6">
-            <Tag t="JDG" />Portfolio construction here is an analytical exercise, not investment advice. The framework makes the trade-offs explicit: calibrated probability sets the base; signal confirmation and liquidity adjust it; expected value shows where the asymmetry lives. Four pre-built views — switch between them to see how the weighting changes.
-          </p>
-          <PortfolioBuilder />
-          <Record>
-            <p>Weights computed as: calibrated_P &times; signal_multiplier &times; liquidity_multiplier, normalised to 100%. Signal multipliers: Confirmed=1.00, Weakened=0.85, Mixed=0.75. Liquidity: NYSE/Nasdaq=1.00, B3/NGX=0.85, HOSE/IDX=0.80. Expected value: P(thesis) &times; upside + (1&minus;P) &times; downside. Upside and downside assumptions are author estimates, not model outputs; they carry significant uncertainty. This is a pedagogical framework for connecting the Engel analysis to capital allocation decisions &mdash; the kind of bridge an academic economist rarely builds explicitly.</p>
-          </Record>
-        </Chapter>
-
-                <Chapter id="watch" n="7" title="Predictions" lede="The Engel mechanism generates falsifiable country-level predictions. These are the dated claims the data will confirm or refute — ordered by when each signal arrives.">
+                <Chapter id="watch" n="9" title="Predictions" lede="The Engel mechanism generates falsifiable country-level predictions. These are the dated claims the data will confirm or refute — ordered by when each signal arrives.">
           <p className="text-xs text-[#57606a] mb-4">Solid marker: an observed fact. Hollow marker: an inferred probability &mdash; the same convention as the Explorer&rsquo;s hollow projection bubbles.</p>
           <ol className="relative border-l-2 border-[#d0d7de] ml-2 space-y-10">
             {watch.map((w) => (
@@ -666,7 +649,7 @@ export default function StoryPage() {
           </Record>
         </Chapter>
         <section id="method" className="scroll-mt-16 py-14 border-t border-[#d0d7de]">
-          <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">CHAPTER 11</div>
+          <div className="text-xs font-mono text-[#57606a] tracking-widest mb-2">CHAPTER 10</div>
           <h2 className="text-3xl font-semibold tracking-tight mb-3">Evidence and method</h2>
           <p className="text-lg leading-relaxed mb-8">For readers who want to check the work.</p>
 
