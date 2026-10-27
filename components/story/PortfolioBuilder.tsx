@@ -268,27 +268,27 @@ export function PortfolioBuilder() {
         {MODES.find(m => m.mode === mode)?.desc}
       </p>
 
-      {/* Main layout: pie + table + scatter */}
-      <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', marginBottom: 20 }}>
+      {/* Row 1: Pie (left) + Table (right) */}
+      <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', gap: 32, marginBottom: 28, alignItems: 'start' }}>
 
         {/* Pie + EV */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
           <PieChart weights={weights} />
-          <div style={{ fontSize: 11, textAlign: 'center' }}>
-            <div style={{ color: '#57606a' }}>Portfolio EV</div>
-            <div style={{ fontWeight: 700, fontSize: 15, color: portEV >= 0 ? '#2c6e49' : '#9e3c38' }}>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ color: '#57606a', fontSize: 12 }}>Portfolio EV</div>
+            <div style={{ fontWeight: 700, fontSize: 22, color: portEV >= 0 ? '#2c6e49' : '#9e3c38' }}>
               {portEV > 0 ? '+' : ''}{(portEV * 100).toFixed(1)}%
             </div>
           </div>
         </div>
 
         {/* Weight table */}
-        <div style={{ flex: 1, minWidth: 260 }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 11 }}>
+        <div>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
             <thead>
-              <tr style={{ borderBottom: '2px solid #d0d7de' }}>
-                {['Pair', 'Arch.', 'Cal. P', 'Weight', 'EV'].map(h => (
-                  <th key={h} style={{ padding: '4px 8px', textAlign: 'left', color: '#57606a', fontWeight: 600 }}>{h}</th>
+              <tr style={{ borderBottom: '2px solid #d0d7de', background: '#f6f8fa' }}>
+                {['Pair', 'Archetype', 'Cal. P', 'Weight', 'EV'].map(h => (
+                  <th key={h} style={{ padding: '10px 14px', textAlign: 'left', color: '#57606a', fontWeight: 600, fontSize: 11, letterSpacing: '0.03em' }}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -297,19 +297,20 @@ export function PortfolioBuilder() {
                 const evVal = ev(p);
                 return (
                   <tr key={p.symbol} style={{ background: i%2===0?'#f6f8fa':'#fff', borderBottom: '1px solid #e1e4e8' }}>
-                    <td style={{ padding: '5px 8px', fontWeight: 600, color: ARCHETYPE_COLOR[p.archetype] }}>
-                      {p.symbol}<br /><span style={{ fontWeight:400, color:'#57606a', fontSize:10 }}>{p.exchange}</span>
+                    <td style={{ padding: '12px 14px', fontWeight: 700, color: ARCHETYPE_COLOR[p.archetype], fontSize: 14 }}>
+                      {p.symbol}
+                      <div style={{ fontWeight:400, color:'#8c96a0', fontSize:11, marginTop:2 }}>{p.exchange}</div>
                     </td>
-                    <td style={{ padding: '5px 8px' }}>
-                      <span style={{ fontSize:9, background: ARCHETYPE_COLOR[p.archetype]+'22', color: ARCHETYPE_COLOR[p.archetype], border:'1px solid '+ARCHETYPE_COLOR[p.archetype], borderRadius:3, padding:'1px 4px' }}>
-                        {p.archetype === 'pure' ? 'Pure' : p.archetype === 'structural' ? 'Struct' : 'Macro'}
+                    <td style={{ padding: '12px 14px' }}>
+                      <span style={{ fontSize:11, background: ARCHETYPE_COLOR[p.archetype]+'18', color: ARCHETYPE_COLOR[p.archetype], border:'1px solid '+ARCHETYPE_COLOR[p.archetype], borderRadius:4, padding:'3px 8px' }}>
+                        {p.archetype === 'pure' ? 'Pure Engel' : p.archetype === 'structural' ? 'Structural' : 'Macro'}
                       </span>
                     </td>
-                    <td style={{ padding: '5px 8px', fontVariantNumeric:'tabular-nums' }}>{(p.calP*100).toFixed(1)}%</td>
-                    <td style={{ padding: '5px 8px', fontVariantNumeric:'tabular-nums', fontWeight:600 }}>
+                    <td style={{ padding: '12px 14px', fontVariantNumeric:'tabular-nums', fontSize:13 }}>{(p.calP*100).toFixed(1)}%</td>
+                    <td style={{ padding: '12px 14px', fontVariantNumeric:'tabular-nums', fontWeight:700, fontSize:14 }}>
                       {(weights[p.symbol]*100).toFixed(1)}%
                     </td>
-                    <td style={{ padding: '5px 8px', fontVariantNumeric:'tabular-nums', color: evVal>=0?'#2c6e49':'#9e3c38', fontWeight:600 }}>
+                    <td style={{ padding: '12px 14px', fontVariantNumeric:'tabular-nums', fontSize:13, color: evVal>=0?'#2c6e49':'#9e3c38', fontWeight:700 }}>
                       {evVal>0?'+':''}{(evVal*100).toFixed(1)}%
                     </td>
                   </tr>
@@ -317,18 +318,18 @@ export function PortfolioBuilder() {
               })}
             </tbody>
           </table>
-          <p style={{ fontSize:10, color:'#8c96a0', marginTop:6 }}>
-            EV = P(thesis) × upside + (1−P) × downside. Upside: YDUQ3 +67% (PE 6x→10x), GGAL +30% (P/B→1.5x), MTNN +25%, others +20%. Downside: −15% to −20%.
+          <p style={{ fontSize:11, color:'#8c96a0', marginTop:8, lineHeight: 1.6 }}>
+            EV = P(thesis) × upside + (1−P) × downside. Upside: YDUQ3 +67%, GGAL +30%, MTNN +25%, others +20%. Downside: −15% to −20%.
           </p>
         </div>
+      </div>
 
-        {/* EV Scatter */}
-        <div style={{ flex: 1, minWidth: 280 }}>
-          <div style={{ fontSize: 10, color: '#8c96a0', marginBottom: 4 }}>
-            Bubble size = portfolio weight. X = calibrated probability. Y = expected value. Dashed = EV=0 line.
-          </div>
-          <EVScatter weights={weights} />
-        </div>
+      {/* Row 2: EV Scatter — full width */}
+      <div style={{ marginBottom: 20 }}>
+        <p style={{ fontSize: 11, color: '#8c96a0', marginBottom: 8 }}>
+          Bubble size = portfolio weight. X = calibrated probability. Y = expected value. Dashed line = EV 0%.
+        </p>
+        <EVScatter weights={weights} />
       </div>
 
       {/* Key insight */}
