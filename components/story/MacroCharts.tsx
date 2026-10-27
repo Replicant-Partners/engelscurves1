@@ -66,12 +66,12 @@ export function GDPCPIQuadrant() {
               <circle cx={cx} cy={cy} r={10}
                 fill={C[d.sym]} fillOpacity={0.65} stroke={C[d.sym]} strokeWidth={1.5} />
               <text x={cx} y={above ? cy + 14 : cy - 14}
-                fontSize={9} fontWeight={600} fill={C[d.sym]} textAnchor="middle">
-                {d.sym}
-              </text>
-              <text x={cx} y={above ? cy + 23 : cy - 23}
-                fontSize={8} fill="#57606a" textAnchor="middle">
+                fontSize={11} fontWeight={700} fill={C[d.sym]} textAnchor="middle">
                 {d.label}
+              </text>
+              <text x={cx} y={above ? cy + 25 : cy - 25}
+                fontSize={9} fill="#8c96a0" textAnchor="middle">
+                {d.sym}
               </text>
             </g>
           );
