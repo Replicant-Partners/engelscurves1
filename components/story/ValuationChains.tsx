@@ -8,7 +8,9 @@ import { GrowthGapChart } from './GrowthGapChart';
 const PAIRS = [
   {
     id: 1, symbol: 'MWG', market: 'Vietnam', company: 'Mobile World (MWG)',
-    ticker: 'MWG HOSE', engelPhase: 'Transition', eta: 1.15,
+    ticker: 'MWG HOSE',
+    description: "Vietnam's largest multi-category retailer: 5,000+ stores (smartphones, appliances, groceries, pharmacy). Revenue +16.4% FY2025. P/E re-rated 11.2x→17.9x in 6 months.",
+    engelPhase: 'Transition', eta: 1.15,
     category: 'Consumer electronics / durables',
     impliedG: -0.0007, actualG: 0.164, pe: 11.2, peType: 'fwd',  // FY2025: revenue +16.4%; NPAT +89.4%
     verdictCode: 'NOT_DISCOUNTED', verdictLabel: 'Not discounted',
@@ -18,7 +20,9 @@ const PAIRS = [
   },
   {
     id: 2, symbol: 'FMX', market: 'Mexico', company: 'FEMSA (FMX)',
-    ticker: 'FMX NYSE', engelPhase: 'Post-transition', eta: 1.28,
+    ticker: 'FMX NYSE',
+    description: "Mexico's FEMSA: 25,587 OXXO stores (13M tickets/day), world's largest Coca-Cola bottler, 3,000+ pharmacies. Revenue +7.6% FY2025. OXXO SSSG recovered to +4.4% in Q4.",
+    engelPhase: 'Post-transition', eta: 1.28,
     category: 'Convenience retail + Health/pharma',
     impliedG: -0.0442, actualG: 0.076, pe: 21.82, peType: 'fwd',  // FY2025 AR: +7.6%
     verdictCode: 'FAIRLY_VALUED', verdictLabel: 'Fairly valued',
@@ -28,7 +32,9 @@ const PAIRS = [
   },
   {
     id: 3, symbol: 'YDUQ3', market: 'Brazil', company: 'Yduqs (YDUQ3)',
-    ticker: 'YDUQ3 B3', engelPhase: 'Post-transition', eta: 0.97,
+    ticker: 'YDUQ3 B3',
+    description: "Brazil's 2nd-largest private university group: 1.37M students across Estácio, Ibmec (premium) and IDOMED (medical). FCF hit R$1B (+32%) in FY2025 — a historic milestone.",
+    engelPhase: 'Post-transition', eta: 0.97,
     category: 'Private university education',
     impliedG: 0.0767, actualG: 0.32, pe: 6.0, peType: 'fwd',  // FCF +32% FY2025; revenue +3.2% < implied g
     verdictCode: 'DEEPLY_UNDERVALUED', verdictLabel: 'Deeply undervalued',
@@ -40,7 +46,9 @@ const PAIRS = [
     // implied_g computed from trailing P/E 12.23 (NGX consensus fwd not available; naira distortion makes fwd estimates unreliable)
     // lisp_eval: 1/12.23 − 0.09 = −0.00823 ✓
     id: 4, symbol: 'MTNN', market: 'Nigeria', company: 'MTN Nigeria (MTNN)',
-    ticker: 'MTNN NGX', engelPhase: 'Paradox', eta: 0.79,
+    ticker: 'MTNN NGX',
+    description: "Nigeria's largest mobile operator: 87M subscribers, 38.5% market share, 53M active data users. Service revenue +55.1% (NGN, real growth) in FY2025. MoMo fintech in development.",
+    engelPhase: 'Paradox', eta: 0.79,
     category: 'Mobile data / fintech (gateway luxury)',
     impliedG: -0.0082, actualG: 0.259, pe: 12.23, peType: 'trailing',
     verdictCode: 'CHEAP_WITH_CAVEAT', verdictLabel: 'Cheap, growth caveat',
@@ -52,7 +60,9 @@ const PAIRS = [
     // implied_g from TTM P/E 42.6; no reliable fwd P/E (Argentina hyperinflation distorts forward earnings)
     // lisp_eval: 1/42.6 − 0.09 = −0.06653 ✓
     id: 5, symbol: 'GGAL', market: 'Argentina', company: 'Galicia (GGAL)',
-    ticker: 'GGAL Nasdaq', engelPhase: 'Post-transition', eta: 1.37,
+    ticker: 'GGAL Nasdaq',
+    description: "Argentina's largest private financial group (Banco Galicia + ex-HSBC + Naranja X fintech). 432 branches, 15.1% private loan market share. P/B recovered from 0.25x (2022) to 1.15x (2026).",
+    engelPhase: 'Post-transition', eta: 1.37,
     category: 'Financial services (macro-stabilisation play)',
     impliedG: -0.0665, actualG: 0.15, pe: 42.6, peType: 'TTM',
     verdictCode: 'MACRO_PLAY', verdictLabel: 'Macro play',
@@ -64,7 +74,9 @@ const PAIRS = [
     // implied_g from trailing P/E 18.9 (IDX analysts' fwd consensus not published separately)
     // lisp_eval: 1/18.9 − 0.09 = −0.03709 ✓
     id: 6, symbol: 'SILO', market: 'Indonesia', company: 'Siloam (SILO)',
-    ticker: 'SILO IDX', engelPhase: 'Transition', eta: 1.26,
+    ticker: 'SILO IDX',
+    description: "Indonesia's largest private hospital network: 41 hospitals, 4,310 beds, 4.35M outpatient visits/year. ~9% private hospital market share. EBITDA margin expanding to 29.1% FY2025.",
+    engelPhase: 'Transition', eta: 1.26,
     category: 'Private hospital healthcare',
     impliedG: -0.0371, actualG: 0.052, pe: 18.9, peType: 'trailing',  // FY2025: +5.2% revenue
     verdictCode: 'SLIGHTLY_RICH', verdictLabel: 'Slightly rich',
@@ -313,6 +325,7 @@ export function ValuationChains() {
                       <td style={{ padding: '14px 14px', fontWeight: 700, color: VERDICT_COLOR[p.verdictCode], fontSize: 13 }}>
                         {p.market}
                         <div style={{ fontWeight: 400, color: '#8c96a0', fontSize: 11, marginTop: 2 }}>{p.ticker}</div>
+                        <div style={{ fontWeight: 400, color: '#57606a', fontSize: 12, marginTop: 6, lineHeight: 1.55, fontStyle: 'italic' }}>{(p as any).description}</div>
                       </td>
                       <td style={{ padding: '14px 14px', color: '#57606a' }}>
                         <span style={{ fontSize: 10, border: '1px solid #d0d7de', borderRadius: 3, padding: '2px 6px', whiteSpace: 'nowrap' }}>
@@ -345,6 +358,8 @@ export function ValuationChains() {
                         <td colSpan={8} style={{ padding: '16px 20px' }}>
                           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 20 }}>
                             <div>
+                              <p style={{ fontSize: 10, fontWeight: 700, color: '#57606a', letterSpacing: '0.06em', marginBottom: 4 }}>ABOUT THE COMPANY</p>
+                              <p style={{ fontSize: 13, lineHeight: 1.65, margin: '0 0 10px', color: '#1b1f23' }}>{(sel as any).description}</p>
                               <p style={{ fontSize: 10, fontWeight: 700, color: '#57606a', letterSpacing: '0.06em', marginBottom: 6 }}>ENGEL CHAIN</p>
                               <p style={{ fontSize: 12, lineHeight: 1.65, margin: 0 }}><Tag t="INF" />{sel!.chain}</p>
                             </div>
