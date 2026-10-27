@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { LawChart } from '../../components/story/LawChart';
 import { BreakChart } from '../../components/story/BreakChart';
 import { PhaseTracks } from '../../components/story/PhaseTracks';
+import { DemographicsChart } from '../../components/story/DemographicsChart';
 import { HouseholdBars } from '../../components/story/HouseholdBars';
 import { DollarStreetHouses } from '../../components/story/DollarStreetHouses';
 import { EngelExplorer } from '../../components/story/EngelExplorer';
@@ -481,6 +482,19 @@ export default function StoryPage() {
               <p><Tag t="INF" />Median crossing years on the bootstrap paths: Egypt {deep.medianExit.EGY}, Vietnam {deep.medianExit.VNM}, Indonesia {deep.medianExit.IDN}. India, the Philippines and South Africa do not reach a 50% exit probability by 2030 &mdash; India and the Philippines because the distance is large, South Africa because its projected growth is close to zero.</p>
               <p><Tag t="JDG" />A tension we watch rather than hide: the survey-based model predicts Indonesia&rsquo;s food share falling as it grows, yet on the USDA national-accounts lens Indonesia&rsquo;s observed share <em>rose</em> 1.7 points over 2017&ndash;2023 (chapter 3). If that persists, the {Math.round(story.tracks.find((t) => t.iso3 === 'IDN')!.pExit2030 * 100)}%-by-2030 exit probability is too optimistic. The first check arrives with the 2024&ndash;2025 USDA releases.</p>
             </div>
+          </div>
+
+          {/* Demographics section */}
+          <div className="mt-14 pt-8 border-t border-[#e1e4e8]">
+            <p className="text-xs font-mono text-[#57606a] tracking-widest mb-1">DEMOGRAPHIC CONTEXT — 2000 → 2045</p>
+            <h3 className="text-xl font-semibold tracking-tight mb-3">Population and median age</h3>
+            <p className="text-[15px] leading-[1.75] text-[#57606a] mb-6">
+              The Engel transition is driven by income, but demographics shape its pace and scale.
+              A young, growing population (Nigeria, Philippines) has more households entering the transition; an aging one (Brazil, Turkey) is approaching its end.
+              The shaded band shows where the Engel mechanism is most active: median age 22–35, the years when income growth translates most directly into food-share decline.
+              Press <strong>Play</strong> to animate 2000→2045. *2024–2045 = UN projections (medium variant).
+            </p>
+            <DemographicsChart />
           </div>
 
           <Record>
