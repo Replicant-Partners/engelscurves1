@@ -146,7 +146,7 @@ function PieChart({ weights }: { weights: Record<string, number> }) {
 
 /* ── EV scatter ─────────────────────────────────────────────────────────── */
 function EVScatter({ weights }: { weights: Record<string, number> }) {
-  const W = 320; const H = 200;
+  const W = 700; const H = 380;
   const PAD = { t: 16, b: 32, l: 44, r: 16 };
   const iW = W - PAD.l - PAD.r; const iH = H - PAD.t - PAD.b;
   const xMin = 0.3; const xMax = 0.5;
@@ -159,7 +159,7 @@ function EVScatter({ weights }: { weights: Record<string, number> }) {
   };
 
   return (
-    <svg width={W} height={H} style={{ display: 'block', overflow: 'visible' }}>
+    <svg viewBox={`0 0 ${W} ${H}`} style={{ display: 'block', overflow: 'visible', width: '100%', height: 'auto' }}>
       {/* grid */}
       {[0.32,0.36,0.40,0.44,0.48].map(v => (
         <line key={v} x1={xS(v)} x2={xS(v)} y1={PAD.t} y2={PAD.t+iH} stroke="#e1e4e8" strokeWidth={0.5} />
@@ -173,7 +173,7 @@ function EVScatter({ weights }: { weights: Record<string, number> }) {
 
       {PAIRS.map(p => {
         const evVal = ev(p);
-        const r = 8 + weights[p.symbol] * 28;
+        const r = 10 + weights[p.symbol] * 36;
         const cx = xS(p.calP);
         const cy = yS(evVal);
         const above = cy < PAD.t + iH / 2;
@@ -183,8 +183,8 @@ function EVScatter({ weights }: { weights: Record<string, number> }) {
               fill={COLORS[p.symbol]} fillOpacity={0.6}
               stroke={COLORS[p.symbol]} strokeWidth={1.2}
             />
-            <text x={cx} y={above ? cy + r + 10 : cy - r - 4}
-              fontSize={9} fontWeight={600} fill={COLORS[p.symbol]} textAnchor="middle">
+            <text x={cx} y={above ? cy + r + 12 : cy - r - 6}
+              fontSize={11} fontWeight={700} fill={COLORS[p.symbol]} textAnchor="middle">
               {p.symbol}
             </text>
           </g>
