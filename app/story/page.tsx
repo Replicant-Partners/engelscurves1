@@ -12,6 +12,7 @@ import { deep } from '../../data/deepDive';
 import { mechanismData } from '../../data/mechanismData';
 import { MechanismChart } from '../../components/story/MechanismChart';
 import { JapanChart } from '../../components/story/JapanChart';
+import { JapanBudgetShift } from '../../components/story/JapanBudgetShift';
 import { RobustnessChart } from '../../components/story/RobustnessChart';
 import { MeasurementRisk } from '../../components/story/MeasurementRisk';
 import { ValuationChains } from '../../components/story/ValuationChains';
@@ -336,6 +337,15 @@ export default function StoryPage() {
             <p className="text-[14px] leading-[1.7] text-[#57606a] mt-4">
               <Tag t="INF" />On the fit, the transition spans about ${num(deep.freed.delta)} per person per year of non-food spending: at our break threshold ($6.6k) non-food spending is ${num(deep.freed.atBreak)}; at our exit threshold ($17.8k) it is ${num(deep.freed.atExit)}. That dollar span — not the percentage — is what a consumer business prices.
             </p>
+
+            {/* Where did the freed budget go? */}
+            <div className="mt-10 pt-8 border-t border-[#e1e4e8]">
+              <p className="text-xs font-mono text-[#57606a] tracking-widest mb-1">WHERE DID THE FREED BUDGET GO?</p>
+              <p className="text-[15px] leading-[1.75] mb-4">
+                <Tag t="INF" />When Japan&rsquo;s food share fell 21.7 percentage points over 37 years, that budget share had to go somewhere. The Working-Leser demand system (Clements &amp; Chen 2010) predicts the reallocation: categories with income elasticity above 1 gained share; those below 1 lost share. Hover a category to see the shift.
+              </p>
+              <JapanBudgetShift />
+            </div>
           </div>
 
           {/* Does the break hold up? */}
