@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { dollarStreet } from '../../data/dollarStreet';
 
-const W = 900, H = 400, LEFT = 46, RIGHT = 20, BOTTOM = 56, TOP = 24;
+const W = 900, H = 480, LEFT = 50, RIGHT = 20, BOTTOM = 64, TOP = 32;
 const MIN = 22, MAX = 17000, BINS = 64;
 const xOf = (v: number) => LEFT + ((Math.log(v) - Math.log(MIN)) / (Math.log(MAX) - Math.log(MIN))) * (W - LEFT - RIGHT);
 const ACCENT = '#4c78a8';
@@ -54,7 +54,7 @@ export function DollarStreetHouses() {
           aria-label="All Dollar Street families as houses stacked along one street by consumption per adult per month">
           <line x1={LEFT - 6} x2={W - RIGHT} y1={H - BOTTOM + 1} y2={H - BOTTOM + 1} stroke="#1b1f23" strokeWidth={1.2} />
           <line x1={xOf(dollarStreet.kharasMonthly)} x2={xOf(dollarStreet.kharasMonthly)} y1={TOP - 6} y2={H - BOTTOM} stroke="#1b1f23" strokeDasharray="4 3" />
-          <text x={xOf(dollarStreet.kharasMonthly) + 5} y={TOP + 4} fontSize="11" fill="#1b1f23">middle-class entry ~${dollarStreet.kharasMonthly}/month ($11/day)</text>
+          <text x={xOf(dollarStreet.kharasMonthly) + 5} y={TOP + 4} fontSize="13" fill="#1b1f23">middle-class entry ~${dollarStreet.kharasMonthly}/month ($11/day)</text>
           {houses.map((h, i) => {
             const sel = selected.includes(h.c2);
             const ours = OUR.has(h.c2);
@@ -71,10 +71,10 @@ export function DollarStreetHouses() {
           {[25, 50, 100, 335, 1000, 3000, 10000].map((v) => (
             <g key={v}>
               <line x1={xOf(v)} x2={xOf(v)} y1={H - BOTTOM + 1} y2={H - BOTTOM + 6} stroke="#9aa4ae" />
-              <text x={xOf(v)} y={H - BOTTOM + 20} textAnchor="middle" fontSize="11" fill="#57606a">${v >= 1000 ? `${v / 1000}k` : v}</text>
+              <text x={xOf(v)} y={H - BOTTOM + 20} textAnchor="middle" fontSize="13" fill="#57606a">${v >= 1000 ? `${v / 1000}k` : v}</text>
             </g>
           ))}
-          <text x={(LEFT + W - RIGHT) / 2} y={H - 10} textAnchor="middle" fontSize="12" fill="#57606a">Consumption per adult, $/month (PPP, log scale) &mdash; each house is one of the {dollarStreet.usable} documented families</text>
+          <text x={(LEFT + W - RIGHT) / 2} y={H - 10} textAnchor="middle" fontSize="14" fill="#57606a">Consumption per adult, $/month (PPP, log scale) &mdash; each house is one of the {dollarStreet.usable} documented families</text>
         </svg>
         {hover && (
           <div className="absolute top-2 right-2 bg-white border border-[#d0d7de] px-3 py-2 text-xs leading-relaxed shadow-sm">
@@ -87,7 +87,7 @@ export function DollarStreetHouses() {
         )}
       </div>
 
-      <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-[#57606a]">
+      <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-sm text-[#57606a]">
         <span className="flex items-center gap-1.5"><svg width="12" height="12" viewBox="0 0 10 10"><path d={HOUSE} fill={ACCENT} /></svg>selected market</span>
         <span className="flex items-center gap-1.5"><svg width="12" height="12" viewBox="0 0 10 10"><path d={HOUSE} fill="#8a94a0" /></svg>our twelve markets</span>
         <span className="flex items-center gap-1.5"><svg width="12" height="12" viewBox="0 0 10 10"><path d={HOUSE} fill="#d7dce1" /></svg>rest of the street</span>

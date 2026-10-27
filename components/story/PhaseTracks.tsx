@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { story } from '../../data/storyData';
 import { BAND_FILL } from './regionColors';
 
-const W = 820, LEFT = 120, RIGHT = 150, ROW = 46, TOP = 50;
+const W = 820, LEFT = 130, RIGHT = 150, ROW = 58, TOP = 56;
 const MIN = 2000, MAX = 50000;
 const x = (g: number) => LEFT + ((Math.log(g) - Math.log(MIN)) / (Math.log(MAX) - Math.log(MIN))) * (W - LEFT - RIGHT);
 const usd = (v: number) => `$${Math.round(v / 1000)}k`;

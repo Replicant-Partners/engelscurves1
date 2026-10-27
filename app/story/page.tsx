@@ -102,28 +102,58 @@ export default function StoryPage() {
       </nav>
 
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 xl:px-20">
-        {/* Chapter 0 */}
+        {/* Executive Summary / Hero */}
         <header className="pt-16 pb-14">
           <div className="text-xs font-mono text-[#57606a] tracking-widest mb-4">ENGEL CURVES RESEARCH &middot; OCTOBER 2026</div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight max-w-5xl">
             As countries get richer, the share of household budgets spent on food falls. The shift starts near {usd(story.bounds.start)} per person, not $15,000.
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+
+          {/* Abstract */}
+          <div className="mt-10 max-w-3xl">
+            <p className="text-[17px] leading-[1.8] text-[#1b1f23]">
+              Ernst Engel observed in 1857 that poorer households spend more of their income on food. That relationship still holds — verified here across {story.fit.n} household surveys — and it breaks at a specific income threshold that is earlier than most analysts assume. This analysis traces what that break means for twelve emerging markets, for the industries that benefit from the freed-up budget, and for six listed companies whose current stock prices may not yet reflect the transition.
+            </p>
+          </div>
+
+          {/* Key numbers */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
             <div>
               <div className="text-5xl font-semibold tracking-tight">{usd(story.bounds.start)}</div>
-              <p className="text-sm text-[#57606a] mt-2 leading-relaxed">GDP per capita (PPP) where the food share of spending starts to fall. 90% interval {usd(story.bounds.startCi[0])}&ndash;{usd(story.bounds.startCi[2])}.</p>
+              <p className="text-sm text-[#57606a] mt-2 leading-relaxed">Where the food share starts to fall. 90% interval {usd(story.bounds.startCi[0])}&ndash;{usd(story.bounds.startCi[2])}.</p>
             </div>
             <div>
               <div className="text-5xl font-semibold tracking-tight">6 of 12</div>
-              <p className="text-sm text-[#57606a] mt-2 leading-relaxed">Emerging markets tracked here are inside the transition today: India, the Philippines, South Africa, Indonesia, Vietnam and Egypt.</p>
+              <p className="text-sm text-[#57606a] mt-2 leading-relaxed">Tracked markets inside the transition today: India, Philippines, South Africa, Indonesia, Vietnam, Egypt.</p>
             </div>
             <div>
               <div className="text-5xl font-semibold tracking-tight">3 of 6</div>
-              <p className="text-sm text-[#57606a] mt-2 leading-relaxed">Transition markets more likely than not to complete it by 2030 on IMF growth paths: Egypt ({pct(T.EGY.pExit2030)}), Vietnam ({pct(T.VNM.pExit2030)}) and Indonesia ({pct(T.IDN.pExit2030)}).</p>
+              <p className="text-sm text-[#57606a] mt-2 leading-relaxed">Likely to complete the transition by 2030: Egypt ({pct(T.EGY.pExit2030)}), Vietnam ({pct(T.VNM.pExit2030)}), Indonesia ({pct(T.IDN.pExit2030)}).</p>
+            </div>
+            <div>
+              <div className="text-5xl font-semibold tracking-tight">6</div>
+              <p className="text-sm text-[#57606a] mt-2 leading-relaxed">Listed companies with Engel-linked valuation chains. All 6 forecast IDs registered for Brier scoring.</p>
             </div>
           </div>
-          <p className="text-base text-[#57606a] mt-10 leading-relaxed max-w-[680px]">
-            Built from {story.fit.n} household surveys, World Bank and IMF income data, and 15 papers. Every number links to a source or a script; labels mark what is observed <Tag t="OBS" />, inferred <Tag t="INF" />, judged <Tag t="JDG" /> or missing <Tag t="GAP" />.
+
+          {/* Finding summary */}
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="border-l-2 border-[#d0d7de] pl-4">
+              <p className="text-xs font-mono text-[#57606a] tracking-widest mb-2">THE MECHANISM</p>
+              <p className="text-sm text-[#57606a] leading-relaxed">The food share of household spending declines by ~0.13 percentage points for every 1% rise in income — a slope stable across 150 years and 85 surveys. Below $6.6k the effect is flat; above it, consistent.</p>
+            </div>
+            <div className="border-l-2 border-[#d0d7de] pl-4">
+              <p className="text-xs font-mono text-[#57606a] tracking-widest mb-2">THE MARKETS</p>
+              <p className="text-sm text-[#57606a] leading-relaxed">Six transition markets. Vietnam and Indonesia are most likely to exit by 2030 (83% and 66% probability). Mexico is already post-transition but GDP at +0.3% delays the freed-budget effect. Nigeria's mechanism is structurally blocked.</p>
+            </div>
+            <div className="border-l-2 border-[#d0d7de] pl-4">
+              <p className="text-xs font-mono text-[#57606a] tracking-widest mb-2">THE INVESTMENT QUESTION</p>
+              <p className="text-sm text-[#57606a] leading-relaxed">MWG (Vietnam) re-rated from 11.2× to 17.9× P/E in six months — the market beginning to price the transition. YDUQ3 (Brazil) is the most asymmetric remaining case: FCF +32%, yet priced on revenue +3%.</p>
+            </div>
+          </div>
+
+          <p className="text-sm text-[#57606a] mt-10 leading-relaxed max-w-[680px]">
+            Built from {story.fit.n} household surveys, World Bank and IMF income data, and 15 academic papers. Every number links to a source or a script. Labels: <Tag t="OBS" /> observed &middot; <Tag t="INF" /> inferred &middot; <Tag t="JDG" /> judged &middot; <Tag t="GAP" /> missing.
           </p>
         </header>
 
@@ -455,13 +485,20 @@ export default function StoryPage() {
               <HouseholdBars />
               <p className="text-sm leading-relaxed mt-6"><Tag t="INF" />Food falls from {pct(story.household[0].foodShare)} to {pct(story.household[1].foodShare)} of the budget. Non-food spending per person rises from ${num(story.household[0].nonFood)} to ${num(story.household[1].nonFood)}, about +{Math.round((story.household[1].nonFood / story.household[0].nonFood - 1) * 100)}%, while income rises 100%.</p>
             </div>
-            <div className="md:col-span-2 text-sm leading-relaxed space-y-4">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-[#57606a]">Where the money goes, according to the literature</h3>
-              <p><span className="font-semibold">Discretionary goods.</span> The share of spending on discretionary goods rises with income<Cite ids={[1, 2]} />.</p>
-              <p><span className="font-semibold">Housing first.</span> In 20 emerging markets, household wealth reaches consumption mainly through housing<Cite ids={[6]} />.</p>
-              <p><span className="font-semibold">Finance later.</span> Stock-market gains reach consumption only once the financial sector deepens past a threshold<Cite ids={[7]} />.</p>
-              <p><span className="font-semibold">Thinner than it looks.</span> Even the richest 5% of households in poor countries spend 5&ndash;15 points more on food than the poor in rich countries<Cite ids={[11]} />.</p>
-              <p><span className="font-semibold">More cyclical.</span> Discretionary demand tracks financial markets more closely than necessities (US retail evidence)<Cite ids={[5]} />.</p>
+            <div className="md:col-span-2 space-y-4">
+              <p className="text-xs font-mono text-[#57606a] tracking-widest">WHERE THE FREED BUDGET GOES</p>
+              {[
+                { label: 'Discretionary goods', detail: 'Budget share rises with income as food share falls.', cite: [1, 2] },
+                { label: 'Housing first', detail: 'In 20 EMs, wealth reaches consumption mainly through housing.', cite: [6] },
+                { label: 'Finance later', detail: 'Stock-market gains reach consumption only above a credit threshold.', cite: [7] },
+                { label: 'Thinner than it looks', detail: 'Richest 5% in poor countries still spend 5–15pp more on food than the poor in rich countries.', cite: [11] },
+                { label: 'More cyclical', detail: 'Discretionary demand tracks financial markets more than necessities.', cite: [5] },
+              ].map((item) => (
+                <div key={item.label} className="border-l-2 border-[#d0d7de] pl-4 py-1">
+                  <div className="font-semibold text-[14px] text-[#1b1f23] mb-1">{item.label}<sup className="text-[10px] text-[#57606a] ml-0.5">[{item.cite.join(',')}]</sup></div>
+                  <p className="text-[13px] text-[#57606a] leading-relaxed">{item.detail}</p>
+                </div>
+              ))}
             </div>
           </div>
           <div className="mt-10">
@@ -605,13 +642,13 @@ export default function StoryPage() {
 
                 <Chapter id="watch" n="7" title="Predictions" lede="The Engel mechanism generates falsifiable country-level predictions. These are the dated claims the data will confirm or refute — ordered by when each signal arrives.">
           <p className="text-xs text-[#57606a] mb-4">Solid marker: an observed fact. Hollow marker: an inferred probability &mdash; the same convention as the Explorer&rsquo;s hollow projection bubbles.</p>
-          <ol className="relative border-l border-[#d0d7de] ml-2 space-y-8">
+          <ol className="relative border-l-2 border-[#d0d7de] ml-2 space-y-10">
             {watch.map((w) => (
               <li key={w.what} className="pl-6">
-                <span className={`absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full ${w.tag === 'OBS' ? 'bg-[#1b1f23]' : 'bg-white border-2 border-[#1b1f23]'}`} />
-                <div className="text-xs font-mono text-[#57606a] tracking-wider">{w.when}</div>
-                <div className="text-lg font-semibold mt-0.5">{w.what}</div>
-                <p className="text-sm text-[#1b1f23] leading-relaxed mt-1 max-w-3xl"><Tag t={w.tag} />{w.detail}</p>
+                <span className={`absolute -left-[7px] mt-1.5 h-3.5 w-3.5 rounded-full ${w.tag === 'OBS' ? 'bg-[#1b1f23]' : 'bg-white border-2 border-[#1b1f23]'}`} />
+                <div className="text-xs font-mono text-[#57606a] tracking-wider mb-1">{w.when}</div>
+                <div className="text-xl font-semibold mt-0.5 mb-1">{w.what}</div>
+                <p className="text-[15px] text-[#1b1f23] leading-[1.75] mt-1"><Tag t={w.tag} />{w.detail}</p>
               </li>
             ))}
           </ol>
