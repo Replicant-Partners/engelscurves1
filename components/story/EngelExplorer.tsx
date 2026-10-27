@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { explorer } from '../../data/explorerData';
-import { engelPoints } from '../../data/engelCrossCountry';
 import { story } from '../../data/storyData';
 import { dollarStreet } from '../../data/dollarStreet';
 import { REGION_COLORS, regionColor as color, BAND_FILL } from './regionColors';
@@ -124,9 +123,7 @@ export function EngelExplorer() {
           <text transform={`translate(14 ${(M.top + H - M.bottom) / 2}) rotate(-90)`} textAnchor="middle" fontSize="12" fill="#57606a">Food share of household spending</text>
 
           <polyline points={curve.map((p) => `${x(p.gdp)},${y(p.share)}`).join(' ')} fill="none" stroke="#1b1f23" strokeWidth={2} opacity={0.75} />
-
-          {lens === 'survey' && engelPoints.map((p, i) => (
-            <circle key={i} cx={x(p.gdp)} cy={y(p.share)} r={4} fill="#9aa4ae" opacity={0.75}><title>{`${p.iso3} ${p.year}: ${(p.share * 100).toFixed(0)}% at ${usd(p.gdp)}`}</title></circle>
+          cy={y(p.share)} r={4} fill="#9aa4ae" opacity={0.75}><title>{`${p.iso3} ${p.year}: ${(p.share * 100).toFixed(0)}% at ${usd(p.gdp)}`}</title></circle>
           ))}
 
           {trails.map((t) => t.pts.length > 1 && (
