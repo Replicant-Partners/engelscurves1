@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { GDPCPIQuadrant, GDPBars, InflationBars, FXBars, ArgentinaInflation } from './MacroCharts';
+import { MacroQuadrantAnimated } from './MacroQuadrantAnimated';
 
 /* ── Risk level ─────────────────────────────────────────────────────────── */
 type RiskLevel = 'low' | 'medium' | 'elevated' | 'high';
@@ -253,7 +254,7 @@ function FXSensitivity() {
 
 /* ── Main ────────────────────────────────────────────────────────────────── */
 export function MacroRisk() {
-  const [tab, setTab] = useState<'scorecards'|'charts'|'exit'|'fx'>('scorecards');
+  const [tab, setTab] = useState<'scorecards'|'charts'|'animated'|'exit'|'fx'>('scorecards');
   const [open, setOpen] = useState<string | null>(null);
 
   return (
@@ -263,6 +264,7 @@ export function MacroRisk() {
         {[
           { key: 'scorecards', label: 'Country scorecards' },
           { key: 'charts',     label: 'Charts' },
+          { key: 'animated',   label: 'Historical (2000–2024)' },
           { key: 'exit',       label: 'Engel exit sensitivity' },
           { key: 'fx',         label: 'FX stress test' },
         ].map(t => (
@@ -382,6 +384,14 @@ export function MacroRisk() {
               <ArgentinaInflation />
             </div>
           </div>
+        </div>
+      )}
+      {tab === 'animated' && (
+        <div>
+          <p style={{ fontSize: 13, color: '#57606a', marginBottom: 16, lineHeight: 1.7 }}>
+            Each bubble is one of the six markets. Press <strong>Play</strong> to animate 2000→2024 and watch how GDP growth and inflation evolved over 25 years. Trails show the last 5 years of movement. Vietnam's consistent upper-right trajectory contrasts with Argentina's volatility and Mexico's stagnation post-2018.
+          </p>
+          <MacroQuadrantAnimated />
         </div>
       )}
       {tab === 'exit' && <ExitSensitivity />}
