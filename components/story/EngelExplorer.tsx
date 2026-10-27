@@ -123,8 +123,6 @@ export function EngelExplorer() {
           <text transform={`translate(14 ${(M.top + H - M.bottom) / 2}) rotate(-90)`} textAnchor="middle" fontSize="12" fill="#57606a">Food share of household spending</text>
 
           <polyline points={curve.map((p) => `${x(p.gdp)},${y(p.share)}`).join(' ')} fill="none" stroke="#1b1f23" strokeWidth={2} opacity={0.75} />
-          cy={y(p.share)} r={4} fill="#9aa4ae" opacity={0.75}><title>{`${p.iso3} ${p.year}: ${(p.share * 100).toFixed(0)}% at ${usd(p.gdp)}`}</title></circle>
-          ))}
 
           {trails.map((t) => t.pts.length > 1 && (
             <polyline key={t.iso} points={t.pts.map((p) => `${x(p.gdp)},${y(p.share)}`).join(' ')} fill="none" stroke={color(t.pts[0].region)} strokeWidth={1.5} opacity={0.9} strokeDasharray={t.pts.some((p) => p.projected) ? undefined : undefined} />
