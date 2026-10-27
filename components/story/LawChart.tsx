@@ -108,7 +108,7 @@ export function LawChart() {
           {[1000, 2000, 5000, 10000, 20000, 50000].map((g) => (
             <text key={g} x={x(g)} y={H - M.bottom + 18} textAnchor="middle" fontSize="11" fill="#57606a">{usd(g)}</text>
           ))}
-          <text x={(M.left + W - M.right) / 2} y={H - 8} textAnchor="middle" fontSize="12" fill="#57606a">GDP per capita, PPP (2021 international $, log scale)</text>
+          <text x={(M.left + W - M.right) / 2} y={H - 8} textAnchor="middle" fontSize="12" fill="#57606a">GDP per capita at survey year — PPP, constant 2021 $ (log scale)</text>
           <text transform={`translate(13 ${(M.top + H - M.bottom) / 2}) rotate(-90)`} textAnchor="middle" fontSize="12" fill="#57606a">Food share of household spending</text>
 
           {pts.map((p, i) => {
@@ -159,8 +159,8 @@ export function LawChart() {
           <div className="absolute top-2 left-14 bg-white border border-[#d0d7de] px-3 py-2 text-xs leading-relaxed shadow-sm pointer-events-none">
             <div className="font-semibold text-sm">{sel.country} · {sel.year}</div>
             <div>Food share: <span className="font-mono">{(sel.share * 100).toFixed(0)}%</span></div>
-            <div>Income: <span className="font-mono">{usd(sel.gdp)}</span> per person</div>
-            <div className="text-[#57606a] text-[10px]">{sel.region} · survey {(pinned ?? idx)! + 1} of {pts.length}</div>
+            <div>Income at survey time: <span className="font-mono">{usd(sel.gdp)}</span>/person (constant 2021 $)</div>
+            <div className="text-[#57606a] text-[10px]">{sel.region} · survey {(pinned ?? idx)! + 1} of {pts.length} · {sel.year} data</div>
           </div>
         )}
       </div>
