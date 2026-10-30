@@ -417,7 +417,7 @@ export default function StoryPage() {
         </Chapter>
 
         <Chapter id="map" n="4" title="The map" lede="Where twelve emerging markets stand today and where IMF growth projections take them by 2030. Six are inside the transition; three of them are likely to finish it this decade.">
-          <div className="border border-[#d0d7de] p-4 md:p-6 overflow-x-auto">
+          <div className="overflow-x-auto">
             <PhaseTracks />
           </div>
           <p className="text-xs text-[#57606a] mt-2">Click a country to trace its year-by-year path in <a href="#motion" className="underline underline-offset-2">chapter 3</a>.</p>
@@ -453,7 +453,7 @@ export default function StoryPage() {
                     <th className="py-2 text-right">Same, income overstated 20%</th>
                   </tr>
                 </thead>
-                <tbody className="font-mono text-xs">
+                <tbody className="font-mono text-[13px]">
                   {story.tracks.map((r) => {
                     const near = (r.gdp2025 >= story.bounds.startCi[0] && r.gdp2025 <= story.bounds.startCi[2]) || (r.gdp2025 >= story.bounds.endCi[0] && r.gdp2025 <= story.bounds.endCi[2]);
                     const past = r.gdp2025 >= story.bounds.end;
@@ -476,7 +476,7 @@ export default function StoryPage() {
           </details>
           <div className="mt-10">
             <h3 className="text-lg font-semibold mb-3">Going deeper</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-[15px] leading-[1.75]">
               <p><Tag t="INF" />Median crossing years on the bootstrap paths: Egypt {deep.medianExit.EGY}, Vietnam {deep.medianExit.VNM}, Indonesia {deep.medianExit.IDN}. India, the Philippines and South Africa do not reach a 50% exit probability by 2030 &mdash; India and the Philippines because the distance is large, South Africa because its projected growth is close to zero.</p>
               <p><Tag t="JDG" />A tension we watch rather than hide: the survey-based model predicts Indonesia&rsquo;s food share falling as it grows, yet on the USDA national-accounts lens Indonesia&rsquo;s observed share <em>rose</em> 1.7 points over 2017&ndash;2023 (chapter 3). If that persists, the {Math.round(story.tracks.find((t) => t.iso3 === 'IDN')!.pExit2030 * 100)}%-by-2030 exit probability is too optimistic. The first check arrives with the 2024&ndash;2025 USDA releases.</p>
             </div>
@@ -523,9 +523,9 @@ export default function StoryPage() {
               ))}
             </div>
           </div>
-          <div className="mt-10">
-            <h3 className="text-lg font-semibold mb-3">Going deeper</h3>
-            <p className="text-sm leading-relaxed"><Tag t="INF" />Scaled up, this per-person arithmetic is the largest consumption story of the decade: Kharas projects global middle-class consumption $29 trillion higher in 2030 than in 2015<Cite ids={[15]} />, with today&rsquo;s lower middle-income countries &mdash; including India, Indonesia and Vietnam &mdash; carrying $15 trillion of that market growth<Cite ids={[16]} />. Those are the same markets chapter 4 places inside the transition. <Tag t="JDG" />Both figures are 2017 projections, not observations; we cite them as the order of magnitude, not a forecast we underwrite.</p>
+          <div className="mt-12 pt-8 border-t border-[#e1e4e8]">
+            <p className="text-xs font-mono text-[#57606a] tracking-widest mb-4">GOING DEEPER — SCALE</p>
+            <p className="text-[15px] leading-[1.75]"><Tag t="INF" />Scaled up, this per-person arithmetic is the largest consumption story of the decade: Kharas projects global middle-class consumption $29 trillion higher in 2030 than in 2015<Cite ids={[15]} />, with today&rsquo;s lower middle-income countries &mdash; including India, Indonesia and Vietnam &mdash; carrying $15 trillion of that market growth<Cite ids={[16]} />. Those are the same markets chapter 4 places inside the transition. <Tag t="JDG" />Both figures are 2017 projections, not observations; we cite them as the order of magnitude, not a forecast we underwrite.</p>
           </div>
 
           <Record>
@@ -536,13 +536,13 @@ export default function StoryPage() {
 
         <Chapter id="street" n="6" title="The street" lede={`The same transition, seen from inside the home. Dollar Street (Gapminder) photographs real families and places them on one global street by consumption per adult — ${dollarStreet.usable} families so far. Here are the ${dollarStreet.markets.filter((m) => m.n > 0).length} of our twelve markets they have visited.`}>
           <DollarStreetHouses />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mt-14 text-[15px] leading-[1.75]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-14 gap-y-8 mt-14 text-[15px] leading-[1.75]">
             <p><Tag t="OBS" />Each house is one documented family, stacked where its consumption per adult per month (PPP) falls on the street; toggle a market to light its homes. The spread inside one country is the point: India’s {dollarStreet.markets.find((m) => m.iso3 === 'IND')!.n} families run from ${dollarStreet.markets.find((m) => m.iso3 === 'IND')!.min} to ${dollarStreet.markets.find((m) => m.iso3 === 'IND')!.max} a month — the whole Engel curve lives inside a single country.</p>
             <p><Tag t="JDG" />The dashed line marks the $11-a-day middle-class entry (about ${dollarStreet.kharasMonthly}/month)<Cite ids={[13]} />. Families to its left spend their budgets largely on food and essentials; to its right, the freed-up wallet of chapter 4 appears — this is the household-level view of the same shift our country phases track in GDP terms. The two scales are related but not convertible, so no phase boundaries are drawn here.</p>
           </div>
-          <div className="mt-10">
-            <h3 className="text-lg font-semibold mb-3">Going deeper</h3>
-            <p className="text-sm leading-relaxed"><Tag t="OBS" />{deep.street.belowEntry} of the {deep.street.familiesOurMarkets} documented families in our twelve markets ({Math.round(100 * deep.street.belowEntry / deep.street.familiesOurMarkets)}%) live below our $335/month entry line (the $11-a-day definition of item 13, converted to a month<Cite ids={[13]} />). India&rsquo;s 10th-percentile family lives on ${deep.street.indiaP10} a month and its 90th on ${num(deep.street.indiaP90)} &mdash; a {Math.round(deep.street.indiaP90 / deep.street.indiaP10)}&times; spread inside one country. <Tag t="INF" />This is evidence item 11 made visible: a country&rsquo;s average hides most of the street it actually lives on, which is why chapter 4&rsquo;s country phases and this chapter&rsquo;s households are different questions.</p>
+          <div className="mt-12 pt-8 border-t border-[#e1e4e8]">
+            <p className="text-xs font-mono text-[#57606a] tracking-widest mb-4">GOING DEEPER — THE SPREAD WITHIN COUNTRIES</p>
+            <p className="text-[15px] leading-[1.75]"><Tag t="OBS" />{deep.street.belowEntry} of the {deep.street.familiesOurMarkets} documented families in our twelve markets ({Math.round(100 * deep.street.belowEntry / deep.street.familiesOurMarkets)}%) live below our $335/month entry line (the $11-a-day definition of item 13, converted to a month<Cite ids={[13]} />). India&rsquo;s 10th-percentile family lives on ${deep.street.indiaP10} a month and its 90th on ${num(deep.street.indiaP90)} &mdash; a {Math.round(deep.street.indiaP90 / deep.street.indiaP10)}&times; spread inside one country. <Tag t="INF" />This is evidence item 11 made visible: a country&rsquo;s average hides most of the street it actually lives on, which is why chapter 4&rsquo;s country phases and this chapter&rsquo;s households are different questions.</p>
           </div>
 
           <Record>
