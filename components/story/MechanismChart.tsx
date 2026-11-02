@@ -55,7 +55,7 @@ export function MechanismChart() {
         {(['luxury', 'necessity', 'inferior'] as const).map((t) => (
           <span key={t} className="flex items-center gap-1.5">
             <span className="inline-block w-3 h-3" style={{ background: COLORS[t] }} />
-            {t === 'luxury' ? 'Luxury (η > 1): share rises with income' : t === 'necessity' ? 'Necessity (0 < η < 1): grows slower than income' : 'Inferior (η < 0): share falls as income rises (OECD levels)'}
+            {t === 'luxury' ? 'Luxury (η > 1): share rises with income' : t === 'necessity' ? 'Necessity (0 < η < 1): grows slower than income' : 'Inferior (η < 0): absolute spending falls as income rises (not just share). Note: food η=−0.28 at OECD income levels means rich households spend less on food in absolute terms — an artefact of the linear model at very low food shares.'}
           </span>
         ))}
       </div>
