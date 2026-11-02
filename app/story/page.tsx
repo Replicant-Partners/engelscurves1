@@ -476,9 +476,25 @@ export default function StoryPage() {
           </details>
           <div className="mt-10">
             <h3 className="text-lg font-semibold mb-3">Going deeper</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-[15px] leading-[1.75]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-[15px] leading-[1.75] mb-8">
               <p><Tag t="INF" />Median crossing years on the bootstrap paths: Egypt {deep.medianExit.EGY}, Vietnam {deep.medianExit.VNM}, Indonesia {deep.medianExit.IDN}. India, the Philippines and South Africa do not reach a 50% exit probability by 2030 &mdash; India and the Philippines because the distance is large, South Africa because its projected growth is close to zero.</p>
               <p><Tag t="JDG" />A tension we watch rather than hide: the survey-based model predicts Indonesia&rsquo;s food share falling as it grows, yet on the USDA national-accounts lens Indonesia&rsquo;s observed share <em>rose</em> 1.7 points over 2017&ndash;2023 (chapter 3). If that persists, the {Math.round(story.tracks.find((t) => t.iso3 === 'IDN')!.pExit2030 * 100)}%-by-2030 exit probability is too optimistic. The first check arrives with the 2024&ndash;2025 USDA releases.</p>
+            </div>
+
+            {/* M2 + M4: within-country slope stress test */}
+            <div className="p-5 bg-[#fff8f0] border border-[#e0c090] rounded-lg">
+              <p className="text-xs font-mono text-[#7c5c00] tracking-widest mb-3">M2 + M4 — TWO SLOPES, TWO VERY DIFFERENT PROBABILITIES</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-[14px] leading-[1.7]">
+                <div>
+                  <p className="font-semibold mb-2">What the published probabilities assume</p>
+                  <p className="text-[#57606a]"><Tag t="INF" />The headline figures (Egypt 92%, Vietnam 83%) assume countries travel the <strong>cross-sectional</strong> Engel curve: β = −0.141 per log point of income. They cover only uncertainty in the curve estimate, not IMF forecast error or PPP bias (chapter 4 already shows PPP sensitivity).</p>
+                </div>
+                <div>
+                  <p className="font-semibold mb-2">What the within-country slope implies</p>
+                  <p className="text-[#57606a]"><Tag t="OBS" />Over 2017&ndash;2023, the within-country slope is only −0.057 (40% of the cross-section slope). At Vietnam&rsquo;s IMF growth path, the cross-section predicts a 5.4pp food-share decline to 2030; the within-country slope predicts only 2.2pp — barely enough to cross 35%. <Tag t="JDG" />If the within-country rate is the true medium-term speed, published probabilities overstate confidence by 2–3×.</p>
+                </div>
+              </div>
+              <p className="text-[12px] text-[#8c96a0] mt-4">Source: within-country slope from USDA ERS panel 2017–2023 ({deep.withinCountrySlope} per log point, stored in deepDive.ts). Cross-section slope from 85 household surveys (−0.141). lisp_eval verified 2026-11-02.</p>
             </div>
           </div>
 
