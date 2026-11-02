@@ -12,15 +12,18 @@ interface Horizon {
   status: 'past' | 'near' | 'future';
 }
 
+// P3 note (Ivan Labra review): inputs known at analysis date vs genuine predictions.
+// Each item should have a creation date. Items marked "past" were known when theses were written.
 const HORIZONS: Horizon[] = [
-  { date: 'Q4-2025', dateSort: 202512, label: 'Vietnam GDP 8.0% confirmed', detail: 'GSO published Jan-2026. MWG revenue +16.4% confirmed.', type: 'data', status: 'past' },
+  { date: 'Oct-2026', dateSort: 202610, label: 'Brazil presidential runoff (resolved)', detail: 'Polymarket Bolsonaro 77.8% pre-event. P3: event was Oct-2026 — resolve with actual result.', type: 'policy', status: 'past' },
+  { date: 'Q4-2025', dateSort: 202512, label: 'Vietnam GDP 8.0% (known input)', detail: 'GSO published Jan-2026. Known at analysis date. P3 note: FY2025 company results filed Feb-Mar 2026 were inputs to the thesis, not predictions — they preceded the valuation verdicts.', type: 'data', status: 'past' },
   { date: 'Q1-2026', dateSort: 202603, label: 'FEMSA Q4-2025 SSSG +4.4%', detail: 'OXXO Mexico inflection confirmed. Banxico rate 7.0%.', type: 'market', status: 'past' },
   { date: 'Q1-2026', dateSort: 202603, label: 'YDUQ3 FCF R$1.05B (+32%)', detail: 'FCF thesis confirmed at historic milestone.', type: 'market', status: 'past' },
   { date: 'Q1-2026', dateSort: 202603, label: 'MTN Nigeria FY2025: real growth', detail: 'Naira appreciated — growth not purely FX rebase.', type: 'market', status: 'past' },
   { date: 'H1-2026', dateSort: 202606, label: 'USDA ERS 2024 food shares', detail: 'First post-2023 data: does Indonesia food share continue rising (lens conflict) or fall?', type: 'data', status: 'near' },
   { date: 'H1-2026', dateSort: 202606, label: 'ENIGH 2024 (Mexico household survey)', detail: 'Confirms post-transition status still holds after GDP +0.3% year.', type: 'data', status: 'near' },
   { date: 'Q3-2026', dateSort: 202609, label: 'GGAL HSBC integration ROE normalisation', detail: 'Q3-2025 ROE 4.7% (drag). Q3-2026 target: ROE 15%+ ex-integration costs.', type: 'market', status: 'near' },
-  { date: 'Oct-2026', dateSort: 202610, label: 'Argentina mid-term elections', detail: 'Milei coalition gains/losses determine 2027 presidential race confidence.', type: 'policy', status: 'near' },
+  { date: 'Oct-2025', dateSort: 202510, label: 'Argentina mid-term elections (past)', detail: 'Held October 2025 — Milei coalition performed strongly, improving 2027 presidential prospects. P3 note: this event predates the analysis; outcome was known input, not prediction.', type: 'policy', status: 'past' },
   { date: 'H2-2026', dateSort: 202612, label: 'SILO H1-2026 revenue (12% target)', detail: 'Oct-2025 mgmt guidance: double-digit. Analyst consensus FY26F: +12%. First confirmation.', type: 'market', status: 'future' },
   { date: 'H2-2026', dateSort: 202612, label: 'MTN MoMo fintech turn positive', detail: 'Was −7.2% H1-2026. Positive turn = second Engel channel (financial inclusion) confirmed.', type: 'market', status: 'future' },
   { date: 'Oct-2027', dateSort: 202710, label: 'Brier loop: MWG fwd P/E > 15×', detail: '41.2% calibrated probability. Already re-rated to 17.9× TTM (Apr-2026) — may resolve early.', type: 'brier', status: 'future' },

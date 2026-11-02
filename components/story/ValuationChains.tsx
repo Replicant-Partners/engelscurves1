@@ -322,7 +322,7 @@ export function ValuationChains() {
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
             <thead>
               <tr style={{ borderBottom: '2px solid #d0d7de', background: '#f6f8fa' }}>
-                {['Market / Company', 'Phase', 'η', 'Implied g¹', 'Actual g', 'Gap', 'Verdict', 'P(thesis)'].map(h => (
+                {['Market / Company', 'Phase', 'η', 'Implied g¹', 'Actual g', 'Gap', 'Verdict', 'Prior P'].map(h => (
                   <th key={h} style={{ padding: '10px 14px', textAlign: 'left', color: '#57606a', fontWeight: 600, whiteSpace: 'nowrap', fontSize: 11, letterSpacing: '0.03em' }}>{h}</th>
                 ))}
               </tr>
@@ -446,7 +446,7 @@ export function ValuationChains() {
 
       {/* Methodology note — collapsed */}
       <details style={{ fontSize: 11, color: '#57606a', borderTop: '1px solid #e1e4e8', paddingTop: 16 }}>
-        <summary style={{ cursor: 'pointer', fontWeight: 600, fontSize: 12 }}>Methodology — probability calibration</summary>
+        <summary style={{ cursor: 'pointer', fontWeight: 600, fontSize: 12 }}>Methodology — prior probability estimates (not yet calibrated)</summary>
         <p style={{ marginTop: 8, lineHeight: 1.7 }}>
           Calibrated probabilities follow Tetlock &amp; Gardner (2015): question triage, Fermi sub-question decomposition (5 questions per pair), outside-view base rate, inside-view adjustment, dragonfly-eye synthesis, and shrinkage toward the base rate via scenario_calibrate. All six forecast IDs are registered for Brier scoring.
         </p>
