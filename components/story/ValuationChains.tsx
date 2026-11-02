@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import { GrowthGapChart } from './GrowthGapChart';
 
 /* ── static pair data (avoids re-importing heavy JSON) ─────────────────── */
-// VCP math audit (lisp_eval 2026-10-23): g = 1/PE − 9%.
-// MWG −0.0007✓ | FMX −0.0442✓ | YDUQ3 +0.0767✓ | MTNN −0.0082✓(trailing 12.23) | GGAL −0.0665✓(TTM 42.6) | SILO −0.0371✓(trailing 18.9)
+// CORRECTED 2026-11-02 (Ivan Labra review C1): g = r - 1/PE (Gordon model), NOT 1/PE - r.
+// Prior sign was inverted. Confirmed via lisp_eval.
+// MWG +0.0007 | FMX +0.0442 | YDUQ3 −0.0767 | MTNN +0.0082 | GGAL +0.0665 | SILO +0.0371
+// C3 note: YDUQ3 actualG changed to revenue 3.2% (not FCF 32%) for like-for-like with P/E
 const PAIRS = [
   {
     id: 1, symbol: 'MWG', market: 'Vietnam', company: 'Mobile World (MWG)',
@@ -12,7 +14,7 @@ const PAIRS = [
     description: "Vietnam's largest multi-category retailer: 5,000+ stores (smartphones, appliances, groceries, pharmacy). Revenue +16.4% FY2025. P/E re-rated 11.2x→17.9x in 6 months.",
     engelPhase: 'Transition', eta: 1.15,
     category: 'Consumer electronics / durables',
-    impliedG: -0.0007, actualG: 0.164, pe: 11.2, peType: 'fwd',  // FY2025: revenue +16.4%; NPAT +89.4%
+    impliedG: 0.0007, actualG: 0.164, pe: 11.2, peType: 'fwd',  // FY2025: revenue +16.4%; NPAT +89.4%
     verdictCode: 'NOT_DISCOUNTED', verdictLabel: 'Not discounted',
     prob: 0.412, forecastQ: 'fwd P/E > 15× by Dec 2027',
     chain: 'Income rises → durables share ↑ (η=1.15) → households buy first smartphone/fridge → MWG revenue grows faster than income; FY2025: revenue +16.4%, NPAT +89.4% (VND 7.1tn); 2026 plan: +19% revenue; P/E TTM re-rated 11.2x→17.9x by Apr-2026 — thesis partially pricing in',
@@ -24,7 +26,7 @@ const PAIRS = [
     description: "Mexico's FEMSA: 25,587 OXXO stores (13M tickets/day), world's largest Coca-Cola bottler, 3,000+ pharmacies. Revenue +7.6% FY2025. OXXO SSSG recovered to +4.4% in Q4.",
     engelPhase: 'Post-transition', eta: 1.28,
     category: 'Convenience retail + Health/pharma',
-    impliedG: -0.0442, actualG: 0.076, pe: 21.82, peType: 'fwd',  // FY2025 AR: +7.6%
+    impliedG: 0.0442, actualG: 0.076, pe: 21.82, peType: 'fwd',  // FY2025 AR: +7.6%
     verdictCode: 'FAIRLY_VALUED', verdictLabel: 'Fairly valued',
     prob: 0.368, forecastQ: 'TSR > 20% + Health div > 15% by Dec 2027',
     chain: 'Post-transition: food at 25.7% → freed budget → OXXO convenience (η=1.28) + pharma (η=1.26) → FEMSA captures both at 25,587 OXXO + 3 k+ pharmacies; Health div +10.5% FY2025; 13M OXXO tickets/day in Mexico',
@@ -36,7 +38,7 @@ const PAIRS = [
     description: "Brazil's 2nd-largest private university group: 1.37M students across Estácio, Ibmec (premium) and IDOMED (medical). FCF hit R$1B (+32%) in FY2025 — a historic milestone.",
     engelPhase: 'Post-transition', eta: 0.97,
     category: 'Private university education',
-    impliedG: 0.0767, actualG: 0.32, pe: 6.0, peType: 'fwd',  // FCF +32% FY2025; revenue +3.2% < implied g
+    impliedG: -0.0767, actualG: 0.032, pe: 6.0, peType: 'fwd',  // FCF +32% FY2025; revenue +3.2% < implied g
     verdictCode: 'DEEPLY_UNDERVALUED', verdictLabel: 'Deeply undervalued',
     prob: 0.386, forecastQ: 'FCF > 20% pa FY2026–27, no FIES cut',
     chain: 'Post-transition (food 16.2%) → first-generation university access → premium education (IDOMED + Ibmec = 44% EBITDA) → FCF R$1.05B (+32% FY2025, historic milestone); tension: revenue +3.2% < implied g 7.7% → on revenue basis slightly overvalued; on FCF basis (32%) still deeply undervalued; net debt R$2.48B (leverage 1.46x, down from 1.55x)',
@@ -50,7 +52,7 @@ const PAIRS = [
     description: "Nigeria's largest mobile operator: 87M subscribers, 38.5% market share, 53M active data users. Service revenue +55.1% (NGN, real growth) in FY2025. MoMo fintech in development.",
     engelPhase: 'Paradox', eta: 0.79,
     category: 'Mobile data / fintech (gateway luxury)',
-    impliedG: -0.0082, actualG: 0.259, pe: 12.23, peType: 'trailing',
+    impliedG: 0.0082, actualG: 0.259, pe: 12.23, peType: 'trailing',
     verdictCode: 'CHEAP_WITH_CAVEAT', verdictLabel: 'Cheap, growth caveat',
     prob: 0.335, forecastQ: 'Data revenue > 20% YoY H2-26 + FY27 (organic)',
     chain: 'Engel blocked (food=59% flat despite GDP $7.8k) → data is first non-food purchase at all income levels → MTN captures data + fintech; FY2025: service rev +55.1% NGN (naira strengthened N1535→N1436/USD — real growth); EBITDA 52.7%; market share 38.5% (NCC); 53.2M data users',
@@ -64,7 +66,7 @@ const PAIRS = [
     description: "Argentina's largest private financial group (Banco Galicia + ex-HSBC + Naranja X fintech). 432 branches, 15.1% private loan market share. P/B recovered from 0.25x (2022) to 1.15x (2026).",
     engelPhase: 'Post-transition', eta: 1.37,
     category: 'Financial services (macro-stabilisation play)',
-    impliedG: -0.0665, actualG: 0.15, pe: 42.6, peType: 'TTM',
+    impliedG: 0.0665, actualG: 0.15, pe: 42.6, peType: 'TTM',
     verdictCode: 'MACRO_PLAY', verdictLabel: 'Macro play',
     prob: 0.454, forecastQ: 'P/B > 1.5× by Dec 2027',
     chain: 'GDP post-transition (η=1.37 for financial services) BUT hyperinflation overwhelms Engel → GGAL is a Milei-stabilisation trade; P/B 0.96×, JPM target $85',
@@ -78,8 +80,8 @@ const PAIRS = [
     description: "Indonesia's largest private hospital network: 41 hospitals, 4,310 beds, 4.35M outpatient visits/year. ~9% private hospital market share. EBITDA margin expanding to 29.1% FY2025.",
     engelPhase: 'Transition', eta: 1.26,
     category: 'Private hospital healthcare',
-    impliedG: -0.0371, actualG: 0.052, pe: 18.9, peType: 'trailing',  // FY2025: +5.2% revenue
-    verdictCode: 'SLIGHTLY_RICH', verdictLabel: 'Slightly rich',
+    impliedG: 0.0371, actualG: 0.052, pe: 18.9, peType: 'trailing',  // FY2025: +5.2% revenue
+    verdictCode: 'FAIRLY_VALUED', verdictLabel: 'Fairly valued',  // corrected: gap only 1.5pp
     prob: 0.349, forecastQ: 'Revenue > 12% FY2027 + IDX outperform >10%',
     chain: 'Transition (66% exit by 2030) → health share ↑ (η=1.26) → middle class upgrades from public BPJS → Siloam: 9% private hospital market share; 41 hospitals; EBITDA 29.1% FY2025; revenue +5.2% — BPJS headwind visible but EBITDA margin expanding',
     falsifier: 'BPJS covers 95% of population; any expansion to non-emergency care cannibalises private volume; current 7% growth suggests Engel not yet showing.',
